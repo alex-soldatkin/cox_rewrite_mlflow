@@ -1,0 +1,117 @@
+2026/01/10 23:08:48 INFO mlflow.tracking.fluent: Experiment with name 'Logistic_TV_Rolling_Window' does not exist. Creating a new experiment.
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlflow_utils/rolling_window_loader.py:254: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  final_df = pd.concat([matched_df, unmatched_df], ignore_index=True)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_logistic.py:101: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+Traceback (most recent call last):
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_logistic.py", line 156, in run
+    print(f"Acc: {acc:.3f}, F1: {f1:.3f}, AUC: {auc:.3f if auc else 'N/A'}")
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Invalid format specifier '.3f if auc else 'N/A'' for object of type 'float'
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_logistic.py:101: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+Traceback (most recent call last):
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_logistic.py", line 156, in run
+    print(f"Acc: {acc:.3f}, F1: {f1:.3f}, AUC: {auc:.3f if auc else 'N/A'}")
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Invalid format specifier '.3f if auc else 'N/A'' for object of type 'float'
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_logistic.py:101: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+Traceback (most recent call last):
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_logistic.py", line 156, in run
+    print(f"Acc: {acc:.3f}, F1: {f1:.3f}, AUC: {auc:.3f if auc else 'N/A'}")
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Invalid format specifier '.3f if auc else 'N/A'' for object of type 'float'
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_logistic.py:101: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+Traceback (most recent call last):
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_logistic.py", line 156, in run
+    print(f"Acc: {acc:.3f}, F1: {f1:.3f}, AUC: {auc:.3f if auc else 'N/A'}")
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Invalid format specifier '.3f if auc else 'N/A'' for object of type 'float'
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_logistic.py:101: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+Traceback (most recent call last):
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_logistic.py", line 156, in run
+    print(f"Acc: {acc:.3f}, F1: {f1:.3f}, AUC: {auc:.3f if auc else 'N/A'}")
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Invalid format specifier '.3f if auc else 'N/A'' for object of type 'float'
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_logistic.py:101: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+Traceback (most recent call last):
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_logistic.py", line 156, in run
+    print(f"Acc: {acc:.3f}, F1: {f1:.3f}, AUC: {auc:.3f if auc else 'N/A'}")
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Invalid format specifier '.3f if auc else 'N/A'' for object of type 'float'
+Setting MLflow experiment to: Logistic_TV_Rolling_Window
+Loading data with rolling window network metrics...
+Fetching bank population from Neo4j...
+Found 3028 banks from Neo4j.
+Loading accounting data from /Users/alexandersoldatkin/projects/factions-networks-thesis/drafts/accounting_cbr_imputed/final_final_banking_indicators.parquet...
+Accounting data filtered to 171438 observations in date range
+Loading rolling window data from /Users/alexandersoldatkin/projects/factions-networks-thesis/data_processing/rolling_windows/output/nodes...
+Found 10 rolling window files
+  Loaded node_features_rw_1989_1993.parquet: 36021 rows
+  Loaded node_features_rw_1993_1997.parquet: 37712 rows
+  Loaded node_features_rw_1997_2001.parquet: 39538 rows
+  Loaded node_features_rw_2001_2005.parquet: 40531 rows
+  Loaded node_features_rw_2005_2009.parquet: 40932 rows
+  Loaded node_features_rw_2009_2013.parquet: 40667 rows
+  Loaded node_features_rw_2013_2017.parquet: 40260 rows
+  Loaded node_features_rw_2017_2021.parquet: 39155 rows
+  Loaded node_features_rw_2021_2025.parquet: 37964 rows
+  Loaded node_features_rw_2025_2029.parquet: 37411 rows
+Total rolling window observations: 390191
+Merged Accounting + Neo4j: (151428, 61)
+Matching rolling window features to observations...
+Filtered to 14045 bank nodes in rolling windows
+After ID merge: 1207542 rows
+Matched rolling window features for 191699/151428 observations (126.6%)
+Constructing AnalysisDatasetRow objects...
+Validated 192775 rows via AnalysisDatasetRow.
+Loaded 192775 rows of merged data with rolling window features.
+Preprocessing for Pooled Logistic...
+Total Events created: 774
+Number of subjects: 1101
+
+--- Running Model 1: Controls ---
+Training shape: (192775, 5)
+Converged.
+Training failed: Invalid format specifier '.3f if auc else 'N/A'' for object of type 'float'
+🏃 View run Model 1: Controls at: http://127.0.0.1:5000/#/experiments/5/runs/0b1f4fdee4f046a781dcdeb9978ea8e3
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/5
+
+--- Running Model 2: +Network (RW) ---
+Training shape: (192775, 8)
+Converged.
+Training failed: Invalid format specifier '.3f if auc else 'N/A'' for object of type 'float'
+🏃 View run Model 2: +Network (RW) at: http://127.0.0.1:5000/#/experiments/5/runs/cc09dea3293c4ee2b6a201418a5815af
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/5
+
+--- Running Model 3: +Family ---
+Training shape: (192775, 10)
+Converged.
+Training failed: Invalid format specifier '.3f if auc else 'N/A'' for object of type 'float'
+🏃 View run Model 3: +Family at: http://127.0.0.1:5000/#/experiments/5/runs/8dfb651b6b1841a29914e8cdb95acc17
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/5
+
+--- Running Model 4: +Foreign ---
+Training shape: (192775, 12)
+Converged.
+Training failed: Invalid format specifier '.3f if auc else 'N/A'' for object of type 'float'
+🏃 View run Model 4: +Foreign at: http://127.0.0.1:5000/#/experiments/5/runs/9e1f67f19ce640e593f56c9a5daae9de
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/5
+
+--- Running Model 5: +State ---
+Training shape: (192775, 14)
+Converged.
+Training failed: Invalid format specifier '.3f if auc else 'N/A'' for object of type 'float'
+🏃 View run Model 5: +State at: http://127.0.0.1:5000/#/experiments/5/runs/883bd833c11548f6a4a05f72b5c12dbc
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/5
+
+--- Running Model 6: Full ---
+Training shape: (192775, 14)
+Converged.
+Training failed: Invalid format specifier '.3f if auc else 'N/A'' for object of type 'float'
+🏃 View run Model 6: Full at: http://127.0.0.1:5000/#/experiments/5/runs/3151328fbc0c41cfb7dcbf775e2e2f21
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/5

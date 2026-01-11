@@ -1,0 +1,31 @@
+
+experiment:
+  name: "exp_001_time_varying"
+  human_readable_name: "Model 1: Full Sample (2004-2025)"
+  description: "Cox Time-Varying model using all available accounting and graph data."
+  save_predictions: false
+  tags:
+    model_type: "cox_time_varying"
+    author: "User"
+
+data:
+  start_year: 2004
+  end_year: 2025
+  target: "failed"
+
+  features:
+    - "camel_roa"
+    - "camel_npl_ratio"
+    - "family_rho_F"
+    - "family_FOP"
+    - "state_SOP"
+    - "foreign_FOP_t"
+    - "network_page_rank"
+    - "network_C_b"
+  target: "failed"
+
+model:
+  name: "cox_ph"
+  params:
+    penalizer: 0.01
+    l1_ratio: 0.0

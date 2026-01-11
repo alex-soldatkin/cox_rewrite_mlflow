@@ -1,0 +1,17 @@
+variable,Model 1: Controls
+const,0.004*** (0.000)
+camel_tier1_capital_ratio,7.803*** (3.699)
+camel_npl_ratio,1.021*** (0.002)
+camel_roa,0.552*** (0.064)
+camel_liquid_assets_ratio,0.821 (0.515)
+Observations,151428
+Subjects,1101
+Events,774
+Log Likelihood,-4755.29
+AIC,9520.59
+AUC,0.639
+Optimal Threshold,0.018
+Accuracy,0.985
+Precision,0.035
+Recall,0.070
+F1 Score,0.047

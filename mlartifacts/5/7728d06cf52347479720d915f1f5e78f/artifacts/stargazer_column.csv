@@ -1,0 +1,24 @@
+variable,Model 4: +Foreign
+const,-5.272*** (0.055)
+camel_tier1_capital_ratio,1.776** (0.541)
+camel_npl_ratio,0.021*** (0.002)
+camel_roa,-0.600*** (0.111)
+camel_liquid_assets_ratio,-1.377 (0.830)
+network_in_degree,-0.000 (0.000)
+network_out_degree,-0.267*** (0.055)
+network_page_rank,-0.010 (0.006)
+family_FOP,-0.005 (0.003)
+family_rho_F,-0.706*** (0.208)
+foreign_FOP_t,-0.000 (0.000)
+foreign_FEC_d,-0.004** (0.002)
+Observations,192775
+Subjects,1101
+Events,774
+Log Likelihood,-4822.80
+AIC,9669.60
+AUC,0.719
+Optimal Threshold,0.027
+Accuracy,0.992
+Precision,0.046
+Recall,0.045
+F1 Score,0.046

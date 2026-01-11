@@ -1,0 +1,6376 @@
+{
+  "nodes": {
+    "Ent": {
+      "FipsApplications": [
+        "float"
+      ],
+      "Address": [
+        "float",
+        "str"
+      ],
+      "bank_regn": [
+        "str"
+      ],
+      "closeness": [
+        "float"
+      ],
+      "ManagerName": [
+        "str"
+      ],
+      "License": [
+        "float"
+      ],
+      "FactorCounts.AttentionCount": [
+        "float"
+      ],
+      "network_feats": [
+        "list"
+      ],
+      "node2vec_embedding_weight_no_feats": [
+        "list"
+      ],
+      "Vehicles": [
+        "float"
+      ],
+      "triangles": [
+        "float"
+      ],
+      "Ogrn": [
+        "str"
+      ],
+      "licence_date_cbr": [
+        "str"
+      ],
+      "full_name_cbr": [
+        "str"
+      ],
+      "BanksInfo": [
+        "float"
+      ],
+      "hash_gnn_embedding_nw_feats_no_bank_feats": [
+        "list"
+      ],
+      "Subsidies": [
+        "float"
+      ],
+      "Accreditation": [
+        "float"
+      ],
+      "EgrulListsDisqPersons": [
+        "float"
+      ],
+      "IssuersMessages": [
+        "float"
+      ],
+      "Salaries": [
+        "float"
+      ],
+      "Pfr": [
+        "str"
+      ],
+      "Status": [
+        "float",
+        "str"
+      ],
+      "Vacancies": [
+        "float"
+      ],
+      "out_degree": [
+        "float"
+      ],
+      "Fss": [
+        "str"
+      ],
+      "Regions": [
+        "list"
+      ],
+      "deposit_insurance_cbr": [
+        "str"
+      ],
+      "reason_banki_memory": [
+        "str"
+      ],
+      "Sites": [
+        "list"
+      ],
+      "hash_gnn_embedding": [
+        "list"
+      ],
+      "Id": [
+        "str"
+      ],
+      "community_louvain": [
+        "float"
+      ],
+      "ExporterProducts": [
+        "float"
+      ],
+      "Link": [
+        "str"
+      ],
+      "Inspections": [
+        "float"
+      ],
+      "Predecessor": [
+        "float"
+      ],
+      "RegistrationDate": [
+        "str"
+      ],
+      "AsShareholder": [
+        "float"
+      ],
+      "date_banki_memory": [
+        "float"
+      ],
+      "temporal_start": [
+        "float"
+      ],
+      "is_dead": [
+        "bool"
+      ],
+      "Trademark": [
+        "float"
+      ],
+      "bank_feats": [
+        "list"
+      ],
+      "IsActual": [
+        "bool"
+      ],
+      "url_banki_memory": [
+        "str"
+      ],
+      "ReasonText": [
+        "str"
+      ],
+      "regn_banki_memory": [
+        "str"
+      ],
+      "Auditors": [
+        "float"
+      ],
+      "Contracts": [
+        "float"
+      ],
+      "ReorganizationInfo": [
+        "float"
+      ],
+      "community_louvain_intermediate": [
+        "list"
+      ],
+      "lifespan_days": [
+        "float"
+      ],
+      "MappedFiasObjectIds": [
+        "list"
+      ],
+      "cbr_id": [
+        "str"
+      ],
+      "LlcShare": [
+        "float"
+      ],
+      "page_rank": [
+        "float"
+      ],
+      "PaidTax": [
+        "float"
+      ],
+      "StatusDate": [
+        "str"
+      ],
+      "Type": [
+        "str"
+      ],
+      "state_direct_ownership_value": [
+        "float"
+      ],
+      "AsManager": [
+        "float"
+      ],
+      "Contacts": [
+        "float"
+      ],
+      "AuthorisedCapital": [
+        "float"
+      ],
+      "state_ownership_percentage": [
+        "float"
+      ],
+      "Insurance": [
+        "float"
+      ],
+      "AsManagementCompany": [
+        "float"
+      ],
+      "FactorCounts.NegativeCount": [
+        "float"
+      ],
+      "in_degree": [
+        "float"
+      ],
+      "temporal_end": [
+        "float"
+      ],
+      "WoodRents": [
+        "float"
+      ],
+      "short_name_cbr": [
+        "str"
+      ],
+      "unique_state_entities": [
+        "float"
+      ],
+      "FactorCounts.PositiveCount": [
+        "float"
+      ],
+      "name_cbr": [
+        "str"
+      ],
+      "Arbitr": [
+        "float"
+      ],
+      "Kpp": [
+        "str"
+      ],
+      "fastrp_embedding_with_weight_bank_feats": [
+        "list"
+      ],
+      "Manager": [
+        "float"
+      ],
+      "EgrulListsUnreported": [
+        "float"
+      ],
+      "Name": [
+        "float",
+        "str"
+      ],
+      "AsRegistrar": [
+        "float"
+      ],
+      "node2vec_embedding": [
+        "list"
+      ],
+      "EgrulListsEntitiesWithDisqPersons": [
+        "float"
+      ],
+      "Phones": [
+        "list"
+      ],
+      "OtherIdentifiers": [
+        "list"
+      ],
+      "regn_cbr": [
+        "str"
+      ],
+      "ManagerLink": [
+        "str"
+      ],
+      "CustomsWarehouses": [
+        "float"
+      ],
+      "Emails": [
+        "list"
+      ],
+      "fastrp_embedding_with_weight_no_bank_feats": [
+        "list"
+      ],
+      "original_query_cbr_json_short_name": [
+        "str"
+      ],
+      "ActivityTypeInfo": [
+        "float"
+      ],
+      "fastrp_embedding_weight_bank_feats": [
+        "list"
+      ],
+      "BankruptMessages": [
+        "float"
+      ],
+      "date_reg_cbr": [
+        "float"
+      ],
+      "eigenvector": [
+        "float"
+      ],
+      "TaxArrears": [
+        "float"
+      ],
+      "FedresursPledge": [
+        "float"
+      ],
+      "state_control_paths": [
+        "float"
+      ],
+      "ManagementCompany": [
+        "float"
+      ],
+      "EgrulListsMassManager": [
+        "float"
+      ],
+      "EgrulListsMassFounder": [
+        "float"
+      ],
+      "GeneralJurisdictionCourts": [
+        "float"
+      ],
+      "sources": [
+        "list"
+      ],
+      "StatusText": [
+        "str"
+      ],
+      "OtherNames": [
+        "list"
+      ],
+      "state_controlled_companies": [
+        "float"
+      ],
+      "Inn": [
+        "str"
+      ],
+      "english_name_cbr": [
+        "str"
+      ],
+      "MassMedia": [
+        "float"
+      ],
+      "Reason": [
+        "str"
+      ],
+      "ActivityTypes": [
+        "list"
+      ],
+      "FipsPatents": [
+        "float"
+      ],
+      "ActivityTypeCategories": [
+        "list"
+      ],
+      "Successor": [
+        "float"
+      ],
+      "fastrp_embedding_no_weight": [
+        "list"
+      ],
+      "Registrar": [
+        "float"
+      ],
+      "Branch": [
+        "float"
+      ],
+      "FedresursMessages": [
+        "float"
+      ],
+      "TotalScore": [
+        "str"
+      ],
+      "harmonic_centrality": [
+        "float"
+      ],
+      "Patents": [
+        "float"
+      ],
+      "hash_gnn_embedding_bank_feats_no_weight": [
+        "list"
+      ],
+      "city_banki_memory": [
+        "str"
+      ],
+      "AsEntrepreneur": [
+        "float"
+      ],
+      "Finance": [
+        "float"
+      ],
+      "clustering_coefficient_7hop": [
+        "float"
+      ],
+      "state_direct_owners": [
+        "float"
+      ],
+      "Shareholder": [
+        "float"
+      ],
+      "FnsDocuments": [
+        "float"
+      ],
+      "community_louvain_7hop_gov_foreign": [
+        "float"
+      ],
+      "hdbscan_community": [
+        "float"
+      ],
+      "lifespan_years": [
+        "float"
+      ],
+      "Date": [
+        "str"
+      ],
+      "OtherAddresses": [
+        "list"
+      ],
+      "EgrulListsDebtors": [
+        "float"
+      ],
+      "WoodDeals": [
+        "float"
+      ],
+      "is_isolate": [
+        "bool"
+      ],
+      "RepresentativeOffice": [
+        "float"
+      ],
+      "Bailiffs": [
+        "float"
+      ],
+      "OpfCode": [
+        "str"
+      ],
+      "betweenness": [
+        "float"
+      ],
+      "Receipts": [
+        "float"
+      ],
+      "WaterObjects": [
+        "float"
+      ],
+      "full_name_banki_memory": [
+        "str"
+      ],
+      "family_connection_ratio": [
+        "float"
+      ],
+      "unique_country_count": [
+        "float"
+      ],
+      "family_controlled_companies": [
+        "float"
+      ],
+      "total_ownership_value": [
+        "float"
+      ],
+      "Capital": [
+        "float"
+      ],
+      "foreign_controlled_companies": [
+        "float"
+      ],
+      "foreign_entity_count": [
+        "float"
+      ],
+      "Founders": [
+        "str"
+      ],
+      "family_direct_ownership_value": [
+        "float"
+      ],
+      "family_ownership_percentage": [
+        "float"
+      ],
+      "foreign_direct_ownership_percentage": [
+        "float"
+      ],
+      "total_foreign_ownership_percentage": [
+        "float"
+      ],
+      "direct_owners": [
+        "float"
+      ],
+      "total_family_connections": [
+        "float"
+      ],
+      "ownership_complexity_score": [
+        "float"
+      ],
+      "MainActivityType_Code": [
+        "str"
+      ],
+      "MainActivityType_Name": [
+        "str"
+      ],
+      "Status.IsActual": [
+        "bool"
+      ],
+      "Status.ReasonText": [
+        "str"
+      ],
+      "to_scrape_seo": [
+        "bool"
+      ],
+      "Opf": [
+        "str"
+      ],
+      "Status.Status": [
+        "str"
+      ],
+      "Status.StatusText": [
+        "str"
+      ],
+      "Status.Reason": [
+        "str"
+      ],
+      "Status.Date": [
+        "str"
+      ],
+      "to_scrape_client": [
+        "bool"
+      ],
+      "Gender": [
+        "str"
+      ],
+      "Identifier": [
+        "float"
+      ],
+      "full_name": [
+        "str"
+      ],
+      "LastName": [
+        "str"
+      ],
+      "FirstName": [
+        "str"
+      ],
+      "MiddleName": [
+        "str"
+      ],
+      "Oktmo": [
+        "str"
+      ],
+      "Okopf": [
+        "str"
+      ],
+      "Okogu": [
+        "str"
+      ],
+      "Okato": [
+        "str"
+      ],
+      "Okpo": [
+        "str"
+      ],
+      "Okfs": [
+        "str"
+      ],
+      "MainActivityType.Code": [
+        "str"
+      ],
+      "MainActivityType.Name": [
+        "str"
+      ],
+      "ActivityType": [
+        "str"
+      ],
+      "phone_cbr": [
+        "str"
+      ],
+      "BIK_cbr": [
+        "str"
+      ],
+      "charter_cbr": [
+        "str"
+      ],
+      "ogrn_cbr": [
+        "str"
+      ],
+      "RegistrationNumber": [
+        "str"
+      ],
+      "CountryCode": [
+        "float"
+      ],
+      "charter_capital_cbr": [
+        "str"
+      ],
+      "charter_address_cbr": [
+        "str"
+      ],
+      "actual_address_cbr": [
+        "str"
+      ],
+      "DeathDate": [
+        "str"
+      ],
+      "original_request_name": [
+        "str"
+      ],
+      "original_request_inn": [
+        "str"
+      ],
+      "original_request_link": [
+        "str"
+      ],
+      "BirthDate": [
+        "str"
+      ],
+      "RsmpCategory": [
+        "str"
+      ]
+    },
+    "Bank": {
+      "FipsApplications": [
+        "float"
+      ],
+      "Address": [
+        "float",
+        "str"
+      ],
+      "bank_regn": [
+        "str"
+      ],
+      "closeness": [
+        "float"
+      ],
+      "ManagerName": [
+        "str"
+      ],
+      "License": [
+        "float"
+      ],
+      "FactorCounts.AttentionCount": [
+        "float"
+      ],
+      "network_feats": [
+        "list"
+      ],
+      "node2vec_embedding_weight_no_feats": [
+        "list"
+      ],
+      "Vehicles": [
+        "float"
+      ],
+      "triangles": [
+        "float"
+      ],
+      "Ogrn": [
+        "str"
+      ],
+      "licence_date_cbr": [
+        "str"
+      ],
+      "full_name_cbr": [
+        "str"
+      ],
+      "BanksInfo": [
+        "float"
+      ],
+      "hash_gnn_embedding_nw_feats_no_bank_feats": [
+        "list"
+      ],
+      "Subsidies": [
+        "float"
+      ],
+      "Accreditation": [
+        "float"
+      ],
+      "EgrulListsDisqPersons": [
+        "float"
+      ],
+      "IssuersMessages": [
+        "float"
+      ],
+      "Salaries": [
+        "float"
+      ],
+      "Pfr": [
+        "str"
+      ],
+      "Status": [
+        "float",
+        "str"
+      ],
+      "Vacancies": [
+        "float"
+      ],
+      "out_degree": [
+        "float"
+      ],
+      "Fss": [
+        "str"
+      ],
+      "Regions": [
+        "list"
+      ],
+      "deposit_insurance_cbr": [
+        "str"
+      ],
+      "reason_banki_memory": [
+        "str"
+      ],
+      "Sites": [
+        "list"
+      ],
+      "hash_gnn_embedding": [
+        "list"
+      ],
+      "Id": [
+        "str"
+      ],
+      "community_louvain": [
+        "float"
+      ],
+      "ExporterProducts": [
+        "float"
+      ],
+      "Link": [
+        "str"
+      ],
+      "Inspections": [
+        "float"
+      ],
+      "Predecessor": [
+        "float"
+      ],
+      "RegistrationDate": [
+        "str"
+      ],
+      "AsShareholder": [
+        "float"
+      ],
+      "date_banki_memory": [
+        "float"
+      ],
+      "temporal_start": [
+        "float"
+      ],
+      "is_dead": [
+        "bool"
+      ],
+      "Trademark": [
+        "float"
+      ],
+      "bank_feats": [
+        "list"
+      ],
+      "IsActual": [
+        "bool"
+      ],
+      "url_banki_memory": [
+        "str"
+      ],
+      "ReasonText": [
+        "str"
+      ],
+      "regn_banki_memory": [
+        "str"
+      ],
+      "Auditors": [
+        "float"
+      ],
+      "Contracts": [
+        "float"
+      ],
+      "ReorganizationInfo": [
+        "float"
+      ],
+      "community_louvain_intermediate": [
+        "list"
+      ],
+      "lifespan_days": [
+        "float"
+      ],
+      "MappedFiasObjectIds": [
+        "list"
+      ],
+      "cbr_id": [
+        "str"
+      ],
+      "LlcShare": [
+        "float"
+      ],
+      "page_rank": [
+        "float"
+      ],
+      "PaidTax": [
+        "float"
+      ],
+      "StatusDate": [
+        "str"
+      ],
+      "Type": [
+        "str"
+      ],
+      "state_direct_ownership_value": [
+        "float"
+      ],
+      "AsManager": [
+        "float"
+      ],
+      "Contacts": [
+        "float"
+      ],
+      "AuthorisedCapital": [
+        "float"
+      ],
+      "state_ownership_percentage": [
+        "float"
+      ],
+      "Insurance": [
+        "float"
+      ],
+      "AsManagementCompany": [
+        "float"
+      ],
+      "FactorCounts.NegativeCount": [
+        "float"
+      ],
+      "in_degree": [
+        "float"
+      ],
+      "temporal_end": [
+        "float"
+      ],
+      "WoodRents": [
+        "float"
+      ],
+      "short_name_cbr": [
+        "str"
+      ],
+      "unique_state_entities": [
+        "float"
+      ],
+      "FactorCounts.PositiveCount": [
+        "float"
+      ],
+      "name_cbr": [
+        "str"
+      ],
+      "Arbitr": [
+        "float"
+      ],
+      "Kpp": [
+        "str"
+      ],
+      "fastrp_embedding_with_weight_bank_feats": [
+        "list"
+      ],
+      "Manager": [
+        "float"
+      ],
+      "EgrulListsUnreported": [
+        "float"
+      ],
+      "Name": [
+        "str"
+      ],
+      "AsRegistrar": [
+        "float"
+      ],
+      "node2vec_embedding": [
+        "list"
+      ],
+      "EgrulListsEntitiesWithDisqPersons": [
+        "float"
+      ],
+      "Phones": [
+        "list"
+      ],
+      "OtherIdentifiers": [
+        "list"
+      ],
+      "regn_cbr": [
+        "str"
+      ],
+      "ManagerLink": [
+        "str"
+      ],
+      "CustomsWarehouses": [
+        "float"
+      ],
+      "Emails": [
+        "list"
+      ],
+      "fastrp_embedding_with_weight_no_bank_feats": [
+        "list"
+      ],
+      "original_query_cbr_json_short_name": [
+        "str"
+      ],
+      "ActivityTypeInfo": [
+        "float"
+      ],
+      "fastrp_embedding_weight_bank_feats": [
+        "list"
+      ],
+      "BankruptMessages": [
+        "float"
+      ],
+      "date_reg_cbr": [
+        "float"
+      ],
+      "eigenvector": [
+        "float"
+      ],
+      "TaxArrears": [
+        "float"
+      ],
+      "FedresursPledge": [
+        "float"
+      ],
+      "state_control_paths": [
+        "float"
+      ],
+      "ManagementCompany": [
+        "float"
+      ],
+      "EgrulListsMassManager": [
+        "float"
+      ],
+      "EgrulListsMassFounder": [
+        "float"
+      ],
+      "GeneralJurisdictionCourts": [
+        "float"
+      ],
+      "sources": [
+        "list"
+      ],
+      "StatusText": [
+        "str"
+      ],
+      "OtherNames": [
+        "list"
+      ],
+      "state_controlled_companies": [
+        "float"
+      ],
+      "Inn": [
+        "str"
+      ],
+      "english_name_cbr": [
+        "str"
+      ],
+      "MassMedia": [
+        "float"
+      ],
+      "Reason": [
+        "str"
+      ],
+      "ActivityTypes": [
+        "list"
+      ],
+      "FipsPatents": [
+        "float"
+      ],
+      "ActivityTypeCategories": [
+        "list"
+      ],
+      "Successor": [
+        "float"
+      ],
+      "fastrp_embedding_no_weight": [
+        "list"
+      ],
+      "Registrar": [
+        "float"
+      ],
+      "Branch": [
+        "float"
+      ],
+      "FedresursMessages": [
+        "float"
+      ],
+      "TotalScore": [
+        "str"
+      ],
+      "harmonic_centrality": [
+        "float"
+      ],
+      "Patents": [
+        "float"
+      ],
+      "hash_gnn_embedding_bank_feats_no_weight": [
+        "list"
+      ],
+      "city_banki_memory": [
+        "str"
+      ],
+      "AsEntrepreneur": [
+        "float"
+      ],
+      "Finance": [
+        "float"
+      ],
+      "clustering_coefficient_7hop": [
+        "float"
+      ],
+      "state_direct_owners": [
+        "float"
+      ],
+      "Shareholder": [
+        "float"
+      ],
+      "FnsDocuments": [
+        "float"
+      ],
+      "community_louvain_7hop_gov_foreign": [
+        "float"
+      ],
+      "hdbscan_community": [
+        "float"
+      ],
+      "lifespan_years": [
+        "float"
+      ],
+      "Date": [
+        "str"
+      ],
+      "OtherAddresses": [
+        "list"
+      ],
+      "EgrulListsDebtors": [
+        "float"
+      ],
+      "WoodDeals": [
+        "float"
+      ],
+      "is_isolate": [
+        "bool"
+      ],
+      "RepresentativeOffice": [
+        "float"
+      ],
+      "Bailiffs": [
+        "float"
+      ],
+      "OpfCode": [
+        "str"
+      ],
+      "betweenness": [
+        "float"
+      ],
+      "Receipts": [
+        "float"
+      ],
+      "WaterObjects": [
+        "float"
+      ],
+      "full_name_banki_memory": [
+        "str"
+      ],
+      "family_connection_ratio": [
+        "float"
+      ],
+      "unique_country_count": [
+        "float"
+      ],
+      "family_controlled_companies": [
+        "float"
+      ],
+      "total_ownership_value": [
+        "float"
+      ],
+      "Capital": [
+        "float"
+      ],
+      "foreign_controlled_companies": [
+        "float"
+      ],
+      "foreign_entity_count": [
+        "float"
+      ],
+      "Founders": [
+        "str"
+      ],
+      "family_direct_ownership_value": [
+        "float"
+      ],
+      "family_ownership_percentage": [
+        "float"
+      ],
+      "foreign_direct_ownership_percentage": [
+        "float"
+      ],
+      "total_foreign_ownership_percentage": [
+        "float"
+      ],
+      "direct_owners": [
+        "float"
+      ],
+      "total_family_connections": [
+        "float"
+      ],
+      "ownership_complexity_score": [
+        "float"
+      ],
+      "MainActivityType_Code": [
+        "str"
+      ],
+      "MainActivityType_Name": [
+        "str"
+      ],
+      "Status.IsActual": [
+        "bool"
+      ],
+      "Status.ReasonText": [
+        "str"
+      ],
+      "to_scrape_seo": [
+        "bool"
+      ],
+      "Opf": [
+        "str"
+      ],
+      "Status.Status": [
+        "str"
+      ],
+      "Status.StatusText": [
+        "str"
+      ],
+      "Status.Reason": [
+        "str"
+      ],
+      "Status.Date": [
+        "str"
+      ],
+      "to_scrape_client": [
+        "bool"
+      ],
+      "Oktmo": [
+        "str"
+      ],
+      "Okopf": [
+        "str"
+      ],
+      "Okogu": [
+        "str"
+      ],
+      "Okato": [
+        "str"
+      ],
+      "Okpo": [
+        "str"
+      ],
+      "Okfs": [
+        "str"
+      ],
+      "MainActivityType.Code": [
+        "str"
+      ],
+      "MainActivityType.Name": [
+        "str"
+      ],
+      "ActivityType": [
+        "str"
+      ],
+      "phone_cbr": [
+        "str"
+      ],
+      "BIK_cbr": [
+        "str"
+      ],
+      "charter_cbr": [
+        "str"
+      ],
+      "ogrn_cbr": [
+        "str"
+      ],
+      "RegistrationNumber": [
+        "str"
+      ],
+      "CountryCode": [
+        "float"
+      ],
+      "charter_capital_cbr": [
+        "str"
+      ],
+      "charter_address_cbr": [
+        "str"
+      ],
+      "actual_address_cbr": [
+        "str"
+      ],
+      "RsmpCategory": [
+        "str"
+      ]
+    },
+    "Person": {
+      "in_degree": [
+        "float"
+      ],
+      "WoodRents": [
+        "float"
+      ],
+      "Address": [
+        "float"
+      ],
+      "closeness": [
+        "float"
+      ],
+      "License": [
+        "float"
+      ],
+      "Arbitr": [
+        "float"
+      ],
+      "Gender": [
+        "str"
+      ],
+      "fastrp_embedding_with_weight_bank_feats": [
+        "list"
+      ],
+      "Manager": [
+        "float"
+      ],
+      "network_feats": [
+        "list"
+      ],
+      "EgrulListsUnreported": [
+        "float"
+      ],
+      "node2vec_embedding_weight_no_feats": [
+        "list"
+      ],
+      "Vehicles": [
+        "float"
+      ],
+      "Name": [
+        "float",
+        "str"
+      ],
+      "triangles": [
+        "float"
+      ],
+      "AsRegistrar": [
+        "float"
+      ],
+      "node2vec_embedding": [
+        "list"
+      ],
+      "Identifier": [
+        "float"
+      ],
+      "EgrulListsEntitiesWithDisqPersons": [
+        "float"
+      ],
+      "BanksInfo": [
+        "float"
+      ],
+      "hash_gnn_embedding_nw_feats_no_bank_feats": [
+        "list"
+      ],
+      "Subsidies": [
+        "float"
+      ],
+      "Accreditation": [
+        "float"
+      ],
+      "CustomsWarehouses": [
+        "float"
+      ],
+      "EgrulListsDisqPersons": [
+        "float"
+      ],
+      "IssuersMessages": [
+        "float"
+      ],
+      "fastrp_embedding_with_weight_no_bank_feats": [
+        "list"
+      ],
+      "Status": [
+        "float"
+      ],
+      "ActivityTypeInfo": [
+        "float"
+      ],
+      "Vacancies": [
+        "float"
+      ],
+      "out_degree": [
+        "float"
+      ],
+      "fastrp_embedding_weight_bank_feats": [
+        "list"
+      ],
+      "BankruptMessages": [
+        "float"
+      ],
+      "eigenvector": [
+        "float"
+      ],
+      "full_name": [
+        "str"
+      ],
+      "FedresursPledge": [
+        "float"
+      ],
+      "hash_gnn_embedding": [
+        "list"
+      ],
+      "LastName": [
+        "str"
+      ],
+      "Id": [
+        "str"
+      ],
+      "community_louvain": [
+        "float"
+      ],
+      "ExporterProducts": [
+        "float"
+      ],
+      "Link": [
+        "str"
+      ],
+      "ManagementCompany": [
+        "float"
+      ],
+      "Inspections": [
+        "float"
+      ],
+      "EgrulListsMassManager": [
+        "float"
+      ],
+      "EgrulListsMassFounder": [
+        "float"
+      ],
+      "Predecessor": [
+        "float"
+      ],
+      "AsShareholder": [
+        "float"
+      ],
+      "Inn": [
+        "str"
+      ],
+      "is_dead": [
+        "bool"
+      ],
+      "Trademark": [
+        "float"
+      ],
+      "MassMedia": [
+        "float"
+      ],
+      "bank_feats": [
+        "list"
+      ],
+      "Successor": [
+        "float"
+      ],
+      "fastrp_embedding_no_weight": [
+        "list"
+      ],
+      "Branch": [
+        "float"
+      ],
+      "Registrar": [
+        "float"
+      ],
+      "FedresursMessages": [
+        "float"
+      ],
+      "Auditors": [
+        "float"
+      ],
+      "Contracts": [
+        "float"
+      ],
+      "harmonic_centrality": [
+        "float"
+      ],
+      "Patents": [
+        "float"
+      ],
+      "ReorganizationInfo": [
+        "float"
+      ],
+      "hash_gnn_embedding_bank_feats_no_weight": [
+        "list"
+      ],
+      "AsEntrepreneur": [
+        "float"
+      ],
+      "community_louvain_intermediate": [
+        "list"
+      ],
+      "FirstName": [
+        "str"
+      ],
+      "Finance": [
+        "float"
+      ],
+      "clustering_coefficient_7hop": [
+        "float"
+      ],
+      "Shareholder": [
+        "float"
+      ],
+      "FnsDocuments": [
+        "float"
+      ],
+      "community_louvain_7hop_gov_foreign": [
+        "float"
+      ],
+      "MiddleName": [
+        "str"
+      ],
+      "hdbscan_community": [
+        "float"
+      ],
+      "EgrulListsDebtors": [
+        "float"
+      ],
+      "WoodDeals": [
+        "float"
+      ],
+      "LlcShare": [
+        "float"
+      ],
+      "page_rank": [
+        "float"
+      ],
+      "Type": [
+        "str"
+      ],
+      "AsManager": [
+        "float"
+      ],
+      "Contacts": [
+        "float"
+      ],
+      "RepresentativeOffice": [
+        "float"
+      ],
+      "AuthorisedCapital": [
+        "float"
+      ],
+      "Bailiffs": [
+        "float"
+      ],
+      "Insurance": [
+        "float"
+      ],
+      "AsManagementCompany": [
+        "float"
+      ],
+      "betweenness": [
+        "float"
+      ],
+      "WaterObjects": [
+        "float"
+      ],
+      "Receipts": [
+        "float"
+      ],
+      "FipsApplications": [
+        "float"
+      ],
+      "DeathDate": [
+        "str"
+      ],
+      "FipsPatents": [
+        "float"
+      ],
+      "Regions": [
+        "list"
+      ],
+      "Sites": [
+        "list"
+      ],
+      "to_scrape_seo": [
+        "bool"
+      ],
+      "Phones": [
+        "list"
+      ],
+      "OtherIdentifiers": [
+        "list"
+      ],
+      "Emails": [
+        "list"
+      ],
+      "OtherNames": [
+        "list"
+      ],
+      "ActivityTypes": [
+        "list"
+      ],
+      "ActivityTypeCategories": [
+        "list"
+      ],
+      "OtherAddresses": [
+        "list"
+      ],
+      "to_scrape_client": [
+        "bool"
+      ],
+      "original_request_link": [
+        "str"
+      ],
+      "original_request_name": [
+        "str"
+      ],
+      "BirthDate": [
+        "str"
+      ],
+      "original_request_inn": [
+        "str"
+      ],
+      "GeneralJurisdictionCourts": [
+        "float"
+      ],
+      "LastNameLatin": [
+        "str"
+      ],
+      "FirstNameLatin": [
+        "str"
+      ],
+      "MiddleNameLatin": [
+        "str"
+      ],
+      "BirthPlace": [
+        "str"
+      ]
+    },
+    "Company": {
+      "FipsApplications": [
+        "float"
+      ],
+      "Address": [
+        "float",
+        "str"
+      ],
+      "bank_regn": [
+        "str"
+      ],
+      "closeness": [
+        "float"
+      ],
+      "ManagerName": [
+        "str"
+      ],
+      "License": [
+        "float"
+      ],
+      "FactorCounts.AttentionCount": [
+        "float"
+      ],
+      "network_feats": [
+        "list"
+      ],
+      "node2vec_embedding_weight_no_feats": [
+        "list"
+      ],
+      "Vehicles": [
+        "float"
+      ],
+      "triangles": [
+        "float"
+      ],
+      "Ogrn": [
+        "str"
+      ],
+      "licence_date_cbr": [
+        "str"
+      ],
+      "full_name_cbr": [
+        "str"
+      ],
+      "BanksInfo": [
+        "float"
+      ],
+      "hash_gnn_embedding_nw_feats_no_bank_feats": [
+        "list"
+      ],
+      "Subsidies": [
+        "float"
+      ],
+      "Accreditation": [
+        "float"
+      ],
+      "EgrulListsDisqPersons": [
+        "float"
+      ],
+      "IssuersMessages": [
+        "float"
+      ],
+      "Salaries": [
+        "float"
+      ],
+      "Pfr": [
+        "str"
+      ],
+      "Status": [
+        "float",
+        "str"
+      ],
+      "Vacancies": [
+        "float"
+      ],
+      "out_degree": [
+        "float"
+      ],
+      "Fss": [
+        "str"
+      ],
+      "Regions": [
+        "list"
+      ],
+      "deposit_insurance_cbr": [
+        "str"
+      ],
+      "reason_banki_memory": [
+        "str"
+      ],
+      "Sites": [
+        "list"
+      ],
+      "hash_gnn_embedding": [
+        "list"
+      ],
+      "Id": [
+        "str"
+      ],
+      "community_louvain": [
+        "float"
+      ],
+      "ExporterProducts": [
+        "float"
+      ],
+      "Link": [
+        "str"
+      ],
+      "Inspections": [
+        "float"
+      ],
+      "Predecessor": [
+        "float"
+      ],
+      "RegistrationDate": [
+        "str"
+      ],
+      "AsShareholder": [
+        "float"
+      ],
+      "date_banki_memory": [
+        "float"
+      ],
+      "temporal_start": [
+        "float"
+      ],
+      "is_dead": [
+        "bool"
+      ],
+      "Trademark": [
+        "float"
+      ],
+      "bank_feats": [
+        "list"
+      ],
+      "IsActual": [
+        "bool"
+      ],
+      "url_banki_memory": [
+        "str"
+      ],
+      "ReasonText": [
+        "str"
+      ],
+      "regn_banki_memory": [
+        "str"
+      ],
+      "Auditors": [
+        "float"
+      ],
+      "Contracts": [
+        "float"
+      ],
+      "ReorganizationInfo": [
+        "float"
+      ],
+      "community_louvain_intermediate": [
+        "list"
+      ],
+      "lifespan_days": [
+        "float"
+      ],
+      "MappedFiasObjectIds": [
+        "list"
+      ],
+      "cbr_id": [
+        "str"
+      ],
+      "LlcShare": [
+        "float"
+      ],
+      "page_rank": [
+        "float"
+      ],
+      "PaidTax": [
+        "float"
+      ],
+      "StatusDate": [
+        "str"
+      ],
+      "Type": [
+        "str"
+      ],
+      "state_direct_ownership_value": [
+        "float"
+      ],
+      "AsManager": [
+        "float"
+      ],
+      "Contacts": [
+        "float"
+      ],
+      "AuthorisedCapital": [
+        "float"
+      ],
+      "state_ownership_percentage": [
+        "float"
+      ],
+      "Insurance": [
+        "float"
+      ],
+      "AsManagementCompany": [
+        "float"
+      ],
+      "FactorCounts.NegativeCount": [
+        "float"
+      ],
+      "in_degree": [
+        "float"
+      ],
+      "temporal_end": [
+        "float"
+      ],
+      "WoodRents": [
+        "float"
+      ],
+      "short_name_cbr": [
+        "str"
+      ],
+      "unique_state_entities": [
+        "float"
+      ],
+      "FactorCounts.PositiveCount": [
+        "float"
+      ],
+      "name_cbr": [
+        "str"
+      ],
+      "Arbitr": [
+        "float"
+      ],
+      "Kpp": [
+        "str"
+      ],
+      "fastrp_embedding_with_weight_bank_feats": [
+        "list"
+      ],
+      "Manager": [
+        "float"
+      ],
+      "EgrulListsUnreported": [
+        "float"
+      ],
+      "Name": [
+        "float",
+        "str"
+      ],
+      "AsRegistrar": [
+        "float"
+      ],
+      "node2vec_embedding": [
+        "list"
+      ],
+      "EgrulListsEntitiesWithDisqPersons": [
+        "float"
+      ],
+      "Phones": [
+        "list"
+      ],
+      "OtherIdentifiers": [
+        "list"
+      ],
+      "regn_cbr": [
+        "str"
+      ],
+      "ManagerLink": [
+        "str"
+      ],
+      "CustomsWarehouses": [
+        "float"
+      ],
+      "Emails": [
+        "list"
+      ],
+      "fastrp_embedding_with_weight_no_bank_feats": [
+        "list"
+      ],
+      "original_query_cbr_json_short_name": [
+        "str"
+      ],
+      "ActivityTypeInfo": [
+        "float"
+      ],
+      "fastrp_embedding_weight_bank_feats": [
+        "list"
+      ],
+      "BankruptMessages": [
+        "float"
+      ],
+      "date_reg_cbr": [
+        "float"
+      ],
+      "eigenvector": [
+        "float"
+      ],
+      "TaxArrears": [
+        "float"
+      ],
+      "FedresursPledge": [
+        "float"
+      ],
+      "state_control_paths": [
+        "float"
+      ],
+      "ManagementCompany": [
+        "float"
+      ],
+      "EgrulListsMassManager": [
+        "float"
+      ],
+      "EgrulListsMassFounder": [
+        "float"
+      ],
+      "GeneralJurisdictionCourts": [
+        "float"
+      ],
+      "sources": [
+        "list"
+      ],
+      "StatusText": [
+        "str"
+      ],
+      "OtherNames": [
+        "list"
+      ],
+      "state_controlled_companies": [
+        "float"
+      ],
+      "Inn": [
+        "str"
+      ],
+      "english_name_cbr": [
+        "str"
+      ],
+      "MassMedia": [
+        "float"
+      ],
+      "Reason": [
+        "str"
+      ],
+      "ActivityTypes": [
+        "list"
+      ],
+      "FipsPatents": [
+        "float"
+      ],
+      "ActivityTypeCategories": [
+        "list"
+      ],
+      "Successor": [
+        "float"
+      ],
+      "fastrp_embedding_no_weight": [
+        "list"
+      ],
+      "Registrar": [
+        "float"
+      ],
+      "Branch": [
+        "float"
+      ],
+      "FedresursMessages": [
+        "float"
+      ],
+      "TotalScore": [
+        "str"
+      ],
+      "harmonic_centrality": [
+        "float"
+      ],
+      "Patents": [
+        "float"
+      ],
+      "hash_gnn_embedding_bank_feats_no_weight": [
+        "list"
+      ],
+      "city_banki_memory": [
+        "str"
+      ],
+      "AsEntrepreneur": [
+        "float"
+      ],
+      "Finance": [
+        "float"
+      ],
+      "clustering_coefficient_7hop": [
+        "float"
+      ],
+      "state_direct_owners": [
+        "float"
+      ],
+      "Shareholder": [
+        "float"
+      ],
+      "FnsDocuments": [
+        "float"
+      ],
+      "community_louvain_7hop_gov_foreign": [
+        "float"
+      ],
+      "hdbscan_community": [
+        "float"
+      ],
+      "lifespan_years": [
+        "float"
+      ],
+      "Date": [
+        "str"
+      ],
+      "OtherAddresses": [
+        "list"
+      ],
+      "EgrulListsDebtors": [
+        "float"
+      ],
+      "WoodDeals": [
+        "float"
+      ],
+      "is_isolate": [
+        "bool"
+      ],
+      "RepresentativeOffice": [
+        "float"
+      ],
+      "Bailiffs": [
+        "float"
+      ],
+      "OpfCode": [
+        "str"
+      ],
+      "betweenness": [
+        "float"
+      ],
+      "Receipts": [
+        "float"
+      ],
+      "WaterObjects": [
+        "float"
+      ],
+      "full_name_banki_memory": [
+        "str"
+      ],
+      "family_connection_ratio": [
+        "float"
+      ],
+      "unique_country_count": [
+        "float"
+      ],
+      "family_controlled_companies": [
+        "float"
+      ],
+      "total_ownership_value": [
+        "float"
+      ],
+      "Capital": [
+        "float"
+      ],
+      "foreign_controlled_companies": [
+        "float"
+      ],
+      "foreign_entity_count": [
+        "float"
+      ],
+      "Founders": [
+        "str"
+      ],
+      "family_direct_ownership_value": [
+        "float"
+      ],
+      "family_ownership_percentage": [
+        "float"
+      ],
+      "foreign_direct_ownership_percentage": [
+        "float"
+      ],
+      "total_foreign_ownership_percentage": [
+        "float"
+      ],
+      "direct_owners": [
+        "float"
+      ],
+      "total_family_connections": [
+        "float"
+      ],
+      "ownership_complexity_score": [
+        "float"
+      ],
+      "MainActivityType_Code": [
+        "str"
+      ],
+      "MainActivityType_Name": [
+        "str"
+      ],
+      "Status.IsActual": [
+        "bool"
+      ],
+      "Status.ReasonText": [
+        "str"
+      ],
+      "to_scrape_seo": [
+        "bool"
+      ],
+      "Opf": [
+        "str"
+      ],
+      "Status.Status": [
+        "str"
+      ],
+      "Status.StatusText": [
+        "str"
+      ],
+      "Status.Reason": [
+        "str"
+      ],
+      "Status.Date": [
+        "str"
+      ],
+      "to_scrape_client": [
+        "bool"
+      ],
+      "Oktmo": [
+        "str"
+      ],
+      "Okopf": [
+        "str"
+      ],
+      "Okogu": [
+        "str"
+      ],
+      "Okato": [
+        "str"
+      ],
+      "Okpo": [
+        "str"
+      ],
+      "Okfs": [
+        "str"
+      ],
+      "MainActivityType.Code": [
+        "str"
+      ],
+      "MainActivityType.Name": [
+        "str"
+      ],
+      "ActivityType": [
+        "str"
+      ],
+      "phone_cbr": [
+        "str"
+      ],
+      "BIK_cbr": [
+        "str"
+      ],
+      "charter_cbr": [
+        "str"
+      ],
+      "ogrn_cbr": [
+        "str"
+      ],
+      "RegistrationNumber": [
+        "str"
+      ],
+      "CountryCode": [
+        "float"
+      ],
+      "charter_capital_cbr": [
+        "str"
+      ],
+      "charter_address_cbr": [
+        "str"
+      ],
+      "actual_address_cbr": [
+        "str"
+      ],
+      "original_request_name": [
+        "str"
+      ],
+      "original_request_inn": [
+        "str"
+      ],
+      "full_name": [
+        "str"
+      ],
+      "RsmpCategory": [
+        "str"
+      ]
+    },
+    "Country": {
+      "to_scrape_seo": [
+        "bool"
+      ],
+      "in_degree": [
+        "float"
+      ],
+      "temporal_end": [
+        "float"
+      ],
+      "RegistrationDate": [
+        "str"
+      ],
+      "Address": [
+        "float",
+        "str"
+      ],
+      "OtherNames": [
+        "list"
+      ],
+      "closeness": [
+        "float"
+      ],
+      "temporal_start": [
+        "float"
+      ],
+      "fastrp_embedding_with_weight_bank_feats": [
+        "list"
+      ],
+      "is_dead": [
+        "bool"
+      ],
+      "network_feats": [
+        "list"
+      ],
+      "ActivityTypes": [
+        "list"
+      ],
+      "bank_feats": [
+        "list"
+      ],
+      "node2vec_embedding_weight_no_feats": [
+        "list"
+      ],
+      "ActivityTypeCategories": [
+        "list"
+      ],
+      "Name": [
+        "str"
+      ],
+      "triangles": [
+        "float"
+      ],
+      "node2vec_embedding": [
+        "list"
+      ],
+      "Phones": [
+        "list"
+      ],
+      "fastrp_embedding_no_weight": [
+        "list"
+      ],
+      "OtherIdentifiers": [
+        "list"
+      ],
+      "hash_gnn_embedding_nw_feats_no_bank_feats": [
+        "list"
+      ],
+      "Emails": [
+        "list"
+      ],
+      "CountryCode": [
+        "float"
+      ],
+      "fastrp_embedding_with_weight_no_bank_feats": [
+        "list"
+      ],
+      "Status": [
+        "float",
+        "str"
+      ],
+      "hash_gnn_embedding_bank_feats_no_weight": [
+        "list"
+      ],
+      "community_louvain_intermediate": [
+        "list"
+      ],
+      "out_degree": [
+        "float"
+      ],
+      "clustering_coefficient_7hop": [
+        "float"
+      ],
+      "fastrp_embedding_weight_bank_feats": [
+        "list"
+      ],
+      "lifespan_days": [
+        "float"
+      ],
+      "Regions": [
+        "list"
+      ],
+      "lifespan_years": [
+        "float"
+      ],
+      "OtherAddresses": [
+        "list"
+      ],
+      "hdbscan_community": [
+        "float"
+      ],
+      "Sites": [
+        "list"
+      ],
+      "eigenvector": [
+        "float"
+      ],
+      "page_rank": [
+        "float"
+      ],
+      "Type": [
+        "str"
+      ],
+      "hash_gnn_embedding": [
+        "list"
+      ],
+      "betweenness": [
+        "float"
+      ],
+      "Id": [
+        "str"
+      ],
+      "community_louvain": [
+        "list",
+        "float"
+      ],
+      "Link": [
+        "str"
+      ],
+      "to_scrape_client": [
+        "bool"
+      ],
+      "short_name_cbr": [
+        "str"
+      ],
+      "bank_regn": [
+        "str"
+      ],
+      "unique_state_entities": [
+        "float"
+      ],
+      "name_cbr": [
+        "str"
+      ],
+      "phone_cbr": [
+        "str"
+      ],
+      "licence_date_cbr": [
+        "str"
+      ],
+      "full_name_cbr": [
+        "str"
+      ],
+      "regn_cbr": [
+        "str"
+      ],
+      "original_query_cbr_json_short_name": [
+        "str"
+      ],
+      "BIK_cbr": [
+        "str"
+      ],
+      "charter_cbr": [
+        "str"
+      ],
+      "deposit_insurance_cbr": [
+        "str"
+      ],
+      "date_reg_cbr": [
+        "float"
+      ],
+      "state_control_paths": [
+        "float"
+      ],
+      "sources": [
+        "list"
+      ],
+      "state_controlled_companies": [
+        "float"
+      ],
+      "english_name_cbr": [
+        "str"
+      ],
+      "ogrn_cbr": [
+        "str"
+      ],
+      "RegistrationNumber": [
+        "str"
+      ],
+      "charter_capital_cbr": [
+        "str"
+      ],
+      "harmonic_centrality": [
+        "float"
+      ],
+      "state_direct_owners": [
+        "float"
+      ],
+      "community_louvain_7hop_gov_foreign": [
+        "float"
+      ],
+      "charter_address_cbr": [
+        "str"
+      ],
+      "cbr_id": [
+        "str"
+      ],
+      "is_isolate": [
+        "bool"
+      ],
+      "state_direct_ownership_value": [
+        "float"
+      ],
+      "state_ownership_percentage": [
+        "float"
+      ],
+      "actual_address_cbr": [
+        "str"
+      ],
+      "residence": [
+        "str"
+      ],
+      "citizenship": [
+        "str"
+      ],
+      "full_name": [
+        "str"
+      ],
+      "neo4jImportId": [
+        "str"
+      ],
+      "short_name": [
+        "str"
+      ],
+      "FipsApplications": [
+        "float"
+      ],
+      "ManagerName": [
+        "str"
+      ],
+      "License": [
+        "float"
+      ],
+      "FactorCounts.AttentionCount": [
+        "float"
+      ],
+      "Vehicles": [
+        "float"
+      ],
+      "Oktmo": [
+        "str"
+      ],
+      "Ogrn": [
+        "str"
+      ],
+      "MainActivityType.Code": [
+        "str"
+      ],
+      "BanksInfo": [
+        "float"
+      ],
+      "Status.IsActual": [
+        "bool"
+      ],
+      "Subsidies": [
+        "float"
+      ],
+      "Accreditation": [
+        "float"
+      ],
+      "EgrulListsDisqPersons": [
+        "float"
+      ],
+      "Salaries": [
+        "float"
+      ],
+      "IssuersMessages": [
+        "float"
+      ],
+      "Pfr": [
+        "str"
+      ],
+      "ogrn": [
+        "str"
+      ],
+      "Vacancies": [
+        "float"
+      ],
+      "Fss": [
+        "str"
+      ],
+      "ExporterProducts": [
+        "float"
+      ],
+      "Inspections": [
+        "float"
+      ],
+      "Predecessor": [
+        "float"
+      ],
+      "AsShareholder": [
+        "float"
+      ],
+      "Trademark": [
+        "float"
+      ],
+      "IsActual": [
+        "bool"
+      ],
+      "ReasonText": [
+        "str"
+      ],
+      "Auditors": [
+        "float"
+      ],
+      "Contracts": [
+        "float"
+      ],
+      "ReorganizationInfo": [
+        "float"
+      ],
+      "MappedFiasObjectIds": [
+        "list"
+      ],
+      "LlcShare": [
+        "float"
+      ],
+      "PaidTax": [
+        "float"
+      ],
+      "StatusDate": [
+        "str"
+      ],
+      "AsManager": [
+        "float"
+      ],
+      "Status.ReasonText": [
+        "str"
+      ],
+      "Contacts": [
+        "float"
+      ],
+      "AuthorisedCapital": [
+        "float"
+      ],
+      "Insurance": [
+        "float"
+      ],
+      "AsManagementCompany": [
+        "float"
+      ],
+      "FactorCounts.NegativeCount": [
+        "float"
+      ],
+      "WoodRents": [
+        "float"
+      ],
+      "Opf": [
+        "str"
+      ],
+      "FactorCounts.PositiveCount": [
+        "float"
+      ],
+      "Status.Status": [
+        "str"
+      ],
+      "Arbitr": [
+        "float"
+      ],
+      "Kpp": [
+        "str"
+      ],
+      "Manager": [
+        "float"
+      ],
+      "EgrulListsUnreported": [
+        "float"
+      ],
+      "Founders": [
+        "str"
+      ],
+      "AsRegistrar": [
+        "float"
+      ],
+      "Status.StatusText": [
+        "str"
+      ],
+      "EgrulListsEntitiesWithDisqPersons": [
+        "float"
+      ],
+      "ManagerLink": [
+        "str"
+      ],
+      "CustomsWarehouses": [
+        "float"
+      ],
+      "Status.Reason": [
+        "str"
+      ],
+      "ActivityTypeInfo": [
+        "float"
+      ],
+      "Okopf": [
+        "str"
+      ],
+      "Status.Date": [
+        "str"
+      ],
+      "Okogu": [
+        "str"
+      ],
+      "Okato": [
+        "str"
+      ],
+      "BankruptMessages": [
+        "float"
+      ],
+      "TaxArrears": [
+        "float"
+      ],
+      "FedresursPledge": [
+        "float"
+      ],
+      "MainActivityType.Name": [
+        "str"
+      ],
+      "ManagementCompany": [
+        "float"
+      ],
+      "EgrulListsMassManager": [
+        "float"
+      ],
+      "EgrulListsMassFounder": [
+        "float"
+      ],
+      "GeneralJurisdictionCourts": [
+        "float"
+      ],
+      "StatusText": [
+        "str"
+      ],
+      "Inn": [
+        "str"
+      ],
+      "MassMedia": [
+        "float"
+      ],
+      "Reason": [
+        "str"
+      ],
+      "FipsPatents": [
+        "float"
+      ],
+      "Successor": [
+        "float"
+      ],
+      "Registrar": [
+        "float"
+      ],
+      "Branch": [
+        "float"
+      ],
+      "FedresursMessages": [
+        "float"
+      ],
+      "TotalScore": [
+        "str"
+      ],
+      "Okpo": [
+        "str"
+      ],
+      "Patents": [
+        "float"
+      ],
+      "AsEntrepreneur": [
+        "float"
+      ],
+      "Finance": [
+        "float"
+      ],
+      "Shareholder": [
+        "float"
+      ],
+      "ActivityType": [
+        "str"
+      ],
+      "FnsDocuments": [
+        "float"
+      ],
+      "Okfs": [
+        "str"
+      ],
+      "Date": [
+        "str"
+      ],
+      "EgrulListsDebtors": [
+        "float"
+      ],
+      "WoodDeals": [
+        "float"
+      ],
+      "RepresentativeOffice": [
+        "float"
+      ],
+      "Bailiffs": [
+        "float"
+      ],
+      "OpfCode": [
+        "str"
+      ],
+      "Receipts": [
+        "float"
+      ],
+      "WaterObjects": [
+        "float"
+      ],
+      "foreign_entity_count": [
+        "float"
+      ],
+      "family_connection_ratio": [
+        "float"
+      ],
+      "unique_country_count": [
+        "float"
+      ],
+      "family_direct_ownership_value": [
+        "float"
+      ],
+      "family_controlled_companies": [
+        "float"
+      ],
+      "family_ownership_percentage": [
+        "float"
+      ],
+      "foreign_direct_ownership_percentage": [
+        "float"
+      ],
+      "total_foreign_ownership_percentage": [
+        "float"
+      ],
+      "direct_owners": [
+        "float"
+      ],
+      "total_ownership_value": [
+        "float"
+      ],
+      "total_family_connections": [
+        "float"
+      ],
+      "foreign_controlled_companies": [
+        "float"
+      ],
+      "ownership_complexity_score": [
+        "float"
+      ],
+      "name_en": [
+        "str"
+      ]
+    },
+    "Government": {
+      "to_scrape_seo": [
+        "bool"
+      ],
+      "in_degree": [
+        "float"
+      ],
+      "temporal_end": [
+        "float"
+      ],
+      "RegistrationDate": [
+        "str"
+      ],
+      "Address": [
+        "float",
+        "str"
+      ],
+      "OtherNames": [
+        "list"
+      ],
+      "closeness": [
+        "float"
+      ],
+      "temporal_start": [
+        "float"
+      ],
+      "fastrp_embedding_with_weight_bank_feats": [
+        "list"
+      ],
+      "is_dead": [
+        "bool"
+      ],
+      "network_feats": [
+        "list"
+      ],
+      "ActivityTypes": [
+        "list"
+      ],
+      "bank_feats": [
+        "list"
+      ],
+      "node2vec_embedding_weight_no_feats": [
+        "list"
+      ],
+      "ActivityTypeCategories": [
+        "list"
+      ],
+      "Name": [
+        "str"
+      ],
+      "triangles": [
+        "float"
+      ],
+      "node2vec_embedding": [
+        "list"
+      ],
+      "Phones": [
+        "list"
+      ],
+      "fastrp_embedding_no_weight": [
+        "list"
+      ],
+      "OtherIdentifiers": [
+        "list"
+      ],
+      "hash_gnn_embedding_nw_feats_no_bank_feats": [
+        "list"
+      ],
+      "Emails": [
+        "list"
+      ],
+      "CountryCode": [
+        "float"
+      ],
+      "fastrp_embedding_with_weight_no_bank_feats": [
+        "list"
+      ],
+      "Status": [
+        "float",
+        "str"
+      ],
+      "hash_gnn_embedding_bank_feats_no_weight": [
+        "list"
+      ],
+      "community_louvain_intermediate": [
+        "list"
+      ],
+      "out_degree": [
+        "float"
+      ],
+      "clustering_coefficient_7hop": [
+        "float"
+      ],
+      "fastrp_embedding_weight_bank_feats": [
+        "list"
+      ],
+      "lifespan_days": [
+        "float"
+      ],
+      "Regions": [
+        "list"
+      ],
+      "lifespan_years": [
+        "float"
+      ],
+      "OtherAddresses": [
+        "list"
+      ],
+      "hdbscan_community": [
+        "float"
+      ],
+      "Sites": [
+        "list"
+      ],
+      "eigenvector": [
+        "float"
+      ],
+      "page_rank": [
+        "float"
+      ],
+      "Type": [
+        "str"
+      ],
+      "hash_gnn_embedding": [
+        "list"
+      ],
+      "betweenness": [
+        "float"
+      ],
+      "Id": [
+        "str"
+      ],
+      "community_louvain": [
+        "list",
+        "float"
+      ],
+      "Link": [
+        "str"
+      ],
+      "to_scrape_client": [
+        "bool"
+      ],
+      "short_name_cbr": [
+        "str"
+      ],
+      "bank_regn": [
+        "str"
+      ],
+      "unique_state_entities": [
+        "float"
+      ],
+      "name_cbr": [
+        "str"
+      ],
+      "phone_cbr": [
+        "str"
+      ],
+      "licence_date_cbr": [
+        "str"
+      ],
+      "full_name_cbr": [
+        "str"
+      ],
+      "regn_cbr": [
+        "str"
+      ],
+      "original_query_cbr_json_short_name": [
+        "str"
+      ],
+      "BIK_cbr": [
+        "str"
+      ],
+      "charter_cbr": [
+        "str"
+      ],
+      "deposit_insurance_cbr": [
+        "str"
+      ],
+      "date_reg_cbr": [
+        "float"
+      ],
+      "state_control_paths": [
+        "float"
+      ],
+      "sources": [
+        "list"
+      ],
+      "state_controlled_companies": [
+        "float"
+      ],
+      "english_name_cbr": [
+        "str"
+      ],
+      "ogrn_cbr": [
+        "str"
+      ],
+      "RegistrationNumber": [
+        "str"
+      ],
+      "charter_capital_cbr": [
+        "str"
+      ],
+      "harmonic_centrality": [
+        "float"
+      ],
+      "state_direct_owners": [
+        "float"
+      ],
+      "community_louvain_7hop_gov_foreign": [
+        "float"
+      ],
+      "charter_address_cbr": [
+        "str"
+      ],
+      "cbr_id": [
+        "str"
+      ],
+      "is_isolate": [
+        "bool"
+      ],
+      "state_direct_ownership_value": [
+        "float"
+      ],
+      "state_ownership_percentage": [
+        "float"
+      ],
+      "actual_address_cbr": [
+        "str"
+      ],
+      "FipsApplications": [
+        "float"
+      ],
+      "ManagerName": [
+        "str"
+      ],
+      "License": [
+        "float"
+      ],
+      "FactorCounts.AttentionCount": [
+        "float"
+      ],
+      "Vehicles": [
+        "float"
+      ],
+      "Oktmo": [
+        "str"
+      ],
+      "Ogrn": [
+        "str"
+      ],
+      "MainActivityType.Code": [
+        "str"
+      ],
+      "BanksInfo": [
+        "float"
+      ],
+      "Subsidies": [
+        "float"
+      ],
+      "Accreditation": [
+        "float"
+      ],
+      "EgrulListsDisqPersons": [
+        "float"
+      ],
+      "IssuersMessages": [
+        "float"
+      ],
+      "Pfr": [
+        "str"
+      ],
+      "ogrn": [
+        "str"
+      ],
+      "Vacancies": [
+        "float"
+      ],
+      "Fss": [
+        "str"
+      ],
+      "full_name": [
+        "str"
+      ],
+      "short_name": [
+        "str"
+      ],
+      "ExporterProducts": [
+        "float"
+      ],
+      "Inspections": [
+        "float"
+      ],
+      "Predecessor": [
+        "float"
+      ],
+      "AsShareholder": [
+        "float"
+      ],
+      "Trademark": [
+        "float"
+      ],
+      "IsActual": [
+        "bool"
+      ],
+      "Auditors": [
+        "float"
+      ],
+      "Contracts": [
+        "float"
+      ],
+      "ReorganizationInfo": [
+        "float"
+      ],
+      "MappedFiasObjectIds": [
+        "list"
+      ],
+      "LlcShare": [
+        "float"
+      ],
+      "AsManager": [
+        "float"
+      ],
+      "Contacts": [
+        "float"
+      ],
+      "AuthorisedCapital": [
+        "float"
+      ],
+      "neo4jImportId": [
+        "str"
+      ],
+      "Insurance": [
+        "float"
+      ],
+      "AsManagementCompany": [
+        "float"
+      ],
+      "FactorCounts.NegativeCount": [
+        "float"
+      ],
+      "name_en": [
+        "str"
+      ],
+      "WoodRents": [
+        "float"
+      ],
+      "FactorCounts.PositiveCount": [
+        "float"
+      ],
+      "Arbitr": [
+        "float"
+      ],
+      "Kpp": [
+        "str"
+      ],
+      "Manager": [
+        "float"
+      ],
+      "EgrulListsUnreported": [
+        "float"
+      ],
+      "AsRegistrar": [
+        "float"
+      ],
+      "EgrulListsEntitiesWithDisqPersons": [
+        "float"
+      ],
+      "ManagerLink": [
+        "str"
+      ],
+      "CustomsWarehouses": [
+        "float"
+      ],
+      "residence": [
+        "str"
+      ],
+      "ActivityTypeInfo": [
+        "float"
+      ],
+      "Okopf": [
+        "str"
+      ],
+      "Okogu": [
+        "str"
+      ],
+      "Okato": [
+        "str"
+      ],
+      "BankruptMessages": [
+        "float"
+      ],
+      "FedresursPledge": [
+        "float"
+      ],
+      "MainActivityType.Name": [
+        "str"
+      ],
+      "ManagementCompany": [
+        "float"
+      ],
+      "EgrulListsMassManager": [
+        "float"
+      ],
+      "EgrulListsMassFounder": [
+        "float"
+      ],
+      "GeneralJurisdictionCourts": [
+        "float"
+      ],
+      "Inn": [
+        "str"
+      ],
+      "MassMedia": [
+        "float"
+      ],
+      "FipsPatents": [
+        "float"
+      ],
+      "Successor": [
+        "float"
+      ],
+      "Branch": [
+        "float"
+      ],
+      "Registrar": [
+        "float"
+      ],
+      "FedresursMessages": [
+        "float"
+      ],
+      "TotalScore": [
+        "str"
+      ],
+      "Okpo": [
+        "str"
+      ],
+      "Patents": [
+        "float"
+      ],
+      "AsEntrepreneur": [
+        "float"
+      ],
+      "Finance": [
+        "float"
+      ],
+      "Shareholder": [
+        "float"
+      ],
+      "citizenship": [
+        "str"
+      ],
+      "ActivityType": [
+        "str"
+      ],
+      "FnsDocuments": [
+        "float"
+      ],
+      "Okfs": [
+        "str"
+      ],
+      "EgrulListsDebtors": [
+        "float"
+      ],
+      "WoodDeals": [
+        "float"
+      ],
+      "RepresentativeOffice": [
+        "float"
+      ],
+      "Bailiffs": [
+        "float"
+      ],
+      "OpfCode": [
+        "str"
+      ],
+      "Receipts": [
+        "float"
+      ],
+      "WaterObjects": [
+        "float"
+      ],
+      "Status.IsActual": [
+        "bool"
+      ],
+      "Salaries": [
+        "float"
+      ],
+      "ReasonText": [
+        "str"
+      ],
+      "PaidTax": [
+        "float"
+      ],
+      "StatusDate": [
+        "str"
+      ],
+      "Status.ReasonText": [
+        "str"
+      ],
+      "Opf": [
+        "str"
+      ],
+      "Status.Status": [
+        "str"
+      ],
+      "Founders": [
+        "str"
+      ],
+      "Status.StatusText": [
+        "str"
+      ],
+      "Status.Reason": [
+        "str"
+      ],
+      "Status.Date": [
+        "str"
+      ],
+      "TaxArrears": [
+        "float"
+      ],
+      "StatusText": [
+        "str"
+      ],
+      "Reason": [
+        "str"
+      ],
+      "Date": [
+        "str"
+      ],
+      "foreign_entity_count": [
+        "float"
+      ],
+      "family_connection_ratio": [
+        "float"
+      ],
+      "unique_country_count": [
+        "float"
+      ],
+      "family_direct_ownership_value": [
+        "float"
+      ],
+      "family_controlled_companies": [
+        "float"
+      ],
+      "family_ownership_percentage": [
+        "float"
+      ],
+      "foreign_direct_ownership_percentage": [
+        "float"
+      ],
+      "total_foreign_ownership_percentage": [
+        "float"
+      ],
+      "direct_owners": [
+        "float"
+      ],
+      "total_ownership_value": [
+        "float"
+      ],
+      "total_family_connections": [
+        "float"
+      ],
+      "foreign_controlled_companies": [
+        "float"
+      ],
+      "ownership_complexity_score": [
+        "float"
+      ]
+    },
+    "Trust": {
+      "harmonic_centrality": [
+        "float"
+      ],
+      "in_degree": [
+        "float"
+      ],
+      "temporal_end": [
+        "float"
+      ],
+      "closeness": [
+        "float"
+      ],
+      "out_degree": [
+        "float"
+      ],
+      "clustering_coefficient_7hop": [
+        "float"
+      ],
+      "community_louvain_7hop_gov_foreign": [
+        "float"
+      ],
+      "is_dead": [
+        "bool"
+      ],
+      "network_feats": [
+        "list"
+      ],
+      "bank_feats": [
+        "list"
+      ],
+      "eigenvector": [
+        "float"
+      ],
+      "triangles": [
+        "float"
+      ],
+      "page_rank": [
+        "float"
+      ],
+      "full_name": [
+        "str"
+      ],
+      "neo4jImportId": [
+        "str"
+      ],
+      "short_name": [
+        "str"
+      ],
+      "betweenness": [
+        "float"
+      ],
+      "residence": [
+        "str"
+      ],
+      "community_louvain": [
+        "float"
+      ],
+      "name_en": [
+        "str"
+      ],
+      "fastrp_embedding_with_weight_bank_feats": [
+        "list"
+      ],
+      "node2vec_embedding_weight_no_feats": [
+        "list"
+      ],
+      "node2vec_embedding": [
+        "list"
+      ],
+      "fastrp_embedding_no_weight": [
+        "list"
+      ],
+      "hash_gnn_embedding_nw_feats_no_bank_feats": [
+        "list"
+      ],
+      "fastrp_embedding_with_weight_no_bank_feats": [
+        "list"
+      ],
+      "hash_gnn_embedding_bank_feats_no_weight": [
+        "list"
+      ],
+      "community_louvain_intermediate": [
+        "list"
+      ],
+      "fastrp_embedding_weight_bank_feats": [
+        "list"
+      ],
+      "hdbscan_community": [
+        "float"
+      ],
+      "hash_gnn_embedding": [
+        "list"
+      ]
+    },
+    "ForeignCompany": {
+      "in_degree": [
+        "float"
+      ],
+      "temporal_end": [
+        "float"
+      ],
+      "short_name_cbr": [
+        "str"
+      ],
+      "Address": [
+        "float",
+        "str"
+      ],
+      "unique_state_entities": [
+        "float"
+      ],
+      "bank_regn": [
+        "str"
+      ],
+      "closeness": [
+        "float"
+      ],
+      "name_cbr": [
+        "str"
+      ],
+      "fastrp_embedding_with_weight_bank_feats": [
+        "list"
+      ],
+      "network_feats": [
+        "list"
+      ],
+      "phone_cbr": [
+        "str"
+      ],
+      "node2vec_embedding_weight_no_feats": [
+        "list"
+      ],
+      "Name": [
+        "str"
+      ],
+      "triangles": [
+        "float"
+      ],
+      "node2vec_embedding": [
+        "list"
+      ],
+      "licence_date_cbr": [
+        "str"
+      ],
+      "Phones": [
+        "list"
+      ],
+      "full_name_cbr": [
+        "str"
+      ],
+      "OtherIdentifiers": [
+        "list"
+      ],
+      "regn_cbr": [
+        "str"
+      ],
+      "hash_gnn_embedding_nw_feats_no_bank_feats": [
+        "list"
+      ],
+      "Emails": [
+        "list"
+      ],
+      "fastrp_embedding_with_weight_no_bank_feats": [
+        "list"
+      ],
+      "Status": [
+        "float",
+        "str"
+      ],
+      "original_query_cbr_json_short_name": [
+        "str"
+      ],
+      "BIK_cbr": [
+        "str"
+      ],
+      "charter_cbr": [
+        "str"
+      ],
+      "out_degree": [
+        "float"
+      ],
+      "fastrp_embedding_weight_bank_feats": [
+        "list"
+      ],
+      "Regions": [
+        "list"
+      ],
+      "deposit_insurance_cbr": [
+        "str"
+      ],
+      "date_reg_cbr": [
+        "float"
+      ],
+      "eigenvector": [
+        "float"
+      ],
+      "Sites": [
+        "list"
+      ],
+      "state_control_paths": [
+        "float"
+      ],
+      "hash_gnn_embedding": [
+        "list"
+      ],
+      "Id": [
+        "str"
+      ],
+      "community_louvain": [
+        "float"
+      ],
+      "Link": [
+        "str"
+      ],
+      "sources": [
+        "list"
+      ],
+      "OtherNames": [
+        "list"
+      ],
+      "state_controlled_companies": [
+        "float"
+      ],
+      "english_name_cbr": [
+        "str"
+      ],
+      "is_dead": [
+        "bool"
+      ],
+      "bank_feats": [
+        "list"
+      ],
+      "ActivityTypes": [
+        "list"
+      ],
+      "ActivityTypeCategories": [
+        "list"
+      ],
+      "ogrn_cbr": [
+        "str"
+      ],
+      "fastrp_embedding_no_weight": [
+        "list"
+      ],
+      "RegistrationNumber": [
+        "str"
+      ],
+      "CountryCode": [
+        "float"
+      ],
+      "charter_capital_cbr": [
+        "str"
+      ],
+      "harmonic_centrality": [
+        "float"
+      ],
+      "hash_gnn_embedding_bank_feats_no_weight": [
+        "list"
+      ],
+      "community_louvain_intermediate": [
+        "list"
+      ],
+      "clustering_coefficient_7hop": [
+        "float"
+      ],
+      "state_direct_owners": [
+        "float"
+      ],
+      "lifespan_days": [
+        "float"
+      ],
+      "community_louvain_7hop_gov_foreign": [
+        "float"
+      ],
+      "charter_address_cbr": [
+        "str"
+      ],
+      "cbr_id": [
+        "str"
+      ],
+      "hdbscan_community": [
+        "float"
+      ],
+      "lifespan_years": [
+        "float"
+      ],
+      "OtherAddresses": [
+        "list"
+      ],
+      "is_isolate": [
+        "bool"
+      ],
+      "page_rank": [
+        "float"
+      ],
+      "Type": [
+        "str"
+      ],
+      "state_direct_ownership_value": [
+        "float"
+      ],
+      "state_ownership_percentage": [
+        "float"
+      ],
+      "actual_address_cbr": [
+        "str"
+      ],
+      "betweenness": [
+        "float"
+      ],
+      "reason_banki_memory": [
+        "str"
+      ],
+      "RegistrationDate": [
+        "str"
+      ],
+      "date_banki_memory": [
+        "float"
+      ],
+      "temporal_start": [
+        "float"
+      ],
+      "url_banki_memory": [
+        "str"
+      ],
+      "regn_banki_memory": [
+        "str"
+      ],
+      "city_banki_memory": [
+        "str"
+      ],
+      "full_name_banki_memory": [
+        "str"
+      ],
+      "Founders": [
+        "str"
+      ],
+      "FipsApplications": [
+        "float"
+      ],
+      "ManagerName": [
+        "str"
+      ],
+      "License": [
+        "float"
+      ],
+      "FactorCounts.AttentionCount": [
+        "float"
+      ],
+      "Vehicles": [
+        "float"
+      ],
+      "family_connection_ratio": [
+        "float"
+      ],
+      "Ogrn": [
+        "str"
+      ],
+      "unique_country_count": [
+        "float"
+      ],
+      "BanksInfo": [
+        "float"
+      ],
+      "Status.IsActual": [
+        "bool"
+      ],
+      "Subsidies": [
+        "float"
+      ],
+      "Accreditation": [
+        "float"
+      ],
+      "EgrulListsDisqPersons": [
+        "float"
+      ],
+      "IssuersMessages": [
+        "float"
+      ],
+      "Salaries": [
+        "float"
+      ],
+      "Pfr": [
+        "str"
+      ],
+      "Vacancies": [
+        "float"
+      ],
+      "family_controlled_companies": [
+        "float"
+      ],
+      "full_name": [
+        "str"
+      ],
+      "short_name": [
+        "str"
+      ],
+      "ExporterProducts": [
+        "float"
+      ],
+      "Inspections": [
+        "float"
+      ],
+      "Predecessor": [
+        "float"
+      ],
+      "total_ownership_value": [
+        "float"
+      ],
+      "AsShareholder": [
+        "float"
+      ],
+      "Trademark": [
+        "float"
+      ],
+      "IsActual": [
+        "bool"
+      ],
+      "ReasonText": [
+        "str"
+      ],
+      "Auditors": [
+        "float"
+      ],
+      "Contracts": [
+        "float"
+      ],
+      "ReorganizationInfo": [
+        "float"
+      ],
+      "MappedFiasObjectIds": [
+        "list"
+      ],
+      "foreign_controlled_companies": [
+        "float"
+      ],
+      "LlcShare": [
+        "float"
+      ],
+      "PaidTax": [
+        "float"
+      ],
+      "StatusDate": [
+        "str"
+      ],
+      "AsManager": [
+        "float"
+      ],
+      "Status.ReasonText": [
+        "str"
+      ],
+      "Contacts": [
+        "float"
+      ],
+      "neo4jImportId": [
+        "str"
+      ],
+      "AuthorisedCapital": [
+        "float"
+      ],
+      "Insurance": [
+        "float"
+      ],
+      "AsManagementCompany": [
+        "float"
+      ],
+      "FactorCounts.NegativeCount": [
+        "float"
+      ],
+      "to_scrape_seo": [
+        "bool"
+      ],
+      "WoodRents": [
+        "float"
+      ],
+      "Opf": [
+        "str"
+      ],
+      "FactorCounts.PositiveCount": [
+        "float"
+      ],
+      "Status.Status": [
+        "str"
+      ],
+      "Arbitr": [
+        "float"
+      ],
+      "Kpp": [
+        "str"
+      ],
+      "Manager": [
+        "float"
+      ],
+      "EgrulListsUnreported": [
+        "float"
+      ],
+      "foreign_entity_count": [
+        "float"
+      ],
+      "AsRegistrar": [
+        "float"
+      ],
+      "Status.StatusText": [
+        "str"
+      ],
+      "EgrulListsEntitiesWithDisqPersons": [
+        "float"
+      ],
+      "family_direct_ownership_value": [
+        "float"
+      ],
+      "ManagerLink": [
+        "str"
+      ],
+      "CustomsWarehouses": [
+        "float"
+      ],
+      "Status.Reason": [
+        "str"
+      ],
+      "ActivityTypeInfo": [
+        "float"
+      ],
+      "Status.Date": [
+        "str"
+      ],
+      "BankruptMessages": [
+        "float"
+      ],
+      "TaxArrears": [
+        "float"
+      ],
+      "FedresursPledge": [
+        "float"
+      ],
+      "family_ownership_percentage": [
+        "float"
+      ],
+      "foreign_direct_ownership_percentage": [
+        "float"
+      ],
+      "total_foreign_ownership_percentage": [
+        "float"
+      ],
+      "ManagementCompany": [
+        "float"
+      ],
+      "direct_owners": [
+        "float"
+      ],
+      "EgrulListsMassManager": [
+        "float"
+      ],
+      "EgrulListsMassFounder": [
+        "float"
+      ],
+      "GeneralJurisdictionCourts": [
+        "float"
+      ],
+      "StatusText": [
+        "str"
+      ],
+      "total_family_connections": [
+        "float"
+      ],
+      "Inn": [
+        "str"
+      ],
+      "MassMedia": [
+        "float"
+      ],
+      "Reason": [
+        "str"
+      ],
+      "FipsPatents": [
+        "float"
+      ],
+      "Successor": [
+        "float"
+      ],
+      "Registrar": [
+        "float"
+      ],
+      "Branch": [
+        "float"
+      ],
+      "FedresursMessages": [
+        "float"
+      ],
+      "TotalScore": [
+        "str"
+      ],
+      "Patents": [
+        "float"
+      ],
+      "AsEntrepreneur": [
+        "float"
+      ],
+      "Finance": [
+        "float"
+      ],
+      "citizenship": [
+        "str"
+      ],
+      "Shareholder": [
+        "float"
+      ],
+      "FnsDocuments": [
+        "float"
+      ],
+      "Date": [
+        "str"
+      ],
+      "EgrulListsDebtors": [
+        "float"
+      ],
+      "WoodDeals": [
+        "float"
+      ],
+      "RepresentativeOffice": [
+        "float"
+      ],
+      "Bailiffs": [
+        "float"
+      ],
+      "OpfCode": [
+        "str"
+      ],
+      "Receipts": [
+        "float"
+      ],
+      "WaterObjects": [
+        "float"
+      ],
+      "ownership_complexity_score": [
+        "float"
+      ],
+      "residence": [
+        "str"
+      ],
+      "MainActivityType.Code": [
+        "str"
+      ],
+      "ogrn": [
+        "str"
+      ],
+      "Capital": [
+        "float"
+      ],
+      "name_en": [
+        "str"
+      ],
+      "MainActivityType.Name": [
+        "str"
+      ],
+      "to_scrape_client": [
+        "bool"
+      ]
+    },
+    "Entrepreneur": {
+      "Status": [
+        "float",
+        "str"
+      ],
+      "Address": [
+        "float",
+        "str"
+      ],
+      "Inn": [
+        "str"
+      ],
+      "ActivityType": [
+        "str"
+      ],
+      "is_dead": [
+        "bool"
+      ],
+      "network_feats": [
+        "list"
+      ],
+      "bank_feats": [
+        "list"
+      ],
+      "Name": [
+        "float",
+        "str"
+      ],
+      "Ogrn": [
+        "str"
+      ],
+      "Type": [
+        "str"
+      ],
+      "full_name": [
+        "str"
+      ],
+      "Id": [
+        "str"
+      ],
+      "Link": [
+        "str"
+      ],
+      "RegistrationDate": [
+        "str"
+      ],
+      "OtherNames": [
+        "list"
+      ],
+      "ActivityTypes": [
+        "list"
+      ],
+      "ActivityTypeCategories": [
+        "list"
+      ],
+      "Phones": [
+        "list"
+      ],
+      "OtherIdentifiers": [
+        "list"
+      ],
+      "original_request_link": [
+        "str"
+      ],
+      "Emails": [
+        "list"
+      ],
+      "Pfr": [
+        "str"
+      ],
+      "original_request_inn": [
+        "str"
+      ],
+      "lifespan_days": [
+        "float"
+      ],
+      "Regions": [
+        "list"
+      ],
+      "MappedFiasObjectIds": [
+        "list"
+      ],
+      "lifespan_years": [
+        "float"
+      ],
+      "OtherAddresses": [
+        "list"
+      ],
+      "Sites": [
+        "list"
+      ],
+      "StatusDate": [
+        "str"
+      ],
+      "original_request_name": [
+        "str"
+      ],
+      "OpfCode": [
+        "str"
+      ],
+      "MainActivityType_Name": [
+        "str"
+      ],
+      "MainActivityType_Code": [
+        "str"
+      ],
+      "Oktmo": [
+        "str"
+      ],
+      "RsmpCategory": [
+        "str"
+      ],
+      "Okpo": [
+        "str"
+      ],
+      "Okfs": [
+        "str"
+      ],
+      "FipsApplications": [
+        "float"
+      ],
+      "License": [
+        "float"
+      ],
+      "Gender": [
+        "str"
+      ],
+      "Vehicles": [
+        "float"
+      ],
+      "BanksInfo": [
+        "float"
+      ],
+      "Status.IsActual": [
+        "bool"
+      ],
+      "Subsidies": [
+        "float"
+      ],
+      "Accreditation": [
+        "float"
+      ],
+      "EgrulListsDisqPersons": [
+        "float"
+      ],
+      "IssuersMessages": [
+        "float"
+      ],
+      "Person.Id": [
+        "str"
+      ],
+      "Vacancies": [
+        "float"
+      ],
+      "ExporterProducts": [
+        "float"
+      ],
+      "Inspections": [
+        "float"
+      ],
+      "Predecessor": [
+        "float"
+      ],
+      "AsShareholder": [
+        "float"
+      ],
+      "Trademark": [
+        "float"
+      ],
+      "Auditors": [
+        "float"
+      ],
+      "Contracts": [
+        "float"
+      ],
+      "ReorganizationInfo": [
+        "float"
+      ],
+      "FirstName": [
+        "str"
+      ],
+      "LlcShare": [
+        "float"
+      ],
+      "AsManager": [
+        "float"
+      ],
+      "Contacts": [
+        "float"
+      ],
+      "AuthorisedCapital": [
+        "float"
+      ],
+      "Insurance": [
+        "float"
+      ],
+      "AsManagementCompany": [
+        "float"
+      ],
+      "Person.Type": [
+        "str"
+      ],
+      "WoodRents": [
+        "float"
+      ],
+      "Opf": [
+        "str"
+      ],
+      "Status.Status": [
+        "str"
+      ],
+      "Arbitr": [
+        "float"
+      ],
+      "Manager": [
+        "float"
+      ],
+      "EgrulListsUnreported": [
+        "float"
+      ],
+      "AsRegistrar": [
+        "float"
+      ],
+      "EgrulListsEntitiesWithDisqPersons": [
+        "float"
+      ],
+      "CustomsWarehouses": [
+        "float"
+      ],
+      "ActivityTypeInfo": [
+        "float"
+      ],
+      "Okopf": [
+        "str"
+      ],
+      "Okogu": [
+        "str"
+      ],
+      "Okato": [
+        "str"
+      ],
+      "BankruptMessages": [
+        "float"
+      ],
+      "FedresursPledge": [
+        "float"
+      ],
+      "Person.Link": [
+        "str"
+      ],
+      "LastName": [
+        "str"
+      ],
+      "ManagementCompany": [
+        "float"
+      ],
+      "EgrulListsMassManager": [
+        "float"
+      ],
+      "EgrulListsMassFounder": [
+        "float"
+      ],
+      "GeneralJurisdictionCourts": [
+        "float"
+      ],
+      "Person.Name": [
+        "str"
+      ],
+      "MassMedia": [
+        "float"
+      ],
+      "FipsPatents": [
+        "float"
+      ],
+      "Successor": [
+        "float"
+      ],
+      "Branch": [
+        "float"
+      ],
+      "Registrar": [
+        "float"
+      ],
+      "FedresursMessages": [
+        "float"
+      ],
+      "Patents": [
+        "float"
+      ],
+      "Person.Inn": [
+        "str"
+      ],
+      "AsEntrepreneur": [
+        "float"
+      ],
+      "Finance": [
+        "float"
+      ],
+      "Shareholder": [
+        "float"
+      ],
+      "FnsDocuments": [
+        "float"
+      ],
+      "MiddleName": [
+        "str"
+      ],
+      "EgrulListsDebtors": [
+        "float"
+      ],
+      "WoodDeals": [
+        "float"
+      ],
+      "RepresentativeOffice": [
+        "float"
+      ],
+      "Bailiffs": [
+        "float"
+      ],
+      "FullName": [
+        "str"
+      ],
+      "WaterObjects": [
+        "float"
+      ],
+      "Receipts": [
+        "float"
+      ],
+      "closeness": [
+        "float"
+      ],
+      "node2vec_embedding_weight_no_feats": [
+        "list"
+      ],
+      "triangles": [
+        "float"
+      ],
+      "MainActivityType.Code": [
+        "str"
+      ],
+      "hash_gnn_embedding_nw_feats_no_bank_feats": [
+        "list"
+      ],
+      "out_degree": [
+        "float"
+      ],
+      "hash_gnn_embedding": [
+        "list"
+      ],
+      "community_louvain": [
+        "float"
+      ],
+      "community_louvain_intermediate": [
+        "list"
+      ],
+      "page_rank": [
+        "float"
+      ],
+      "in_degree": [
+        "float"
+      ],
+      "fastrp_embedding_with_weight_bank_feats": [
+        "list"
+      ],
+      "node2vec_embedding": [
+        "list"
+      ],
+      "fastrp_embedding_with_weight_no_bank_feats": [
+        "list"
+      ],
+      "fastrp_embedding_weight_bank_feats": [
+        "list"
+      ],
+      "eigenvector": [
+        "float"
+      ],
+      "MainActivityType.Name": [
+        "str"
+      ],
+      "fastrp_embedding_no_weight": [
+        "list"
+      ],
+      "harmonic_centrality": [
+        "float"
+      ],
+      "hash_gnn_embedding_bank_feats_no_weight": [
+        "list"
+      ],
+      "clustering_coefficient_7hop": [
+        "float"
+      ],
+      "community_louvain_7hop_gov_foreign": [
+        "float"
+      ],
+      "hdbscan_community": [
+        "float"
+      ],
+      "betweenness": [
+        "float"
+      ],
+      "Fss": [
+        "str"
+      ],
+      "Salaries": [
+        "float"
+      ],
+      "PaidTax": [
+        "float"
+      ],
+      "Status.ReasonText": [
+        "str"
+      ],
+      "Identifier": [
+        "float"
+      ],
+      "Status.StatusText": [
+        "str"
+      ],
+      "Status.Reason": [
+        "str"
+      ],
+      "Status.Date": [
+        "str"
+      ],
+      "TaxArrears": [
+        "float"
+      ],
+      "to_scrape_seo": [
+        "bool"
+      ],
+      "short_name": [
+        "str"
+      ],
+      "neo4jImportId": [
+        "str"
+      ],
+      "residence": [
+        "str"
+      ],
+      "citizenship": [
+        "str"
+      ],
+      "ogrn": [
+        "str"
+      ]
+    },
+    "MunicipalSubject": {
+      "to_scrape_seo": [
+        "bool"
+      ],
+      "Type": [
+        "str"
+      ],
+      "Id": [
+        "str"
+      ],
+      "is_dead": [
+        "bool"
+      ],
+      "network_feats": [
+        "list"
+      ],
+      "bank_feats": [
+        "list"
+      ],
+      "to_scrape_client": [
+        "bool"
+      ],
+      "Name": [
+        "str"
+      ],
+      "FipsApplications": [
+        "float"
+      ],
+      "Address": [
+        "float"
+      ],
+      "closeness": [
+        "float"
+      ],
+      "ManagerName": [
+        "str"
+      ],
+      "License": [
+        "float"
+      ],
+      "FactorCounts.AttentionCount": [
+        "float"
+      ],
+      "node2vec_embedding_weight_no_feats": [
+        "list"
+      ],
+      "Vehicles": [
+        "float"
+      ],
+      "triangles": [
+        "float"
+      ],
+      "Oktmo": [
+        "str"
+      ],
+      "Ogrn": [
+        "str"
+      ],
+      "MainActivityType.Code": [
+        "str"
+      ],
+      "BanksInfo": [
+        "float"
+      ],
+      "hash_gnn_embedding_nw_feats_no_bank_feats": [
+        "list"
+      ],
+      "Subsidies": [
+        "float"
+      ],
+      "Accreditation": [
+        "float"
+      ],
+      "EgrulListsDisqPersons": [
+        "float"
+      ],
+      "IssuersMessages": [
+        "float"
+      ],
+      "Pfr": [
+        "str"
+      ],
+      "Status": [
+        "float"
+      ],
+      "Vacancies": [
+        "float"
+      ],
+      "out_degree": [
+        "float"
+      ],
+      "Fss": [
+        "str"
+      ],
+      "Regions": [
+        "list"
+      ],
+      "Sites": [
+        "list"
+      ],
+      "full_name": [
+        "str"
+      ],
+      "hash_gnn_embedding": [
+        "list"
+      ],
+      "short_name": [
+        "str"
+      ],
+      "community_louvain": [
+        "float",
+        "list"
+      ],
+      "ExporterProducts": [
+        "float"
+      ],
+      "Link": [
+        "str"
+      ],
+      "Inspections": [
+        "float"
+      ],
+      "Predecessor": [
+        "float"
+      ],
+      "RegistrationDate": [
+        "str"
+      ],
+      "AsShareholder": [
+        "float"
+      ],
+      "temporal_start": [
+        "float"
+      ],
+      "Trademark": [
+        "float"
+      ],
+      "IsActual": [
+        "bool"
+      ],
+      "Auditors": [
+        "float"
+      ],
+      "Contracts": [
+        "float"
+      ],
+      "ReorganizationInfo": [
+        "float"
+      ],
+      "community_louvain_intermediate": [
+        "list"
+      ],
+      "lifespan_days": [
+        "float"
+      ],
+      "MappedFiasObjectIds": [
+        "list"
+      ],
+      "LlcShare": [
+        "float"
+      ],
+      "page_rank": [
+        "float"
+      ],
+      "AsManager": [
+        "float"
+      ],
+      "Contacts": [
+        "float"
+      ],
+      "AuthorisedCapital": [
+        "float"
+      ],
+      "neo4jImportId": [
+        "str"
+      ],
+      "Insurance": [
+        "float"
+      ],
+      "AsManagementCompany": [
+        "float"
+      ],
+      "FactorCounts.NegativeCount": [
+        "float"
+      ],
+      "in_degree": [
+        "float"
+      ],
+      "temporal_end": [
+        "float"
+      ],
+      "WoodRents": [
+        "float"
+      ],
+      "FactorCounts.PositiveCount": [
+        "float"
+      ],
+      "Arbitr": [
+        "float"
+      ],
+      "Kpp": [
+        "str"
+      ],
+      "fastrp_embedding_with_weight_bank_feats": [
+        "list"
+      ],
+      "Manager": [
+        "float"
+      ],
+      "EgrulListsUnreported": [
+        "float"
+      ],
+      "Founders": [
+        "str"
+      ],
+      "AsRegistrar": [
+        "float"
+      ],
+      "node2vec_embedding": [
+        "list"
+      ],
+      "EgrulListsEntitiesWithDisqPersons": [
+        "float"
+      ],
+      "Phones": [
+        "list"
+      ],
+      "OtherIdentifiers": [
+        "list"
+      ],
+      "ManagerLink": [
+        "str"
+      ],
+      "CustomsWarehouses": [
+        "float"
+      ],
+      "Emails": [
+        "list"
+      ],
+      "residence": [
+        "str"
+      ],
+      "fastrp_embedding_with_weight_no_bank_feats": [
+        "list"
+      ],
+      "ActivityTypeInfo": [
+        "float"
+      ],
+      "Okopf": [
+        "str"
+      ],
+      "fastrp_embedding_weight_bank_feats": [
+        "list"
+      ],
+      "Okogu": [
+        "str"
+      ],
+      "Okato": [
+        "str"
+      ],
+      "BankruptMessages": [
+        "float"
+      ],
+      "eigenvector": [
+        "float"
+      ],
+      "FedresursPledge": [
+        "float"
+      ],
+      "MainActivityType.Name": [
+        "str"
+      ],
+      "ManagementCompany": [
+        "float"
+      ],
+      "EgrulListsMassManager": [
+        "float"
+      ],
+      "EgrulListsMassFounder": [
+        "float"
+      ],
+      "GeneralJurisdictionCourts": [
+        "float"
+      ],
+      "sources": [
+        "list"
+      ],
+      "OtherNames": [
+        "list"
+      ],
+      "Inn": [
+        "str"
+      ],
+      "MassMedia": [
+        "float"
+      ],
+      "ActivityTypes": [
+        "list"
+      ],
+      "FipsPatents": [
+        "float"
+      ],
+      "ActivityTypeCategories": [
+        "list"
+      ],
+      "Successor": [
+        "float"
+      ],
+      "fastrp_embedding_no_weight": [
+        "list"
+      ],
+      "Branch": [
+        "float"
+      ],
+      "Registrar": [
+        "float"
+      ],
+      "FedresursMessages": [
+        "float"
+      ],
+      "TotalScore": [
+        "str"
+      ],
+      "Okpo": [
+        "str"
+      ],
+      "harmonic_centrality": [
+        "float"
+      ],
+      "Patents": [
+        "float"
+      ],
+      "hash_gnn_embedding_bank_feats_no_weight": [
+        "list"
+      ],
+      "AsEntrepreneur": [
+        "float"
+      ],
+      "Finance": [
+        "float"
+      ],
+      "clustering_coefficient_7hop": [
+        "float"
+      ],
+      "Shareholder": [
+        "float"
+      ],
+      "citizenship": [
+        "str"
+      ],
+      "FnsDocuments": [
+        "float"
+      ],
+      "community_louvain_7hop_gov_foreign": [
+        "float"
+      ],
+      "Okfs": [
+        "str"
+      ],
+      "lifespan_years": [
+        "float"
+      ],
+      "hdbscan_community": [
+        "float"
+      ],
+      "OtherAddresses": [
+        "list"
+      ],
+      "EgrulListsDebtors": [
+        "float"
+      ],
+      "WoodDeals": [
+        "float"
+      ],
+      "RepresentativeOffice": [
+        "float"
+      ],
+      "Bailiffs": [
+        "float"
+      ],
+      "OpfCode": [
+        "str"
+      ],
+      "betweenness": [
+        "float"
+      ],
+      "WaterObjects": [
+        "float"
+      ],
+      "Receipts": [
+        "float"
+      ],
+      "ogrn": [
+        "str"
+      ],
+      "name_en": [
+        "str"
+      ]
+    },
+    "News": {
+      "date": [
+        "DateTime"
+      ],
+      "is_dead": [
+        "bool"
+      ],
+      "title": [
+        "str"
+      ],
+      "network_feats": [
+        "list"
+      ],
+      "bank_feats": [
+        "list"
+      ],
+      "url": [
+        "str"
+      ]
+    },
+    "CentralBank": {
+      "FipsApplications": [
+        "float"
+      ],
+      "Address": [
+        "str"
+      ],
+      "ManagerName": [
+        "str"
+      ],
+      "closeness": [
+        "float"
+      ],
+      "License": [
+        "float"
+      ],
+      "FactorCounts.AttentionCount": [
+        "float"
+      ],
+      "network_feats": [
+        "list"
+      ],
+      "Vehicles": [
+        "float"
+      ],
+      "node2vec_embedding_weight_no_feats": [
+        "list"
+      ],
+      "triangles": [
+        "float"
+      ],
+      "Oktmo": [
+        "str"
+      ],
+      "Ogrn": [
+        "str"
+      ],
+      "MainActivityType.Code": [
+        "str"
+      ],
+      "BanksInfo": [
+        "float"
+      ],
+      "Subsidies": [
+        "float"
+      ],
+      "hash_gnn_embedding_nw_feats_no_bank_feats": [
+        "list"
+      ],
+      "Accreditation": [
+        "float"
+      ],
+      "EgrulListsDisqPersons": [
+        "float"
+      ],
+      "IssuersMessages": [
+        "float"
+      ],
+      "Pfr": [
+        "str"
+      ],
+      "ogrn": [
+        "str"
+      ],
+      "Status": [
+        "str"
+      ],
+      "Vacancies": [
+        "float"
+      ],
+      "out_degree": [
+        "float"
+      ],
+      "Fss": [
+        "str"
+      ],
+      "Regions": [
+        "list"
+      ],
+      "Sites": [
+        "list"
+      ],
+      "full_name": [
+        "str"
+      ],
+      "hash_gnn_embedding": [
+        "list"
+      ],
+      "short_name": [
+        "str"
+      ],
+      "Id": [
+        "str"
+      ],
+      "ExporterProducts": [
+        "float"
+      ],
+      "community_louvain": [
+        "float"
+      ],
+      "Inspections": [
+        "float"
+      ],
+      "Predecessor": [
+        "float"
+      ],
+      "RegistrationDate": [
+        "str"
+      ],
+      "AsShareholder": [
+        "float"
+      ],
+      "temporal_start": [
+        "float"
+      ],
+      "Trademark": [
+        "float"
+      ],
+      "is_dead": [
+        "bool"
+      ],
+      "IsActual": [
+        "bool"
+      ],
+      "bank_feats": [
+        "list"
+      ],
+      "Auditors": [
+        "float"
+      ],
+      "Contracts": [
+        "float"
+      ],
+      "ReorganizationInfo": [
+        "float"
+      ],
+      "community_louvain_intermediate": [
+        "list"
+      ],
+      "lifespan_days": [
+        "float"
+      ],
+      "MappedFiasObjectIds": [
+        "list"
+      ],
+      "LlcShare": [
+        "float"
+      ],
+      "page_rank": [
+        "float"
+      ],
+      "Type": [
+        "str"
+      ],
+      "AsManager": [
+        "float"
+      ],
+      "Contacts": [
+        "float"
+      ],
+      "AuthorisedCapital": [
+        "float"
+      ],
+      "neo4jImportId": [
+        "str"
+      ],
+      "Insurance": [
+        "float"
+      ],
+      "AsManagementCompany": [
+        "float"
+      ],
+      "FactorCounts.NegativeCount": [
+        "float"
+      ],
+      "name_en": [
+        "str"
+      ],
+      "to_scrape_seo": [
+        "bool"
+      ],
+      "in_degree": [
+        "float"
+      ],
+      "temporal_end": [
+        "float"
+      ],
+      "WoodRents": [
+        "float"
+      ],
+      "FactorCounts.PositiveCount": [
+        "float"
+      ],
+      "Arbitr": [
+        "float"
+      ],
+      "Kpp": [
+        "str"
+      ],
+      "fastrp_embedding_with_weight_bank_feats": [
+        "list"
+      ],
+      "Manager": [
+        "float"
+      ],
+      "EgrulListsUnreported": [
+        "float"
+      ],
+      "Name": [
+        "str"
+      ],
+      "AsRegistrar": [
+        "float"
+      ],
+      "node2vec_embedding": [
+        "list"
+      ],
+      "EgrulListsEntitiesWithDisqPersons": [
+        "float"
+      ],
+      "Phones": [
+        "list"
+      ],
+      "OtherIdentifiers": [
+        "list"
+      ],
+      "ManagerLink": [
+        "str"
+      ],
+      "CustomsWarehouses": [
+        "float"
+      ],
+      "Emails": [
+        "list"
+      ],
+      "residence": [
+        "str"
+      ],
+      "fastrp_embedding_with_weight_no_bank_feats": [
+        "list"
+      ],
+      "ActivityTypeInfo": [
+        "float"
+      ],
+      "Okopf": [
+        "str"
+      ],
+      "fastrp_embedding_weight_bank_feats": [
+        "list"
+      ],
+      "Okogu": [
+        "str"
+      ],
+      "Okato": [
+        "str"
+      ],
+      "BankruptMessages": [
+        "float"
+      ],
+      "eigenvector": [
+        "float"
+      ],
+      "FedresursPledge": [
+        "float"
+      ],
+      "MainActivityType.Name": [
+        "str"
+      ],
+      "ManagementCompany": [
+        "float"
+      ],
+      "EgrulListsMassManager": [
+        "float"
+      ],
+      "EgrulListsMassFounder": [
+        "float"
+      ],
+      "GeneralJurisdictionCourts": [
+        "float"
+      ],
+      "sources": [
+        "list"
+      ],
+      "OtherNames": [
+        "list"
+      ],
+      "Inn": [
+        "str"
+      ],
+      "MassMedia": [
+        "float"
+      ],
+      "ActivityTypes": [
+        "list"
+      ],
+      "FipsPatents": [
+        "float"
+      ],
+      "ActivityTypeCategories": [
+        "list"
+      ],
+      "Successor": [
+        "float"
+      ],
+      "fastrp_embedding_no_weight": [
+        "list"
+      ],
+      "Branch": [
+        "float"
+      ],
+      "Registrar": [
+        "float"
+      ],
+      "FedresursMessages": [
+        "float"
+      ],
+      "TotalScore": [
+        "str"
+      ],
+      "Okpo": [
+        "str"
+      ],
+      "harmonic_centrality": [
+        "float"
+      ],
+      "Patents": [
+        "float"
+      ],
+      "hash_gnn_embedding_bank_feats_no_weight": [
+        "list"
+      ],
+      "AsEntrepreneur": [
+        "float"
+      ],
+      "Finance": [
+        "float"
+      ],
+      "clustering_coefficient_7hop": [
+        "float"
+      ],
+      "Shareholder": [
+        "float"
+      ],
+      "citizenship": [
+        "str"
+      ],
+      "ActivityType": [
+        "str"
+      ],
+      "FnsDocuments": [
+        "float"
+      ],
+      "community_louvain_7hop_gov_foreign": [
+        "float"
+      ],
+      "Okfs": [
+        "str"
+      ],
+      "lifespan_years": [
+        "float"
+      ],
+      "OtherAddresses": [
+        "list"
+      ],
+      "hdbscan_community": [
+        "float"
+      ],
+      "EgrulListsDebtors": [
+        "float"
+      ],
+      "WoodDeals": [
+        "float"
+      ],
+      "RepresentativeOffice": [
+        "float"
+      ],
+      "Bailiffs": [
+        "float"
+      ],
+      "OpfCode": [
+        "str"
+      ],
+      "betweenness": [
+        "float"
+      ],
+      "Receipts": [
+        "float"
+      ],
+      "WaterObjects": [
+        "float"
+      ],
+      "to_scrape_client": [
+        "bool"
+      ]
+    },
+    "DepositInsurance": {
+      "to_scrape_seo": [
+        "bool"
+      ],
+      "in_degree": [
+        "float"
+      ],
+      "WoodRents": [
+        "float"
+      ],
+      "Address": [
+        "float"
+      ],
+      "closeness": [
+        "float"
+      ],
+      "License": [
+        "float"
+      ],
+      "Arbitr": [
+        "float"
+      ],
+      "Manager": [
+        "float"
+      ],
+      "EgrulListsUnreported": [
+        "float"
+      ],
+      "network_feats": [
+        "list"
+      ],
+      "node2vec_embedding_weight_no_feats": [
+        "list"
+      ],
+      "Vehicles": [
+        "float"
+      ],
+      "Name": [
+        "str"
+      ],
+      "AsRegistrar": [
+        "float"
+      ],
+      "node2vec_embedding": [
+        "list"
+      ],
+      "Identifier": [
+        "float"
+      ],
+      "EgrulListsEntitiesWithDisqPersons": [
+        "float"
+      ],
+      "BanksInfo": [
+        "float"
+      ],
+      "hash_gnn_embedding_nw_feats_no_bank_feats": [
+        "list"
+      ],
+      "Subsidies": [
+        "float"
+      ],
+      "Accreditation": [
+        "float"
+      ],
+      "CustomsWarehouses": [
+        "float"
+      ],
+      "EgrulListsDisqPersons": [
+        "float"
+      ],
+      "IssuersMessages": [
+        "float"
+      ],
+      "fastrp_embedding_with_weight_no_bank_feats": [
+        "list"
+      ],
+      "Status": [
+        "float"
+      ],
+      "ActivityTypeInfo": [
+        "float"
+      ],
+      "Vacancies": [
+        "float"
+      ],
+      "out_degree": [
+        "float"
+      ],
+      "fastrp_embedding_weight_bank_feats": [
+        "list"
+      ],
+      "BankruptMessages": [
+        "float"
+      ],
+      "eigenvector": [
+        "float"
+      ],
+      "full_name": [
+        "str"
+      ],
+      "FedresursPledge": [
+        "float"
+      ],
+      "hash_gnn_embedding": [
+        "list"
+      ],
+      "LastName": [
+        "str"
+      ],
+      "Id": [
+        "str"
+      ],
+      "community_louvain": [
+        "float"
+      ],
+      "ExporterProducts": [
+        "float"
+      ],
+      "Link": [
+        "str"
+      ],
+      "ManagementCompany": [
+        "float"
+      ],
+      "Inspections": [
+        "float"
+      ],
+      "EgrulListsMassManager": [
+        "float"
+      ],
+      "EgrulListsMassFounder": [
+        "float"
+      ],
+      "Predecessor": [
+        "float"
+      ],
+      "AsShareholder": [
+        "float"
+      ],
+      "Trademark": [
+        "float"
+      ],
+      "is_dead": [
+        "bool"
+      ],
+      "MassMedia": [
+        "float"
+      ],
+      "bank_feats": [
+        "list"
+      ],
+      "Successor": [
+        "float"
+      ],
+      "fastrp_embedding_no_weight": [
+        "list"
+      ],
+      "Registrar": [
+        "float"
+      ],
+      "Branch": [
+        "float"
+      ],
+      "FedresursMessages": [
+        "float"
+      ],
+      "Auditors": [
+        "float"
+      ],
+      "Contracts": [
+        "float"
+      ],
+      "Patents": [
+        "float"
+      ],
+      "ReorganizationInfo": [
+        "float"
+      ],
+      "hash_gnn_embedding_bank_feats_no_weight": [
+        "list"
+      ],
+      "AsEntrepreneur": [
+        "float"
+      ],
+      "community_louvain_intermediate": [
+        "list"
+      ],
+      "FirstName": [
+        "str"
+      ],
+      "Finance": [
+        "float"
+      ],
+      "Shareholder": [
+        "float"
+      ],
+      "FnsDocuments": [
+        "float"
+      ],
+      "MiddleName": [
+        "str"
+      ],
+      "hdbscan_community": [
+        "float"
+      ],
+      "EgrulListsDebtors": [
+        "float"
+      ],
+      "WoodDeals": [
+        "float"
+      ],
+      "LlcShare": [
+        "float"
+      ],
+      "page_rank": [
+        "float"
+      ],
+      "Type": [
+        "str"
+      ],
+      "AsManager": [
+        "float"
+      ],
+      "Contacts": [
+        "float"
+      ],
+      "RepresentativeOffice": [
+        "float"
+      ],
+      "AuthorisedCapital": [
+        "float"
+      ],
+      "Bailiffs": [
+        "float"
+      ],
+      "Insurance": [
+        "float"
+      ],
+      "AsManagementCompany": [
+        "float"
+      ],
+      "betweenness": [
+        "float"
+      ],
+      "WaterObjects": [
+        "float"
+      ],
+      "Receipts": [
+        "float"
+      ],
+      "to_scrape_client": [
+        "bool"
+      ]
+    },
+    "StatePropMgmt": {
+      "FipsApplications": [
+        "float"
+      ],
+      "Address": [
+        "float"
+      ],
+      "ManagerName": [
+        "str"
+      ],
+      "closeness": [
+        "float"
+      ],
+      "License": [
+        "float"
+      ],
+      "FactorCounts.AttentionCount": [
+        "float"
+      ],
+      "network_feats": [
+        "list"
+      ],
+      "Vehicles": [
+        "float"
+      ],
+      "node2vec_embedding_weight_no_feats": [
+        "list"
+      ],
+      "triangles": [
+        "float"
+      ],
+      "Oktmo": [
+        "str"
+      ],
+      "Ogrn": [
+        "str"
+      ],
+      "MainActivityType.Code": [
+        "str"
+      ],
+      "BanksInfo": [
+        "float"
+      ],
+      "Status.IsActual": [
+        "bool"
+      ],
+      "Subsidies": [
+        "float"
+      ],
+      "hash_gnn_embedding_nw_feats_no_bank_feats": [
+        "list"
+      ],
+      "Accreditation": [
+        "float"
+      ],
+      "EgrulListsDisqPersons": [
+        "float"
+      ],
+      "Salaries": [
+        "float"
+      ],
+      "IssuersMessages": [
+        "float"
+      ],
+      "Pfr": [
+        "str"
+      ],
+      "Status": [
+        "float"
+      ],
+      "ogrn": [
+        "str"
+      ],
+      "Vacancies": [
+        "float"
+      ],
+      "out_degree": [
+        "float"
+      ],
+      "Fss": [
+        "str"
+      ],
+      "Regions": [
+        "list"
+      ],
+      "Sites": [
+        "list"
+      ],
+      "full_name": [
+        "str"
+      ],
+      "hash_gnn_embedding": [
+        "list"
+      ],
+      "short_name": [
+        "str"
+      ],
+      "Id": [
+        "str"
+      ],
+      "ExporterProducts": [
+        "float"
+      ],
+      "community_louvain": [
+        "float"
+      ],
+      "Link": [
+        "str"
+      ],
+      "Inspections": [
+        "float"
+      ],
+      "Predecessor": [
+        "float"
+      ],
+      "RegistrationDate": [
+        "str"
+      ],
+      "AsShareholder": [
+        "float"
+      ],
+      "temporal_start": [
+        "float"
+      ],
+      "Trademark": [
+        "float"
+      ],
+      "is_dead": [
+        "bool"
+      ],
+      "bank_feats": [
+        "list"
+      ],
+      "IsActual": [
+        "bool"
+      ],
+      "ReasonText": [
+        "str"
+      ],
+      "Auditors": [
+        "float"
+      ],
+      "Contracts": [
+        "float"
+      ],
+      "ReorganizationInfo": [
+        "float"
+      ],
+      "community_louvain_intermediate": [
+        "list"
+      ],
+      "lifespan_days": [
+        "float"
+      ],
+      "MappedFiasObjectIds": [
+        "list"
+      ],
+      "LlcShare": [
+        "float"
+      ],
+      "PaidTax": [
+        "float"
+      ],
+      "page_rank": [
+        "float"
+      ],
+      "StatusDate": [
+        "str"
+      ],
+      "Type": [
+        "str"
+      ],
+      "AsManager": [
+        "float"
+      ],
+      "Status.ReasonText": [
+        "str"
+      ],
+      "Contacts": [
+        "float"
+      ],
+      "AuthorisedCapital": [
+        "float"
+      ],
+      "neo4jImportId": [
+        "str"
+      ],
+      "Insurance": [
+        "float"
+      ],
+      "AsManagementCompany": [
+        "float"
+      ],
+      "FactorCounts.NegativeCount": [
+        "float"
+      ],
+      "to_scrape_seo": [
+        "bool"
+      ],
+      "in_degree": [
+        "float"
+      ],
+      "WoodRents": [
+        "float"
+      ],
+      "temporal_end": [
+        "float"
+      ],
+      "Opf": [
+        "str"
+      ],
+      "FactorCounts.PositiveCount": [
+        "float"
+      ],
+      "Status.Status": [
+        "str"
+      ],
+      "Arbitr": [
+        "float"
+      ],
+      "Kpp": [
+        "str"
+      ],
+      "fastrp_embedding_with_weight_bank_feats": [
+        "list"
+      ],
+      "Manager": [
+        "float"
+      ],
+      "EgrulListsUnreported": [
+        "float"
+      ],
+      "Founders": [
+        "str"
+      ],
+      "Name": [
+        "str"
+      ],
+      "AsRegistrar": [
+        "float"
+      ],
+      "node2vec_embedding": [
+        "list"
+      ],
+      "Status.StatusText": [
+        "str"
+      ],
+      "EgrulListsEntitiesWithDisqPersons": [
+        "float"
+      ],
+      "Phones": [
+        "list"
+      ],
+      "OtherIdentifiers": [
+        "list"
+      ],
+      "ManagerLink": [
+        "str"
+      ],
+      "CustomsWarehouses": [
+        "float"
+      ],
+      "Emails": [
+        "list"
+      ],
+      "residence": [
+        "str"
+      ],
+      "fastrp_embedding_with_weight_no_bank_feats": [
+        "list"
+      ],
+      "Status.Reason": [
+        "str"
+      ],
+      "ActivityTypeInfo": [
+        "float"
+      ],
+      "Okopf": [
+        "str"
+      ],
+      "Status.Date": [
+        "str"
+      ],
+      "fastrp_embedding_weight_bank_feats": [
+        "list"
+      ],
+      "Okogu": [
+        "str"
+      ],
+      "Okato": [
+        "str"
+      ],
+      "BankruptMessages": [
+        "float"
+      ],
+      "eigenvector": [
+        "float"
+      ],
+      "TaxArrears": [
+        "float"
+      ],
+      "FedresursPledge": [
+        "float"
+      ],
+      "MainActivityType.Name": [
+        "str"
+      ],
+      "ManagementCompany": [
+        "float"
+      ],
+      "EgrulListsMassManager": [
+        "float"
+      ],
+      "EgrulListsMassFounder": [
+        "float"
+      ],
+      "GeneralJurisdictionCourts": [
+        "float"
+      ],
+      "sources": [
+        "list"
+      ],
+      "StatusText": [
+        "str"
+      ],
+      "OtherNames": [
+        "list"
+      ],
+      "Inn": [
+        "str"
+      ],
+      "MassMedia": [
+        "float"
+      ],
+      "Reason": [
+        "str"
+      ],
+      "ActivityTypes": [
+        "list"
+      ],
+      "FipsPatents": [
+        "float"
+      ],
+      "ActivityTypeCategories": [
+        "list"
+      ],
+      "Successor": [
+        "float"
+      ],
+      "fastrp_embedding_no_weight": [
+        "list"
+      ],
+      "Registrar": [
+        "float"
+      ],
+      "Branch": [
+        "float"
+      ],
+      "FedresursMessages": [
+        "float"
+      ],
+      "TotalScore": [
+        "str"
+      ],
+      "Okpo": [
+        "str"
+      ],
+      "Patents": [
+        "float"
+      ],
+      "harmonic_centrality": [
+        "float"
+      ],
+      "hash_gnn_embedding_bank_feats_no_weight": [
+        "list"
+      ],
+      "AsEntrepreneur": [
+        "float"
+      ],
+      "Finance": [
+        "float"
+      ],
+      "Shareholder": [
+        "float"
+      ],
+      "clustering_coefficient_7hop": [
+        "float"
+      ],
+      "citizenship": [
+        "str"
+      ],
+      "ActivityType": [
+        "str"
+      ],
+      "FnsDocuments": [
+        "float"
+      ],
+      "community_louvain_7hop_gov_foreign": [
+        "float"
+      ],
+      "Okfs": [
+        "str"
+      ],
+      "lifespan_years": [
+        "float"
+      ],
+      "Date": [
+        "str"
+      ],
+      "OtherAddresses": [
+        "list"
+      ],
+      "hdbscan_community": [
+        "float"
+      ],
+      "EgrulListsDebtors": [
+        "float"
+      ],
+      "WoodDeals": [
+        "float"
+      ],
+      "RepresentativeOffice": [
+        "float"
+      ],
+      "Bailiffs": [
+        "float"
+      ],
+      "OpfCode": [
+        "str"
+      ],
+      "betweenness": [
+        "float"
+      ],
+      "Receipts": [
+        "float"
+      ],
+      "WaterObjects": [
+        "float"
+      ]
+    },
+    "Session": {
+      "id": [
+        "str"
+      ]
+    },
+    "Chunk": {},
+    "Message": {
+      "role": [
+        "str"
+      ],
+      "content": [
+        "str"
+      ]
+    },
+    "Capital": {
+      "Uid": [
+        "str"
+      ],
+      "Type": [
+        "str"
+      ],
+      "Sum": [
+        "float"
+      ],
+      "Date": [
+        "str"
+      ],
+      "IsActual": [
+        "bool"
+      ]
+    }
+  },
+  "relationships": {
+    "OWNERSHIP": {
+      "FaceValue": [
+        "float"
+      ],
+      "temporal_end": [
+        "float"
+      ],
+      "Size": [
+        "float"
+      ],
+      "share_details": [
+        "list"
+      ],
+      "temporal_start": [
+        "float"
+      ],
+      "Share": [
+        "float"
+      ],
+      "IsActual": [
+        "bool"
+      ],
+      "Date": [
+        "Date",
+        "str"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ],
+      "date": [
+        "DateTime"
+      ]
+    },
+    "SIGNIFICANT_INFLUENCE": {
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ],
+      "date": [
+        "DateTime"
+      ]
+    },
+    "FAMILY": {
+      "temporal_end": [
+        "float"
+      ],
+      "Size": [
+        "float"
+      ],
+      "created_at": [
+        "float"
+      ],
+      "source": [
+        "str"
+      ],
+      "temporal_start": [
+        "float"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ],
+      "date": [
+        "DateTime"
+      ]
+    },
+    "EMPLOYMENT": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "GROUP": {
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ],
+      "date": [
+        "DateTime"
+      ]
+    },
+    "MANAGEMENT": {
+      "date": [
+        "DateTime"
+      ],
+      "PositionType": [
+        "str"
+      ],
+      "temporal_end": [
+        "float"
+      ],
+      "PositionName": [
+        "str"
+      ],
+      "PositionTypeName": [
+        "str"
+      ],
+      "Size": [
+        "float"
+      ],
+      "temporal_start": [
+        "float"
+      ],
+      "IsActual": [
+        "bool"
+      ],
+      "Date": [
+        "DateTime",
+        "str"
+      ]
+    },
+    "CONTROL": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "NOMINEE": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "POSITION": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "FOUNDER": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "TRUST_MANAGEMENT": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "BENEFICIAL_OWNER": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "ULTIMATE_BENEFICIAL_OWNER": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "EXECUTIVE_BODY": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "EXECUTION": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "MEMBER": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "TRUSTEE": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "EXECUTIVE_POSITION": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "BOARD_MEMBER": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "VOTING": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "JOINT_CONTROL": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "ELECTED": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "ULTIMATE_BENEFICIARY": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "TRUST": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "BENEFICIARY": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "DIRECTorship": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "CUSTODY": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "NOMINEE_HOLDER": {
+      "date": [
+        "DateTime"
+      ],
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ]
+    },
+    "UBO": {
+      "source": [
+        "str"
+      ],
+      "type": [
+        "str"
+      ],
+      "value": [
+        "float"
+      ],
+      "date": [
+        "DateTime"
+      ]
+    },
+    "HAS_NEWS": {
+      "date": [
+        "DateTime"
+      ],
+      "title": [
+        "str"
+      ],
+      "url": [
+        "str"
+      ]
+    },
+    "LAST_MESSAGE": {},
+    "NEXT": {},
+    "HAS_CAPITAL": {}
+  }
+}

@@ -1,0 +1,19 @@
+variable,Model 4: +State
+const,-5.499*** (0.049)
+camel_tier1_capital_ratio,2.029*** (0.474)
+camel_npl_ratio,0.022*** (0.002)
+camel_roa,-0.602*** (0.113)
+camel_liquid_assets_ratio,-0.267 (0.641)
+state_SOP,-0.027 (0.023)
+state_SCP,-0.000 (0.000)
+Observations,151428
+Subjects,1101
+Events,774
+Log Likelihood,-4747.66
+AIC,9509.32
+AUC,0.655
+Optimal Threshold,0.018
+Accuracy,0.985
+Precision,0.035
+Recall,0.070
+F1 Score,0.047

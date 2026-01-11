@@ -1,0 +1,26 @@
+variable,Model 6: Full
+const,0.008*** (0.000)
+camel_tier1_capital_ratio,3.841* (2.028)
+camel_npl_ratio,1.022*** (0.002)
+camel_roa,0.532*** (0.060)
+camel_liquid_assets_ratio,0.396 (0.276)
+family_FOP,0.996 (0.003)
+family_rho_F,0.668* (0.110)
+foreign_FOP_t,1.000* (0.000)
+foreign_FEC_d,0.997* (0.001)
+state_SOP,0.977 (0.017)
+state_SCP,1.000* (0.000)
+network_page_rank,1.002 (0.005)
+network_betweenness,1.000** (0.000)
+network_C_b,0.912*** (0.008)
+Observations,151428
+Subjects,1101
+Events,774
+Log Likelihood,-4602.83
+AIC,9233.67
+AUC,0.719
+Optimal Threshold,0.015
+Accuracy,0.982
+Precision,0.032
+Recall,0.089
+F1 Score,0.047

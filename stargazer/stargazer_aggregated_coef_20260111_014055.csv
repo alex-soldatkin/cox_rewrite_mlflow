@@ -1,0 +1,38 @@
+variable,Model 2: Community Fixed Effects,Model 3: Community FE + Interactions,Model 4: Within-Community Network Effects,Model 1: Baseline (No Community FE)
+const,22.059 (nan),22.059 (nan),30.494 (nan),4.052 (2.625)
+camel_roa,-0.067 (nan),-0.067 (nan),-0.067 (nan),-0.056 (0.034)
+family_rho_F,0.013 (nan),0.013 (nan),0.013 (nan),-0.022* (0.011)
+network_out_degree,-0.133 (nan),-0.133 (nan),,-0.037*** (0.011)
+network_page_rank,0.031 (nan),0.031 (nan),,0.542*** (0.062)
+camel_npl_ratio,0.013 (nan),0.013 (nan),0.013 (nan),0.001 (0.004)
+camel_tier1_capital_ratio,0.027 (nan),0.027 (nan),0.027 (nan),0.018* (0.009)
+foreign_FEC_d,-0.013 (nan),-0.013 (nan),-0.013 (nan),-0.090** (0.033)
+family_FOP,-0.015 (nan),-0.015 (nan),-0.015 (nan),-0.008 (0.006)
+community_22462,0.363 (nan),0.363 (nan),0.246 (nan),
+community_22887,3.017 (nan),3.017 (nan),2.435 (nan),
+community_23271,0.484 (nan),0.484 (nan),0.297 (nan),
+community_23283,-0.149 (nan),-0.149 (nan),-0.220 (nan),
+community_23390,-0.149 (nan),-0.149 (nan),-0.222 (nan),
+community_24958,-0.150 (nan),-0.150 (nan),-0.221 (nan),
+community_28707,2.800 (nan),2.800 (nan),0.658 (nan),
+community_30627,8.960 (nan),8.960 (nan),5.696 (nan),
+community_30701,-0.140 (nan),-0.140 (nan),-0.216 (nan),
+community_3214,-0.160 (nan),-0.160 (nan),-0.237 (nan),
+community_32273,0.259 (nan),0.259 (nan),-0.031 (nan),
+community_37509,7.327 (nan),7.327 (nan),3.052 (nan),
+community_37646,0.194 (nan),0.194 (nan),0.142 (nan),
+community_missing,-0.187 (nan),-0.187 (nan),-0.256 (nan),
+community_other,-0.136 (nan),-0.136 (nan),-0.209 (nan),
+Observations,798,798,798,798
+Subjects,798,798,798,798
+Events,473,473,473,473
+Log Likelihood,-248.22,-248.22,-248.22,-416.26
+AIC,544.44,544.44,544.44,850.53
+AUC,0.930,0.930,0.930,0.874
+Optimal Threshold,0.695,0.695,0.695,0.470
+Accuracy,0.873,0.873,0.873,0.845
+Precision,0.963,0.963,0.963,0.879
+Recall,0.818,0.818,0.818,0.856
+F1 Score,0.885,0.885,0.885,0.867
+network_out_degree_within,,,-0.133 (nan),
+network_page_rank_within,,,0.034 (nan),

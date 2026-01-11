@@ -1,0 +1,107 @@
+experiment:
+  name: "Cox_TV_Rolling_Window"
+  human_readable_name: "Cox PH with Rolling Window Network Metrics"
+  description: "Cox Time-Varying models using time-windowed network centrality from rolling windows"
+  save_predictions: false
+  models:
+    model_1_controls:
+      name: "Model 1: Controls"
+      features:
+        - "log_assets"
+        - "camel_tier1_capital_ratio"
+        - "camel_npl_ratio"
+        - "camel_roa"
+        - "camel_liquid_assets_ratio"
+        - "bank_age"
+    
+    model_2_network:
+      name: "Model 2: +Network (RW)"
+      features:
+        - "log_assets"
+        - "camel_tier1_capital_ratio"
+        - "camel_npl_ratio"
+        - "camel_roa"
+        - "camel_liquid_assets_ratio"
+        - "bank_age"
+        - "network_in_degree"
+        - "network_out_degree"
+        - "network_page_rank"
+    
+    model_3_family:
+      name: "Model 3: +Family"
+      features:
+        - "log_assets"
+        - "camel_tier1_capital_ratio"
+        - "camel_npl_ratio"
+        - "camel_roa"
+        - "camel_liquid_assets_ratio"
+        - "bank_age"
+        - "network_in_degree"
+        - "network_out_degree"
+        - "network_page_rank"
+        - "family_FOP"
+        - "family_rho_F"
+    
+    model_4_foreign:
+      name: "Model 4: +Foreign"
+      features:
+        - "log_assets"
+        - "camel_tier1_capital_ratio"
+        - "camel_npl_ratio"
+        - "camel_roa"
+        - "camel_liquid_assets_ratio"
+        - "bank_age"
+        - "network_in_degree"
+        - "network_out_degree"
+        - "network_page_rank"
+        - "family_FOP"
+        - "family_rho_F"
+        - "foreign_FOP_t"
+        - "foreign_FEC_d"
+    
+    model_5_state:
+      name: "Model 5: +State"
+      features:
+        - "log_assets"
+        - "camel_tier1_capital_ratio"
+        - "camel_npl_ratio"
+        - "camel_roa"
+        - "camel_liquid_assets_ratio"
+        - "bank_age"
+        - "network_in_degree"
+        - "network_out_degree"
+        - "network_page_rank"
+        - "family_FOP"
+        - "family_rho_F"
+        - "foreign_FOP_t"
+        - "foreign_FEC_d"
+        - "state_SOP"
+        - "state_SCP"
+    
+    model_6_full:
+      name: "Model 6: Full"
+      features:
+        - "log_assets"
+        - "camel_tier1_capital_ratio"
+        - "camel_npl_ratio"
+        - "camel_roa"
+        - "camel_liquid_assets_ratio"
+        - "bank_age"
+        - "network_in_degree"
+        - "network_out_degree"
+        - "network_page_rank"
+        - "family_FOP"
+        - "family_rho_F"
+        - "foreign_FOP_t"
+        - "foreign_FEC_d"
+        - "state_SOP"
+        - "state_SCP"
+
+data:
+  start_year: 2004
+  end_year: 2025
+
+model_params:
+  # Cox regression parameters
+  penalizer: 0.0
+  l1_ratio: 0.0

@@ -1,0 +1,58 @@
+experiment:
+  name: "Cox_Community_FE_2014_2020"
+  human_readable_name: "Cox PH with Louvain Community Fixed Effects (2014-2020)"
+  description: "Test within-community vs across-community network effects using Louvain community indicators"
+  
+  models:
+    model_1_baseline:
+      name: "Model 1: Baseline (No Community Control)"
+      features:
+        - camel_roa
+        - family_rho_F
+        - network_out_degree
+        - network_page_rank
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - foreign_FEC_d
+        - family_FOP
+      stratify_by_community: false
+      
+    model_2_community_strata:
+      name: "Model 2: Stratified by Community"
+      features:
+        - camel_roa
+        - family_rho_F
+        - network_out_degree
+        - network_page_rank
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - foreign_FEC_d
+        - family_FOP
+      stratify_by_community: true
+      
+    model_3_within_community:
+      name: "Model 3: Within-Community Network Effects"
+      features:
+        - camel_roa
+        - family_rho_F
+        - network_out_degree_within
+        - network_page_rank_within
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - foreign_FEC_d
+        - family_FOP
+      stratify_by_community: true
+      demean_network_vars: true
+
+data:
+  start_year: 2014
+  end_year: 2020
+  target: "event"
+
+model_params:
+  penalizer: 0.0
+  l1_ratio: 0.0
+
+community_params:
+  min_community_size: 5  # Collapse communities smaller than this
+  drop_first: true  # Drop first community dummy to avoid multicollinearity

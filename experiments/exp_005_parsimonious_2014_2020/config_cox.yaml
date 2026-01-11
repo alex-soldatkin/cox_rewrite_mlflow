@@ -1,0 +1,82 @@
+experiment:
+  name: "Cox_Parsimonious_2014_2020"
+  human_readable_name: "Parsimonious Cox PH (2014-2020, Non-Overlap, Scaled)"
+  description: "Progressive model building with standardized variables on true family data period"
+  
+  models:
+    model_1_core:
+      name: "Model 1: Core"
+      features:
+        - camel_roa              # HR=0.600 (strongest CAMEL)
+        - family_rho_F           # HR=0.424 (strongest overall)
+        - network_out_degree     # HR=0.747 (strongest network)
+        - network_C_b            # Ownership complexity
+        
+    model_2_camel:
+      name: "Model 2: +CAMEL"
+      features:
+        - camel_roa
+        - family_rho_F
+        - network_out_degree
+        - network_C_b
+        - camel_npl_ratio        # Add NPL ratio
+        - camel_tier1_capital_ratio  # Add capital ratio
+        
+    model_3_network:
+      name: "Model 3: +Network"
+      features:
+        - camel_roa
+        - family_rho_F
+        - network_out_degree
+        - network_C_b
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - network_page_rank      # Add PageRank
+        - network_betweenness    # Add betweenness (NEW)
+        - network_closeness      # Add closeness (NEW)
+        - network_eigenvector    # Add eigenvector (NEW)
+        
+    model_4_ownership:
+      name: "Model 4: +Ownership"
+      features:
+        - camel_roa
+        - family_rho_F
+        - network_out_degree
+        - network_C_b
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - network_page_rank
+        - network_betweenness
+        - network_closeness
+        - network_eigenvector
+        - foreign_FEC_d          # Add foreign diversity
+        - family_FOP             # Add family ownership pct
+        
+    model_5_full:
+      name: "Model 5: Full"
+      features:
+        - camel_roa
+        - family_rho_F
+        - network_out_degree
+        - network_C_b
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - network_page_rank
+        - network_betweenness
+        - network_closeness
+        - network_eigenvector
+        - foreign_FEC_d
+        - family_FOP
+        - camel_liquid_assets_ratio
+        - state_SOP
+        - state_SCP
+        - foreign_FOP_t
+
+data:
+  start_year: 2014
+  end_year: 2020
+  target: "event"
+
+model_params:
+  penalizer: 0.0
+  l1_ratio: 0.0

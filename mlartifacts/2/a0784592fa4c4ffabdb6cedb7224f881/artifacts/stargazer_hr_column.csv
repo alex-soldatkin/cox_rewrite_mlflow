@@ -1,0 +1,15 @@
+variable,Stargazer_Output_HR
+camel_tier1_capital_ratio,2.809** (0.882)
+camel_npl_ratio,1.012*** (0.002)
+camel_roa,0.631*** (0.039)
+camel_liquid_assets_ratio,1.286 (0.360)
+network_page_rank,0.994** (0.002)
+network_betweenness,1.000+ (0.000)
+network_C_b,0.966*** (0.004)
+Observations,151127
+Subjects,1101
+Events,774
+Log Likelihood,-4631.24
+AIC Partial,9276.49
+-log2(p) LLR,132.38
+C-index,0.772

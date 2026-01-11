@@ -1,0 +1,19 @@
+variable,Model 3: +Foreign
+const,-5.377*** (0.051)
+camel_tier1_capital_ratio,1.948*** (0.484)
+camel_npl_ratio,0.021*** (0.002)
+camel_roa,-0.602*** (0.130)
+camel_liquid_assets_ratio,-0.531 (0.655)
+foreign_FOP_t,-0.000 (0.000)
+foreign_FEC_d,-0.007** (0.002)
+Observations,151428
+Subjects,1101
+Events,774
+Log Likelihood,-4710.19
+AIC,9434.37
+AUC,0.690
+Optimal Threshold,0.022
+Accuracy,0.988
+Precision,0.041
+Recall,0.059
+F1 Score,0.049

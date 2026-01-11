@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns_test/463045424892718525/a314462041bb4bb8a81f60623b0a9607/artifacts
+end_time: 1768075494427
+entry_point_name: ''
+experiment_id: '463045424892718525'
+lifecycle_stage: active
+run_id: a314462041bb4bb8a81f60623b0a9607
+run_name: whimsical-stoat-234
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1768075479012
+status: 3
+tags: []
+user_id: alexandersoldatkin

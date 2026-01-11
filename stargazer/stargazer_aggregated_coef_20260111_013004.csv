@@ -1,0 +1,18 @@
+variable,Model 2: Stratified by Community,Model 1: Baseline (No Community Control),Model 1: Baseline (No Community FE),Model 3: Within-Community Network Effects
+camel_roa,-0.148*** (0.041),-0.101*** (0.012),-0.101*** (0.012),-0.148*** (0.041)
+family_rho_F,-0.008 (0.011),-0.031*** (0.008),-0.031*** (0.008),-0.008 (0.011)
+network_out_degree,-0.294* (0.128),-0.477*** (0.090),-0.477*** (0.090),
+network_page_rank,-0.011 (0.012),-0.012+ (0.007),-0.012+ (0.007),
+camel_npl_ratio,0.007+ (0.004),0.009*** (0.002),0.009*** (0.002),0.007+ (0.004)
+camel_tier1_capital_ratio,0.036** (0.012),0.019*** (0.005),0.019*** (0.005),0.036** (0.012)
+foreign_FEC_d,-0.025 (0.021),-0.113*** (0.030),-0.113*** (0.030),-0.025 (0.021)
+family_FOP,-0.012+ (0.007),-0.003 (0.004),-0.003 (0.004),-0.012+ (0.007)
+Observations,44715,44715,44715,44715
+Subjects,796,796,796,796
+Events,473,473,473,473
+Log Likelihood,-348.12,-2295.65,-2295.65,-348.12
+AIC Partial,712.25,4607.29,4607.29,712.25
+-log2(p) LLR,27.08,165.75,165.75,27.08
+C-index,0.698,0.725,0.725,0.651
+network_out_degree_within,,,,-0.313* (0.136)
+network_page_rank_within,,,,-0.013 (0.014)

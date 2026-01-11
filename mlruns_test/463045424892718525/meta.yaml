@@ -1,0 +1,6 @@
+artifact_location: file:///Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns_test/463045424892718525
+creation_time: 1768075478762
+experiment_id: '463045424892718525'
+last_update_time: 1768075478762
+lifecycle_stage: active
+name: test_metrics_exp

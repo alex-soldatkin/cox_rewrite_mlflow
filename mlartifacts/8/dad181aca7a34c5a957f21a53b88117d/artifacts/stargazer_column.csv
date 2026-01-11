@@ -1,0 +1,21 @@
+variable,Model 1: Baseline (No Community FE)
+const,4.052 (2.625)
+camel_roa,-0.056 (0.034)
+family_rho_F,-0.022* (0.011)
+network_out_degree,-0.037*** (0.011)
+network_page_rank,0.542*** (0.062)
+camel_npl_ratio,0.001 (0.004)
+camel_tier1_capital_ratio,0.018* (0.009)
+foreign_FEC_d,-0.090** (0.033)
+family_FOP,-0.008 (0.006)
+Observations,798
+Subjects,798
+Events,473
+Log Likelihood,-416.26
+AIC,850.53
+AUC,0.874
+Optimal Threshold,0.470
+Accuracy,0.845
+Precision,0.879
+Recall,0.856
+F1 Score,0.867

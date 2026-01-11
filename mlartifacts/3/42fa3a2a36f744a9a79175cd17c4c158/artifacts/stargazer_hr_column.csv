@@ -1,0 +1,19 @@
+variable,Model 2: +Family
+const,0.005*** (0.000)
+camel_tier1_capital_ratio,6.889*** (3.261)
+camel_npl_ratio,1.020*** (0.002)
+camel_roa,0.558*** (0.065)
+camel_liquid_assets_ratio,0.751 (0.476)
+family_FOP,0.997 (0.003)
+family_rho_F,0.386*** (0.087)
+Observations,151428
+Subjects,1101
+Events,774
+Log Likelihood,-4720.07
+AIC,9454.13
+AUC,0.674
+Optimal Threshold,0.019
+Accuracy,0.986
+Precision,0.036
+Recall,0.065
+F1 Score,0.046

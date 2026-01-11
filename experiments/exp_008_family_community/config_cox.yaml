@@ -1,0 +1,57 @@
+experiment:
+  name: "exp_008_family_community"
+  human_readable_name: "Family Effects with Community Stratification (2014-2020)"
+  description: "Examine family connection ratio (FCR) effects on survival with Louvain community control using quarterly lagged network"
+  
+  models:
+    model_1_baseline:
+      name: "M1: Baseline (No Community Control)"
+      features:
+        - rw_page_rank_4q_lag
+        - rw_out_degree_4q_lag
+        - camel_roa
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - family_connection_ratio      # PRIMARY VARIABLE
+        - family_ownership_pct
+        - foreign_ownership_total_pct
+        - state_ownership_pct
+      stratify_by_community: false
+      
+    model_2_community_strata:
+      name: "M2: Community Stratified"
+      features:
+        - rw_page_rank_4q_lag
+        - rw_out_degree_4q_lag
+        - camel_roa
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - family_connection_ratio      # PRIMARY VARIABLE
+        - family_ownership_pct
+        - foreign_ownership_total_pct
+        - state_ownership_pct
+      stratify_by_community: true
+      
+    model_3_fcr_focus:
+      name: "M3: FCR Focus (Minimal Controls)"
+      features:
+        - family_connection_ratio      # PRIMARY VARIABLE
+        - camel_roa
+        - camel_npl_ratio
+        - foreign_ownership_total_pct
+        - state_ownership_pct
+      stratify_by_community: true
+
+data:
+  start_year: 2014
+  end_year: 2020
+  lag_quarters: 4
+  target: "event"
+
+model_params:
+  penalizer: 0.01
+  l1_ratio: 0.0
+
+community_params:
+  min_community_size: 5  # Collapse communities smaller than this
+  use_coarsest_level: true  # Use coarsest Louvain hierarchy

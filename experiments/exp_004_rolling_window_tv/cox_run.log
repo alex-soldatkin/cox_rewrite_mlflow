@@ -1,0 +1,161 @@
+2026/01/10 23:07:44 INFO mlflow.tracking.fluent: Experiment with name 'Cox_TV_Rolling_Window' does not exist. Creating a new experiment.
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlflow_utils/rolling_window_loader.py:254: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  final_df = pd.concat([matched_df, unmatched_df], ignore_index=True)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_cox.py:108: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_cox.py:108: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_cox.py:108: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_cox.py:108: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_cox.py:108: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_004_rolling_window_tv/run_cox.py:108: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+Setting MLflow experiment to: Cox_TV_Rolling_Window
+Loading data with rolling window network metrics...
+Fetching bank population from Neo4j...
+Found 3028 banks from Neo4j.
+Loading accounting data from /Users/alexandersoldatkin/projects/factions-networks-thesis/drafts/accounting_cbr_imputed/final_final_banking_indicators.parquet...
+Accounting data filtered to 171438 observations in date range
+Loading rolling window data from /Users/alexandersoldatkin/projects/factions-networks-thesis/data_processing/rolling_windows/output/nodes...
+Found 10 rolling window files
+  Loaded node_features_rw_1989_1993.parquet: 36021 rows
+  Loaded node_features_rw_1993_1997.parquet: 37712 rows
+  Loaded node_features_rw_1997_2001.parquet: 39538 rows
+  Loaded node_features_rw_2001_2005.parquet: 40531 rows
+  Loaded node_features_rw_2005_2009.parquet: 40932 rows
+  Loaded node_features_rw_2009_2013.parquet: 40667 rows
+  Loaded node_features_rw_2013_2017.parquet: 40260 rows
+  Loaded node_features_rw_2017_2021.parquet: 39155 rows
+  Loaded node_features_rw_2021_2025.parquet: 37964 rows
+  Loaded node_features_rw_2025_2029.parquet: 37411 rows
+Total rolling window observations: 390191
+Merged Accounting + Neo4j: (151428, 61)
+Matching rolling window features to observations...
+Filtered to 14045 bank nodes in rolling windows
+After ID merge: 1207542 rows
+Matched rolling window features for 191699/151428 observations (126.6%)
+Constructing AnalysisDatasetRow objects...
+Validated 192775 rows via AnalysisDatasetRow.
+Loaded 192775 rows of merged data with rolling window features.
+Preprocessing for CoxTimeVarying...
+Prepared 151127 time-varying observations
+Total events: 774
+Number of subjects: 1101
+
+--- Running Model 1: Controls ---
+Dropping constant column: log_assets
+Dropping constant column: bank_age
+Training shape: (151127, 8) with 4 covariates.
+Iteration 1: norm_delta = 6.22e-01, step_size = 0.9500, log_lik = -4733.39527, newton_decrement = 1.77e+02, seconds_since_start = 0.4
+Iteration 2: norm_delta = 6.13e-01, step_size = 0.9500, log_lik = -5400.09769, newton_decrement = 1.13e+03, seconds_since_start = 0.9
+Iteration 3: norm_delta = 1.13e-01, step_size = 0.9500, log_lik = -4751.29156, newton_decrement = 5.21e+01, seconds_since_start = 1.3
+Iteration 4: norm_delta = 2.18e-01, step_size = 1.0000, log_lik = -4687.11551, newton_decrement = 4.27e+01, seconds_since_start = 1.7
+Iteration 5: norm_delta = 6.06e-02, step_size = 0.9800, log_lik = -4675.70567, newton_decrement = 2.87e+01, seconds_since_start = 2.2
+Iteration 6: norm_delta = 7.69e-03, step_size = 0.9604, log_lik = -4646.56507, newton_decrement = 3.40e-01, seconds_since_start = 2.6
+Iteration 7: norm_delta = 1.01e-03, step_size = 1.0000, log_lik = -4646.21060, newton_decrement = 4.64e-03, seconds_since_start = 3.1
+Iteration 8: norm_delta = 1.11e-05, step_size = 1.0000, log_lik = -4646.20592, newton_decrement = 5.57e-07, seconds_since_start = 3.5
+Iteration 9: norm_delta = 1.36e-09, step_size = 1.0000, log_lik = -4646.20592, newton_decrement = 8.32e-15, seconds_since_start = 3.9
+Convergence completed after 9 iterations.
+Converged.
+C-index: 0.6424
+🏃 View run Model 1: Controls at: http://127.0.0.1:5000/#/experiments/4/runs/493f8a8769984fdda12cc508a33e6413
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/4
+
+--- Running Model 2: +Network (RW) ---
+Dropping constant column: log_assets
+Dropping constant column: bank_age
+Training shape: (151127, 11) with 7 covariates.
+Iteration 1: norm_delta = 6.74e-01, step_size = 0.9500, log_lik = -4733.39527, newton_decrement = 2.11e+02, seconds_since_start = 0.4
+Iteration 2: norm_delta = 7.00e-01, step_size = 0.9500, log_lik = -5356.69735, newton_decrement = 1.12e+03, seconds_since_start = 0.9
+Iteration 3: norm_delta = 6.62e-01, step_size = 0.9500, log_lik = -4689.82220, newton_decrement = 6.65e+01, seconds_since_start = 1.3
+Iteration 4: norm_delta = 5.59e-01, step_size = 0.9310, log_lik = -4608.56652, newton_decrement = 4.72e+01, seconds_since_start = 1.8
+Iteration 5: norm_delta = 2.41e-01, step_size = 1.0000, log_lik = -4600.41965, newton_decrement = 3.35e+01, seconds_since_start = 2.2
+Iteration 6: norm_delta = 1.31e-01, step_size = 1.0000, log_lik = -4566.99490, newton_decrement = 1.87e-01, seconds_since_start = 2.6
+Iteration 7: norm_delta = 9.82e-02, step_size = 1.0000, log_lik = -4566.79783, newton_decrement = 4.77e-03, seconds_since_start = 3.1
+Iteration 8: norm_delta = 4.33e-02, step_size = 1.0000, log_lik = -4566.79235, newton_decrement = 4.47e-04, seconds_since_start = 3.5
+Iteration 9: norm_delta = 6.12e-03, step_size = 1.0000, log_lik = -4566.79187, newton_decrement = 7.04e-06, seconds_since_start = 3.9
+Iteration 10: norm_delta = 1.02e-04, step_size = 1.0000, log_lik = -4566.79186, newton_decrement = 1.90e-09, seconds_since_start = 4.4
+Convergence completed after 10 iterations.
+Converged.
+C-index: 0.7147
+🏃 View run Model 2: +Network (RW) at: http://127.0.0.1:5000/#/experiments/4/runs/c2b91e3e89c54ff38ae4287008e8c947
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/4
+
+--- Running Model 3: +Family ---
+Dropping constant column: log_assets
+Dropping constant column: bank_age
+Training shape: (151127, 13) with 9 covariates.
+Iteration 1: norm_delta = 6.90e-01, step_size = 0.9500, log_lik = -4733.39527, newton_decrement = 2.34e+02, seconds_since_start = 0.4
+Iteration 2: norm_delta = 7.20e-01, step_size = 0.9500, log_lik = -5331.37570, newton_decrement = 1.14e+03, seconds_since_start = 0.8
+Iteration 3: norm_delta = 6.81e-01, step_size = 0.9500, log_lik = -4676.13758, newton_decrement = 7.64e+01, seconds_since_start = 1.3
+Iteration 4: norm_delta = 5.72e-01, step_size = 0.9310, log_lik = -4582.64014, newton_decrement = 4.08e+01, seconds_since_start = 1.8
+Iteration 5: norm_delta = 2.21e-01, step_size = 1.0000, log_lik = -4535.85842, newton_decrement = 1.15e+00, seconds_since_start = 2.3
+Iteration 6: norm_delta = 7.73e-02, step_size = 1.0000, log_lik = -4534.65910, newton_decrement = 1.18e-02, seconds_since_start = 2.7
+Iteration 7: norm_delta = 2.98e-02, step_size = 1.0000, log_lik = -4534.64615, newton_decrement = 6.57e-04, seconds_since_start = 3.1
+Iteration 8: norm_delta = 3.49e-03, step_size = 1.0000, log_lik = -4534.64545, newton_decrement = 7.37e-06, seconds_since_start = 3.5
+Iteration 9: norm_delta = 4.22e-05, step_size = 1.0000, log_lik = -4534.64544, newton_decrement = 1.05e-09, seconds_since_start = 3.9
+Convergence completed after 9 iterations.
+Converged.
+C-index: 0.7440
+🏃 View run Model 3: +Family at: http://127.0.0.1:5000/#/experiments/4/runs/ef728c27912e4e17b9100dd8d7dbb042
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/4
+
+--- Running Model 4: +Foreign ---
+Dropping constant column: log_assets
+Dropping constant column: bank_age
+Training shape: (151127, 15) with 11 covariates.
+Iteration 1: norm_delta = 6.87e-01, step_size = 0.9500, log_lik = -4733.39527, newton_decrement = 2.38e+02, seconds_since_start = 0.4
+Iteration 2: norm_delta = 7.23e-01, step_size = 0.9500, log_lik = -5323.44582, newton_decrement = 1.14e+03, seconds_since_start = 0.9
+Iteration 3: norm_delta = 7.20e-01, step_size = 0.9500, log_lik = -4665.14475, newton_decrement = 8.32e+01, seconds_since_start = 1.3
+Iteration 4: norm_delta = 6.45e-01, step_size = 0.9310, log_lik = -4563.00096, newton_decrement = 4.31e+01, seconds_since_start = 1.7
+Iteration 5: norm_delta = 2.74e-01, step_size = 1.0000, log_lik = -4512.56443, newton_decrement = 1.35e+00, seconds_since_start = 2.2
+Iteration 6: norm_delta = 5.06e-02, step_size = 1.0000, log_lik = -4511.14383, newton_decrement = 1.37e-02, seconds_since_start = 2.6
+Iteration 7: norm_delta = 1.99e-02, step_size = 1.0000, log_lik = -4511.12951, newton_decrement = 3.85e-04, seconds_since_start = 3.0
+Iteration 8: norm_delta = 3.16e-03, step_size = 1.0000, log_lik = -4511.12909, newton_decrement = 7.37e-06, seconds_since_start = 3.5
+Iteration 9: norm_delta = 6.32e-05, step_size = 1.0000, log_lik = -4511.12908, newton_decrement = 2.84e-09, seconds_since_start = 3.9
+Convergence completed after 9 iterations.
+Converged.
+C-index: 0.7639
+🏃 View run Model 4: +Foreign at: http://127.0.0.1:5000/#/experiments/4/runs/5a51f1dfd93f47f6ac722ff5489d170a
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/4
+
+--- Running Model 5: +State ---
+Dropping constant column: log_assets
+Dropping constant column: bank_age
+Training shape: (151127, 17) with 13 covariates.
+Iteration 1: norm_delta = 6.94e-01, step_size = 0.9500, log_lik = -4733.39527, newton_decrement = 2.42e+02, seconds_since_start = 0.4
+Iteration 2: norm_delta = 7.33e-01, step_size = 0.9500, log_lik = -5319.25590, newton_decrement = 1.15e+03, seconds_since_start = 0.9
+Iteration 3: norm_delta = 7.09e-01, step_size = 0.9500, log_lik = -4663.05146, newton_decrement = 8.32e+01, seconds_since_start = 1.3
+Iteration 4: norm_delta = 6.61e-01, step_size = 0.9310, log_lik = -4560.93934, newton_decrement = 4.30e+01, seconds_since_start = 1.7
+Iteration 5: norm_delta = 2.92e-01, step_size = 1.0000, log_lik = -4509.34513, newton_decrement = 1.33e+00, seconds_since_start = 2.1
+Iteration 6: norm_delta = 5.33e-02, step_size = 1.0000, log_lik = -4507.94185, newton_decrement = 1.59e-02, seconds_since_start = 2.6
+Iteration 7: norm_delta = 2.01e-02, step_size = 1.0000, log_lik = -4507.92520, newton_decrement = 3.93e-04, seconds_since_start = 3.1
+Iteration 8: norm_delta = 3.24e-03, step_size = 1.0000, log_lik = -4507.92477, newton_decrement = 7.75e-06, seconds_since_start = 3.5
+Iteration 9: norm_delta = 6.72e-05, step_size = 1.0000, log_lik = -4507.92477, newton_decrement = 3.20e-09, seconds_since_start = 4.0
+Convergence completed after 9 iterations.
+Converged.
+C-index: 0.7648
+🏃 View run Model 5: +State at: http://127.0.0.1:5000/#/experiments/4/runs/7487246f41a14f7bb4ca5abaecbd0594
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/4
+
+--- Running Model 6: Full ---
+Dropping constant column: log_assets
+Dropping constant column: bank_age
+Training shape: (151127, 17) with 13 covariates.
+Iteration 1: norm_delta = 6.94e-01, step_size = 0.9500, log_lik = -4733.39527, newton_decrement = 2.42e+02, seconds_since_start = 0.4
+Iteration 2: norm_delta = 7.33e-01, step_size = 0.9500, log_lik = -5319.25590, newton_decrement = 1.15e+03, seconds_since_start = 0.8
+Iteration 3: norm_delta = 7.09e-01, step_size = 0.9500, log_lik = -4663.05146, newton_decrement = 8.32e+01, seconds_since_start = 1.3
+Iteration 4: norm_delta = 6.61e-01, step_size = 0.9310, log_lik = -4560.93934, newton_decrement = 4.30e+01, seconds_since_start = 1.7
+Iteration 5: norm_delta = 2.92e-01, step_size = 1.0000, log_lik = -4509.34513, newton_decrement = 1.33e+00, seconds_since_start = 2.1
+Iteration 6: norm_delta = 5.33e-02, step_size = 1.0000, log_lik = -4507.94185, newton_decrement = 1.59e-02, seconds_since_start = 2.5
+Iteration 7: norm_delta = 2.01e-02, step_size = 1.0000, log_lik = -4507.92520, newton_decrement = 3.93e-04, seconds_since_start = 3.0
+Iteration 8: norm_delta = 3.24e-03, step_size = 1.0000, log_lik = -4507.92477, newton_decrement = 7.75e-06, seconds_since_start = 3.4
+Iteration 9: norm_delta = 6.72e-05, step_size = 1.0000, log_lik = -4507.92477, newton_decrement = 3.20e-09, seconds_since_start = 3.8
+Convergence completed after 9 iterations.
+Converged.
+C-index: 0.7648
+🏃 View run Model 6: Full at: http://127.0.0.1:5000/#/experiments/4/runs/27afcd0a68064131a27a7a168a4a8e07
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/4

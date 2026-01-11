@@ -1,0 +1,36 @@
+variable,Model 3: Community FE + Interactions
+const,22.059 (nan)
+camel_roa,-0.067 (nan)
+family_rho_F,0.013 (nan)
+network_out_degree,-0.133 (nan)
+network_page_rank,0.031 (nan)
+camel_npl_ratio,0.013 (nan)
+camel_tier1_capital_ratio,0.027 (nan)
+foreign_FEC_d,-0.013 (nan)
+family_FOP,-0.015 (nan)
+community_22462,0.363 (nan)
+community_22887,3.017 (nan)
+community_23271,0.484 (nan)
+community_23283,-0.149 (nan)
+community_23390,-0.149 (nan)
+community_24958,-0.150 (nan)
+community_28707,2.800 (nan)
+community_30627,8.960 (nan)
+community_30701,-0.140 (nan)
+community_3214,-0.160 (nan)
+community_32273,0.259 (nan)
+community_37509,7.327 (nan)
+community_37646,0.194 (nan)
+community_missing,-0.187 (nan)
+community_other,-0.136 (nan)
+Observations,798
+Subjects,798
+Events,473
+Log Likelihood,-248.22
+AIC,544.44
+AUC,0.930
+Optimal Threshold,0.695
+Accuracy,0.873
+Precision,0.963
+Recall,0.818
+F1 Score,0.885

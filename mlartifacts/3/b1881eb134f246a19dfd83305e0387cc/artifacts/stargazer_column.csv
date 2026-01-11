@@ -1,0 +1,20 @@
+variable,Model 5: +Topology
+const,-4.865*** (0.055)
+camel_tier1_capital_ratio,1.382** (0.526)
+camel_npl_ratio,0.023*** (0.002)
+camel_roa,-0.630*** (0.112)
+camel_liquid_assets_ratio,-0.855 (0.691)
+network_page_rank,-0.001 (0.005)
+network_betweenness,-0.000* (0.000)
+network_C_b,-0.109*** (0.009)
+Observations,151428
+Subjects,1101
+Events,774
+Log Likelihood,-4627.37
+AIC,9270.73
+AUC,0.709
+Optimal Threshold,0.025
+Accuracy,0.989
+Precision,0.044
+Recall,0.058
+F1 Score,0.050

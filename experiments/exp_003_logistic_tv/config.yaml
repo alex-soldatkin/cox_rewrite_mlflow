@@ -1,0 +1,92 @@
+experiment:
+  name: "Logistic_TV_Comparison_Paper"
+  human_readable_name: "Logistic Paper Replication"
+  description: "Replicating paper specifications using Pooled Logistic Regression with clustered SEs."
+  save_predictions: false
+  models:
+    model_1_base:
+      name: "Model 1: Controls"
+      features:
+        - "log_assets"
+        - "camel_tier1_capital_ratio"
+        - "camel_npl_ratio"
+        - "camel_roa"
+        - "camel_liquid_assets_ratio"
+        - "bank_age"
+    model_2_family:
+      name: "Model 2: +Family"
+      features:
+        - "log_assets"
+        - "camel_tier1_capital_ratio"
+        - "camel_npl_ratio"
+        - "camel_roa"
+        - "camel_liquid_assets_ratio"
+        - "bank_age"
+        - "family_FOP"
+        - "family_rho_F"
+    model_3_foreign:
+      name: "Model 3: +Foreign"
+      features:
+        - "log_assets"
+        - "camel_tier1_capital_ratio"
+        - "camel_npl_ratio"
+        - "camel_roa"
+        - "camel_liquid_assets_ratio"
+        - "bank_age"
+        - "foreign_FOP_t"
+        - "foreign_FEC_d"
+    model_4_state:
+      name: "Model 4: +State"
+      features:
+        - "log_assets"
+        - "camel_tier1_capital_ratio"
+        - "camel_npl_ratio"
+        - "camel_roa"
+        - "camel_liquid_assets_ratio"
+        - "bank_age"
+        - "state_SOP"
+        - "state_SCP"
+    model_5_topology:
+      name: "Model 5: +Topology"
+      features:
+        - "log_assets"
+        - "camel_tier1_capital_ratio"
+        - "camel_npl_ratio"
+        - "camel_roa"
+        - "camel_liquid_assets_ratio"
+        - "bank_age"
+        - "network_page_rank"
+        - "network_betweenness"
+        - "network_C_b"
+    model_6_full:
+      name: "Model 6: Full"
+      features:
+        - "log_assets"
+        - "camel_tier1_capital_ratio"
+        - "camel_npl_ratio"
+        - "camel_roa"
+        - "camel_liquid_assets_ratio"
+        - "bank_age"
+        - "family_FOP"
+        - "family_rho_F"
+        - "foreign_FOP_t"
+        - "foreign_FEC_d"
+        - "state_SOP"
+        - "state_SCP"
+        - "network_page_rank"
+        - "network_betweenness"
+        - "network_C_b"
+
+data:
+  start_year: 2004
+  end_year: 2025
+  # Target definition for logistic: 
+  # We want to predict 'failed' in the current interval.
+  # The dataset construction will ensure 'event=1' only in the failure interval.
+  target: "event"
+
+model_params:
+  # Logistic Regression params (statsmodels doesn't use many init params like sklearn)
+  # But we might pass options to .fit()
+  method: "newton"
+  maxiter: 100

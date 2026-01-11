@@ -1,0 +1,15 @@
+variable,M2: Simple Lagged Network (t-4Q)
+rw_page_rank_4q_lag,1.003 (0.005)
+rw_out_degree_4q_lag,0.978* (0.011)
+camel_roa,0.911*** (0.010)
+camel_npl_ratio,1.004* (0.002)
+camel_tier1_capital_ratio,1.015*** (0.004)
+family_rho_F,0.988*** (0.003)
+foreign_FEC_d,0.995*** (0.001)
+Observations,44295
+Subjects,791
+Events,472
+Log Likelihood,-2880.65
+AIC Partial,5775.30
+-log2(p) LLR,85.30
+C-index,0.728

@@ -1,0 +1,75 @@
+experiment:
+  name: "Logistic_Community_FE_2014_2020"
+  human_readable_name: "Logistic Regression with Louvain Community Fixed Effects (2014-2020)"
+  description: "Test within-community vs across-community network effects using Louvain community indicators"
+  
+  models:
+    model_1_baseline:
+      name: "Model 1: Baseline (No Community FE)"
+      features:
+        - camel_roa
+        - family_rho_F
+        - network_out_degree
+        - network_page_rank
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - foreign_FEC_d
+        - family_FOP
+      use_community_fe: false
+      
+    model_2_community_fe:
+      name: "Model 2: Community Fixed Effects"
+      features:
+        - camel_roa
+        - family_rho_F
+        - network_out_degree
+        - network_page_rank
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - foreign_FEC_d
+        - family_FOP
+      use_community_fe: true
+      
+    model_3_community_interactions:
+      name: "Model 3: Community FE + Interactions"
+      features:
+        - camel_roa
+        - family_rho_F
+        - network_out_degree
+        - network_page_rank
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - foreign_FEC_d
+        - family_FOP
+      use_community_fe: true
+      interaction_terms:
+        - ["network_out_degree", "community"]
+        - ["network_page_rank", "community"]
+        
+    model_4_within_community:
+      name: "Model 4: Within-Community Network Effects"
+      features:
+        - camel_roa
+        - family_rho_F
+        - network_out_degree_within
+        - network_page_rank_within
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - foreign_FEC_d
+        - family_FOP
+      use_community_fe: true
+      demean_network_vars: true
+
+data:
+  start_year: 2014
+  end_year: 2020
+  target: "event"
+
+model_params:
+  # Logistic regression parameters
+  maxiter: 100
+
+community_params:
+  min_community_size: 5  # Collapse communities smaller than this
+  drop_first: true  # Drop first community dummy to avoid multicollinearity
+  cluster_se_by: "community"  # Cluster standard errors by community

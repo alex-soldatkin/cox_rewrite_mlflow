@@ -1,0 +1,17 @@
+
+experiment:
+  name: "exp_000_template"
+  tags:
+    model_type: "cox_ph"
+    author: "User"
+
+data:
+  start_year: 2010
+  end_year: 2020
+  target: "failed"
+
+model:
+  name: "cox_ph"
+  params:
+    penalizer: 0.01
+    l1_ratio: 0.0

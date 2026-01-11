@@ -1,0 +1,20 @@
+variable,Model 2: +Network (RW)
+const,-5.459*** (0.054)
+camel_tier1_capital_ratio,1.964*** (0.524)
+camel_npl_ratio,0.022*** (0.002)
+camel_roa,-0.605*** (0.102)
+camel_liquid_assets_ratio,-1.120 (0.791)
+network_in_degree,-0.000 (0.000)
+network_out_degree,-0.276*** (0.053)
+network_page_rank,-0.023** (0.007)
+Observations,192775
+Subjects,1101
+Events,774
+Log Likelihood,-4869.89
+AIC,9755.77
+AUC,0.685
+Optimal Threshold,0.024
+Accuracy,0.992
+Precision,0.042
+Recall,0.047
+F1 Score,0.044

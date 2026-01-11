@@ -1,0 +1,36 @@
+variable,Model 4: Within-Community Network Effects
+const,30.494 (nan)
+camel_roa,-0.067 (nan)
+family_rho_F,0.013 (nan)
+network_out_degree_within,-0.133 (nan)
+network_page_rank_within,0.034 (nan)
+camel_npl_ratio,0.013 (nan)
+camel_tier1_capital_ratio,0.027 (nan)
+foreign_FEC_d,-0.013 (nan)
+family_FOP,-0.015 (nan)
+community_22462,0.246 (nan)
+community_22887,2.435 (nan)
+community_23271,0.297 (nan)
+community_23283,-0.220 (nan)
+community_23390,-0.222 (nan)
+community_24958,-0.221 (nan)
+community_28707,0.658 (nan)
+community_30627,5.696 (nan)
+community_30701,-0.216 (nan)
+community_3214,-0.237 (nan)
+community_32273,-0.031 (nan)
+community_37509,3.052 (nan)
+community_37646,0.142 (nan)
+community_missing,-0.256 (nan)
+community_other,-0.209 (nan)
+Observations,798
+Subjects,798
+Events,473
+Log Likelihood,-248.22
+AIC,544.44
+AUC,0.930
+Optimal Threshold,0.695
+Accuracy,0.873
+Precision,0.963
+Recall,0.818
+F1 Score,0.885

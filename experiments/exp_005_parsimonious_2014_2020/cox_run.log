@@ -1,0 +1,135 @@
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlflow_utils/rolling_window_loader.py:254: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  final_df = pd.concat([matched_df, unmatched_df], ignore_index=True)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_005_parsimonious_2014_2020/run_cox.py:121: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_005_parsimonious_2014_2020/run_cox.py:121: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_005_parsimonious_2014_2020/run_cox.py:121: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_005_parsimonious_2014_2020/run_cox.py:121: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_005_parsimonious_2014_2020/run_cox.py:121: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  model_df[available_feats] = model_df[available_feats].fillna(0)
+Setting MLflow experiment to: Cox_Parsimonious_2014_2020
+Loading data with 2014-2020 non-overlapping rolling window network metrics...
+Fetching bank population from Neo4j...
+Found 3028 banks from Neo4j.
+Loading accounting data from /Users/alexandersoldatkin/projects/factions-networks-thesis/drafts/accounting_cbr_imputed/final_final_banking_indicators.parquet...
+Accounting data filtered to 51185 observations in date range
+Loading rolling window data from /Users/alexandersoldatkin/projects/cos_rewrite_mlflow/rolling_windows/output/nodes_2014_2020_nonoverlap/output/nodes...
+Found 3 rolling window files
+  Loaded node_features_rw_2014_2015.parquet: 39615 rows
+  Loaded node_features_rw_2016_2017.parquet: 39183 rows
+  Loaded node_features_rw_2018_2019.parquet: 38503 rows
+Total rolling window observations: 117301
+Merged Accounting + Neo4j: (44846, 61)
+Matching rolling window features to observations...
+Filtered to 3292 bank nodes in rolling windows
+After ID merge: 124135 rows
+Matched rolling window features for 40165/44846 observations (89.6%)
+Constructing AnalysisDatasetRow objects...
+Validated 44846 rows via AnalysisDatasetRow.
+Loaded 44846 rows of merged data with rolling window features.
+Preprocessing for CoxTimeVarying...
+Prepared 44715 time-varying observations
+Total events: 473
+Number of subjects: 796
+
+--- Running Model 1: Core ---
+Dropping constant column: network_C_b
+Scaled 3 features to 0-100 range using StandardScaler
+Training shape: (44715, 7) with 3 covariates.
+Iteration 1: norm_delta = 6.14e-01, step_size = 0.9500, log_lik = -2423.31615, newton_decrement = 9.35e+01, seconds_since_start = 0.1
+Iteration 2: norm_delta = 8.37e-01, step_size = 0.9500, log_lik = -2715.48876, newton_decrement = 5.09e+02, seconds_since_start = 0.2
+Iteration 3: norm_delta = 1.08e+00, step_size = 0.9500, log_lik = -2397.12407, newton_decrement = 7.07e+01, seconds_since_start = 0.3
+Iteration 4: norm_delta = 9.90e-01, step_size = 0.9310, log_lik = -2387.08692, newton_decrement = 6.93e+01, seconds_since_start = 0.4
+Iteration 5: norm_delta = 4.96e-01, step_size = 0.9124, log_lik = -2327.87092, newton_decrement = 1.83e+00, seconds_since_start = 0.4
+Iteration 6: norm_delta = 1.28e-01, step_size = 1.0000, log_lik = -2326.10687, newton_decrement = 3.81e-02, seconds_since_start = 0.5
+Iteration 7: norm_delta = 3.59e-03, step_size = 1.0000, log_lik = -2326.06817, newton_decrement = 2.58e-05, seconds_since_start = 0.6
+Iteration 8: norm_delta = 2.67e-06, step_size = 1.0000, log_lik = -2326.06814, newton_decrement = 1.41e-11, seconds_since_start = 0.7
+Convergence completed after 8 iterations.
+Converged.
+C-index: 0.6988
+🏃 View run Model 1: Core at: http://127.0.0.1:5000/#/experiments/6/runs/9668b7102f5c4eea92618aa0fbde35d4
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/6
+
+--- Running Model 2: +CAMEL ---
+Dropping constant column: network_C_b
+Scaled 5 features to 0-100 range using StandardScaler
+Training shape: (44715, 9) with 5 covariates.
+Iteration 1: norm_delta = 6.75e-01, step_size = 0.9500, log_lik = -2423.31615, newton_decrement = 1.20e+02, seconds_since_start = 0.1
+Iteration 2: norm_delta = 8.84e-01, step_size = 0.9500, log_lik = -2745.32776, newton_decrement = 6.00e+02, seconds_since_start = 0.2
+Iteration 3: norm_delta = 1.07e+00, step_size = 0.9500, log_lik = -2404.43229, newton_decrement = 6.86e+01, seconds_since_start = 0.3
+Iteration 4: norm_delta = 9.88e-01, step_size = 0.9310, log_lik = -2320.24437, newton_decrement = 7.14e+00, seconds_since_start = 0.4
+Iteration 5: norm_delta = 4.71e-01, step_size = 0.9124, log_lik = -2312.42639, newton_decrement = 6.99e-01, seconds_since_start = 0.5
+Iteration 6: norm_delta = 1.13e-01, step_size = 1.0000, log_lik = -2311.69524, newton_decrement = 2.63e-02, seconds_since_start = 0.6
+Iteration 7: norm_delta = 2.72e-03, step_size = 1.0000, log_lik = -2311.66856, newton_decrement = 1.45e-05, seconds_since_start = 0.7
+Iteration 8: norm_delta = 1.52e-06, step_size = 1.0000, log_lik = -2311.66855, newton_decrement = 4.51e-12, seconds_since_start = 0.8
+Convergence completed after 8 iterations.
+Converged.
+C-index: 0.7020
+🏃 View run Model 2: +CAMEL at: http://127.0.0.1:5000/#/experiments/6/runs/3ec3edb46d844ae3a19287d2558f6aa5
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/6
+
+--- Running Model 3: +Network ---
+Dropping constant column: network_C_b
+Dropping constant column: network_betweenness
+Dropping constant column: network_closeness
+Dropping constant column: network_eigenvector
+Scaled 6 features to 0-100 range using StandardScaler
+Training shape: (44715, 10) with 6 covariates.
+Iteration 1: norm_delta = 6.92e-01, step_size = 0.9500, log_lik = -2423.31615, newton_decrement = 1.30e+02, seconds_since_start = 0.1
+Iteration 2: norm_delta = 8.12e-01, step_size = 0.9500, log_lik = -2728.55502, newton_decrement = 5.93e+02, seconds_since_start = 0.2
+Iteration 3: norm_delta = 9.23e-01, step_size = 0.9500, log_lik = -2394.04361, newton_decrement = 6.65e+01, seconds_since_start = 0.3
+Iteration 4: norm_delta = 8.49e-01, step_size = 0.9310, log_lik = -2314.98605, newton_decrement = 5.46e+00, seconds_since_start = 0.4
+Iteration 5: norm_delta = 4.08e-01, step_size = 0.9124, log_lik = -2308.97062, newton_decrement = 5.34e-01, seconds_since_start = 0.5
+Iteration 6: norm_delta = 9.94e-02, step_size = 1.0000, log_lik = -2308.41213, newton_decrement = 2.03e-02, seconds_since_start = 0.6
+Iteration 7: norm_delta = 2.50e-03, step_size = 1.0000, log_lik = -2308.39147, newton_decrement = 1.22e-05, seconds_since_start = 0.7
+Iteration 8: norm_delta = 1.53e-06, step_size = 1.0000, log_lik = -2308.39145, newton_decrement = 4.53e-12, seconds_since_start = 0.7
+Convergence completed after 8 iterations.
+Converged.
+C-index: 0.7003
+🏃 View run Model 3: +Network at: http://127.0.0.1:5000/#/experiments/6/runs/afa1a440fe2045518638ccbeccfed2a2
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/6
+
+--- Running Model 4: +Ownership ---
+Dropping constant column: network_C_b
+Dropping constant column: network_betweenness
+Dropping constant column: network_closeness
+Dropping constant column: network_eigenvector
+Scaled 8 features to 0-100 range using StandardScaler
+Training shape: (44715, 12) with 8 covariates.
+Iteration 1: norm_delta = 6.83e-01, step_size = 0.9500, log_lik = -2423.31615, newton_decrement = 1.33e+02, seconds_since_start = 0.1
+Iteration 2: norm_delta = 8.29e-01, step_size = 0.9500, log_lik = -2722.87682, newton_decrement = 5.93e+02, seconds_since_start = 0.2
+Iteration 3: norm_delta = 9.42e-01, step_size = 0.9500, log_lik = -2383.81321, newton_decrement = 6.82e+01, seconds_since_start = 0.3
+Iteration 4: norm_delta = 8.58e-01, step_size = 0.9310, log_lik = -2302.66175, newton_decrement = 5.83e+00, seconds_since_start = 0.4
+Iteration 5: norm_delta = 4.13e-01, step_size = 0.9124, log_lik = -2296.25076, newton_decrement = 5.58e-01, seconds_since_start = 0.5
+Iteration 6: norm_delta = 1.01e-01, step_size = 1.0000, log_lik = -2295.66666, newton_decrement = 2.12e-02, seconds_since_start = 0.6
+Iteration 7: norm_delta = 2.60e-03, step_size = 1.0000, log_lik = -2295.64510, newton_decrement = 1.30e-05, seconds_since_start = 0.6
+Iteration 8: norm_delta = 1.63e-06, step_size = 1.0000, log_lik = -2295.64509, newton_decrement = 5.11e-12, seconds_since_start = 0.7
+Convergence completed after 8 iterations.
+Converged.
+C-index: 0.7246
+🏃 View run Model 4: +Ownership at: http://127.0.0.1:5000/#/experiments/6/runs/e325f6dafd524395a19f8e701fdab058
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/6
+
+--- Running Model 5: Full ---
+Dropping constant column: network_C_b
+Dropping constant column: network_betweenness
+Dropping constant column: network_closeness
+Dropping constant column: network_eigenvector
+Scaled 12 features to 0-100 range using StandardScaler
+Training shape: (44715, 16) with 12 covariates.
+Iteration 1: norm_delta = 6.85e-01, step_size = 0.9500, log_lik = -2423.31615, newton_decrement = 1.37e+02, seconds_since_start = 0.1
+Iteration 2: norm_delta = 8.42e-01, step_size = 0.9500, log_lik = -2719.76851, newton_decrement = 5.97e+02, seconds_since_start = 0.2
+Iteration 3: norm_delta = 9.32e-01, step_size = 0.9500, log_lik = -2383.59252, newton_decrement = 6.97e+01, seconds_since_start = 0.3
+Iteration 4: norm_delta = 8.49e-01, step_size = 0.9310, log_lik = -2300.37471, newton_decrement = 6.12e+00, seconds_since_start = 0.4
+Iteration 5: norm_delta = 4.17e-01, step_size = 0.9124, log_lik = -2293.65590, newton_decrement = 5.84e-01, seconds_since_start = 0.5
+Iteration 6: norm_delta = 1.05e-01, step_size = 1.0000, log_lik = -2293.04374, newton_decrement = 2.33e-02, seconds_since_start = 0.6
+Iteration 7: norm_delta = 2.87e-03, step_size = 1.0000, log_lik = -2293.02007, newton_decrement = 1.63e-05, seconds_since_start = 0.7
+Iteration 8: norm_delta = 2.05e-06, step_size = 1.0000, log_lik = -2293.02005, newton_decrement = 8.41e-12, seconds_since_start = 0.8
+Convergence completed after 8 iterations.
+Converged.
+C-index: 0.7245
+🏃 View run Model 5: Full at: http://127.0.0.1:5000/#/experiments/6/runs/859ec2e629564a63ac9e4e1e8a46b956
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/6
