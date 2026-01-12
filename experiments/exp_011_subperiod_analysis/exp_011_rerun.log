@@ -1,0 +1,24 @@
+
+
+################################################################################
+# RUNNING SUBPERIOD: 2004-2007
+################################################################################
+
+Setting MLflow experiment to: exp_011_subperiod_2004_2007
+Traceback (most recent call last):
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_011_subperiod_analysis/run_subperiods.py", line 376, in <module>
+    main()
+    ~~~~^^
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_011_subperiod_analysis/run_subperiods.py", line 361, in main
+    results = run_subperiod(config_path)
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/experiments/exp_011_subperiod_analysis/run_subperiods.py", line 324, in run_subperiod
+    setup_experiment(exp_name)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlflow_utils/tracking.py", line 20, in setup_experiment
+    mlflow.set_experiment(experiment_name)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/tracking/fluent.py", line 215, in set_experiment
+    raise MlflowException(
+    ...<7 lines>...
+    )
+mlflow.exceptions.MlflowException: Cannot set a deleted experiment 'exp_011_subperiod_2004_2007' as the active experiment. You can restore the experiment, or permanently delete the experiment to create a new one.

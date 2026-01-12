@@ -1,0 +1,84 @@
+experiment:
+  name: "exp_011_subperiod_2013_2020"
+  human_readable_name: "Subperiod: 2013-2020 (Sanctions Era)"
+  description: "Test ownership effects during Nabiullina cleanup and sanctions period. Captures 2014 sanctions effects under enhanced regulatory scrutiny."
+  
+data:
+  start_year: 2013
+  end_year: 2020
+  lag_quarters: 4
+  target: "event"
+  network_dir: "rolling_windows/output/quarterly_2004_2020"
+
+crisis_periods:
+  crisis_2014:
+    start: "2014-03-01"
+    end: "2015-12-31"
+    type: "geopolitical"
+    description: "Crimea sanctions and oil price collapse"
+
+ownership_features:
+  - family_connection_ratio
+  - family_ownership_pct
+  - state_ownership_pct
+  - foreign_ownership_total_pct
+
+network_features:
+  - rw_page_rank_4q_lag
+  - rw_out_degree_4q_lag
+
+camel_features:
+  - camel_roa
+  - camel_npl_ratio
+  - camel_tier1_capital_ratio
+
+model_params:
+  penalizer: 0.01
+  l1_ratio: 0.0
+
+community_params:
+  min_community_size: 5
+  use_coarsest_level: true
+
+models:
+  model_1_baseline:
+    name: "M1: Baseline (2013-2020)"
+    include_crisis_dummies: false
+    interaction_features: []
+    description: "Baseline without crisis effects"
+    
+  model_2_crisis_dummies:
+    name: "M2: Crisis 2014 Indicator"
+    include_crisis_dummies: true
+    interaction_features: []
+    description: "Add 2014 sanctions dummy"
+    
+  model_3_family_crisis:
+    name: "M3: Family × Crisis 2014"
+    include_crisis_dummies: true
+    interaction_features:
+      - family_connection_ratio
+    description: "Family connection ratio interaction with 2014 sanctions"
+    
+  model_4_state_crisis:
+    name: "M4: State × Crisis 2014"
+    include_crisis_dummies: true
+    interaction_features:
+      - state_ownership_pct
+    description: "State ownership interaction with 2014 sanctions"
+    
+  model_5_foreign_crisis:
+    name: "M5: Foreign × Crisis 2014"
+    include_crisis_dummies: true
+    interaction_features:
+      - foreign_ownership_total_pct
+    description: "Foreign ownership interaction with 2014 sanctions"
+    
+  model_6_full_interactions:
+    name: "M6: Full Interactions (2014)"
+    include_crisis_dummies: true
+    interaction_features:
+      - family_connection_ratio
+      - state_ownership_pct
+      - foreign_ownership_total_pct
+    description: "All ownership × crisis_2014 interactions"

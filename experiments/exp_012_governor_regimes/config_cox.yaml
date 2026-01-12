@@ -1,0 +1,116 @@
+experiment:
+  name: "exp_012_governor_regimes"
+  human_readable_name: "Governor Regime Effects (2004-2020)"
+  description: "Test whether ownership effects vary between CBR governor regimes (Ignatyev 2004-2013 vs Nabiullina 2013-2020)"
+  
+data:
+  start_year: 2004
+  end_year: 2020
+  lag_quarters: 4
+  target: "event"
+  network_dir: "rolling_windows/output/quarterly_2004_2020"
+
+governor_regimes:
+  ignatyev:
+    start: "2004-01-01"
+    end: "2013-06-30"
+    description: "Sergey Ignatyev era - accommodative, laissez-faire"
+    
+  nabiullina:
+    start: "2013-07-01"
+    end: "2020-12-31"
+    description: "Elvira Nabiullina era - aggressive cleanup, stricter regulation"
+
+crisis_periods:
+  # Include crisis controls to isolate governor effects from crisis timing
+  crisis_2004:
+    start: "2004-07-01"
+    end: "2004-08-31"
+    type: "banking"
+    description: "2004 Russian banking crisis"
+    
+  crisis_2008:
+    start: "2008-09-01"
+    end: "2009-12-31"
+    type: "global_financial"
+    description: "Global Financial Crisis"
+    
+  crisis_2014:
+    start: "2014-03-01"
+    end: "2015-12-31"
+    type: "geopolitical"
+    description: "Crimea sanctions"
+
+ownership_features:
+  - family_connection_ratio
+  - family_ownership_pct
+  - state_ownership_pct
+  - foreign_ownership_total_pct
+
+network_features:
+  - rw_page_rank_4q_lag
+  - rw_out_degree_4q_lag
+
+camel_features:
+  - camel_roa
+  - camel_npl_ratio
+  - camel_tier1_capital_ratio
+
+model_params:
+  penalizer: 0.01
+  l1_ratio: 0.0
+
+community_params:
+  min_community_size: 5
+  use_coarsest_level: true
+
+models:
+  model_1_baseline:
+    name: "M1: Baseline"
+    include_governor_dummy: false
+    include_crisis_dummies: false
+    interaction_features: []
+    description: "Baseline without regime or crisis effects"
+    
+  model_2_governor:
+    name: "M2: Governor Dummy"
+    include_governor_dummy: true
+    include_crisis_dummies: true
+    interaction_features: []
+    description: "Add Nabiullina dummy + crisis controls"
+    
+  model_3_family_governor:
+    name: "M3: Family × Governor"
+    include_governor_dummy: true
+    include_crisis_dummies: true
+    interaction_features:
+      - family_connection_ratio
+      - family_ownership_pct
+    description: "Family ownership interactions with Nabiullina regime"
+    
+  model_4_state_governor:
+    name: "M4: State × Governor"
+    include_governor_dummy: true
+    include_crisis_dummies: true
+    interaction_features:
+      - state_ownership_pct
+    description: "State ownership interactions with Nabiullina regime"
+    
+  model_5_foreign_governor:
+    name: "M5: Foreign × Governor"
+    include_governor_dummy: true
+    include_crisis_dummies: true
+    interaction_features:
+      - foreign_ownership_total_pct
+    description: "Foreign ownership interactions with Nabiullina regime"
+    
+  model_6_full_interactions:
+    name: "M6: Full Interactions"
+    include_governor_dummy: true
+    include_crisis_dummies: true
+    interaction_features:
+      - family_connection_ratio
+      - family_ownership_pct
+      - state_ownership_pct
+      - foreign_ownership_total_pct
+    description: "All ownership × governor interactions + crisis controls"

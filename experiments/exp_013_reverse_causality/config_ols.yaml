@@ -1,0 +1,109 @@
+experiment:
+  name: "exp_013_reverse_causality"
+  human_readable_name: "Reverse Causality Test: Survival → Family Connections"
+  description: "Test whether survival predicts family connection growth using biennial cross-sections (2012-2020)"
+  
+  models:
+    # Biennial cross-sections to trace reverse causality evolution
+    model_2012:
+      name: "2012"
+      type: "ols"
+      data_year: 2012
+      data_quarter: 4
+      outcome: "family_connection_ratio"
+      cutoff_year: 2012
+      predictors:
+        - survived_to_cutoff
+        - camel_roa
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - state_ownership_pct
+        - foreign_ownership_total_pct
+        - rw_page_rank_4q_lag
+        - rw_out_degree_4q_lag
+      description: "Early period (pre-Nabiullina)"
+      
+    model_2014:
+      name: "2014"
+      type: "ols"
+      data_year: 2014
+      data_quarter: 4
+      outcome: "family_connection_ratio"
+      cutoff_year: 2014
+      predictors:
+        - survived_to_cutoff
+        - camel_roa
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - state_ownership_pct
+        - foreign_ownership_total_pct
+        - rw_page_rank_4q_lag
+        - rw_out_degree_4q_lag
+      description: "Nabiullina year 1 + Crimea sanctions"
+      
+    model_2016:
+      name: "2016"
+      type: "ols"
+      data_year: 2016
+      data_quarter: 4
+      outcome: "family_connection_ratio"
+      cutoff_year: 2016
+      predictors:
+        - survived_to_cutoff
+        - camel_roa
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - state_ownership_pct
+        - foreign_ownership_total_pct
+        - rw_page_rank_4q_lag
+        - rw_out_degree_4q_lag
+      description: "Peak cleanup period"
+      
+    model_2018:
+      name: "2018"
+      type: "ols"
+      data_year: 2018
+      data_quarter: 4
+      outcome: "family_connection_ratio"
+      cutoff_year: 2018
+      predictors:
+        - survived_to_cutoff
+        - camel_roa
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - state_ownership_pct
+        - foreign_ownership_total_pct
+        - rw_page_rank_4q_lag
+        - rw_out_degree_4q_lag
+      description: "Post-cleanup consolidation"
+      
+    model_2020:
+      name: "2020"
+      type: "ols"
+      data_year: 2020
+      data_quarter: 4
+      outcome: "family_connection_ratio"
+      cutoff_year: 2020
+      predictors:
+        - survived_to_cutoff
+        - camel_roa
+        - camel_npl_ratio
+        - camel_tier1_capital_ratio
+        - state_ownership_pct
+        - foreign_ownership_total_pct
+        - rw_page_rank_4q_lag
+        - rw_out_degree_4q_lag
+      description: "End of sample"
+
+data:
+  start_year: 2010
+  end_year: 2020
+  lag_quarters: 4
+  
+regression_params:
+  robust_se: true  # Heteroskedasticity-robust standard errors
+  cluster_entity: false  # No clustering for cross-sections
+
+community_params:
+  min_community_size: 5
+  use_coarsest_level: true

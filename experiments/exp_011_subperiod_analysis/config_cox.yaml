@@ -1,0 +1,96 @@
+experiment:
+  name: "exp_009_crisis_interactions"
+  human_readable_name: "Crisis Interactions (2004-2021)"
+  description: "Examine family/state/foreign ownership effects across three crisis periods (2004 banking crisis, 2008 GFC, 2014 sanctions) using interaction terms"
+  
+data:
+  start_year: 2004
+  end_year: 2021
+  lag_quarters: 4
+  target: "event"
+  network_dir: "rolling_windows/output/quarterly_2004_2020"
+
+crisis_periods:
+  crisis_2004:
+    start: "2004-07-01"
+    end: "2004-08-31"
+    type: "banking"
+    description: "2004 Russian banking crisis (Guta Bank collapse, depositor runs)"
+    
+  crisis_2008:
+    start: "2008-09-01"
+    end: "2009-12-31"
+    type: "global_financial"
+    description: "Global Financial Crisis (Lehman Brothers collapse)"
+    
+  crisis_2014:
+    start: "2014-03-01"
+    end: "2015-12-31"
+    type: "geopolitical"
+    description: "Crimea sanctions and oil price collapse"
+
+ownership_features:
+  - family_connection_ratio
+  - family_ownership_pct
+  - state_ownership_pct
+  - foreign_ownership_total_pct
+
+network_features:
+  - rw_page_rank_4q_lag
+  - rw_out_degree_4q_lag
+
+camel_features:
+  - camel_roa
+  - camel_npl_ratio
+  - camel_tier1_capital_ratio
+
+model_params:
+  penalizer: 0.01
+  l1_ratio: 0.0
+
+community_params:
+  min_community_size: 5
+  use_coarsest_level: true
+
+models:
+  model_1_baseline:
+    name: "M1: Baseline (2010-2021)"
+    include_crisis_dummies: false
+    interaction_features: []
+    description: "Baseline without crisis effects"
+    
+  model_2_crisis_dummies:
+    name: "M2: Crisis Indicators"
+    include_crisis_dummies: true
+    interaction_features: []
+    description: "Add crisis dummies (main effects)"
+    
+  model_3_family_crisis:
+    name: "M3: Family × Crisis"
+    include_crisis_dummies: true
+    interaction_features:
+      - family_connection_ratio
+    description: "Family connection ratio interactions with crises"
+    
+  model_4_state_crisis:
+    name: "M4: State × Crisis"
+    include_crisis_dummies: true
+    interaction_features:
+      - state_ownership_pct
+    description: "State ownership interactions with crises"
+    
+  model_5_foreign_crisis:
+    name: "M5: Foreign × Crisis"
+    include_crisis_dummies: true
+    interaction_features:
+      - foreign_ownership_total_pct
+    description: "Foreign ownership interactions with crises"
+    
+  model_6_full_interactions:
+    name: "M6: Full Interactions"
+    include_crisis_dummies: true
+    interaction_features:
+      - family_connection_ratio
+      - state_ownership_pct
+      - foreign_ownership_total_pct
+    description: "All ownership × crisis interactions"

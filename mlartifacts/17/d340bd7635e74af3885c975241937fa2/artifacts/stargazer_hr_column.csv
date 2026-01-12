@@ -1,0 +1,22 @@
+variable,Stargazer_Output_HR
+family_connection_ratio,0.989*** (0.003)
+family_ownership_pct,0.996** (0.001)
+state_ownership_pct,0.996 (0.003)
+foreign_ownership_total_pct,0.998 (0.007)
+rw_page_rank_4q_lag,1.004 (0.005)
+rw_out_degree_4q_lag,0.979* (0.009)
+camel_roa,0.917*** (0.010)
+camel_npl_ratio,1.010*** (0.002)
+camel_tier1_capital_ratio,1.016*** (0.003)
+governor_nabiullina,1.002** (0.001)
+crisis_2004,1.000 (0.003)
+crisis_2008,1.001 (0.001)
+crisis_2014,1.001 (0.001)
+state_ownership_pct_x_governor,0.996 (0.004)
+Observations,138313
+Subjects,1092
+Events,770
+Log Likelihood,-4827.86
+AIC Partial,9683.72
+-log2(p) LLR,82.57
+C-index,0.615

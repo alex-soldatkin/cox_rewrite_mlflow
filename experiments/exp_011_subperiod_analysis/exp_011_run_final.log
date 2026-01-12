@@ -1,0 +1,466 @@
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlflow_utils/quarterly_window_loader.py:115: FutureWarning: Constructing PeriodIndex from fields is deprecated. Use PeriodIndex.from_fields instead.
+  df_all['quarter'] = pd.PeriodIndex(
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/lifelines/utils/__init__.py:1120: ConvergenceWarning: Column family_connection_ratio_x_crisis_2004 have very low variance when conditioned on death event present or not. This may harm convergence. This could be a form of 'complete separation'. For example, try the following code:
+
+>>> events = df['event'].astype(bool)
+>>> print(df.loc[events, 'family_connection_ratio_x_crisis_2004'].var())
+>>> print(df.loc[~events, 'family_connection_ratio_x_crisis_2004'].var())
+
+A very low variance means that the column family_connection_ratio_x_crisis_2004 completely determines whether a subject dies or not. See https://stats.stackexchange.com/questions/11109/how-to-deal-with-perfect-separation-in-logistic-regression.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/lifelines/utils/__init__.py:1120: ConvergenceWarning: Column state_ownership_pct_x_crisis_2004 have very low variance when conditioned on death event present or not. This may harm convergence. This could be a form of 'complete separation'. For example, try the following code:
+
+>>> events = df['event'].astype(bool)
+>>> print(df.loc[events, 'state_ownership_pct_x_crisis_2004'].var())
+>>> print(df.loc[~events, 'state_ownership_pct_x_crisis_2004'].var())
+
+A very low variance means that the column state_ownership_pct_x_crisis_2004 completely determines whether a subject dies or not. See https://stats.stackexchange.com/questions/11109/how-to-deal-with-perfect-separation-in-logistic-regression.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/lifelines/utils/__init__.py:1120: ConvergenceWarning: Column foreign_ownership_total_pct_x_crisis_2004 have very low variance when conditioned on death event present or not. This may harm convergence. This could be a form of 'complete separation'. For example, try the following code:
+
+>>> events = df['event'].astype(bool)
+>>> print(df.loc[events, 'foreign_ownership_total_pct_x_crisis_2004'].var())
+>>> print(df.loc[~events, 'foreign_ownership_total_pct_x_crisis_2004'].var())
+
+A very low variance means that the column foreign_ownership_total_pct_x_crisis_2004 completely determines whether a subject dies or not. See https://stats.stackexchange.com/questions/11109/how-to-deal-with-perfect-separation-in-logistic-regression.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/lifelines/utils/__init__.py:1120: ConvergenceWarning: Column family_connection_ratio_x_crisis_2004 have very low variance when conditioned on death event present or not. This may harm convergence. This could be a form of 'complete separation'. For example, try the following code:
+
+>>> events = df['event'].astype(bool)
+>>> print(df.loc[events, 'family_connection_ratio_x_crisis_2004'].var())
+>>> print(df.loc[~events, 'family_connection_ratio_x_crisis_2004'].var())
+
+A very low variance means that the column family_connection_ratio_x_crisis_2004 completely determines whether a subject dies or not. See https://stats.stackexchange.com/questions/11109/how-to-deal-with-perfect-separation-in-logistic-regression.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlflow_utils/quarterly_window_loader.py:115: FutureWarning: Constructing PeriodIndex from fields is deprecated. Use PeriodIndex.from_fields instead.
+  df_all['quarter'] = pd.PeriodIndex(
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/lifelines/utils/__init__.py:1120: ConvergenceWarning: Column state_ownership_pct_x_crisis_2008 have very low variance when conditioned on death event present or not. This may harm convergence. This could be a form of 'complete separation'. For example, try the following code:
+
+>>> events = df['event'].astype(bool)
+>>> print(df.loc[events, 'state_ownership_pct_x_crisis_2008'].var())
+>>> print(df.loc[~events, 'state_ownership_pct_x_crisis_2008'].var())
+
+A very low variance means that the column state_ownership_pct_x_crisis_2008 completely determines whether a subject dies or not. See https://stats.stackexchange.com/questions/11109/how-to-deal-with-perfect-separation-in-logistic-regression.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/lifelines/utils/__init__.py:1120: ConvergenceWarning: Column state_ownership_pct_x_crisis_2008 have very low variance when conditioned on death event present or not. This may harm convergence. This could be a form of 'complete separation'. For example, try the following code:
+
+>>> events = df['event'].astype(bool)
+>>> print(df.loc[events, 'state_ownership_pct_x_crisis_2008'].var())
+>>> print(df.loc[~events, 'state_ownership_pct_x_crisis_2008'].var())
+
+A very low variance means that the column state_ownership_pct_x_crisis_2008 completely determines whether a subject dies or not. See https://stats.stackexchange.com/questions/11109/how-to-deal-with-perfect-separation-in-logistic-regression.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlflow_utils/quarterly_window_loader.py:115: FutureWarning: Constructing PeriodIndex from fields is deprecated. Use PeriodIndex.from_fields instead.
+  df_all['quarter'] = pd.PeriodIndex(
+
+
+################################################################################
+# RUNNING SUBPERIOD: 2004-2007
+################################################################################
+
+Setting MLflow experiment to: exp_011_subperiod_2004_2007
+
+======================================================================
+LOADING DATA WITH 4-QUARTER LAG
+======================================================================
+
+1. Loading bank population from Neo4j...
+   Found 1904 banks from Neo4j
+
+2. Loading accounting data...
+  Loading from: /Users/alexandersoldatkin/projects/factions-networks-thesis/drafts/accounting_cbr_imputed/final_final_banking_indicators.parquet
+  Loaded 37,756 accounting observations
+  Date range: 2004-02-01 00:00:00 to 2007-12-01 00:00:00
+  Unique banks (regn): 1057
+  ✅ Mapped CAMEL ratios: camel_roa, camel_npl_ratio, camel_tier1_capital_ratio
+   Accounting obs: 37,756
+   Date range: 2004-02-01 00:00:00 to 2007-12-01 00:00:00
+   Quarter range: 2004Q1 to 2007Q4
+
+3. Merging accounting with Neo4j population...
+   Merged: 34,013 observations
+   ✅ Mapped family/foreign features from Neo4j
+
+4. Loading quarterly network snapshots...
+Loading quarterly network snapshots from: /Users/alexandersoldatkin/projects/cos_rewrite_mlflow/rolling_windows/output/quarterly_2010_2020
+  Found 44 quarterly windows
+  Loaded 1,713,557 bank-quarter observations
+  Date range: 2010Q1 to 2020Q4
+  Unique banks (Id): 33,877
+  Unique banks (regn_cbr): 1,060
+
+5. Creating 4-quarter lagged network metrics...
+   Lagged network obs: 1,713,557
+   Lagged quarter range: 2011Q1 to 2021Q4
+
+6. Merging accounting_t with network_{t-lag}...
+   Merged obs: 34,013
+   Network matches: 0 (0.0%)
+
+⚠️  WARNING: Low match rate (0.0%)
+   Possible issues:
+   - Lag too large (not enough historical data)
+   - Id mismatch between accounting and network
+   - Quarterly data missing for some periods
+
+7. Creating event indicators (exp_004 pattern)...
+   Dead banks: 669
+   Events (last obs only): 669 (2.0%)
+
+✅ Data loading complete!
+   Total observations: 34,013
+   Unique banks: 944
+   Date range: 2004-02-01 00:00:00 to 2007-12-01 00:00:00
+   Lag specification: 4 quarters (1.0 years)
+
+============================================================
+SUBPERIOD: 2004-2007
+============================================================
+Observations after time filter: 34013
+Unique banks: 944
+Events: 669
+  crisis_2004: 1,314 obs (3.9%)
+  Dropping constant column: rw_page_rank_4q_lag
+  Dropping constant column: rw_out_degree_4q_lag
+  Dropping constant column: camel_roa
+  ✅ Scaled 6 features to 0-100 range
+
+Final dataset: 33,966 observations, 944 banks, 669 events
+
+============================================================
+MODEL: M1: Baseline (2004-2007)
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + camel_npl_ratio + camel_tier1_capital_ratio
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M1: Baseline (2004-2007) at: http://127.0.0.1:5000/#/experiments/14/runs/9279fc93e99c4b8e940841bfdcc301ac
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/14
+
+============================================================
+MODEL: M2: Crisis 2004 Indicator
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2004
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M2: Crisis 2004 Indicator at: http://127.0.0.1:5000/#/experiments/14/runs/cee9d0ca75f74f7e84300510e020b4d1
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/14
+
+============================================================
+MODEL: M3: Family × Crisis 2004
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2004 + family_connection_ratio_x_crisis_2004
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M3: Family × Crisis 2004 at: http://127.0.0.1:5000/#/experiments/14/runs/d65ae3a33fdd492185393ba80fdb4f44
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/14
+
+============================================================
+MODEL: M4: State × Crisis 2004
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2004 + state_ownership_pct_x_crisis_2004
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M4: State × Crisis 2004 at: http://127.0.0.1:5000/#/experiments/14/runs/bab523009dfe4cbdbdca673b47b019a4
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/14
+
+============================================================
+MODEL: M5: Foreign × Crisis 2004
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2004 + foreign_ownership_total_pct_x_crisis_2004
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M5: Foreign × Crisis 2004 at: http://127.0.0.1:5000/#/experiments/14/runs/2c1d14431792484886edca54a928429b
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/14
+
+============================================================
+MODEL: M6: Full Interactions (2004)
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2004 + family_connection_ratio_x_crisis_2004 + state_ownership_pct_x_crisis_2004 + foreign_ownership_total_pct_x_crisis_2004
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M6: Full Interactions (2004) at: http://127.0.0.1:5000/#/experiments/14/runs/f23b2e3aa21343d3a1974d2cd68dc10d
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/14
+
+✅ Completed subperiod: 2004-2007
+
+
+################################################################################
+# RUNNING SUBPERIOD: 2007-2013
+################################################################################
+
+Setting MLflow experiment to: exp_011_subperiod_2007_2013
+
+======================================================================
+LOADING DATA WITH 4-QUARTER LAG
+======================================================================
+
+1. Loading bank population from Neo4j...
+   Found 1904 banks from Neo4j
+
+2. Loading accounting data...
+  Loading from: /Users/alexandersoldatkin/projects/factions-networks-thesis/drafts/accounting_cbr_imputed/final_final_banking_indicators.parquet
+  Loaded 80,161 accounting observations
+  Date range: 2007-01-01 00:00:00 to 2013-12-01 00:00:00
+  Unique banks (regn): 1158
+  ✅ Mapped CAMEL ratios: camel_roa, camel_npl_ratio, camel_tier1_capital_ratio
+   Accounting obs: 80,161
+   Date range: 2007-01-01 00:00:00 to 2013-12-01 00:00:00
+   Quarter range: 2007Q1 to 2013Q4
+
+3. Merging accounting with Neo4j population...
+   Merged: 70,218 observations
+   ✅ Mapped family/foreign features from Neo4j
+
+4. Loading quarterly network snapshots...
+Loading quarterly network snapshots from: /Users/alexandersoldatkin/projects/cos_rewrite_mlflow/rolling_windows/output/quarterly_2010_2020
+  Found 44 quarterly windows
+  Loaded 1,713,557 bank-quarter observations
+  Date range: 2010Q1 to 2020Q4
+  Unique banks (Id): 33,877
+  Unique banks (regn_cbr): 1,060
+
+5. Creating 4-quarter lagged network metrics...
+   Lagged network obs: 1,713,557
+   Lagged quarter range: 2011Q1 to 2021Q4
+
+6. Merging accounting_t with network_{t-lag}.../Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/lifelines/utils/__init__.py:1120: ConvergenceWarning: Column state_ownership_pct_x_crisis_2014 have very low variance when conditioned on death event present or not. This may harm convergence. This could be a form of 'complete separation'. For example, try the following code:
+
+>>> events = df['event'].astype(bool)
+>>> print(df.loc[events, 'state_ownership_pct_x_crisis_2014'].var())
+>>> print(df.loc[~events, 'state_ownership_pct_x_crisis_2014'].var())
+
+A very low variance means that the column state_ownership_pct_x_crisis_2014 completely determines whether a subject dies or not. See https://stats.stackexchange.com/questions/11109/how-to-deal-with-perfect-separation-in-logistic-regression.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/lifelines/utils/__init__.py:1120: ConvergenceWarning: Column state_ownership_pct_x_crisis_2014 have very low variance when conditioned on death event present or not. This may harm convergence. This could be a form of 'complete separation'. For example, try the following code:
+
+>>> events = df['event'].astype(bool)
+>>> print(df.loc[events, 'state_ownership_pct_x_crisis_2014'].var())
+>>> print(df.loc[~events, 'state_ownership_pct_x_crisis_2014'].var())
+
+A very low variance means that the column state_ownership_pct_x_crisis_2014 completely determines whether a subject dies or not. See https://stats.stackexchange.com/questions/11109/how-to-deal-with-perfect-separation-in-logistic-regression.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+
+   Merged obs: 70,290
+   Network matches: 29,829 (42.4%)
+
+⚠️  WARNING: Low match rate (42.4%)
+   Possible issues:
+   - Lag too large (not enough historical data)
+   - Id mismatch between accounting and network
+   - Quarterly data missing for some periods
+
+7. Creating event indicators (exp_004 pattern)...
+   Dead banks: 688
+   Events (last obs only): 688 (1.0%)
+
+✅ Data loading complete!
+   Total observations: 70,290
+   Unique banks: 1,001
+   Date range: 2007-01-01 00:00:00 to 2013-12-01 00:00:00
+   Lag specification: 4 quarters (1.0 years)
+
+============================================================
+SUBPERIOD: 2007-2013
+============================================================
+Observations after time filter: 70290
+Unique banks: 1001
+Events: 688
+  crisis_2008: 12,839 obs (18.3%)
+  Dropping constant column: camel_roa
+  ✅ Scaled 8 features to 0-100 range
+
+Final dataset: 70,135 observations, 1001 banks, 688 events
+
+============================================================
+MODEL: M1: Baseline (2007-2013)
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_npl_ratio + camel_tier1_capital_ratio
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M1: Baseline (2007-2013) at: http://127.0.0.1:5000/#/experiments/15/runs/dbad22f5d0cf49c8ae8b502d37a08a77
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/15
+
+============================================================
+MODEL: M2: Crisis 2008 Indicator
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2008
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M2: Crisis 2008 Indicator at: http://127.0.0.1:5000/#/experiments/15/runs/3fac643786cf430a82a5ae72d2537874
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/15
+
+============================================================
+MODEL: M3: Family × Crisis 2008
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2008 + family_connection_ratio_x_crisis_2008
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M3: Family × Crisis 2008 at: http://127.0.0.1:5000/#/experiments/15/runs/1c297a9d19fe4863a1aad03822db4e6d
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/15
+
+============================================================
+MODEL: M4: State × Crisis 2008
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2008 + state_ownership_pct_x_crisis_2008
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M4: State × Crisis 2008 at: http://127.0.0.1:5000/#/experiments/15/runs/e5771610442e4a2c87e4580ef74680ac
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/15
+
+============================================================
+MODEL: M5: Foreign × Crisis 2008
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2008 + foreign_ownership_total_pct_x_crisis_2008
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M5: Foreign × Crisis 2008 at: http://127.0.0.1:5000/#/experiments/15/runs/1042ba89fd824f2b98c4dbac7a2387b2
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/15
+
+============================================================
+MODEL: M6: Full Interactions (2008)
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2008 + family_connection_ratio_x_crisis_2008 + state_ownership_pct_x_crisis_2008 + foreign_ownership_total_pct_x_crisis_2008
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M6: Full Interactions (2008) at: http://127.0.0.1:5000/#/experiments/15/runs/4f65907203b74d4b938c46b8fdb92056
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/15
+
+✅ Completed subperiod: 2007-2013
+
+
+################################################################################
+# RUNNING SUBPERIOD: 2013-2020
+################################################################################
+
+Setting MLflow experiment to: exp_011_subperiod_2013_2020
+
+======================================================================
+LOADING DATA WITH 4-QUARTER LAG
+======================================================================
+
+1. Loading bank population from Neo4j...
+   Found 1904 banks from Neo4j
+
+2. Loading accounting data...
+  Loading from: /Users/alexandersoldatkin/projects/factions-networks-thesis/drafts/accounting_cbr_imputed/final_final_banking_indicators.parquet
+  Loaded 62,336 accounting observations
+  Date range: 2013-01-01 00:00:00 to 2020-12-01 00:00:00
+  Unique banks (regn): 976
+  ✅ Mapped CAMEL ratios: camel_roa, camel_npl_ratio, camel_tier1_capital_ratio
+   Accounting obs: 62,336
+   Date range: 2013-01-01 00:00:00 to 2020-12-01 00:00:00
+   Quarter range: 2013Q1 to 2020Q4
+
+3. Merging accounting with Neo4j population...
+   Merged: 54,100 observations
+   ✅ Mapped family/foreign features from Neo4j
+
+4. Loading quarterly network snapshots...
+Loading quarterly network snapshots from: /Users/alexandersoldatkin/projects/cos_rewrite_mlflow/rolling_windows/output/quarterly_2010_2020
+  Found 44 quarterly windows
+  Loaded 1,713,557 bank-quarter observations
+  Date range: 2010Q1 to 2020Q4
+  Unique banks (Id): 33,877
+  Unique banks (regn_cbr): 1,060
+
+5. Creating 4-quarter lagged network metrics...
+   Lagged network obs: 1,713,557
+   Lagged quarter range: 2011Q1 to 2021Q4
+
+6. Merging accounting_t with network_{t-lag}...
+   Merged obs: 54,386
+   Network matches: 54,277 (99.8%)
+
+7. Creating event indicators (exp_004 pattern)...
+   Dead banks: 508
+   Events (last obs only): 508 (0.9%)
+
+✅ Data loading complete!
+   Total observations: 54,386
+   Unique banks: 829
+   Date range: 2013-01-01 00:00:00 to 2020-12-01 00:00:00
+   Lag specification: 4 quarters (1.0 years)
+
+============================================================
+SUBPERIOD: 2013-2020
+============================================================
+Observations after time filter: 54386
+Unique banks: 829
+Events: 508
+  crisis_2014: 15,617 obs (28.7%)
+  ✅ Scaled 9 features to 0-100 range
+
+Final dataset: 53,957 observations, 829 banks, 508 events
+
+============================================================
+MODEL: M1: Baseline (2013-2020)
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M1: Baseline (2013-2020) at: http://127.0.0.1:5000/#/experiments/16/runs/ebae7df33eb14f2381d2a5b2e7400a06
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/16
+
+============================================================
+MODEL: M2: Crisis 2014 Indicator
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2014
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M2: Crisis 2014 Indicator at: http://127.0.0.1:5000/#/experiments/16/runs/c17aebfe96c443b3a2d42782302f9617
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/16
+
+============================================================
+MODEL: M3: Family × Crisis 2014
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2014 + family_connection_ratio_x_crisis_2014
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M3: Family × Crisis 2014 at: http://127.0.0.1:5000/#/experiments/16/runs/9d327c229a974e7cbfc4c5afa811e667
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/16
+
+============================================================
+MODEL: M4: State × Crisis 2014
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2014 + state_ownership_pct_x_crisis_2014
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M4: State × Crisis 2014 at: http://127.0.0.1:5000/#/experiments/16/runs/f6f571ce9fe1402eaebcf33d7da3e98a
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/16
+
+============================================================
+MODEL: M5: Foreign × Crisis 2014
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2014 + foreign_ownership_total_pct_x_crisis_2014
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M5: Foreign × Crisis 2014 at: http://127.0.0.1:5000/#/experiments/16/runs/52c5e1a789864c3eb1d547bc56dbf11a
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/16
+
+============================================================
+MODEL: M6: Full Interactions (2014)
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2014 + family_connection_ratio_x_crisis_2014 + state_ownership_pct_x_crisis_2014 + foreign_ownership_total_pct_x_crisis_2014
+
+❌ Model failed: Can only compare identically-labeled (both index and columns) DataFrame objects
+🏃 View run M6: Full Interactions (2014) at: http://127.0.0.1:5000/#/experiments/16/runs/60045d1a5eb74839b4dcfedbaa6d770e
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/16
+
+✅ Completed subperiod: 2013-2020
+
+
+################################################################################
+# ALL SUBPERIODS COMPLETED
+################################################################################
+
+2004-2007: 0/6 models converged
+2007-2013: 0/6 models converged
+2013-2020: 0/6 models converged

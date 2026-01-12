@@ -1,0 +1,31 @@
+EXP_013 DIAGNOSTIC REPORT
+======================================================================
+
+ISSUE: R² = 1.00 in panel model (perfect fit)
+
+ROOT CAUSE ANALYSIS:
+- Dead banks drop out of sample at death
+- We never observe observations AFTER death
+- survived_status is always 1 in observed data
+- Within-bank: FCR variation likely TIME-INVARIANT
+- Bank FE absorbs all FCR variation → perfect fit
+
+SURVIVAL INDICATOR DISTRIBUTION:
+- survived_to_2015: 100.0%
+- survived_to_2020: 100.0%
+- survived_status:  100.0%
+
+FCR WITHIN-BANK VARIATION:
+- Mean std: 0.000431
+- Constant FCR: 99.8% of banks
+
+VIF RESULTS:
+                   Variable      VIF
+           survived_to_2015 2.308390
+                  camel_roa      NaN
+            camel_npl_ratio 1.002514
+  camel_tier1_capital_ratio 1.031326
+        state_ownership_pct 1.003578
+foreign_ownership_total_pct 1.037181
+        rw_page_rank_4q_lag 1.034105
+       rw_out_degree_4q_lag 1.037436

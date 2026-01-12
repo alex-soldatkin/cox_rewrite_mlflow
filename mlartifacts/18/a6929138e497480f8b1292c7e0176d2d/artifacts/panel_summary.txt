@@ -1,0 +1,38 @@
+                             PanelOLS Estimation Summary                             
+=====================================================================================
+Dep. Variable:     family_connection_ratio   R-squared:                        1.0000
+Estimator:                        PanelOLS   R-squared (Between):             -0.1880
+No. Observations:                    23088   R-squared (Within):               1.0000
+Date:                     Sun, Jan 11 2026   R-squared (Overall):             -0.0788
+Time:                             18:48:21   Log-likelihood                 7.269e+05
+Cov. Estimator:                  Clustered                                           
+                                             F-statistic:                   3.876e+28
+Entities:                              803   P-value                           0.0000
+Avg Obs:                            28.752   Distribution:                 F(7,22278)
+Min Obs:                            1.0000                                           
+Max Obs:                            160.00   F-statistic (robust):          8.952e+27
+                                             P-value                           0.0000
+Time periods:                           40   Distribution:                 F(7,22278)
+Avg Obs:                            577.20                                           
+Min Obs:                            333.00                                           
+Max Obs:                            780.00                                           
+                                                                                     
+                                      Parameter Estimates                                      
+===============================================================================================
+                             Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+-----------------------------------------------------------------------------------------------
+survived_status                 0.2904  3.366e-15  8.627e+13     0.0000      0.2904      0.2904
+camel_roa                    5.945e-18  1.756e-17     0.3385     0.7350  -2.848e-17   4.037e-17
+camel_npl_ratio             -1.137e-17  1.357e-18    -8.3795     0.0000  -1.403e-17  -8.713e-18
+camel_tier1_capital_ratio     5.03e-17  1.204e-16     0.4177     0.6761  -1.857e-16   2.863e-16
+state_ownership_pct            -0.0034  2.326e-17 -1.467e+14     0.0000     -0.0034     -0.0034
+foreign_ownership_total_pct    -0.0003   7.93e-17 -4.107e+12     0.0000     -0.0003     -0.0003
+rw_page_rank_4q_lag         -1.977e-17  5.234e-18    -3.7768     0.0002  -3.002e-17  -9.508e-18
+rw_out_degree_4q_lag         5.169e-18  3.867e-18     1.3367     0.1813   -2.41e-18   1.275e-17
+===============================================================================================
+
+F-test for Poolability: 2.247e+29
+P-value: 0.0000
+Distribution: F(802,22278)
+
+Included effects: Entity

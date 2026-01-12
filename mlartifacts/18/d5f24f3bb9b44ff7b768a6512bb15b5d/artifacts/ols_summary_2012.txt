@@ -1,0 +1,34 @@
+                               OLS Regression Results                              
+===================================================================================
+Dep. Variable:     family_connection_ratio   R-squared:                       0.018
+Model:                                 OLS   Adj. R-squared:                  0.008
+Method:                      Least Squares   F-statistic:                     4.984
+Date:                     Sun, 11 Jan 2026   Prob (F-statistic):           1.58e-05
+Time:                             18:52:42   Log-Likelihood:                -429.11
+No. Observations:                      741   AIC:                             874.2
+Df Residuals:                          733   BIC:                             911.1
+Df Model:                                7                                         
+Covariance Type:                       HC3                                         
+===============================================================================================
+                                  coef    std err          z      P>|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------------
+const                           0.4166      0.411      1.013      0.311      -0.390       1.223
+survived_to_cutoff             -0.1434      0.412     -0.348      0.727      -0.950       0.663
+camel_roa                    2.661e-15   1.95e-15      1.364      0.173   -1.16e-15    6.48e-15
+camel_npl_ratio                -0.0026      0.001     -2.064      0.039      -0.005      -0.000
+camel_tier1_capital_ratio      -0.4538      0.356     -1.273      0.203      -1.152       0.245
+state_ownership_pct            -0.0031      0.001     -4.634      0.000      -0.004      -0.002
+foreign_ownership_total_pct -2.872e-05   5.96e-05     -0.482      0.630      -0.000     8.8e-05
+rw_page_rank_4q_lag            -0.0063      0.006     -1.041      0.298      -0.018       0.006
+rw_out_degree_4q_lag            0.0322      0.056      0.572      0.567      -0.078       0.142
+==============================================================================
+Omnibus:                      555.793   Durbin-Watson:                   1.842
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             9405.894
+Skew:                           3.273   Prob(JB):                         0.00
+Kurtosis:                      19.180   Cond. No.                     6.56e+18
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+[2] The smallest eigenvalue is 6.61e-30. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.

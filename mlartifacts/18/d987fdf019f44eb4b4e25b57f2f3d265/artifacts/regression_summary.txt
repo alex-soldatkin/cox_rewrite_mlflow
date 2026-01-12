@@ -1,0 +1,33 @@
+                               OLS Regression Results                              
+===================================================================================
+Dep. Variable:     family_connection_ratio   R-squared:                       0.023
+Model:                                 OLS   Adj. R-squared:                  0.002
+Method:                      Least Squares   F-statistic:                     8.264
+Date:                     Sun, 11 Jan 2026   Prob (F-statistic):           2.77e-09
+Time:                             18:38:35   Log-Likelihood:                -270.54
+No. Observations:                      333   AIC:                             557.1
+Df Residuals:                          325   BIC:                             587.5
+Df Model:                                7                                         
+Covariance Type:                       HC3                                         
+===============================================================================================
+                                  coef    std err          z      P>|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------------
+survived_to_2020                0.4079      0.058      7.021      0.000       0.294       0.522
+camel_roa                      -0.0857      0.078     -1.096      0.273      -0.239       0.068
+camel_npl_ratio                -0.0024      0.001     -2.096      0.036      -0.005      -0.000
+camel_tier1_capital_ratio      -0.4492      0.896     -0.501      0.616      -2.205       1.306
+state_ownership_pct            -0.0036      0.001     -6.135      0.000      -0.005      -0.002
+foreign_ownership_total_pct -7.082e-05      0.000     -0.259      0.795      -0.001       0.000
+rw_page_rank_4q_lag             0.0031      0.003      1.123      0.261      -0.002       0.009
+rw_out_degree_4q_lag            0.0027      0.008      0.326      0.744      -0.014       0.019
+==============================================================================
+Omnibus:                      213.169   Durbin-Watson:                   1.786
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             1810.215
+Skew:                           2.635   Prob(JB):                         0.00
+Kurtosis:                      13.134   Cond. No.                     1.02e+04
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+[2] The condition number is large, 1.02e+04. This might indicate that there are
+strong multicollinearity or other numerical problems.

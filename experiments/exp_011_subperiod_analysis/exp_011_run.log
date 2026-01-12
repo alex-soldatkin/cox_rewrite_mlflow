@@ -1,0 +1,437 @@
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlflow_utils/quarterly_window_loader.py:115: FutureWarning: Constructing PeriodIndex from fields is deprecated. Use PeriodIndex.from_fields instead.
+  df_all['quarter'] = pd.PeriodIndex(
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/lifelines/utils/__init__.py:1033: RuntimeWarning: There exist rows in your DataFrame with start and stop both at time 0:
+
+        >>> df.loc[(df[start_col] == df[stop_col]) & (df[start_col] == 0)]
+
+        These can be safely dropped, which should improve performance.
+
+        >>> df = df.loc[~((df[start_col] == df[stop_col]) & (df[start_col] == 0))]
+  warnings.warn(warning_text, RuntimeWarning)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/lifelines/utils/__init__.py:1033: RuntimeWarning: There exist rows in your DataFrame with start and stop both at time 0:
+
+        >>> df.loc[(df[start_col] == df[stop_col]) & (df[start_col] == 0)]
+
+        These can be safely dropped, which should improve performance.
+
+        >>> df = df.loc[~((df[start_col] == df[stop_col]) & (df[start_col] == 0))]
+  warnings.warn(warning_text, RuntimeWarning)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/lifelines/utils/__init__.py:1033: RuntimeWarning: There exist rows in your DataFrame with start and stop both at time 0:
+
+        >>> df.loc[(df[start_col] == df[stop_col]) & (df[start_col] == 0)]
+
+        These can be safely dropped, which should improve performance.
+
+        >>> df = df.loc[~((df[start_col] == df[stop_col]) & (df[start_col] == 0))]
+  warnings.warn(warning_text, RuntimeWarning)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/lifelines/utils/__init__.py:1033: RuntimeWarning: There exist rows in your DataFrame with start and stop both at time 0:
+
+        >>> df.loc[(df[start_col] == df[stop_col]) & (df[start_col] == 0)]
+
+        These can be safely dropped, which should improve performance.
+
+        >>> df = df.loc[~((df[start_col] == df[stop_col]) & (df[start_col] == 0))]
+  warnings.warn(warning_text, RuntimeWarning)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/lifelines/utils/__init__.py:1033: RuntimeWarning: There exist rows in your DataFrame with start and stop both at time 0:
+
+        >>> df.loc[(df[start_col] == df[stop_col]) & (df[start_col] == 0)]
+
+        These can be safely dropped, which should improve performance.
+
+        >>> df = df.loc[~((df[start_col] == df[stop_col]) & (df[start_col] == 0))]
+  warnings.warn(warning_text, RuntimeWarning)
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/lifelines/utils/__init__.py:1033: RuntimeWarning: There exist rows in your DataFrame with start and stop both at time 0:
+
+        >>> df.loc[(df[start_col] == df[stop_col]) & (df[start_col] == 0)]
+
+        These can be safely dropped, which should improve performance.
+
+        >>> df = df.loc[~((df[start_col] == df[stop_col]) & (df[start_col] == 0))]
+  warnings.warn(warning_text, RuntimeWarning)
+2026/01/11 17:06:08 INFO mlflow.tracking.fluent: Experiment with name 'exp_011_subperiod_2007_2013' does not exist. Creating a new experiment.
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlflow_utils/quarterly_window_loader.py:115: FutureWarning: Constructing PeriodIndex from fields is deprecated. Use PeriodIndex.from_fields instead.
+  df_all['quarter'] = pd.PeriodIndex(
+2026/01/11 17:06:14 INFO mlflow.tracking.fluent: Experiment with name 'exp_011_subperiod_2013_2020' does not exist. Creating a new experiment.
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlflow_utils/quarterly_window_loader.py:115: FutureWarning: Constructing PeriodIndex from fields is deprecated. Use PeriodIndex.from_fields instead.
+  df_all['quarter'] = pd.PeriodIndex(
+
+
+################################################################################
+# RUNNING SUBPERIOD: 2004-2007
+################################################################################
+
+Setting MLflow experiment to: exp_011_subperiod_2004_2007
+
+======================================================================
+LOADING DATA WITH 4-QUARTER LAG
+======================================================================
+
+1. Loading bank population from Neo4j...
+   Found 1904 banks from Neo4j
+
+2. Loading accounting data...
+  Loading from: /Users/alexandersoldatkin/projects/factions-networks-thesis/drafts/accounting_cbr_imputed/final_final_banking_indicators.parquet
+  Loaded 37,756 accounting observations
+  Date range: 2004-02-01 00:00:00 to 2007-12-01 00:00:00
+  Unique banks (regn): 1057
+  ✅ Mapped CAMEL ratios: camel_roa, camel_npl_ratio, camel_tier1_capital_ratio
+   Accounting obs: 37,756
+   Date range: 2004-02-01 00:00:00 to 2007-12-01 00:00:00
+   Quarter range: 2004Q1 to 2007Q4
+
+3. Merging accounting with Neo4j population...
+   Merged: 34,013 observations
+   ✅ Mapped family/foreign features from Neo4j
+
+4. Loading quarterly network snapshots...
+Loading quarterly network snapshots from: /Users/alexandersoldatkin/projects/cos_rewrite_mlflow/rolling_windows/output/quarterly_2010_2020
+  Found 44 quarterly windows
+  Loaded 1,713,557 bank-quarter observations
+  Date range: 2010Q1 to 2020Q4
+  Unique banks (Id): 33,877
+  Unique banks (regn_cbr): 1,060
+
+5. Creating 4-quarter lagged network metrics...
+   Lagged network obs: 1,713,557
+   Lagged quarter range: 2011Q1 to 2021Q4
+
+6. Merging accounting_t with network_{t-lag}...
+   Merged obs: 34,013
+   Network matches: 0 (0.0%)
+
+⚠️  WARNING: Low match rate (0.0%)
+   Possible issues:
+   - Lag too large (not enough historical data)
+   - Id mismatch between accounting and network
+   - Quarterly data missing for some periods
+
+7. Creating event indicators (exp_004 pattern)...
+   Dead banks: 669
+   Events (last obs only): 669 (2.0%)
+
+✅ Data loading complete!
+   Total observations: 34,013
+   Unique banks: 944
+   Date range: 2004-02-01 00:00:00 to 2007-12-01 00:00:00
+   Lag specification: 4 quarters (1.0 years)
+
+============================================================
+SUBPERIOD: 2004-2007
+============================================================
+Observations after time filter: 34013
+Unique banks: 944
+Events: 669
+  crisis_2004: 1,314 obs (3.9%)
+
+Final dataset: 34,011 observations, 942 banks, 667 events
+
+============================================================
+MODEL: M1: Baseline (2004-2007)
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio
+
+❌ Model failed: 'CoxTimeVaryingFitter' object has no attribute 'concordance_index_'
+🏃 View run M1: Baseline (2004-2007) at: http://127.0.0.1:5000/#/experiments/14/runs/689c93912b03431ebd7ca2c20a89555d
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/14
+
+============================================================
+MODEL: M2: Crisis 2004 Indicator
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2004
+
+❌ Model failed: 'CoxTimeVaryingFitter' object has no attribute 'concordance_index_'
+🏃 View run M2: Crisis 2004 Indicator at: http://127.0.0.1:5000/#/experiments/14/runs/aabe268f005e4d04a5471e33d00fb706
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/14
+
+============================================================
+MODEL: M3: Family × Crisis 2004
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2004 + family_connection_ratio_x_crisis_2004
+
+❌ Model failed: 'CoxTimeVaryingFitter' object has no attribute 'concordance_index_'
+🏃 View run M3: Family × Crisis 2004 at: http://127.0.0.1:5000/#/experiments/14/runs/64eb3d7dd370405fa09b17c40ee6d43f
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/14
+
+============================================================
+MODEL: M4: State × Crisis 2004
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2004 + state_ownership_pct_x_crisis_2004
+
+❌ Model failed: 'CoxTimeVaryingFitter' object has no attribute 'concordance_index_'
+🏃 View run M4: State × Crisis 2004 at: http://127.0.0.1:5000/#/experiments/14/runs/36d89a8903234d9c890fc956ce5c34c0
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/14
+
+============================================================
+MODEL: M5: Foreign × Crisis 2004
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2004 + foreign_ownership_total_pct_x_crisis_2004
+
+❌ Model failed: 'CoxTimeVaryingFitter' object has no attribute 'concordance_index_'
+🏃 View run M5: Foreign × Crisis 2004 at: http://127.0.0.1:5000/#/experiments/14/runs/a71e0e9f45b847c08af6bea235ffb8d7
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/14
+
+============================================================
+MODEL: M6: Full Interactions (2004)
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2004 + family_connection_ratio_x_crisis_2004 + state_ownership_pct_x_crisis_2004 + foreign_ownership_total_pct_x_crisis_2004
+
+❌ Model failed: 'CoxTimeVaryingFitter' object has no attribute 'concordance_index_'
+🏃 View run M6: Full Interactions (2004) at: http://127.0.0.1:5000/#/experiments/14/runs/0efda2d8fd6b44669fc298938ab6cf83
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/14
+
+✅ Completed subperiod: 2004-2007
+
+
+################################################################################
+# RUNNING SUBPERIOD: 2007-2013
+################################################################################
+
+Setting MLflow experiment to: exp_011_subperiod_2007_2013
+
+======================================================================
+LOADING DATA WITH 4-QUARTER LAG
+======================================================================
+
+1. Loading bank population from Neo4j...
+   Found 1904 banks from Neo4j
+
+2. Loading accounting data...
+  Loading from: /Users/alexandersoldatkin/projects/factions-networks-thesis/drafts/accounting_cbr_imputed/final_final_banking_indicators.parquet
+  Loaded 80,161 accounting observations
+  Date range: 2007-01-01 00:00:00 to 2013-12-01 00:00:00
+  Unique banks (regn): 1158
+  ✅ Mapped CAMEL ratios: camel_roa, camel_npl_ratio, camel_tier1_capital_ratio
+   Accounting obs: 80,161
+   Date range: 2007-01-01 00:00:00 to 2013-12-01 00:00:00
+   Quarter range: 2007Q1 to 2013Q4
+
+3. Merging accounting with Neo4j population...
+   Merged: 70,218 observations
+   ✅ Mapped family/foreign features from Neo4j
+
+4. Loading quarterly network snapshots...
+Loading quarterly network snapshots from: /Users/alexandersoldatkin/projects/cos_rewrite_mlflow/rolling_windows/output/quarterly_2010_2020
+  Found 44 quarterly windows
+  Loaded 1,713,557 bank-quarter observations
+  Date range: 2010Q1 to 2020Q4
+  Unique banks (Id): 33,877
+  Unique banks (regn_cbr): 1,060
+
+5. Creating 4-quarter lagged network metrics...
+   Lagged network obs: 1,713,557
+   Lagged quarter range: 2011Q1 to 2021Q4
+
+6. Merging accounting_t with network_{t-lag}...
+   Merged obs: 70,290
+   Network matches: 29,829 (42.4%)
+
+⚠️  WARNING: Low match rate (42.4%)
+   Possible issues:
+   - Lag too large (not enough historical data)
+   - Id mismatch between accounting and network
+   - Quarterly data missing for some periods
+
+7. Creating event indicators (exp_004 pattern)...
+   Dead banks: 688
+   Events (last obs only): 688 (1.0%)
+
+✅ Data loading complete!
+   Total observations: 70,290
+   Unique banks: 1,001
+   Date range: 2007-01-01 00:00:00 to 2013-12-01 00:00:00
+   Lag specification: 4 quarters (1.0 years)
+
+============================================================
+SUBPERIOD: 2007-2013
+============================================================
+Observations after time filter: 70290
+Unique banks: 1001
+Events: 688
+  crisis_2008: 12,839 obs (18.3%)
+
+Final dataset: 70,286 observations, 997 banks, 685 events
+
+============================================================
+MODEL: M1: Baseline (2007-2013)
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio
+
+❌ Model failed: Length of values (9058) does not match length of index (0)
+🏃 View run M1: Baseline (2007-2013) at: http://127.0.0.1:5000/#/experiments/15/runs/cdce2a70f8da470795cb4e0d4a0a6aa8
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/15
+
+============================================================
+MODEL: M2: Crisis 2008 Indicator
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2008
+
+❌ Model failed: Length of values (9058) does not match length of index (0)
+🏃 View run M2: Crisis 2008 Indicator at: http://127.0.0.1:5000/#/experiments/15/runs/09d1b10e90554608a22288e2d96f1158
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/15
+
+============================================================
+MODEL: M3: Family × Crisis 2008
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2008 + family_connection_ratio_x_crisis_2008
+
+❌ Model failed: Length of values (9058) does not match length of index (0)
+🏃 View run M3: Family × Crisis 2008 at: http://127.0.0.1:5000/#/experiments/15/runs/349699fca6ef4ca0b39d665f8b6b6934
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/15
+
+============================================================
+MODEL: M4: State × Crisis 2008
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2008 + state_ownership_pct_x_crisis_2008
+
+❌ Model failed: Length of values (9058) does not match length of index (0)
+🏃 View run M4: State × Crisis 2008 at: http://127.0.0.1:5000/#/experiments/15/runs/a15b42686df84493a9f748a8e06baf87
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/15
+
+============================================================
+MODEL: M5: Foreign × Crisis 2008
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2008 + foreign_ownership_total_pct_x_crisis_2008
+
+❌ Model failed: Length of values (9058) does not match length of index (0)
+🏃 View run M5: Foreign × Crisis 2008 at: http://127.0.0.1:5000/#/experiments/15/runs/dde294fa1e9c4e3d831b3945b598d781
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/15
+
+============================================================
+MODEL: M6: Full Interactions (2008)
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2008 + family_connection_ratio_x_crisis_2008 + state_ownership_pct_x_crisis_2008 + foreign_ownership_total_pct_x_crisis_2008
+
+❌ Model failed: Length of values (9058) does not match length of index (0)
+🏃 View run M6: Full Interactions (2008) at: http://127.0.0.1:5000/#/experiments/15/runs/ffce52d6499046a0b2be6cac3dd60056
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/15
+
+✅ Completed subperiod: 2007-2013
+
+
+################################################################################
+# RUNNING SUBPERIOD: 2013-2020
+################################################################################
+
+Setting MLflow experiment to: exp_011_subperiod_2013_2020
+
+======================================================================
+LOADING DATA WITH 4-QUARTER LAG
+======================================================================
+
+1. Loading bank population from Neo4j...
+   Found 1904 banks from Neo4j
+
+2. Loading accounting data...
+  Loading from: /Users/alexandersoldatkin/projects/factions-networks-thesis/drafts/accounting_cbr_imputed/final_final_banking_indicators.parquet
+  Loaded 62,336 accounting observations
+  Date range: 2013-01-01 00:00:00 to 2020-12-01 00:00:00
+  Unique banks (regn): 976
+  ✅ Mapped CAMEL ratios: camel_roa, camel_npl_ratio, camel_tier1_capital_ratio
+   Accounting obs: 62,336
+   Date range: 2013-01-01 00:00:00 to 2020-12-01 00:00:00
+   Quarter range: 2013Q1 to 2020Q4
+
+3. Merging accounting with Neo4j population...
+   Merged: 54,100 observations
+   ✅ Mapped family/foreign features from Neo4j
+
+4. Loading quarterly network snapshots...
+Loading quarterly network snapshots from: /Users/alexandersoldatkin/projects/cos_rewrite_mlflow/rolling_windows/output/quarterly_2010_2020
+  Found 44 quarterly windows
+  Loaded 1,713,557 bank-quarter observations
+  Date range: 2010Q1 to 2020Q4
+  Unique banks (Id): 33,877
+  Unique banks (regn_cbr): 1,060
+
+5. Creating 4-quarter lagged network metrics...
+   Lagged network obs: 1,713,557
+   Lagged quarter range: 2011Q1 to 2021Q4
+
+6. Merging accounting_t with network_{t-lag}...
+   Merged obs: 54,386
+   Network matches: 54,277 (99.8%)
+
+7. Creating event indicators (exp_004 pattern)...
+   Dead banks: 508
+   Events (last obs only): 508 (0.9%)
+
+✅ Data loading complete!
+   Total observations: 54,386
+   Unique banks: 829
+   Date range: 2013-01-01 00:00:00 to 2020-12-01 00:00:00
+   Lag specification: 4 quarters (1.0 years)
+
+============================================================
+SUBPERIOD: 2013-2020
+============================================================
+Observations after time filter: 54386
+Unique banks: 829
+Events: 508
+  crisis_2014: 15,617 obs (28.7%)
+
+Final dataset: 54,386 observations, 829 banks, 508 events
+
+============================================================
+MODEL: M1: Baseline (2013-2020)
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio
+
+❌ Model failed: Length of values (16978) does not match length of index (0)
+🏃 View run M1: Baseline (2013-2020) at: http://127.0.0.1:5000/#/experiments/16/runs/bb28e4741af34cf7af0aad7fec27726e
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/16
+
+============================================================
+MODEL: M2: Crisis 2014 Indicator
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2014
+
+❌ Model failed: Length of values (16978) does not match length of index (0)
+🏃 View run M2: Crisis 2014 Indicator at: http://127.0.0.1:5000/#/experiments/16/runs/5c55a9ced94a4d80bd9862bdfffd464a
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/16
+
+============================================================
+MODEL: M3: Family × Crisis 2014
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2014 + family_connection_ratio_x_crisis_2014
+
+❌ Model failed: Length of values (16978) does not match length of index (0)
+🏃 View run M3: Family × Crisis 2014 at: http://127.0.0.1:5000/#/experiments/16/runs/612e097863814a74ba189227f5233738
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/16
+
+============================================================
+MODEL: M4: State × Crisis 2014
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2014 + state_ownership_pct_x_crisis_2014
+
+❌ Model failed: Length of values (16978) does not match length of index (0)
+🏃 View run M4: State × Crisis 2014 at: http://127.0.0.1:5000/#/experiments/16/runs/6087a01d27a14d48af6fca02c779d185
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/16
+
+============================================================
+MODEL: M5: Foreign × Crisis 2014
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2014 + foreign_ownership_total_pct_x_crisis_2014
+
+❌ Model failed: Length of values (16978) does not match length of index (0)
+🏃 View run M5: Foreign × Crisis 2014 at: http://127.0.0.1:5000/#/experiments/16/runs/1d80467addaf469db922053dd2b671dd
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/16
+
+============================================================
+MODEL: M6: Full Interactions (2014)
+============================================================
+Formula: family_connection_ratio + family_ownership_pct + state_ownership_pct + foreign_ownership_total_pct + rw_page_rank_4q_lag + rw_out_degree_4q_lag + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + crisis_2014 + family_connection_ratio_x_crisis_2014 + state_ownership_pct_x_crisis_2014 + foreign_ownership_total_pct_x_crisis_2014
+
+❌ Model failed: Length of values (16978) does not match length of index (0)
+🏃 View run M6: Full Interactions (2014) at: http://127.0.0.1:5000/#/experiments/16/runs/c0b4521592044c6bb376b86882c232b5
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/16
+
+✅ Completed subperiod: 2013-2020
+
+
+################################################################################
+# ALL SUBPERIODS COMPLETED
+################################################################################
+
+2004-2007: 0/6 models converged
+2007-2013: 0/6 models converged
+2013-2020: 0/6 models converged

@@ -1,0 +1,14 @@
+variable,Stargazer_Output_HR
+family_connection_ratio,0.982*** (0.004)
+family_ownership_pct,0.994* (0.002)
+state_ownership_pct,0.990* (0.005)
+foreign_ownership_total_pct,0.998 (0.009)
+camel_npl_ratio,1.019*** (0.004)
+camel_tier1_capital_ratio,1.019*** (0.004)
+Observations,33966
+Subjects,944
+Events,669
+Log Likelihood,-4122.15
+AIC Partial,8256.31
+-log2(p) LLR,61.38
+C-index,0.654
