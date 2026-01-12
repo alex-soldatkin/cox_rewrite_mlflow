@@ -1,0 +1,1218 @@
+{
+    "ExpressCheck": {
+        "TotalScore": "Attention",
+        "FactorCounts": {
+            "PositiveCount": 1,
+            "AttentionCount": 3,
+            "NegativeCount": 0
+        }
+    },
+    "Info": {
+        "SameNameKey": "sizova-galina-timofeevna",
+        "EntrepreneurRevenue": {
+            "CurrentYear": 2021,
+            "AvailableYears": [
+                2012,
+                2013,
+                2014,
+                2015,
+                2016,
+                2017,
+                2018,
+                2019,
+                2020,
+                2021
+            ],
+            "AnnualRevenue": 0.0,
+            "MonthlyRevenue": 0.0
+        },
+        "BusinessCity": {
+            "Name": "Казань",
+            "Type": "г"
+        },
+        "ShouldIndex": true
+    },
+    "Link": "inn/165700256600",
+    "Entity": {
+        "Type": "Person",
+        "Link": "inn/165700256600",
+        "Identifier": 14974070,
+        "FirstName": "ГАЛИНА",
+        "LastName": "СИЗОВА",
+        "MiddleName": "ТИМОФЕЕВНА",
+        "Inn": "165700256600",
+        "Name": "СИЗОВА ГАЛИНА ТИМОФЕЕВНА",
+        "BirthDate": "1954-08-21T00:00:00",
+        "BirthPlace": "г.Казань",
+        "ActivityRegions": [
+            {
+                "Code": "16",
+                "Name": "РЕСПУБЛИКА ТАТАРСТАН"
+            }
+        ],
+        "AsEntrepreneurs": {
+            "TotalItems": 0,
+            "Items": []
+        },
+        "AsManagers": {
+            "TotalItems": 20,
+            "Items": [
+                {
+                    "Id": "50c645bd-f7ab-436e-985a-a6cfbee003dc",
+                    "Date": "2013-02-07T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "be6124e2-e9ad-497e-8505-041efb8d241e",
+                        "Type": "Company",
+                        "Name": "ФОНД \"РЕСУРСЫ, ТЕХНОЛОГИИ, ИДЕИ\"",
+                        "Inn": "1658040808",
+                        "Kpp": "165801001",
+                        "Ogrn": "1021600000322",
+                        "Link": "ogrn/1021600000322",
+                        "Address": "420095,  Республика Татарстан (Татарстан), Г. КАЗАНЬ, УЛ. ВОСХОД, Д.7",
+                        "Status": "Terminated"
+                    },
+                    "Position": [
+                        {
+                            "PositionType": "02",
+                            "PositionTypeName": "РУКОВОДИТЕЛЬ ЮРИДИЧЕСКОГО ЛИЦА",
+                            "PositionName": "ПРЕДСЕДАТЕЛЬ ЛТКВИДАЦИОННОЙ КОМИССИИ",
+                            "Date": "2013-02-07T00:00:00",
+                            "IsActual": true
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "DisqualificationInfo": []
+                },
+                {
+                    "Id": "8e43b670-e7bc-4c11-acf1-2891634a9fb2",
+                    "Date": "2011-07-04T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "335d4f9d-b301-431d-960b-d169823c4fb9",
+                        "Type": "Company",
+                        "Name": "ОИФ РТ",
+                        "Inn": "1657033170",
+                        "Kpp": "165701001",
+                        "Ogrn": "1021600001917",
+                        "Link": "ogrn/1021600001917",
+                        "Address": "420095,  Республика Татарстан (Татарстан), Г. КАЗАНЬ, УЛ. ВОСХОД, Д.7",
+                        "ActivityType": "94.99 Деятельность прочих общественных организаций и некоммерческих организаций, кроме религиозных и политических организаций",
+                        "Status": "Terminated"
+                    },
+                    "Position": [
+                        {
+                            "PositionType": "02",
+                            "PositionTypeName": "РУКОВОДИТЕЛЬ ЮРИДИЧЕСКОГО ЛИЦА",
+                            "PositionName": "ПРЕДСЕДАТЕЛЬ",
+                            "Date": "2011-07-04T00:00:00",
+                            "IsActual": true
+                        },
+                        {
+                            "PositionName": "РУКОВОДИТЕЛЬ",
+                            "IsActual": false
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "DisqualificationInfo": []
+                },
+                {
+                    "Id": "28df4904-dbee-411f-b070-b0038ea64f40",
+                    "Date": "2011-06-16T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "f18409f1-3754-4327-8d15-f362add64fad",
+                        "Type": "Company",
+                        "Name": "ООО \"ИННОВАЦИЯ\"",
+                        "Inn": "1658085326",
+                        "Kpp": "165801001",
+                        "Ogrn": "1071690021325",
+                        "Link": "ogrn/1071690021325",
+                        "Address": "420091, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА ХИМИКОВ, 45, -, -",
+                        "ActivityType": "64.1 ДЕНЕЖНОЕ ПОСРЕДНИЧЕСТВО",
+                        "Status": "Terminated"
+                    },
+                    "Position": [
+                        {
+                            "PositionType": "02",
+                            "PositionTypeName": "РУКОВОДИТЕЛЬ ЮРИДИЧЕСКОГО ЛИЦА",
+                            "PositionName": "ДИРЕКТОР",
+                            "Date": "2011-06-16T00:00:00",
+                            "IsActual": true
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "DisqualificationInfo": []
+                },
+                {
+                    "Id": "c5faaaa4-9b6d-4856-8d5e-a2315495cd3b",
+                    "Date": "2009-12-14T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "1f583c4d-deb4-4abf-ad0a-e819e07b2d6e",
+                        "Type": "Company",
+                        "Name": "ООО  \"ФОНД СОДЕЙСТВИЯ ИННОВАЦИЯМ\"",
+                        "Inn": "1658060970",
+                        "Kpp": "165801001",
+                        "Ogrn": "1051633002915",
+                        "Link": "ogrn/1051633002915",
+                        "Address": "420095, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА ВОСХОД, 7",
+                        "ActivityType": "65.1 ДЕНЕЖНОЕ ПОСРЕДНИЧЕСТВО",
+                        "Status": "Terminated"
+                    },
+                    "Position": [
+                        {
+                            "PositionType": "05",
+                            "PositionTypeName": "ЛИКВИДАТОР",
+                            "PositionName": "ЛИКВИДАТОР",
+                            "Date": "2009-12-14T00:00:00",
+                            "IsActual": true
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "DisqualificationInfo": []
+                },
+                {
+                    "Id": "ee2d0089-a218-4f2e-a0fb-87b768fadf5a",
+                    "Date": "2008-10-02T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "cc601b89-4442-4dfd-96bb-bab951f8b2bf",
+                        "Type": "Company",
+                        "Name": "ООО \"ДАМИАН\"",
+                        "Inn": "1658072180",
+                        "Kpp": "165801001",
+                        "Ogrn": "1061658029201",
+                        "Link": "ogrn/1061658029201",
+                        "Address": "420095, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА ВОСХОД, 7",
+                        "ActivityType": "70.2 СДАЧА ВНАЕМ СОБСТВЕННОГО НЕДВИЖИМОГО ИМУЩЕСТВА",
+                        "Status": "Terminated"
+                    },
+                    "Position": [
+                        {
+                            "PositionType": "05",
+                            "PositionTypeName": "ЛИКВИДАТОР",
+                            "PositionName": "ЛИКВИДАТОР",
+                            "Date": "2008-10-02T00:00:00",
+                            "IsActual": true
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "DisqualificationInfo": []
+                },
+                {
+                    "Id": "77745a7b-729d-43c0-8366-f334aef77cab",
+                    "Date": "2008-08-29T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "aab07e49-d8a3-4e8b-b073-8ecfd730e46d",
+                        "Type": "Company",
+                        "Name": "ООО \"ФОНД РАЗВИТИЯ ТЕХНОЛОГИЙ\"",
+                        "Inn": "1658062223",
+                        "Kpp": "165801001",
+                        "Ogrn": "1051633009482",
+                        "Link": "ogrn/1051633009482",
+                        "Address": "420095, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА ВОСХОД, 7",
+                        "ActivityType": "65.1 ДЕНЕЖНОЕ ПОСРЕДНИЧЕСТВО",
+                        "Status": "Terminated"
+                    },
+                    "Position": [
+                        {
+                            "PositionType": "04",
+                            "PositionTypeName": "РУКОВОДИТЕЛЬ ЛИКВИДАЦИОННОЙ КОМИССИИ",
+                            "PositionName": "ЛИКВИДАТОР",
+                            "Date": "2008-08-29T00:00:00",
+                            "IsActual": true
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "DisqualificationInfo": []
+                },
+                {
+                    "Id": "c7915480-fe58-49db-bfab-ca8fb4323fcd",
+                    "Date": "2008-08-29T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "c0f73f22-66ff-487f-a12b-af609f56c2bf",
+                        "Type": "Company",
+                        "Name": "ООО  \"ФОНД ЭКОНОМИЧЕСКОГО РАЗВИТИЯ\"",
+                        "Inn": "1658063996",
+                        "Kpp": "165801001",
+                        "Ogrn": "1051633021285",
+                        "Link": "ogrn/1051633021285",
+                        "Address": "420095, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА ВОСХОД, 7",
+                        "ActivityType": "70.2 СДАЧА ВНАЕМ СОБСТВЕННОГО НЕДВИЖИМОГО ИМУЩЕСТВА",
+                        "Status": "Terminated"
+                    },
+                    "Position": [
+                        {
+                            "PositionType": "04",
+                            "PositionTypeName": "РУКОВОДИТЕЛЬ ЛИКВИДАЦИОННОЙ КОМИССИИ",
+                            "PositionName": "ЛИКВИДАТОР",
+                            "Date": "2008-08-29T00:00:00",
+                            "IsActual": true
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "DisqualificationInfo": []
+                },
+                {
+                    "Id": "4b58b89c-0ff7-43b1-a148-102503717a8d",
+                    "Date": "2008-08-21T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "553e8183-a2b0-4547-99bb-5564a9fbabb9",
+                        "Type": "Company",
+                        "Name": "ООО \"ДОМ НЕДВИЖИМОСТИ ЦМ\"",
+                        "Inn": "1658072990",
+                        "Kpp": "165801001",
+                        "Ogrn": "1061658035603",
+                        "Link": "ogrn/1061658035603",
+                        "Address": "420095, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА ВОСХОД, 7",
+                        "ActivityType": "70.2 СДАЧА ВНАЕМ СОБСТВЕННОГО НЕДВИЖИМОГО ИМУЩЕСТВА",
+                        "Status": "Terminated"
+                    },
+                    "Position": [
+                        {
+                            "PositionType": "04",
+                            "PositionTypeName": "РУКОВОДИТЕЛЬ ЛИКВИДАЦИОННОЙ КОМИССИИ",
+                            "PositionName": "ЛИКВИДАТОР",
+                            "Date": "2008-08-21T00:00:00",
+                            "IsActual": true
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "DisqualificationInfo": []
+                },
+                {
+                    "Id": "781fe97f-88bd-4d4b-8d35-4f5d9627614d",
+                    "Date": "2008-08-21T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "5fd157d2-d481-4765-bbcd-9260981d777c",
+                        "Type": "Company",
+                        "Name": "ООО \"ФОНД ЭКОНОМИЧЕСКОГО СОДЕЙСТВИЯ\"",
+                        "Inn": "1658064005",
+                        "Kpp": "165801001",
+                        "Ogrn": "1051633021330",
+                        "Link": "ogrn/1051633021330",
+                        "Address": "420095, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА ВОСХОД, 7",
+                        "ActivityType": "65.1 ДЕНЕЖНОЕ ПОСРЕДНИЧЕСТВО",
+                        "Status": "Terminated"
+                    },
+                    "Position": [
+                        {
+                            "PositionType": "04",
+                            "PositionTypeName": "РУКОВОДИТЕЛЬ ЛИКВИДАЦИОННОЙ КОМИССИИ",
+                            "PositionName": "ЛИКВИДАТОР",
+                            "Date": "2008-08-21T00:00:00",
+                            "IsActual": true
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "DisqualificationInfo": []
+                },
+                {
+                    "Id": "8d3e8fe7-424d-45c5-a9aa-796ca22169ce",
+                    "Date": "2007-10-10T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "50dca527-f7de-447b-b37e-686e0836551d",
+                        "Type": "Company",
+                        "Name": "ООО  \"ФОНД ИННОВАЦИОННОГО СОДЕЙСТВИЯ\"",
+                        "Inn": "1658062142",
+                        "Kpp": "165801001",
+                        "Ogrn": "1051633009460",
+                        "Link": "ogrn/1051633009460",
+                        "Address": "420095, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА ВОСХОД, 7",
+                        "ActivityType": "65.1 ДЕНЕЖНОЕ ПОСРЕДНИЧЕСТВО",
+                        "Status": "Terminated"
+                    },
+                    "Position": [
+                        {
+                            "PositionType": "05",
+                            "PositionTypeName": "ЛИКВИДАТОР",
+                            "PositionName": "ЛИКВИДАТОР",
+                            "Date": "2007-10-10T00:00:00",
+                            "IsActual": true
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "DisqualificationInfo": []
+                }
+            ]
+        },
+        "AsShareholders": {
+            "TotalItems": 192,
+            "Items": [
+                {
+                    "Id": "510a1624-8ef0-4c75-9443-43f205661990",
+                    "Date": "2015-08-26T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "0d2acf4f-f5a9-44d4-8fcf-dc139f33dabd",
+                        "Type": "Company",
+                        "Name": "ООО \"ИДЕИ\"",
+                        "Inn": "1658085245",
+                        "Kpp": "165801001",
+                        "Ogrn": "1071690020896",
+                        "Link": "ogrn/1071690020896",
+                        "Address": "420091,  РЕСПУБЛИКА ТАТАРСТАН (ТАТАРСТАН), Г. КАЗАНЬ, УЛ. ХИМИКОВ, Д.45",
+                        "ActivityType": "64.1 ДЕНЕЖНОЕ ПОСРЕДНИЧЕСТВО",
+                        "Status": "Terminated"
+                    },
+                    "Share": [
+                        {
+                            "IsActual": true,
+                            "Date": "2015-08-26T00:00:00",
+                            "FaceValue": 3334.0,
+                            "Size": 1.45
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "Pledge": []
+                },
+                {
+                    "Id": "76d57b95-ba4f-4af0-bd75-f7367e2bac3e",
+                    "Date": "2013-11-08T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "8dd4b6d4-5cb8-45d3-8f79-1d52f1797699",
+                        "Type": "Company",
+                        "Name": "ООО \"МОЙ ЗАЙМ-У\"",
+                        "Inn": "1658151018",
+                        "Kpp": "165801001",
+                        "Ogrn": "1131690077430",
+                        "Link": "ogrn/1131690077430",
+                        "Address": "420085, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА БЕЛОМОРСКАЯ, ДОМ 71А, ОФИС 4",
+                        "ActivityType": "64.99 ПРЕДОСТАВЛЕНИЕ ПРОЧИХ ФИНАНСОВЫХ УСЛУГ, КРОМЕ УСЛУГ ПО СТРАХОВАНИЮ И ПЕНСИОННОМУ ОБЕСПЕЧЕНИЮ, НЕ ВКЛЮЧЕННЫХ В ДРУГИЕ ГРУППИРОВКИ",
+                        "Status": "Terminated"
+                    },
+                    "Share": [
+                        {
+                            "IsActual": true,
+                            "Date": "2013-11-08T00:00:00",
+                            "FaceValue": 100.0,
+                            "Size": 1.0
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "Pledge": []
+                },
+                {
+                    "Id": "c8b30fdd-acf2-4b70-a644-d4ba9e3c33db",
+                    "Date": "2013-11-08T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "16f08935-5179-442a-aa29-568981ba5a6b",
+                        "Type": "Company",
+                        "Name": "ООО \"МОЙ ЗАЙМ-Ю\"",
+                        "Inn": "1658151096",
+                        "Kpp": "165801001",
+                        "Ogrn": "1131690077705",
+                        "Link": "ogrn/1131690077705",
+                        "Address": "420085, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА БЕЛОМОРСКАЯ, ДОМ 71А, ОФИС 7",
+                        "ActivityType": "64.99 ПРЕДОСТАВЛЕНИЕ ПРОЧИХ ФИНАНСОВЫХ УСЛУГ, КРОМЕ УСЛУГ ПО СТРАХОВАНИЮ И ПЕНСИОННОМУ ОБЕСПЕЧЕНИЮ, НЕ ВКЛЮЧЕННЫХ В ДРУГИЕ ГРУППИРОВКИ",
+                        "Status": "Terminated"
+                    },
+                    "Share": [
+                        {
+                            "IsActual": true,
+                            "Date": "2013-11-08T00:00:00",
+                            "FaceValue": 100.0,
+                            "Size": 1.0
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "Pledge": []
+                },
+                {
+                    "Id": "81a8bc08-0ec7-44dc-a9d5-2d64021eb6f6",
+                    "Date": "2013-11-08T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "efbcf077-e0ee-45f0-b35f-5a5923dd7e1a",
+                        "Type": "Company",
+                        "Name": "ООО \"МОЙ ЗАЙМ-З\"",
+                        "Inn": "1658150991",
+                        "Kpp": "165801001",
+                        "Ogrn": "1131690077397",
+                        "Link": "ogrn/1131690077397",
+                        "Address": "420085, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА БЕЛОМОРСКАЯ, ДОМ 71А, ОФИС 2",
+                        "ActivityType": "64.99 ПРЕДОСТАВЛЕНИЕ ПРОЧИХ ФИНАНСОВЫХ УСЛУГ, КРОМЕ УСЛУГ ПО СТРАХОВАНИЮ И ПЕНСИОННОМУ ОБЕСПЕЧЕНИЮ, НЕ ВКЛЮЧЕННЫХ В ДРУГИЕ ГРУППИРОВКИ",
+                        "Status": "Terminated"
+                    },
+                    "Share": [
+                        {
+                            "IsActual": true,
+                            "Date": "2013-11-08T00:00:00",
+                            "FaceValue": 100.0,
+                            "Size": 1.0
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "Pledge": []
+                },
+                {
+                    "Id": "73d9dfca-9926-4a00-b9ec-ae3a623f7c3e",
+                    "Date": "2013-11-08T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "bd964403-3140-4446-919e-64383b56aa8f",
+                        "Type": "Company",
+                        "Name": "ООО \"МОЙ ЗАЙМ-С\"",
+                        "Inn": "1658151000",
+                        "Kpp": "165801001",
+                        "Ogrn": "1131690077408",
+                        "Link": "ogrn/1131690077408",
+                        "Address": "420085, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА БЕЛОМОРСКАЯ, ДОМ 71А, ОФИС 8",
+                        "ActivityType": "64.99 ПРЕДОСТАВЛЕНИЕ ПРОЧИХ ФИНАНСОВЫХ УСЛУГ, КРОМЕ УСЛУГ ПО СТРАХОВАНИЮ И ПЕНСИОННОМУ ОБЕСПЕЧЕНИЮ, НЕ ВКЛЮЧЕННЫХ В ДРУГИЕ ГРУППИРОВКИ",
+                        "Status": "Terminated"
+                    },
+                    "Share": [
+                        {
+                            "IsActual": true,
+                            "Date": "2013-11-08T00:00:00",
+                            "FaceValue": 100.0,
+                            "Size": 1.0
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "Pledge": []
+                },
+                {
+                    "Id": "37421db6-3b4a-4aa1-a7ca-305f2d10f014",
+                    "Date": "2013-11-08T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "68e47160-6b45-43e9-85e7-71b8872b82ec",
+                        "Type": "Company",
+                        "Name": "ООО \"МОЙ ЗАЙМ-П\"",
+                        "Inn": "1658151106",
+                        "Kpp": "165801001",
+                        "Ogrn": "1131690077716",
+                        "Link": "ogrn/1131690077716",
+                        "Address": "420085, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА БЕЛОМОРСКАЯ, ДОМ 71А, ОФИС 3",
+                        "ActivityType": "64.99 ПРЕДОСТАВЛЕНИЕ ПРОЧИХ ФИНАНСОВЫХ УСЛУГ, КРОМЕ УСЛУГ ПО СТРАХОВАНИЮ И ПЕНСИОННОМУ ОБЕСПЕЧЕНИЮ, НЕ ВКЛЮЧЕННЫХ В ДРУГИЕ ГРУППИРОВКИ",
+                        "Status": "Terminated"
+                    },
+                    "Share": [
+                        {
+                            "IsActual": true,
+                            "Date": "2013-11-08T00:00:00",
+                            "FaceValue": 100.0,
+                            "Size": 1.0
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "Pledge": []
+                },
+                {
+                    "Id": "d47a3fe0-9e43-4069-b9a3-30c726f8f250",
+                    "Date": "2013-11-08T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "d1ebfa7a-680c-4520-82c6-86cfc516987b",
+                        "Type": "Company",
+                        "Name": "ООО \"МОЙ ЗАЙМ-В\"",
+                        "Inn": "1658151032",
+                        "Kpp": "165801001",
+                        "Ogrn": "1131690077496",
+                        "Link": "ogrn/1131690077496",
+                        "Address": "420085, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА БЕЛОМОРСКАЯ, ДОМ 71А, ОФИС 6",
+                        "ActivityType": "64.99 ПРЕДОСТАВЛЕНИЕ ПРОЧИХ ФИНАНСОВЫХ УСЛУГ, КРОМЕ УСЛУГ ПО СТРАХОВАНИЮ И ПЕНСИОННОМУ ОБЕСПЕЧЕНИЮ, НЕ ВКЛЮЧЕННЫХ В ДРУГИЕ ГРУППИРОВКИ",
+                        "Status": "Terminated"
+                    },
+                    "Share": [
+                        {
+                            "IsActual": true,
+                            "Date": "2013-11-08T00:00:00",
+                            "FaceValue": 100.0,
+                            "Size": 1.0
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "Pledge": []
+                },
+                {
+                    "Id": "423a8ce4-d3de-4e2e-9f46-ff493085d164",
+                    "Date": "2013-11-08T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "3443d90d-7a1e-451d-b587-8e95991b5411",
+                        "Type": "Company",
+                        "Name": "ООО \"МОЙ ЗАЙМ-Ц\"",
+                        "Inn": "1658151071",
+                        "Kpp": "165801001",
+                        "Ogrn": "1131690077595",
+                        "Link": "ogrn/1131690077595",
+                        "Address": "420085, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА БЕЛОМОРСКАЯ, ДОМ 71А, ОФИС 1",
+                        "ActivityType": "64.99 ПРЕДОСТАВЛЕНИЕ ПРОЧИХ ФИНАНСОВЫХ УСЛУГ, КРОМЕ УСЛУГ ПО СТРАХОВАНИЮ И ПЕНСИОННОМУ ОБЕСПЕЧЕНИЮ, НЕ ВКЛЮЧЕННЫХ В ДРУГИЕ ГРУППИРОВКИ",
+                        "Status": "Terminated"
+                    },
+                    "Share": [
+                        {
+                            "IsActual": true,
+                            "Date": "2013-11-08T00:00:00",
+                            "FaceValue": 100.0,
+                            "Size": 1.0
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "Pledge": []
+                },
+                {
+                    "Id": "c48abb96-5330-4a95-b675-59a9204633e9",
+                    "Date": "2013-11-08T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "5a7e1d6a-da24-4076-a7f2-e1cd748100f9",
+                        "Type": "Company",
+                        "Name": "ООО \"МОЙ ЗАЙМ-К\"",
+                        "Inn": "1658151057",
+                        "Kpp": "165801001",
+                        "Ogrn": "1131690077573",
+                        "Link": "ogrn/1131690077573",
+                        "Address": "420085, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА БЕЛОМОРСКАЯ, ДОМ 71А, ОФИС 5",
+                        "ActivityType": "64.99 ПРЕДОСТАВЛЕНИЕ ПРОЧИХ ФИНАНСОВЫХ УСЛУГ, КРОМЕ УСЛУГ ПО СТРАХОВАНИЮ И ПЕНСИОННОМУ ОБЕСПЕЧЕНИЮ, НЕ ВКЛЮЧЕННЫХ В ДРУГИЕ ГРУППИРОВКИ",
+                        "Status": "Terminated"
+                    },
+                    "Share": [
+                        {
+                            "IsActual": true,
+                            "Date": "2013-11-08T00:00:00",
+                            "FaceValue": 100.0,
+                            "Size": 1.0
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "Pledge": []
+                },
+                {
+                    "Id": "626247a2-3600-4983-ab30-74b22f3082ed",
+                    "Date": "2013-10-28T00:00:00",
+                    "IsActual": true,
+                    "Entity": {
+                        "Id": "cfe91c4c-deb6-46e3-9044-0e1daa829658",
+                        "Type": "Company",
+                        "Name": "ООО \"УК \"МОЙ ЗАЙМ\"",
+                        "Inn": "1655279323",
+                        "Kpp": "165501001",
+                        "Ogrn": "1131690073745",
+                        "Link": "ogrn/1131690073745",
+                        "Address": "420111, РЕСПУБЛИКА ТАТАРСТАН, ГОРОД КАЗАНЬ, УЛИЦА ПРАВО-БУЛАЧНАЯ, ДОМ 13, ОФИС 319",
+                        "ActivityType": "64.99 ПРЕДОСТАВЛЕНИЕ ПРОЧИХ ФИНАНСОВЫХ УСЛУГ, КРОМЕ УСЛУГ ПО СТРАХОВАНИЮ И ПЕНСИОННОМУ ОБЕСПЕЧЕНИЮ, НЕ ВКЛЮЧЕННЫХ В ДРУГИЕ ГРУППИРОВКИ",
+                        "Status": "Terminated"
+                    },
+                    "Share": [
+                        {
+                            "IsActual": true,
+                            "Date": "2013-10-28T00:00:00",
+                            "FaceValue": 2500.0,
+                            "Size": 25.0
+                        }
+                    ],
+                    "UnreliabilityInfo": [],
+                    "Pledge": []
+                }
+            ]
+        },
+        "Id": "5b62be46-e0ae-479b-8f14-bf3efa2c66c8",
+        "InfoCounters": {
+            "Status": -1,
+            "AuthorisedCapital": -1,
+            "Name": -1,
+            "ActivityTypeInfo": -1,
+            "Address": -1,
+            "ManagementCompany": -1,
+            "AsManagementCompany": -1,
+            "Shareholder": -1,
+            "AsShareholder": 192,
+            "Manager": -1,
+            "AsManager": 20,
+            "Branch": -1,
+            "License": -1,
+            "Predecessor": -1,
+            "Successor": -1,
+            "RepresentativeOffice": -1,
+            "Registrar": -1,
+            "AsRegistrar": -1,
+            "ReorganizationInfo": -1,
+            "LlcShare": -1,
+            "AsEntrepreneur": -1,
+            "Bailiffs": -1,
+            "Arbitr": 3,
+            "FedresursMessages": -1,
+            "Trademark": -1,
+            "IssuersMessages": -1,
+            "BankruptMessages": 53,
+            "Contracts": -1,
+            "EgrulListsDebtors": -1,
+            "EgrulListsDisqPersons": -1,
+            "EgrulListsEntitiesWithDisqPersons": -1,
+            "EgrulListsUnreported": -1,
+            "EgrulListsMassFounder": 1,
+            "EgrulListsMassManager": -1,
+            "Finance": -1,
+            "Inspections": -1,
+            "Contacts": -1,
+            "FedresursPledge": -1,
+            "Subsidies": -1,
+            "MassMedia": -1,
+            "Vacancies": -1,
+            "Accreditation": -1,
+            "BanksInfo": -1,
+            "Auditors": -1,
+            "Insurance": -1,
+            "ExporterProducts": -1,
+            "WoodDeals": -1,
+            "WoodRents": -1,
+            "CustomsWarehouses": -1,
+            "FnsDocuments": -1,
+            "Receipts": -1,
+            "Patents": -1,
+            "Vehicles": -1,
+            "WaterObjects": -1,
+            "FipsApplications": -1,
+            "FipsPatents": -1,
+            "GeneralJurisdictionCourts": -1,
+            "PaidTax": -1,
+            "TaxArrears": -1,
+            "Salaries": -1
+        }
+    },
+    "Arbitr": {
+        "AsPlaintiffsAggregations": {
+            "CaseType": [],
+            "Category": [],
+            "DecisionType": [],
+            "ParticipationType": [
+                {
+                    "Value": "Plaintiffs",
+                    "Name": "Истец",
+                    "Count": 0
+                },
+                {
+                    "Value": "Defendants",
+                    "Sum": 550000.0,
+                    "Name": "Ответчик",
+                    "Count": 2
+                },
+                {
+                    "Value": "Others",
+                    "Sum": 3204316.65,
+                    "Name": "Другое",
+                    "Count": 1
+                }
+            ],
+            "Year": []
+        },
+        "AsDefendantsAggragations": {
+            "CaseType": [
+                {
+                    "Value": "Б",
+                    "Sum": 550000.0,
+                    "Name": "Банкротные",
+                    "Count": 1
+                },
+                {
+                    "Value": "Г",
+                    "Sum": 0.0,
+                    "Name": "Гражданские",
+                    "Count": 1
+                }
+            ],
+            "Category": [
+                {
+                    "Value": "о несостоятельности (банкротстве) физических лиц",
+                    "Sum": 550000.0,
+                    "Name": "о несостоятельности (банкротстве) физических лиц",
+                    "Count": 1
+                },
+                {
+                    "Value": "О создании, реорганизации и ликвидации организаций на основании исков налоговых органов",
+                    "Sum": 0.0,
+                    "Name": "О создании, реорганизации и ликвидации организаций на основании исков налоговых органов",
+                    "Count": 1
+                }
+            ],
+            "DecisionType": [
+                {
+                    "Value": "ClaimSatisfiedFully",
+                    "Sum": 0.0,
+                    "Name": "Выиграно",
+                    "Count": 1
+                },
+                {
+                    "Value": "OnProgress",
+                    "Sum": 550000.0,
+                    "Name": "Рассматривается",
+                    "Count": 1
+                }
+            ],
+            "ParticipationType": [
+                {
+                    "Value": "Plaintiffs",
+                    "Name": "Истец",
+                    "Count": 0
+                },
+                {
+                    "Value": "Defendants",
+                    "Sum": 550000.0,
+                    "Name": "Ответчик",
+                    "Count": 2
+                },
+                {
+                    "Value": "Others",
+                    "Sum": 3204316.65,
+                    "Name": "Другое",
+                    "Count": 1
+                }
+            ],
+            "Year": [
+                {
+                    "Value": 2017,
+                    "Sum": 550000.0,
+                    "Name": "2017",
+                    "Count": 1
+                },
+                {
+                    "Value": 2016,
+                    "Sum": 0.0,
+                    "Name": "2016",
+                    "Count": 1
+                }
+            ]
+        },
+        "OthersAggregations": {
+            "CaseType": [
+                {
+                    "Value": "Г",
+                    "Sum": 3204316.65,
+                    "Name": "Гражданские",
+                    "Count": 1
+                }
+            ],
+            "Category": [
+                {
+                    "Value": "О неисполнении или ненадлежащем исполнении обязательств по договорам возмездного оказания услуг",
+                    "Sum": 3204316.65,
+                    "Name": "О неисполнении или ненадлежащем исполнении обязательств по договорам возмездного оказания услуг",
+                    "Count": 1
+                }
+            ],
+            "DecisionType": [
+                {
+                    "Value": "ClaimSatisfiedFully",
+                    "Sum": 3204316.65,
+                    "Name": "Выиграно",
+                    "Count": 1
+                }
+            ],
+            "ParticipationType": [
+                {
+                    "Value": "Plaintiffs",
+                    "Name": "Истец",
+                    "Count": 0
+                },
+                {
+                    "Value": "Defendants",
+                    "Sum": 550000.0,
+                    "Name": "Ответчик",
+                    "Count": 2
+                },
+                {
+                    "Value": "Others",
+                    "Sum": 3204316.65,
+                    "Name": "Другое",
+                    "Count": 1
+                }
+            ],
+            "Year": [
+                {
+                    "Value": 2012,
+                    "Sum": 3204316.65,
+                    "Name": "2012",
+                    "Count": 1
+                }
+            ]
+        },
+        "LastCase": {
+            "Id": 16519076,
+            "Guid": "eb766527-593c-4496-b896-45b98d9512b2",
+            "Number": "А65-33383/2017",
+            "Date": "2017-10-17T00:00:00",
+            "Status": "Рассматривается в первой инстанции",
+            "CourtName": "АС Республики Татарстан",
+            "DocsAreExist": false,
+            "SidesAreExist": false,
+            "Category": "о несостоятельности (банкротстве) физических лиц",
+            "ClaimSum": 550000.0,
+            "CaseType": "Б",
+            "DecisionType": "OnProgress",
+            "Decision": "Рассматривается",
+            "LastDocument": {
+                "Id": 2099167219,
+                "CaseId": 16519076,
+                "InstanceId": "cb064af9-9943-42e6-ab6e-e97125c1e8da",
+                "DocumentTypeName": "Событие",
+                "ContentType": "Об участии в судебном заседании путем использования системы веб-конференции (ст.153_2 АПК)",
+                "DocumentTypeId": "6aa8cbcb-546f-4326-b01c-09cf778778cc",
+                "InstStage": 12,
+                "DocStage": 0,
+                "FinishInstance": 0,
+                "DisplayDate": "27.06.2025",
+                "IsSimpleJustice": false,
+                "ActualDate": "2025-06-27T07:21:30.097",
+                "GeneralDecisionType": 0,
+                "ClaimSum": 0.0,
+                "IsStart": false,
+                "IsAct": false,
+                "IsPresidiumSessionEvent": false,
+                "AdditionalInfo": "Отклонено",
+                "SourceSystem": 0,
+                "SystemDocumentType": 0,
+                "SimpleJusticeFileState": 0,
+                "Comment": "Отклонено",
+                "InstanceLevel": 1,
+                "IsExceptionRulesDocumentType": false,
+                "IsDeleted": false,
+                "ViewsCount": 0,
+                "CanBeDeleted": false,
+                "WithAttachment": false,
+                "HasSignature": false,
+                "Date": "2025-06-27T07:21:30.097",
+                "Type": 0,
+                "CourtTag": "TATARSTAN",
+                "CourtName": "АС Республики Татарстан",
+                "UseShortCourtName": false
+            },
+            "Sides": [
+                {
+                    "Id": 461245388,
+                    "CaseId": 16519076,
+                    "Name": "Сизова Галина Тимофеевна, г.Казань",
+                    "Address": "420124, Россия, г.Казань, РТ, ул.Меридианная, д.1А, кв.6,7",
+                    "Inn": "165700256600",
+                    "Type": "Defendants",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245389,
+                    "CaseId": 16519076,
+                    "Name": "Сизова Галина Тимофеевна",
+                    "Address": "420124, Россия, г.Казань, РТ, ул.Меридианная, д.1А, кв.7",
+                    "Inn": "165700256600",
+                    "Type": "Defendants",
+                    "ObjectId": "5b62be46-e0ae-479b-8f14-bf3efa2c66c8",
+                    "ObjectType": "Person",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245390,
+                    "CaseId": 16519076,
+                    "Name": "Управление ЗАГС",
+                    "Address": "420011, Россия, Казань, РТ, Ахтямова,д. 14",
+                    "Type": "Others",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245391,
+                    "CaseId": 16519076,
+                    "Name": "МСП Банк",
+                    "Address": "Россия, .",
+                    "Inn": "7703213534",
+                    "Ogrn": "1027739108649",
+                    "Type": "Others",
+                    "ObjectId": "fb30d632-533f-4f21-a4e1-d3265c6a94cf",
+                    "ObjectType": "Company",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245392,
+                    "CaseId": 16519076,
+                    "Name": "ООО \"Управляющая компания \"Инвест\", г.Казань",
+                    "Address": "420141, Россия, г.Казань, РТ, ул. Фучика, д.82, кв.474",
+                    "Inn": "1655241658",
+                    "Ogrn": "1121690022850",
+                    "Type": "Others",
+                    "ObjectId": "798a16f9-6b43-46d3-a0f2-76fed694e74c",
+                    "ObjectType": "Company",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245393,
+                    "CaseId": 16519076,
+                    "Name": "ООО \"Управляющая компания \"Центр Микрофинансирования\", г.Казань",
+                    "Address": "420111, Россия, г.Казань, РТ, ул.Право-Булачная, д.13 (к/у Миначев А.Г.)",
+                    "Inn": "1658056364",
+                    "Ogrn": "1041626811423",
+                    "Type": "Others",
+                    "ObjectId": "d0a412a2-65b2-4be1-b6c7-633282adf65d",
+                    "ObjectType": "Company",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245394,
+                    "CaseId": 16519076,
+                    "Name": "Вайнберг Илья Юрьевич",
+                    "Address": "Данные скрыты",
+                    "Inn": "772970416443",
+                    "Ogrn": "320774600450820",
+                    "Type": "Others",
+                    "ObjectId": "55fc0b14-f496-4394-aba5-fb5b629cda7f",
+                    "ObjectType": "Entrepreneur",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245394,
+                    "CaseId": 16519076,
+                    "Name": "Вайнберг Илья Юрьевич",
+                    "Address": "Данные скрыты",
+                    "Inn": "772970416443",
+                    "Type": "Others",
+                    "ObjectId": "7afb2ac1-77f5-45c3-b45b-17215202fe66",
+                    "ObjectType": "Person",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245395,
+                    "CaseId": 16519076,
+                    "Name": "АО \"Российский Банк поддержки малого и среднего предпринимательства\", г.Москва",
+                    "Address": "115035, Россия, г.Москва, РФ, ул.Садовническая, д.79",
+                    "Inn": "7703213534",
+                    "Ogrn": "1027739108649",
+                    "Type": "Plaintiffs",
+                    "ObjectId": "fb30d632-533f-4f21-a4e1-d3265c6a94cf",
+                    "ObjectType": "Company",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245396,
+                    "CaseId": 16519076,
+                    "Name": "Шамгунова Ирина Вячеславовна",
+                    "Address": "Данные скрыты",
+                    "Inn": "165802394141",
+                    "Ogrn": "305165813900275",
+                    "Type": "Third",
+                    "ObjectId": "9718f945-03ca-41c7-8804-2a2a8c0adbe6",
+                    "ObjectType": "Entrepreneur",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245396,
+                    "CaseId": 16519076,
+                    "Name": "Шамгунова Ирина Вячеславовна",
+                    "Address": "Данные скрыты",
+                    "Inn": "165802394141",
+                    "Type": "Third",
+                    "ObjectId": "b0617010-8ac5-4142-ba39-c992775b2008",
+                    "ObjectType": "Person",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245397,
+                    "CaseId": 16519076,
+                    "Name": "к/у ПАО \"Татфондбанк\" - ГК \"АСВ\"",
+                    "Address": "420111, Россия, г. Казань, РТ, ул. Чернышевского, д.43/2",
+                    "Type": "Third",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245398,
+                    "CaseId": 16519076,
+                    "Name": "Одиннадцатый арбитражный апелляционный суд",
+                    "Address": "Данные скрыты",
+                    "Inn": "6311078850",
+                    "Ogrn": "1056311043766",
+                    "Type": "Third",
+                    "ObjectId": "8b8e7efc-a727-48ef-ac2f-dad2dee82b13",
+                    "ObjectType": "Company",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245399,
+                    "CaseId": 16519076,
+                    "Name": "УФССП России по РТ",
+                    "Address": "420111, Россия, г. Казань, ул. Рустема Яхина, д.3",
+                    "Type": "Third",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245400,
+                    "CaseId": 16519076,
+                    "Name": "ПАО «Промсвязь»",
+                    "Address": "109052, Россия, г. Москва, ул. Смирновская, д.10, стр.22",
+                    "Inn": "7744000912",
+                    "Ogrn": "1027739019142",
+                    "Type": "Third",
+                    "ObjectId": "4d5aeebc-8a69-4ff8-b053-b0c587f32bb3",
+                    "ObjectType": "Company",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245401,
+                    "CaseId": 16519076,
+                    "Name": "МВД по РТ",
+                    "Address": "Данные скрыты",
+                    "Type": "Third",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245402,
+                    "CaseId": 16519076,
+                    "Name": "ФКУ СИЗО-2 УФСИН России по РТ",
+                    "Address": "420000, Россия, г.Казань, ул.Большая, д.98",
+                    "Type": "Third",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245403,
+                    "CaseId": 16519076,
+                    "Name": "Попов Олег Николаевич",
+                    "Address": "Данные скрыты",
+                    "Type": "Third",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 461245404,
+                    "CaseId": 16519076,
+                    "Name": "СРО \"СЕМТЭК\"",
+                    "Address": "129626, Россия, г.Москва, а/я 139",
+                    "Inn": "7722706895",
+                    "Ogrn": "1107746021041",
+                    "Type": "Third",
+                    "ObjectId": "b84c82b3-a8df-4615-ac01-a81158daa352",
+                    "ObjectType": "Company",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 464133225,
+                    "CaseId": 16519076,
+                    "Name": "ППК «Роскадастр» по РТ",
+                    "Address": "420054, Россия, г. Казань, РТ, ул. Кулагина д. 1",
+                    "Type": "Others",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 464133226,
+                    "CaseId": 16519076,
+                    "Name": "ПАО \"Промсвязьбанк\", г.Казань",
+                    "Address": "420111, Россия, г.Казань, РТ, ул.Пушкина, д.22",
+                    "Inn": "7744000912",
+                    "Ogrn": "1027739019142",
+                    "Type": "Plaintiffs",
+                    "ObjectId": "4d5aeebc-8a69-4ff8-b053-b0c587f32bb3",
+                    "ObjectType": "Company",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 498486784,
+                    "CaseId": 16519076,
+                    "Name": "Союз Арбитражных управляющих \"Созидание\"",
+                    "Address": "115191, Россия, Г.МОСКВА, ВН.ТЕР.Г. МУНИЦИПАЛЬНЫЙ ОКРУГ ДАНИЛОВСКИЙ,, РФ, ПЕР ГАМСОНОВСКИЙ, Д. 2, СТР. 2",
+                    "Inn": "7703363900",
+                    "Ogrn": "1027703026130",
+                    "Type": "Others",
+                    "ObjectId": "50834f24-3603-4f64-a2de-61429b76fe3e",
+                    "ObjectType": "Company",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 498486783,
+                    "CaseId": 16519076,
+                    "Name": "ПАО \"СБЕРБАНК РОССИИ\"",
+                    "Address": "117312, Россия, г.Москва, РФ, УЛ. ВАВИЛОВА, Д.19",
+                    "Inn": "7707083893",
+                    "Ogrn": "1027700132195",
+                    "Type": "Others",
+                    "ObjectId": "ab73208a-ea88-4898-9c65-1d043bb6cdcd",
+                    "ObjectType": "Company",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 498486782,
+                    "CaseId": 16519076,
+                    "Name": "ООО \"СТРАХОВОЙ ДОМ \"БСД\"",
+                    "Address": "127051, Россия, Г.МОСКВА,, РФ, ПЕР. БОЛЬШОЙ СУХАРЕВСКИЙ, Д. 5, СТР. 1, КОМ. 205",
+                    "Inn": "7734249643",
+                    "Ogrn": "1027734002383",
+                    "Type": "Others",
+                    "ObjectId": "58d90019-67a7-4459-82a0-b083b3b38257",
+                    "ObjectType": "Company",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 498486781,
+                    "CaseId": 16519076,
+                    "Name": "Ново-Савиновский отдел Управления службы государственной регистрации, кадастра и картографии по РТ",
+                    "Address": "420126, Россия, Казань, Республика Татарстан, ул. Ямашева, д.82",
+                    "Type": "Third",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                },
+                {
+                    "Id": 468222394,
+                    "CaseId": 16519076,
+                    "Name": "Одиннадцатый арбитражный апелляционный суд, г.Самара",
+                    "Address": "Данные скрыты",
+                    "Type": "Others",
+                    "IsActual": true,
+                    "OwnerId": "00000000-0000-0000-0000-000000000000"
+                }
+            ],
+            "Documents": [],
+            "InstanceNumbers": [
+                "Ф06-61981/2020",
+                "11АП-784/2020",
+                "11АП-21744/2019",
+                "Ф06-18012/2022",
+                "Ф06-17361/2022",
+                "11АП-19970/2021",
+                "11АП-19982/2021",
+                "11АП-19971/2021",
+                "11АП-19973/2021",
+                "11АП-19979/2021",
+                "11АП-19975/2021",
+                "11АП-19976/2021",
+                "11АП-19980/2021",
+                "306-ЭС22-16791",
+                "11АП-1132/2023",
+                "Ф06-2831/2023",
+                "11АП-16331/2023",
+                "Ф06-8575/2024",
+                "11АП-10556/2024",
+                "11АП-8657/2024",
+                "Ф06-807/2025",
+                "Ф06-2011/2025"
+            ]
+        }
+    },
+    "Finance": null,
+    "Fssp": null,
+    "GovPurchase": null
+}

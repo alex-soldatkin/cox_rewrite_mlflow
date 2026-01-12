@@ -4,6 +4,9 @@ import argparse
 import contextlib
 import logging
 from pathlib import Path
+import sys
+# Add project root to sys.path to allow importing mlflow_utils
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from config import RollingWindowConfig, load_neo4j_config, parse_rel_types
 from gds_client import connect_gds
@@ -63,7 +66,7 @@ def _build_parser() -> argparse.ArgumentParser:
     p.add_argument("--base-graph-name", default="base_temporal", help="Name of the base GDS graph.")
     p.add_argument(
         "--base-projection-cypher",
-        default="data_processing/cypher/35_0_rollwin_base_temporal_projection.cypher",
+        default="queries/cypher/003_0_rollwin_base_projection.cypher",
         help="Cypher file used to create the base temporal projection.",
     )
     p.add_argument("--rebuild-base-graph", action="store_true", help="Drop+recreate base graph before running.")
@@ -106,7 +109,7 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     p.add_argument(
         "--edge-id-property",
-        default="Id",
+        default=defaults.edge_id_property,
         help="Stable node identifier property to use for edge lists (exported as source_Id/target_Id).",
     )
     p.add_argument(
@@ -155,6 +158,16 @@ def _build_parser() -> argparse.ArgumentParser:
     p.add_argument("--node2vec-dim", type=int, default=256, help="Node2Vec embedding dimension.")
     p.add_argument("--node2vec-iters", type=int, default=20, help="Node2Vec iterations.")
     p.add_argument("--node2vec-random-seed", type=int, default=42, help="Node2Vec random seed.")
+
+
+    p.add_argument(
+        "--link-prediction",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+        help="Run intra-window link prediction.",
+    )
+    p.add_argument("--lp-threshold", type=float, default=0.7, help="Link prediction probability threshold.")
+
     p.add_argument(
         "--log-level",
         default="INFO",
@@ -162,6 +175,7 @@ def _build_parser() -> argparse.ArgumentParser:
         help="Python logging verbosity.",
     )
     p.add_argument("--log-file", default=None, help="Optional log file path (in addition to stdout).")
+    p.add_argument("--run-name", default=None, help="Name of the run folder. If not provided, defaults to timestamp.")
     return p
 
 
@@ -186,6 +200,12 @@ def main() -> None:
     rel_types = parse_rel_types(args.rel_types)
     hashgnn_feature_properties = _parse_csv_words(list(args.hashgnn_feature_properties))
 
+    # Update output dir with run name
+    import datetime
+    run_name = args.run_name
+    if not run_name:
+        run_name = f"run_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
+
     cfg = RollingWindowConfig(
         base_graph_name=args.base_graph_name,
         rel_types=rel_types,
@@ -198,7 +218,7 @@ def main() -> None:
         read_concurrency=args.read_concurrency,
         embedding_dimension=args.embedding_dimension,
         embedding_random_seed=args.embedding_random_seed,
-        output_dir=Path(args.output_dir),
+        output_dir=Path(args.output_dir) / run_name,
         export_edges=bool(args.export_edges),
         edge_id_property=str(args.edge_id_property),
         export_feature_vectors=bool(args.export_feature_vectors),
@@ -218,7 +238,10 @@ def main() -> None:
         node2vec_embedding_dimension=int(args.node2vec_dim),
         node2vec_iterations=int(args.node2vec_iters),
         node2vec_random_seed=int(args.node2vec_random_seed),
+        run_link_prediction=bool(args.link_prediction),
+        lp_threshold=float(args.lp_threshold),
     )
+
 
     base_projection_cypher = Path(args.base_projection_cypher)
 

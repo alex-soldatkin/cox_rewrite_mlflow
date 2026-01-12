@@ -33,7 +33,7 @@ class RollingWindowConfig:
     start_year: int = 2000
     end_start_year: int = 2010
 
-    id_property: str = "neo4jImportId"
+    id_property: str = "Id"
 
     read_concurrency: int = 4
 
@@ -43,7 +43,7 @@ class RollingWindowConfig:
     embedding_dimension: int = 128
     embedding_random_seed: int = 42
 
-    output_dir: Path = Path("data_processing/rolling_windows/output")
+    output_dir: Path = Path("rolling_windows/output")
 
     export_edges: bool = True
     edge_id_property: str = "Id"
@@ -68,6 +68,9 @@ class RollingWindowConfig:
     node2vec_embedding_dimension: int = 256
     node2vec_iterations: int = 20
     node2vec_random_seed: int = 42
+
+    run_link_prediction: bool = False
+    lp_threshold: float = 0.7
 
 
 def load_neo4j_config(

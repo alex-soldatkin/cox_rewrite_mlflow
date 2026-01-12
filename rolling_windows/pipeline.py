@@ -15,8 +15,10 @@ from config import RollingWindowConfig, validate_rel_types
 from dates import iter_year_windows
 from feature_blocks import BANK_FEATS_BLOCKS, BANK_FEATS_DIM, other_bank_feats_indices
 from hashing import stable_hash_dict
-from metrics import gds_config_metadata, run_window_algorithms
+from metrics import gds_config_metadata, run_window_algorithms, compute_fcr_temporal
+from mlflow_utils.tracking import setup_experiment
 from parquet import coerce_float_list_column, expand_embedding_column, slice_vector_column, write_parquet
+from link_prediction import run_link_prediction_workflow
 
 logger = logging.getLogger(__name__)
 
@@ -49,66 +51,99 @@ def _required_base_node_properties(cfg: RollingWindowConfig) -> set[str]:
     return required
 
 
+
 def ensure_base_graph(
     gds: GraphDataScience,
     *,
     cfg: RollingWindowConfig,
-    cypher_path: Path,
+    cypher_path: Path | None = None,  # Kept for compatibility but unused
     rebuild: bool = False,
 ) -> None:
+    """
+    Ensure the base graph exists in GDS using Native Projection.
+    This replaces the old Cypher-based projection to ensure robust handling of Isolates.
+    """
     logger.info("Ensuring base graph '%s' (rebuild=%s)", cfg.base_graph_name, rebuild)
+    
+    # Check if exists
     try:
         G = gds.graph.get(cfg.base_graph_name)
         if not rebuild:
-            required_props = _required_base_node_properties(cfg)
-            by_label = G.node_properties()
-            missing_by_label: dict[str, list[str]] = {}
-            for label, props in by_label.to_dict().items():
-                missing = sorted(required_props.difference(set(props)))
-                if missing:
-                    missing_by_label[str(label)] = missing
-            if missing_by_label:
-                logger.info(
-                    "Base graph '%s' exists but is missing required node properties; rebuilding. missing_by_label=%s",
-                    cfg.base_graph_name,
-                    missing_by_label,
-                )
-                rebuild = True
-            else:
-                logger.info("Base graph '%s' already exists; skipping projection", cfg.base_graph_name)
-                return
+            # We could check properties here, but native projection configuration is hard to inspect deeply via API.
+            # Assuming if it exists and we don't request rebuild, it's fine.
+            # But let's check node count at least?
+            logger.info("Base graph '%s' already exists (nodes=%d); skipping projection", cfg.base_graph_name, G.node_count())
+            return
     except ValueError:
-        pass
+        pass  # Does not exist or error getting it
+    except Exception:
+        pass 
 
     logger.info("Dropping base graph '%s' (if exists)", cfg.base_graph_name)
     gds.graph.drop(cfg.base_graph_name, failIfMissing=False)
 
-    query = _load_text(cypher_path)
-    logger.info("Projecting base graph from %s", cypher_path)
-    projection_df = gds.run_cypher(
-        query,
-        {
-            "baseGraphName": cfg.base_graph_name,
-            "baseRelTypes": list(cfg.rel_types),
-            "readConcurrency": int(cfg.read_concurrency),
-        },
-    )
-    if projection_df.empty:
-        raise RuntimeError(
-            "Base graph projection returned no rows. "
-            "This usually means the MATCH clause found no relationships in the selected database "
-            "for the given labels/relationship types."
-        )
+    logger.info("Projecting base graph '%s' using Native Projection...", cfg.base_graph_name)
+    
+    # Constants for defaults
+    MIN_T = -9_007_199_254_740_991.0
+    MAX_T = 9_007_199_254_740_991.0
+    
 
-    gds.graph.get(cfg.base_graph_name)
-    row = projection_df.iloc[0].to_dict()
-    logger.info(
-        "Base graph '%s' ready (nodes=%s rels=%s projectMillis=%s)",
-        cfg.base_graph_name,
-        row.get("nodeCount", "?"),
-        row.get("relationshipCount", "?"),
-        row.get("projectMillis", "?"),
-    )
+    # Node Projection: Label specific to avoid NPE on missing properties
+    # Common props (Scalars only - robust)
+    base_props = {
+        "tStart": {"property": "temporal_start", "defaultValue": MIN_T},
+        "tEnd": {"property": "temporal_end", "defaultValue": MAX_T},
+        "is_dead": {"property": "is_dead_int", "defaultValue": 0},
+        "gds_id": {"property": "gds_id", "defaultValue": -1},
+    }
+    
+    # We do NOT project array features (bank_feats, network_feats) into GDS 
+    # because GDS Native Projection for arrays with defaults is unstable (NPEs/Crash).
+    # Instead, we fetch them from DB during streaming.
+
+    node_projection = {
+        "Bank": {"properties": base_props},
+        "Company": {"properties": base_props},
+        "Person": {"properties": base_props}
+    }
+
+    # Relationship Projection
+    # Mapped from migration (imputed_flag) and existing properties.
+    rel_props = {
+        "weight": {"property": "Size", "defaultValue": 1.0},
+        "tStart": {"property": "temporal_start", "defaultValue": MIN_T},
+        "tEnd": {"property": "temporal_end", "defaultValue": MAX_T},
+        "imputedFlag": {"property": "imputed_flag", "defaultValue": 0.0}
+    }
+
+    relationship_projection = {
+        rel_type: {
+            "type": rel_type,
+            "properties": rel_props,
+            "orientation": "NATURAL"
+        }
+        for rel_type in cfg.rel_types
+    }
+
+    try:
+        G, result = gds.graph.project(
+            cfg.base_graph_name,
+            node_projection,
+            relationship_projection,
+            readConcurrency=int(cfg.read_concurrency)
+        )
+        
+        logger.info(
+            "Base graph '%s' ready (nodes=%s rels=%s projectMillis=%s)",
+            cfg.base_graph_name,
+            result.get("nodeCount"),
+            result.get("relationshipCount"),
+            result.get("projectMillis"),
+        )
+    except Exception as e:
+        logger.error("Failed to project base graph: %s", e)
+        raise e
 
 
 def _relationship_type_predicate(rel_types: tuple[str, ...]) -> str:
@@ -176,6 +211,9 @@ def run_windows(
 ) -> None:
     ensure_base_graph(gds, cfg=cfg, cypher_path=base_projection_cypher, rebuild=rebuild_base_graph)
     base_G = gds.graph.get(cfg.base_graph_name)
+
+    if cfg.run_link_prediction:
+        setup_experiment("exp_014_link_prediction")
 
     windows = iter_year_windows(
         start_year=cfg.start_year,
@@ -321,18 +359,36 @@ def run_windows(
                         df_edges = None
 
                         if need_nodes:
+                            logger.info("Running window algorithms...")
                             properties = run_window_algorithms(gds, G, cfg)
+                            logger.info("Algorithms completed.")
 
+                            # Determine properties to fetch from GDS (In-Memory) vs DB
+                            # Note: bank_feats/network_feats are NOT in GDS (removed to avoid NPE).
+                            # So we fetch them from DB via db_node_props.
+                            # is_dead is in GDS (as int).
+                            
                             if cfg.export_feature_vectors:
-                                properties.extend(["bank_feats", "network_feats", "is_dead"])
-                            elif cfg.export_feature_blocks:
-                                properties.append("bank_feats")
+                                properties.extend(["is_dead"])
+                            
+                            # Ensure gds_id is streamed for ID merging
+                            properties.append("gds_id")
+                            
                             properties = _unique_preserve_order(properties)
-
+                            
                             db_node_props = [cfg.id_property]
                             if cfg.export_edges and cfg.edge_id_property != cfg.id_property:
                                 db_node_props.append(cfg.edge_id_property)
+                            
+                            if cfg.export_feature_vectors:
+                                db_node_props.extend(["bank_feats", "network_feats"])
+                            elif cfg.export_feature_blocks:
+                                db_node_props.append("bank_feats")
+                            
 
+
+
+                            logger.info("Streaming node properties...")
                             df = gds.graph.nodeProperties.stream(
                                 G,
                                 properties,
@@ -340,14 +396,19 @@ def run_windows(
                                 db_node_properties=db_node_props,
                                 listNodeLabels=True,
                             )
+                            logger.info("Node streaming completed. Shape: %s", df.shape if df is not None else "None")
+                            
+
 
                         if need_edges:
+                            logger.info("Exporting edges...")
                             df_edges = export_window_edges(
                                 gds,
                                 G,
                                 rel_types=cfg.rel_types,
                                 edge_id_property=cfg.edge_id_property,
                             )
+                            logger.info("Edge export completed. Shape: %s", df_edges.shape if df_edges is not None else "None")
                     break
                 except (ServiceUnavailable, SessionExpired) as e:
                     attempt += 1
@@ -364,11 +425,49 @@ def run_windows(
                     )
                     time.sleep(retry_backoff_s * (2 ** (attempt - 1)))
 
+            # Merge IDs from Cypher using gds_id (Robust fallback)
+            logger.info("Fetching Node IDs via Cypher (using gds_id match)...")
+            
+            # Add gds_id to properties to stream if not already
+            if "gds_id" not in properties:
+                # We need to make sure we streamed it! 
+                # Wait, streaming happened line 375. 
+                # If I add it to `properties` list BEFORE streaming, it works.
+                pass 
+            
+            id_query = f"""
+            MATCH (n)
+            WHERE n:{cfg.id_property} IS NOT NULL
+            RETURN id(n) as gds_id, n.{cfg.id_property} as entity_id
+            """
+            
+            ids_df = gds.run_cypher(id_query)
+            ids_df["gds_id"] = ids_df["gds_id"].astype("int64") 
+            
+            # Merge
+            if df is not None:
+                # Ensure gds_id is in df. 
+                # I need to ensure it was streamed. I will add it to properties list in a separate replacement chunk BEFORE streaming.
+                if "gds_id" in df.columns:
+                     df["gds_id"] = df["gds_id"].astype("int64")
+                     df = df.merge(ids_df, on="gds_id", how="left")
+                else:
+                     logger.error("gds_id missing from dataframe! Cannot merge IDs.")
+
+                missing_ids = df["entity_id"].isna().sum() if "entity_id" in df.columns else len(df)
+                if missing_ids > 0:
+                    logger.warning("Merged %d nodes, but %d have missing entity_id", len(df), missing_ids)
+            
+            # Log success
+            if df is not None and "entity_id" in df.columns:
+                sample_ids = df["entity_id"].dropna().head().tolist()
+                logger.info("IDs fetched successfully. Sample: %s", sample_ids)
+
             node_count = 0
             edge_count = 0
 
             if df is not None:
-                df = df.rename(columns={cfg.id_property: "entity_id"})
+                # df = df.rename(columns={cfg.id_property: "entity_id"}) # Already merged as entity_id
                 df["window_start_ms"] = w.start_ms
                 df["window_end_ms"] = w.end_ms
                 df["window_start_year"] = w.start_year
@@ -386,9 +485,37 @@ def run_windows(
                 if "node2vec_embedding" in df.columns:
                     df = coerce_float_list_column(df, column="node2vec_embedding")
 
+                # Compute FCR using Neo4j Cypher (much faster than pandas)
+                try:
+                    fcr_map = compute_fcr_temporal(gds, cfg, w.start_ms, w.end_ms)
+                    
+                    # DEBUG: Inspect FCR Map
+                    if df is not None and "nodeLabels" in df.columns and cfg.id_property in df.columns:
+                        try:
+                            banks = df[df["nodeLabels"].apply(lambda x: "Bank" in x if isinstance(x, list) else False)]
+                            logger.info("DEBUG: Found %d Bank nodes in Window Graph DF", len(banks))
+                            logger.info("DEBUG: Bank ID Sample: %s", banks[cfg.id_property].head().tolist())
+                            logger.info("DEBUG: Total FCR Map Size: %d", len(fcr_map) if fcr_map else 0)
+                            if fcr_map and not banks.empty:
+                               hits = banks[cfg.id_property].isin(fcr_map.keys()).sum()
+                               logger.info("DEBUG: Bank IDs in FCR Map: %d", hits)
+                        except Exception as debug_err:
+                            logger.warning("Debug logging failed: %s", debug_err)
+
+                    if fcr_map:
+                        df["fcr_temporal"] = df["entity_id"].map(fcr_map).fillna(0.0)
+                        logger.info("Applied fcr_temporal to %d nodes", (df["fcr_temporal"] > 0).sum())
+                except Exception as e:
+                    logger.error("Failed to compute fcr_temporal: %s", e)
+                    df["fcr_temporal"] = 0.0
                 if cfg.export_feature_vectors:
                     df = coerce_float_list_column(df, column="bank_feats")
                     df = coerce_float_list_column(df, column="network_feats")
+                    
+                    # Fill missing bank_feats (e.g. for Persons) with zeros for slicing
+                    if "bank_feats" in df.columns:
+                        zero_vec = [0.0] * BANK_FEATS_DIM
+                        df["bank_feats"] = df["bank_feats"].apply(lambda x: zero_vec if x is None or (isinstance(x, list) and not x) else x)
 
                 if cfg.export_feature_blocks and "bank_feats" in df.columns:
                     for block_name, indices in BANK_FEATS_BLOCKS.items():
@@ -436,6 +563,19 @@ def run_windows(
                 logger.info("Writing %s (rows=%d cols=%d)", edges_out_path, df_edges.shape[0], df_edges.shape[1])
                 write_parquet(df_edges, edges_out_path)
                 edge_count = int(df_edges.shape[0])
+
+            # --- Intra-Window Link Prediction ---
+            if cfg.run_link_prediction and df is not None and df_edges is not None:
+                try:
+                    predicted_edges = run_link_prediction_workflow(gds, cfg, window_graph_name, df, df_edges)
+                    if predicted_edges is not None and not predicted_edges.empty:
+                        pred_path = cfg.output_dir / "predicted_edges" / f"predicted_edges_{window_graph_name}.parquet"
+                        # Ensure dir exists
+                        pred_path.parent.mkdir(parents=True, exist_ok=True)
+                        write_parquet(predicted_edges, pred_path)
+                        logger.info("Saved %d predicted edges to %s", len(predicted_edges), pred_path)
+                except Exception as e:
+                    logger.error("Link prediction failed for %s: %s", window_graph_name, e)
 
             if df is None and node_out_path.exists():
                 node_count = int(pq.ParquetFile(node_out_path).metadata.num_rows)

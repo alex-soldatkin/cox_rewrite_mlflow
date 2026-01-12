@@ -9,6 +9,17 @@ import pandas as pd
 def coerce_float_list_column(df: pd.DataFrame, *, column: str) -> pd.DataFrame:
     if column not in df.columns:
         return df
+    
+    # Optimization: if values are already lists of floats, avoid iteration.
+    # Check first non-null
+    first_valid = df[column].dropna().iloc[0] if not df[column].dropna().empty else None
+    if first_valid is not None and isinstance(first_valid, list) and len(first_valid) > 0 and isinstance(first_valid[0], (float, int)):
+        # Assume valid, skip heavy iteration
+        return df
+
+    # Fallback to slow conversion if needed, but try to be faster
+    # If they are numpy arrays, tolist() is fast
+    # If they are lists, map is slow.
     df[column] = df[column].apply(lambda v: None if v is None else [float(x) for x in v])
     return df
 
@@ -58,7 +69,8 @@ def slice_vector_column(
         raise ValueError(f"Expected dim={expected_dim} for '{column}', got shape={mat.shape}")
 
     sliced = mat[:, indices]
-    df[out_column] = [list(map(float, row)) for row in sliced]
+    # Optimization: Use tolist() which is much faster than list comprehension
+    df[out_column] = sliced.tolist()
     return df
 
 
