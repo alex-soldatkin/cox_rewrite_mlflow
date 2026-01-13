@@ -1,0 +1,7 @@
+AUC: 0.5
+Optimal F2 Threshold (Recall): 0.1 (Score: 0.8332008268405152)
+Optimal F0.5 Threshold (Precision): 0.1 (Score: 0.5553200508690123)
+--- Metrics at F0.5 Threshold ---
+Precision: 0.49976156413924655
+Recall: 1.0
+F1: 0.6664546899841017

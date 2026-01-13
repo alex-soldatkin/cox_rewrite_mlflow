@@ -413,3 +413,9 @@ uv run data_processing/rolling_windows/run_pipeline.py \
 ``` 
 
 (If instead you meant “advance by 1 year each time”, use --step-years 1 — that gives a 4-year overlap.)
+
+NEW INSTRUCTIONS: 
+
+```shell
+uv run rolling_windows/run_pipeline.py --config rolling_windows/config_global.yaml --run-name production_run_1990_2022_v6 --show-progress
+```

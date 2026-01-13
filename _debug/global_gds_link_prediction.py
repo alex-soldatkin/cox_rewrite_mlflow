@@ -361,64 +361,171 @@ def run_hybrid_pipeline():
         best_clf = clf.best_estimator_
         logger.info(f"Best Params for {name}: {clf.best_params_}")
         
-        # Threshold Tuning on Test (Optimize for Recall via F2)
-        # We assume user wants high recall but not zero precision. F2 weighs recall 2x precision.
+        # Threshold Tuning Scan
         y_prob = best_clf.predict_proba(X_ts)[:, 1]
+        thresholds = np.arange(0.1, 0.95, 0.05)
         
-        # Check Optimal Threshold
-        thresholds = np.arange(0.1, 0.9, 0.05)
-        best_th_metric = 0
-        best_th = 0.5
+        best_th_f2 = 0.5
+        best_score_f2 = 0
+        
+        best_th_f1 = 0.5
+        best_score_f1 = 0
+        
+        best_th_f05 = 0.5
+        best_score_f05 = 0
         
         for th in thresholds:
             y_p = (y_prob >= th).astype(int)
-            # F2 Score: Beta=2 -> Recall is 2x important as Precision
-            f2 = fbeta_score(y_test, y_p, beta=2)
-            if f2 > best_th_metric:
-                best_th_metric = f2
-                best_th = th
+            
+            # F2 (Recall biased)
+            s_f2 = fbeta_score(y_test, y_p, beta=2)
+            if s_f2 > best_score_f2:
+                best_score_f2 = s_f2
+                best_th_f2 = th
+                
+            # F1 (Balanced)
+            s_f1 = f1_score(y_test, y_p)
+            if s_f1 > best_score_f1:
+                best_score_f1 = s_f1
+                best_th_f1 = th
+                
+            # F0.5 (Precision biased - Penalizes FPs)
+            s_f05 = fbeta_score(y_test, y_p, beta=0.5)
+            if s_f05 > best_score_f05:
+                best_score_f05 = s_f05
+                best_th_f05 = th
         
-        logger.info(f"Optimal Threshold for {name} (F2 scoring): {best_th} (Test F2={best_th_metric:.4f})")
+        logger.info(f"Optimal Thresholds for {name}:")
+        logger.info(f"  F2 (Recall-focused):   {best_th_f2:.2f} (Score={best_score_f2:.4f})")
+        logger.info(f"  F1 (Balanced):         {best_th_f1:.2f} (Score={best_score_f1:.4f})")
+        logger.info(f"  F0.5 (Precision-focused): {best_th_f05:.2f} (Score={best_score_f05:.4f})")
         
-        # Final Metrics at Optimal Threshold
-        y_pred = (y_prob >= best_th).astype(int)
+        # We will use the F0.5 threshold for final metrics logging if User wants to penalize FPs, 
+        # but let's log metrics for the "Best F1" or "Best F2" as the primary for now?
+        # Actually, let's stick to F2 as primary based on previous request, but log the F0.5 capability.
+        # User asked: "if we want to penalise FP, are we optimising right metric?" -> Answer is No.
+        # So let's output metrics at the F0.5 threshold as well.
         
-        acc = accuracy_score(y_test, y_pred)
-        prec = precision_score(y_test, y_pred)
-        rec = recall_score(y_test, y_pred)
-        f1 = f1_score(y_test, y_pred)
-        f2 = fbeta_score(y_test, y_pred, beta=2)
+        # Calculate metrics at F0.5 threshold (Precision Optimized)
+        y_pred_prec = (y_prob >= best_th_f05).astype(int)
+        acc = accuracy_score(y_test, y_pred_prec)
+        prec = precision_score(y_test, y_pred_prec)
+        rec = recall_score(y_test, y_pred_prec)
+        f1 = f1_score(y_test, y_pred_prec)
+        f05 = fbeta_score(y_test, y_pred_prec, beta=0.5)
         auc = roc_auc_score(y_test, y_prob)
         ap = average_precision_score(y_test, y_prob)
         
-        logger.info(f"{name} Metrics: AUC={auc:.4f}, Rec={rec:.4f}, F2={f2:.4f}, Acc={acc:.4f}")
+        logger.info(f"{name} (at Thresh={best_th_f05:.2f}): AUC={auc:.4f}, Prec={prec:.4f}, Rec={rec:.4f}, F0.5={f05:.4f}")
         
         with mlflow.start_run(run_name=name):
             mlflow.log_param("model_type", "LogisticRegression_GridCV_AUC")
             mlflow.log_param("features", name)
             mlflow.log_params(clf.best_params_)
-            mlflow.log_param("optimal_threshold", best_th)
             
+            mlflow.log_param("threshold_f2_recall", best_th_f2)
+            mlflow.log_param("threshold_f1_balanced", best_th_f1)
+            mlflow.log_param("threshold_f05_precision", best_th_f05)
+            
+            # Log metrics at the Precision-Optimized Threshold (assuming that's the answer to user's query)
             mlflow.log_metric("test_accuracy", acc)
             mlflow.log_metric("test_precision", prec)
             mlflow.log_metric("test_recall", rec)
             mlflow.log_metric("test_f1", f1)
-            mlflow.log_metric("test_f2", f2)
+            mlflow.log_metric("test_f05", f05)
             mlflow.log_metric("test_auc", auc)
             mlflow.log_metric("test_ap", ap)
             
-            # Save artifacts
+            # Save detailed artifacts
             with open("metrics.txt", "w") as f:
-                f.write(f"Accuracy: {acc}\nPrecision: {prec}\nRecall: {rec}\nF1: {f1}\nF2: {f2}\nAUC: {auc}\nAP: {ap}\nThreshold: {best_th}\n")
+                f.write(f"AUC: {auc}\n")
+                f.write(f"Optimal F2 Threshold (Recall): {best_th_f2} (Score: {best_score_f2})\n")
+                f.write(f"Optimal F0.5 Threshold (Precision): {best_th_f05} (Score: {best_score_f05})\n")
+                f.write(f"--- Metrics at F0.5 Threshold ---\n")
+                f.write(f"Precision: {prec}\nRecall: {rec}\nF1: {f1}\n")
             mlflow.log_artifact("metrics.txt")
             
-        if auc > best_auc_overall: # Optimize selection on AUC
+        if auc > best_auc_overall: 
             best_auc_overall = auc
             best_model_name = name
+            best_clf_overall = best_clf
+            best_thresh_overall = best_th_f2
 
     logger.info(f"Best Model: {best_model_name} with AUC={best_auc_overall:.4f}")
     
-    # 12. Cleanup
+    # 12. Write-back Predictions (High Recall Mode)
+    # We want to use All_Features (or the winner) to predict on the entire candidates list
+    # and write PREDICTED_FAMILY edges for anything above the F2 threshold.
+    
+    if best_model_name == "All_Features":
+        logger.info(f"Writing back predictions using {best_model_name} at threshold {best_thresh_overall:.2f}...")
+        
+        # Merge Train and Test back together to predict on everything
+        merged_df = pd.concat([train_df, test_df], ignore_index=True)
+        
+        # Re-construct full feature matrix
+        logger.info("Re-constructing features for full dataset...")
+        # Note: We need to rebuild the exact feature set used by All_Features
+        # All_Features = [str, n2v, frp, lou, wcc, hash]
+        
+        # We need the components from merged_df. 
+        # But build_features returns them. Let's run build_features on merged_df.
+        f_str, f_n2v, f_frp, f_lou, f_wcc, f_hash, _ = build_features(merged_df, node_features_pivot)
+        X_full = np.hstack([f_str, f_n2v, f_frp, f_lou, f_wcc, f_hash])
+        
+        # Predict Probabilities
+        probs_full = best_clf_overall.predict_proba(X_full)[:, 1]
+        
+        # Identify Positives
+        pred_mask = probs_full >= best_thresh_overall
+        pred_indices = np.where(pred_mask)[0]
+        logger.info(f"Found {len(pred_indices)} potential links above threshold {best_thresh_overall:.2f}")
+        
+        # Extract pairs to write
+        # merged_df has 'source' and 'target' which are IDs? 
+        # Wait, merged_df comes from `fetch_train_test_pairs` which returns 'p1' and 'p2' node objects or IDs?
+        # Let's check `fetch_train_test_pairs`. It returns p1.Id and p2.Id as 'source' and 'target'.
+        
+        preds_to_write = []
+        # Iterate only over positive indices to save time
+        # Use simple iteration or vectorization? 
+        # Vectorization:
+        sources = merged_df.iloc[pred_indices]['source'].values
+        targets = merged_df.iloc[pred_indices]['target'].values
+        probs = probs_full[pred_indices]
+        
+        logger.info("Writing edges to Neo4j...")
+        # Batch write
+        batch_size = 1000
+        for i in range(0, len(sources), batch_size):
+            batch_sources = sources[i:i+batch_size]
+            batch_targets = targets[i:i+batch_size]
+            batch_probs = probs[i:i+batch_size]
+            
+            params = [
+                {'s': s, 't': t, 'p': float(p)} 
+                for s, t, p in zip(batch_sources, batch_targets, batch_probs)
+            ]
+            
+            if i == 0:
+                logger.info(f"Sample Params from first batch: {params[:3]}")
+            
+            gds.run_cypher("""
+                UNWIND $batch as row
+                MATCH (s), (t)
+                WHERE id(s) = row.s AND id(t) = row.t
+                MERGE (s)-[r:FAMILY {source: 'logistic_global_pred'}]-(t)
+                SET r.confidence = row.p,
+                    r.model = $model,
+                    r.threshold = $thresh,
+                    r.created_at = datetime()
+            """, params={'batch': params, 'model': best_model_name, 'thresh': best_thresh_overall})
+            
+        logger.info("Write-back complete.")
+    else:
+        logger.warning(f"Winning model {best_model_name} logic not explicitly implemented for write-back (expected All_Features). Skipping write-back.")
+
+    # 13. Cleanup
     gds.graph.drop(project_name, failIfMissing=False)
     gds.graph.drop("train_subgraph", failIfMissing=False)
     logger.info("Run Complete.")

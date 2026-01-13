@@ -435,8 +435,7 @@ def run_windows(
                             logger.info("Fetching Node IDs via Cypher (using gds_id match)...")
                             id_query = f"""
                             MATCH (n)
-                            WHERE n.{cfg.id_property} IS NOT NULL
-                            RETURN id(n) as gds_id, n.{cfg.id_property} as entity_id
+                            RETURN id(n) as gds_id, coalesce(n.Id, n.neo4jImportId, "GDS_" + toString(id(n))) as entity_id
                             """
                             ids_df = gds.run_cypher(id_query)
                             ids_df["gds_id"] = ids_df["gds_id"].astype("int64")
@@ -475,10 +474,10 @@ def run_windows(
                                 
                                 # FCR calculation
                                 logger.info("Computing FCR temporal via Cypher...")
-                                fcr_map = compute_fcr_temporal(gds, w.start_ms, w.end_ms, cfg.id_property)
+                                fcr_map = compute_fcr_temporal(gds, cfg, w.start_ms, w.end_ms)
                                 if fcr_map:
-                                    # Use entity_id (UUID) to map FCR
-                                    df["fcr_temporal"] = df["entity_id"].map(fcr_map).fillna(0.0)
+                                    # Use gds_id (Persistent Internal ID) to map FCR for robustness
+                                    df["fcr_temporal"] = df["gds_id"].map(fcr_map).fillna(0.0)
                                     applied = df["fcr_temporal"].gt(0).sum()
                                     logger.info("Applied fcr_temporal to %d nodes", applied)
                                 else:

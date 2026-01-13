@@ -548,3 +548,24 @@ HashGNN proved exceptionally difficult to configure programmatically via the Pyt
 - **Component 3 (Community)**: `Louvain` (modularity), `WCC` (component ID).
 - **Classifier**: `LogisticRegression(C=1, class_weight='balanced')`.
 - **Performance**: **AUC 0.846**, **F2 0.863**, **Recall 0.957**.
+
+
+### 9.6 Precision-Recall Trade-off (Optimization Strategy)
+
+The optimal threshold depends heavily on the business goal. We analyzed the All_Features model across three optimization targets:
+
+| Target Metric | Optimization Goal | Optimal Threshold | Precision | Recall | F1 Score | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+| F2-Score | Maximize Recall | 0.20 | ~0.50 | 0.96 | ~0.66 | Recommended: Capture all potential links |
+| F1-Score | Balance | 0.35 | 0.77 | 0.75 | 0.76 | Good compromise |
+| F0.5-Score | Minimize FP | 0.65 | 0.84 | 0.59 | 0.69 | High confidence, but misses 40% of links |
+
+Recommendation: Use the F2-optimized threshold (0.20). Since this model feeds into a human-in-the-loop or downstream FCR analysis, it is safer to include potential family members (and potentially filter them later) than to permanently exclude 40% of true family connections.
+
+### SAVE TEMPORAL FCR WITH IMPUTED RELATIONSHIPS
+
+NEW INSTRUCTIONS: 
+
+```shell
+uv run rolling_windows/run_pipeline.py --config rolling_windows/config_global.yaml --run-name production_run_1990_2022_v6 --show-progress
+```

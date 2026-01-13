@@ -201,7 +201,7 @@ def compute_fcr_temporal(
          count(owner) AS direct_owner_count
     
     RETURN 
-        entity.Id AS entity_id,
+        id(entity) AS gds_id,
         CASE WHEN direct_owner_count > 0 
              THEN toFloat(total_family_connections) / direct_owner_count 
              ELSE 0.0 
@@ -220,7 +220,7 @@ def compute_fcr_temporal(
         logger.warning("FCR query returned no results")
         return {}
     
-    fcr_map = dict(zip(result['entity_id'], result['fcr_temporal']))
+    fcr_map = dict(zip(result['gds_id'], result['fcr_temporal']))
     logger.info("Computed FCR for %d banks", len(fcr_map))
     
     return fcr_map
