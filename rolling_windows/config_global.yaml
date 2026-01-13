@@ -1,0 +1,12 @@
+# Production Run Configuration (1990-2022)
+start_year: 1990
+end_start_year: 2022
+window_years: 2
+step_years: 2
+id_property: "Id"
+edge_id_property: "Id"
+export_edges: true
+link_prediction: false
+lp_threshold: 0.7
+log_level: "INFO"
+# output_dir: "data_processing/rolling_windows/output/production_run_1990_2022_v4"

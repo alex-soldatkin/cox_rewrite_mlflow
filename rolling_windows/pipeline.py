@@ -8,11 +8,12 @@ from typing import Any
 import pandas as pd
 import pyarrow.parquet as pq
 from graphdatascience import GraphDataScience
-from neo4j.exceptions import ServiceUnavailable, SessionExpired
+from neo4j.exceptions import ServiceUnavailable, SessionExpired, ClientError, GqlError
 from tqdm.auto import tqdm
 
-from config import RollingWindowConfig, validate_rel_types
+from config import Neo4jConfig, RollingWindowConfig, validate_rel_types
 from dates import iter_year_windows
+from gds_client import connect_gds
 from feature_blocks import BANK_FEATS_BLOCKS, BANK_FEATS_DIM, other_bank_feats_indices
 from hashing import stable_hash_dict
 from metrics import gds_config_metadata, run_window_algorithms, compute_fcr_temporal
@@ -201,6 +202,7 @@ def run_windows(
     gds: GraphDataScience,
     *,
     cfg: RollingWindowConfig,
+    neo4j_cfg: Neo4jConfig,
     base_projection_cypher: Path,
     rebuild_base_graph: bool = False,
     expand_embeddings: bool = False,
@@ -343,266 +345,287 @@ def run_windows(
             }
 
             attempt = 0
-            while True:
+            while attempt <= max_retries:
+                temp_graph_name = f"temp_{window_graph_name}"
                 try:
                     logger.info("Creating window graph %s (attempt %d/%d)", window_graph_name, attempt + 1, max_retries + 1)
+                    
+                    # Ensure clean slate
                     gds.graph.drop(window_graph_name, failIfMissing=False)
+                    gds.graph.drop(temp_graph_name, failIfMissing=False)
+
+                    # --- PASS 1: Temporal Filter ---
+                    # Includes all Banks/Companies and all Persons active or defaulting (since Persons lack temporal props)
+                    logger.info("Pass 1: Temporal filtering...")
                     with gds.graph.filter(
-                        window_graph_name,
+                        temp_graph_name,
                         base_G,
                         node_filter,
                         rel_filter,
                         parameters=filter_params,
                         concurrency=cfg.read_concurrency,
-                    ) as G:
-                        df = None
-                        df_edges = None
+                    ) as temp_G:
+                        
+                        # --- PASS 2: Degree Filter for Persons ---
+                        # Run degree once to find who is actually participant
+                        logger.info("Pass 2: Degree mutation for participants...")
+                        gds.degree.mutate(temp_G, mutateProperty="active_degree", concurrency=cfg.read_concurrency)
+                        
+                        # Final Filter: Keep only connected Persons OR any Bank/Company
+                        # (We keep all banks/companies even if isolates for FCR census)
+                        final_node_filter = "n.active_degree > 0.0 OR n:Bank OR n:Company"
+                        
+                        logger.info("Pass 3: Final participant filtering...")
+                        with gds.graph.filter(
+                            window_graph_name,
+                            temp_G,
+                            final_node_filter,
+                            "*", # Keep all relationships from temp_G
+                            concurrency=cfg.read_concurrency
+                        ) as G:
+                            df = None
+                            df_edges = None
 
-                        if need_nodes:
-                            logger.info("Running window algorithms...")
-                            properties = run_window_algorithms(gds, G, cfg)
-                            logger.info("Algorithms completed.")
+                            if need_nodes:
+                                logger.info("Running window algorithms...")
+                                properties = run_window_algorithms(gds, G, cfg)
+                                logger.info("Algorithms completed.")
 
-                            # Determine properties to fetch from GDS (In-Memory) vs DB
-                            # Note: bank_feats/network_feats are NOT in GDS (removed to avoid NPE).
-                            # So we fetch them from DB via db_node_props.
-                            # is_dead is in GDS (as int).
-                            
-                            if cfg.export_feature_vectors:
-                                properties.extend(["is_dead"])
-                            
-                            # Ensure gds_id is streamed for ID merging
-                            properties.append("gds_id")
-                            
-                            properties = _unique_preserve_order(properties)
-                            
-                            db_node_props = [cfg.id_property]
-                            if cfg.export_edges and cfg.edge_id_property != cfg.id_property:
-                                db_node_props.append(cfg.edge_id_property)
-                            
-                            if cfg.export_feature_vectors:
-                                db_node_props.extend(["bank_feats", "network_feats"])
-                            elif cfg.export_feature_blocks:
-                                db_node_props.append("bank_feats")
-                            
+                                # Determine properties to fetch from GDS (In-Memory) vs DB
+                                if cfg.export_feature_vectors:
+                                    properties.extend(["is_dead"])
+                                
+                                # Ensure gds_id is streamed for ID merging
+                                properties.append("gds_id")
+                                
+                                properties = _unique_preserve_order(properties)
+                                
+                                db_node_props = [cfg.id_property]
+                                if cfg.export_edges and cfg.edge_id_property != cfg.id_property:
+                                    db_node_props.append(cfg.edge_id_property)
+                                
+                                if cfg.export_feature_vectors:
+                                    db_node_props.extend(["bank_feats", "network_feats"])
+                                elif cfg.export_feature_blocks:
+                                    db_node_props.append("bank_feats")
+                                
+                                logger.info("Streaming node properties...")
+                                df = gds.graph.nodeProperties.stream(
+                                    G,
+                                    properties,
+                                    separate_property_columns=True,
+                                    db_node_properties=db_node_props,
+                                    listNodeLabels=True,
+                                )
+                                logger.info("Node streaming completed. Shape: %s", df.shape if df is not None else "None")
 
+                            if need_edges:
+                                logger.info("Exporting edges...")
+                                df_edges = export_window_edges(
+                                    gds,
+                                    G,
+                                    rel_types=cfg.rel_types,
+                                    edge_id_property=cfg.edge_id_property,
+                                )
+                                logger.info("Edge export completed. Shape: %s", df_edges.shape if df_edges is not None else "None")
 
+                            # --- Resilient Post-Processing (Inside attempt loop) ---
+                            
+                            # Merge IDs from Cypher using gds_id (Robust fallback)
+                            logger.info("Fetching Node IDs via Cypher (using gds_id match)...")
+                            id_query = f"""
+                            MATCH (n)
+                            WHERE n.{cfg.id_property} IS NOT NULL
+                            RETURN id(n) as gds_id, n.{cfg.id_property} as entity_id
+                            """
+                            ids_df = gds.run_cypher(id_query)
+                            ids_df["gds_id"] = ids_df["gds_id"].astype("int64")
 
-                            logger.info("Streaming node properties...")
-                            df = gds.graph.nodeProperties.stream(
-                                G,
-                                properties,
-                                separate_property_columns=True,
-                                db_node_properties=db_node_props,
-                                listNodeLabels=True,
+                            # Merge
+                            if df is not None:
+                                if "gds_id" in df.columns:
+                                    df["gds_id"] = df["gds_id"].astype("int64")
+                                    df = df.merge(ids_df, on="gds_id", how="left")
+                                else:
+                                    logger.error("gds_id missing from dataframe! Cannot merge IDs.")
+
+                                missing_ids = df["entity_id"].isna().sum() if "entity_id" in df.columns else len(df)
+                                if missing_ids > 0:
+                                    logger.warning("Merged %d nodes, but %d have missing entity_id", len(df), missing_ids)
+                            
+                            if df is not None and "entity_id" in df.columns:
+                                sample_ids = df["entity_id"].dropna().head().tolist()
+                                logger.info("IDs fetched successfully. Sample: %s", sample_ids)
+
+                            # Compute FCR
+                            node_count = 0
+                            edge_count = 0
+
+                            if df is not None:
+                                df["window_start_ms"] = w.start_ms
+                                df["window_end_ms"] = w.end_ms
+                                df["window_start_year"] = w.start_year
+                                df["window_end_year_inclusive"] = w.end_year_inclusive
+                                df["window_graph_name"] = window_graph_name
+                                df["params_hash"] = params_hash
+
+                                # Degrees & Labels
+                                if "in_degree" in df.columns and "out_degree" in df.columns:
+                                    df["total_degree"] = df["in_degree"] + df["out_degree"]
+                                
+                                # FCR calculation
+                                logger.info("Computing FCR temporal via Cypher...")
+                                fcr_map = compute_fcr_temporal(gds, w.start_ms, w.end_ms, cfg.id_property)
+                                if fcr_map:
+                                    # Use entity_id (UUID) to map FCR
+                                    df["fcr_temporal"] = df["entity_id"].map(fcr_map).fillna(0.0)
+                                    applied = df["fcr_temporal"].gt(0).sum()
+                                    logger.info("Applied fcr_temporal to %d nodes", applied)
+                                else:
+                                    df["fcr_temporal"] = 0.0
+
+                                # --- Feature Transformations ---
+                                if "fastrp_embedding" in df.columns:
+                                    df = coerce_float_list_column(df, column="fastrp_embedding")
+                                if "hash_gnn_embedding" in df.columns:
+                                    df = coerce_float_list_column(df, column="hash_gnn_embedding")
+                                if "node2vec_embedding" in df.columns:
+                                    df = coerce_float_list_column(df, column="node2vec_embedding")
+
+                                if cfg.export_feature_vectors:
+                                    df = coerce_float_list_column(df, column="bank_feats")
+                                    df = coerce_float_list_column(df, column="network_feats")
+                                    
+                                    # Fill missing bank_feats (e.g. for Persons) with zeros for slicing
+                                    if "bank_feats" in df.columns:
+                                        zero_vec = [0.0] * BANK_FEATS_DIM
+                                        df["bank_feats"] = df["bank_feats"].apply(lambda x: zero_vec if x is None or (isinstance(x, list) and not x) else x)
+
+                                if cfg.export_feature_blocks and "bank_feats" in df.columns:
+                                    for block_name, indices in BANK_FEATS_BLOCKS.items():
+                                        df = slice_vector_column(
+                                            df,
+                                            column="bank_feats",
+                                            indices=indices,
+                                            out_column=block_name,
+                                            expected_dim=BANK_FEATS_DIM,
+                                        )
+                                    df = slice_vector_column(
+                                        df,
+                                        column="bank_feats",
+                                        indices=other_bank_feats_indices(),
+                                        out_column="other_feats",
+                                        expected_dim=BANK_FEATS_DIM,
+                                    )
+
+                                if expand_embeddings and "fastrp_embedding" in df.columns:
+                                    emb_df = expand_embedding_column(
+                                        df[["fastrp_embedding"]],
+                                        column="fastrp_embedding",
+                                        dim=cfg.embedding_dimension,
+                                        prefix="emb_",
+                                    )
+                                    df = pd.concat([df, emb_df], axis=1)
+
+                                if show_tqdm:
+                                    pbar.set_postfix_str(f"{window_graph_name} | write_nodes")
+                                logger.info("Writing %s (rows=%d cols=%d)", node_out_path, df.shape[0], df.shape[1])
+                                write_parquet(df, node_out_path)
+                                node_count = int(df.shape[0])
+
+                            if df_edges is not None:
+                                df_edges["window_start_ms"] = w.start_ms
+                                df_edges["window_end_ms"] = w.end_ms
+                                df_edges["window_start_year"] = w.start_year
+                                df_edges["window_end_year_inclusive"] = w.end_year_inclusive
+                                df_edges["window_graph_name"] = window_graph_name
+                                df_edges["params_hash"] = params_hash
+                                df_edges["edge_id_property"] = str(cfg.edge_id_property)
+
+                                if show_tqdm:
+                                    pbar.set_postfix_str(f"{window_graph_name} | write_edges")
+                                logger.info("Writing %s (rows=%d cols=%d)", edges_out_path, df_edges.shape[0], df_edges.shape[1])
+                                write_parquet(df_edges, edges_out_path)
+                                edge_count = int(df_edges.shape[0])
+
+                            # Link Prediction
+                            if cfg.run_link_prediction and df is not None and df_edges is not None:
+                                try:
+                                    predicted_edges = run_link_prediction_workflow(gds, cfg, window_graph_name, df, df_edges)
+                                    if predicted_edges is not None and not predicted_edges.empty:
+                                        pred_path = cfg.output_dir / "predicted_edges" / f"predicted_edges_{window_graph_name}.parquet"
+                                        pred_path.parent.mkdir(parents=True, exist_ok=True)
+                                        write_parquet(predicted_edges, pred_path)
+                                        logger.info("Saved %d predicted edges to %s", len(predicted_edges), pred_path)
+                                except Exception as lp_err:
+                                    logger.error("Link prediction failed for %s: %s", window_graph_name, lp_err)
+
+                            # Record in manifest
+                            manifest_rows.append(
+                                {
+                                    "window_graph_name": window_graph_name,
+                                    "window_start_ms": w.start_ms,
+                                    "window_end_ms": w.end_ms,
+                                    "window_start_year": w.start_year,
+                                    "window_end_year_inclusive": w.end_year_inclusive,
+                                    "node_count": int(node_count),
+                                    "edge_count": int(edge_count),
+                                    "rel_types": list(cfg.rel_types),
+                                    "include_imputed01": int(cfg.include_imputed01),
+                                    "export_edges": bool(cfg.export_edges),
+                                    "edge_id_property": str(cfg.edge_id_property),
+                                    "export_feature_vectors": bool(cfg.export_feature_vectors),
+                                    "export_feature_blocks": bool(cfg.export_feature_blocks),
+                                    "run_hashgnn": bool(cfg.run_hashgnn),
+                                    "run_node2vec": bool(cfg.run_node2vec),
+                                    "params_hash": params_hash,
+                                    "skipped_existing": False,
+                                }
                             )
-                            logger.info("Node streaming completed. Shape: %s", df.shape if df is not None else "None")
-                            
 
+                            break # Success! Exit retry loop
 
-                        if need_edges:
-                            logger.info("Exporting edges...")
-                            df_edges = export_window_edges(
-                                gds,
-                                G,
-                                rel_types=cfg.rel_types,
-                                edge_id_property=cfg.edge_id_property,
-                            )
-                            logger.info("Edge export completed. Shape: %s", df_edges.shape if df_edges is not None else "None")
-                    break
-                except (ServiceUnavailable, SessionExpired) as e:
+                except (ServiceUnavailable, SessionExpired, ClientError, GqlError) as e:
                     attempt += 1
                     if attempt > max_retries:
                         logger.exception("Window %s failed after %d retries", window_graph_name, max_retries)
                         raise
+                    
+                    # If it's a ClientError, check if it's "GraphNotFound" which is often transient due to session drop
+                    err_msg = str(e)
+                    is_graph_not_found = "GraphNotFoundException" in err_msg or "does not exist" in err_msg
+                    
                     logger.warning(
-                        "Transient Neo4j error for %s (attempt %d/%d): %s; retrying in %.1fs",
+                        "Transient Neo4j error for %s (attempt %d/%d, is_gnf=%s): %s; retrying in %.1fs",
                         window_graph_name,
                         attempt,
                         max_retries,
-                        str(e),
+                        is_graph_not_found,
+                        err_msg,
                         retry_backoff_s * (2 ** (attempt - 1)),
                     )
+                    # Re-connect
+                    try:
+                        logger.info("Re-establishing GDS connection...")
+                        gds = connect_gds(neo4j_cfg)
+                        # Re-ensure base graph (crucial if DB restarted)
+                        ensure_base_graph(gds, cfg=cfg, cypher_path=base_projection_cypher, rebuild=False)
+                        base_G = gds.graph.get(cfg.base_graph_name)
+                    except Exception as conn_err:
+                        logger.error("Failed to re-establish connection: %s", conn_err)
+                    
                     time.sleep(retry_backoff_s * (2 ** (attempt - 1)))
+                finally:
+                    # Robust cleanup: Always ensure temporary graphs are dropped
+                    gds.graph.drop(temp_graph_name, failIfMissing=False)
+                    # We do NOT drop window_graph_name here because we need it if we didn't finish algorithms?
+                    # Actually, if we are in the 'finally' of the loop iteration, we should drop it IF we are done or failed.
+                    # But the 'with' statement handles it. 
+                    pass
 
-            # Merge IDs from Cypher using gds_id (Robust fallback)
-            logger.info("Fetching Node IDs via Cypher (using gds_id match)...")
-            
-            # Add gds_id to properties to stream if not already
-            if "gds_id" not in properties:
-                # We need to make sure we streamed it! 
-                # Wait, streaming happened line 375. 
-                # If I add it to `properties` list BEFORE streaming, it works.
-                pass 
-            
-            id_query = f"""
-            MATCH (n)
-            WHERE n:{cfg.id_property} IS NOT NULL
-            RETURN id(n) as gds_id, n.{cfg.id_property} as entity_id
-            """
-            
-            ids_df = gds.run_cypher(id_query)
-            ids_df["gds_id"] = ids_df["gds_id"].astype("int64") 
-            
-            # Merge
-            if df is not None:
-                # Ensure gds_id is in df. 
-                # I need to ensure it was streamed. I will add it to properties list in a separate replacement chunk BEFORE streaming.
-                if "gds_id" in df.columns:
-                     df["gds_id"] = df["gds_id"].astype("int64")
-                     df = df.merge(ids_df, on="gds_id", how="left")
-                else:
-                     logger.error("gds_id missing from dataframe! Cannot merge IDs.")
 
-                missing_ids = df["entity_id"].isna().sum() if "entity_id" in df.columns else len(df)
-                if missing_ids > 0:
-                    logger.warning("Merged %d nodes, but %d have missing entity_id", len(df), missing_ids)
-            
-            # Log success
-            if df is not None and "entity_id" in df.columns:
-                sample_ids = df["entity_id"].dropna().head().tolist()
-                logger.info("IDs fetched successfully. Sample: %s", sample_ids)
 
-            node_count = 0
-            edge_count = 0
 
-            if df is not None:
-                # df = df.rename(columns={cfg.id_property: "entity_id"}) # Already merged as entity_id
-                df["window_start_ms"] = w.start_ms
-                df["window_end_ms"] = w.end_ms
-                df["window_start_year"] = w.start_year
-                df["window_end_year_inclusive"] = w.end_year_inclusive
-                df["window_graph_name"] = window_graph_name
-                df["params_hash"] = params_hash
-
-                if "in_degree" in df.columns and "out_degree" in df.columns:
-                    df["degree"] = df["in_degree"] + df["out_degree"]
-
-                if "fastrp_embedding" in df.columns:
-                    df = coerce_float_list_column(df, column="fastrp_embedding")
-                if "hash_gnn_embedding" in df.columns:
-                    df = coerce_float_list_column(df, column="hash_gnn_embedding")
-                if "node2vec_embedding" in df.columns:
-                    df = coerce_float_list_column(df, column="node2vec_embedding")
-
-                # Compute FCR using Neo4j Cypher (much faster than pandas)
-                try:
-                    fcr_map = compute_fcr_temporal(gds, cfg, w.start_ms, w.end_ms)
-                    
-                    # DEBUG: Inspect FCR Map
-                    if df is not None and "nodeLabels" in df.columns and cfg.id_property in df.columns:
-                        try:
-                            banks = df[df["nodeLabels"].apply(lambda x: "Bank" in x if isinstance(x, list) else False)]
-                            logger.info("DEBUG: Found %d Bank nodes in Window Graph DF", len(banks))
-                            logger.info("DEBUG: Bank ID Sample: %s", banks[cfg.id_property].head().tolist())
-                            logger.info("DEBUG: Total FCR Map Size: %d", len(fcr_map) if fcr_map else 0)
-                            if fcr_map and not banks.empty:
-                               hits = banks[cfg.id_property].isin(fcr_map.keys()).sum()
-                               logger.info("DEBUG: Bank IDs in FCR Map: %d", hits)
-                        except Exception as debug_err:
-                            logger.warning("Debug logging failed: %s", debug_err)
-
-                    if fcr_map:
-                        df["fcr_temporal"] = df["entity_id"].map(fcr_map).fillna(0.0)
-                        logger.info("Applied fcr_temporal to %d nodes", (df["fcr_temporal"] > 0).sum())
-                except Exception as e:
-                    logger.error("Failed to compute fcr_temporal: %s", e)
-                    df["fcr_temporal"] = 0.0
-                if cfg.export_feature_vectors:
-                    df = coerce_float_list_column(df, column="bank_feats")
-                    df = coerce_float_list_column(df, column="network_feats")
-                    
-                    # Fill missing bank_feats (e.g. for Persons) with zeros for slicing
-                    if "bank_feats" in df.columns:
-                        zero_vec = [0.0] * BANK_FEATS_DIM
-                        df["bank_feats"] = df["bank_feats"].apply(lambda x: zero_vec if x is None or (isinstance(x, list) and not x) else x)
-
-                if cfg.export_feature_blocks and "bank_feats" in df.columns:
-                    for block_name, indices in BANK_FEATS_BLOCKS.items():
-                        df = slice_vector_column(
-                            df,
-                            column="bank_feats",
-                            indices=indices,
-                            out_column=block_name,
-                            expected_dim=BANK_FEATS_DIM,
-                        )
-                    df = slice_vector_column(
-                        df,
-                        column="bank_feats",
-                        indices=other_bank_feats_indices(),
-                        out_column="other_feats",
-                        expected_dim=BANK_FEATS_DIM,
-                    )
-
-                if expand_embeddings and "fastrp_embedding" in df.columns:
-                    emb_df = expand_embedding_column(
-                        df[["fastrp_embedding"]],
-                        column="fastrp_embedding",
-                        dim=cfg.embedding_dimension,
-                        prefix="emb_",
-                    )
-                    df = pd.concat([df, emb_df], axis=1)
-
-                if show_tqdm:
-                    pbar.set_postfix_str(f"{window_graph_name} | write_nodes")
-                logger.info("Writing %s (rows=%d cols=%d)", node_out_path, df.shape[0], df.shape[1])
-                write_parquet(df, node_out_path)
-                node_count = int(df.shape[0])
-
-            if df_edges is not None:
-                df_edges["window_start_ms"] = w.start_ms
-                df_edges["window_end_ms"] = w.end_ms
-                df_edges["window_start_year"] = w.start_year
-                df_edges["window_end_year_inclusive"] = w.end_year_inclusive
-                df_edges["window_graph_name"] = window_graph_name
-                df_edges["params_hash"] = params_hash
-                df_edges["edge_id_property"] = str(cfg.edge_id_property)
-
-                if show_tqdm:
-                    pbar.set_postfix_str(f"{window_graph_name} | write_edges")
-                logger.info("Writing %s (rows=%d cols=%d)", edges_out_path, df_edges.shape[0], df_edges.shape[1])
-                write_parquet(df_edges, edges_out_path)
-                edge_count = int(df_edges.shape[0])
-
-            # --- Intra-Window Link Prediction ---
-            if cfg.run_link_prediction and df is not None and df_edges is not None:
-                try:
-                    predicted_edges = run_link_prediction_workflow(gds, cfg, window_graph_name, df, df_edges)
-                    if predicted_edges is not None and not predicted_edges.empty:
-                        pred_path = cfg.output_dir / "predicted_edges" / f"predicted_edges_{window_graph_name}.parquet"
-                        # Ensure dir exists
-                        pred_path.parent.mkdir(parents=True, exist_ok=True)
-                        write_parquet(predicted_edges, pred_path)
-                        logger.info("Saved %d predicted edges to %s", len(predicted_edges), pred_path)
-                except Exception as e:
-                    logger.error("Link prediction failed for %s: %s", window_graph_name, e)
-
-            if df is None and node_out_path.exists():
-                node_count = int(pq.ParquetFile(node_out_path).metadata.num_rows)
-            if df_edges is None and edges_out_path.exists():
-                edge_count = int(pq.ParquetFile(edges_out_path).metadata.num_rows)
-
-            manifest_rows.append(
-                {
-                    "window_graph_name": window_graph_name,
-                    "window_start_ms": w.start_ms,
-                    "window_end_ms": w.end_ms,
-                    "window_start_year": w.start_year,
-                    "window_end_year_inclusive": w.end_year_inclusive,
-                    "node_count": int(node_count),
-                    "edge_count": int(edge_count),
-                    "rel_types": list(cfg.rel_types),
-                    "include_imputed01": int(cfg.include_imputed01),
-                    "export_edges": bool(cfg.export_edges),
-                    "edge_id_property": str(cfg.edge_id_property),
-                    "export_feature_vectors": bool(cfg.export_feature_vectors),
-                    "export_feature_blocks": bool(cfg.export_feature_blocks),
-                    "run_hashgnn": bool(cfg.run_hashgnn),
-                    "run_node2vec": bool(cfg.run_node2vec),
-                    "params_hash": params_hash,
-                    "skipped_existing": False,
-                }
-            )
     finally:
         manifest = pd.DataFrame(manifest_rows)
         logger.info("Writing manifest: %s (windows=%d)", manifest_path, manifest.shape[0])

@@ -180,6 +180,10 @@ def run_global_pipeline(lp_threshold: float = 0.7):
     gds = get_gds_client()
     graph_name = "global_lp_graph"
     
+    # 0. Cleanup Old Predictions (Important for idempotency)
+    logger.info("Cleaning up old 'logistic_pred' edges...")
+    gds.run_cypher("MATCH ()-[r:FAMILY {source: 'logistic_pred'}]-() DELETE r")
+
     # 1. Project
     G = project_global_graph(gds, graph_name)
     
@@ -196,6 +200,10 @@ def run_global_pipeline(lp_threshold: float = 0.7):
     from rolling_windows.link_prediction import fetch_sim_name_pairs, fetch_official_family_edges
     
     sim_name_df = fetch_sim_name_pairs(gds, include_family=False)
+    # Ensure IDs are strings
+    sim_name_df.dropna(subset=['source_id', 'target_id'], inplace=True)
+    sim_name_df['source_id'] = sim_name_df['source_id'].astype(str)
+    sim_name_df['target_id'] = sim_name_df['target_id'].astype(str)
     
     # Define local fetch function to ensure we exclude 'logistic_pred' from training data
     # (Ground truth only)
@@ -222,9 +230,60 @@ def run_global_pipeline(lp_threshold: float = 0.7):
     family_df = gds.run_cypher(family_query)
     logger.info(f"Fetched {len(family_df)} ground truth FAMILY edges.")
     
-    logger.info("Building training data...")
-    train_df = build_training_data(sim_name_df, family_df, max_negatives_ratio=1.0)
+    # Ensure IDs are strings and not None
+    family_df = family_df.dropna(subset=['source_id', 'target_id'])
+    family_df['source_id'] = family_df['source_id'].astype(str)
+    family_df['target_id'] = family_df['target_id'].astype(str)
+
+    # Cross-Validation Split (Leave 20% out for true evaluation)
+    # Using 'is_common_surname' to stratify? Or simple random?
+    # Simple random is fine for now as we just want to ensure we don't cheat.
+    # Note: build_training_data merges sim and family. We should split FAMILY first?
+    # Actually, standard practice is to split the final constructed dataset?
+    # BUT, we have "Implicit Negatives" from SimName. 
+    # If we split Family edges into Train/Test, we must ensure Test edges appear as "Positives" in Test set
+    # and "Negatives" (Candidates) in Train set? No, that's leakage.
+    # Correct approach:
+    # 1. Split Family Edges -> Train_Family, Test_Family
+    # 2. Build Train Set: SimName pairs + Train_Family (label=1). 
+    #    Exclude Test_Family from this set (or treat as 0? No, treat as "Unknown/Ignored").
+    #    Actually simplest is: Use ALL SimName pairs as candidates. 
+    #    Label=1 if in Train_Family. Label=0 otherwise (even if in Test_Family? -> Noise).
+    #    Better: Remove Test_Family pairs from Training candidates entirely.
     
+    # Let's keep it simple for this sprint as directed: 
+    # "use cross vallidation and use 20% of the ground truth for evaluation and NOT use them for training"
+    
+    train_family, test_family = train_test_split(family_df, test_size=0.2, random_state=42)
+    logger.info(f"Split Ground Truth: {len(train_family)} Train, {len(test_family)} Test")
+    
+    logger.info("Building training data (using only Train split of Positives)...")
+    # We pass ONLY train_family to build_training_data
+    # This means sim_name pairs that happen to be test_family edges will be labeled 0 (Negative).
+    # This creates "Label Noise" (False Negatives in Training).
+    # Critical: We must EXCLUDE test_family pairs from the negative sampling pool of the Training set.
+    
+    # 1. Build initial Train DF with Train positives
+    train_df = build_training_data(sim_name_df, train_family, max_negatives_ratio=1.0)
+    # Ensure IDs are strings (legacy from build_training_data could be mixed?)
+    train_df.dropna(subset=['source_id', 'target_id'], inplace=True)
+    train_df['source_id'] = train_df['source_id'].astype(str)
+    train_df['target_id'] = train_df['target_id'].astype(str)
+    
+    # 2. Filter out rows that correspond to Test pairs to avoid False Negatives
+    test_pairs = set(zip(test_family['source_id'], test_family['target_id']))
+    # Also undirected
+    test_pairs_undir = set()
+    for s, t in test_pairs:
+        test_pairs_undir.add(tuple(sorted((s, t))))
+        
+    # Filter train_df (where label=0)
+    # If a negative sample is actually in test_family, drop it.
+    initial_len = len(train_df)
+    train_df['pair_key'] = train_df.apply(lambda r: tuple(sorted((r['source_id'], r['target_id']))), axis=1)
+    train_df = train_df[~train_df['pair_key'].isin(test_pairs_undir)].drop(columns=['pair_key'])
+    logger.info(f"Filtered {initial_len - len(train_df)} potential false negatives (test edges) from training set.")
+
     # 5. Train & Predict
     cfg = LinkPredictionConfig()
     
@@ -274,7 +333,91 @@ def run_global_pipeline(lp_threshold: float = 0.7):
         
         logger.info(f"Best model: {best_variant} (AUC={best_metric:.3f})")
         
-        # 6. Predict
+        # --- 5b. Evaluate on Test Set (Hold-out) ---
+        logger.info("Evaluating Best Model on Test Set...")
+        # Build features for Test Pairs
+        # Test Set Positives: test_family
+        # Test Set Negatives: Sample from remaining SimName that are NOT in family at all?
+        # A proper evaluation needs Negatives. 
+        # We can re-use `build_training_data` but with test_family and ensuring disjoint from train
+        # The key is: build_training_data selects negatives from SimName that are NOT in the passed 'family_df'.
+        # If we pass 'test_family', it will pick sim_name pairs NOT in test_family as negatives.
+        # BUT some of those "negatives" might be in 'train_family' (which is fine, they are positives there, but here valid negatives?)
+        # NO. If a pair is in 'train_family', it IS a family edge. It cannot be a negative in Test.
+        # So we must treat 'train_family' edges as "Known Positives" too, even if not in 'test_family'.
+        
+        # We need to construct a test set where:
+        # Positives = test_family
+        # Negatives = SimName pairs that are NEITHER in test_family NOR in train_family.
+        
+        # Manually constructing Test Set to ensure correctness:
+        test_positives = test_family.copy()
+        test_positives['label'] = 1
+        
+        # Get all SimName pairs
+        # Filter out ANY family edge (Train OR Test)
+        all_family_pairs = set(zip(family_df['source_id'], family_df['target_id']))
+        all_family_pairs_undir = set()
+        for s, t in all_family_pairs:
+            all_family_pairs_undir.add(tuple(sorted((s, t))))
+            
+        test_negatives_candidates = sim_name_df.copy()
+        test_negatives_candidates['pair_key'] = test_negatives_candidates.apply(lambda r: tuple(sorted((r['source_id'], r['target_id']))), axis=1)
+        test_negatives = test_negatives_candidates[~test_negatives_candidates['pair_key'].isin(all_family_pairs_undir)].drop(columns=['pair_key'])
+        
+        # Sample negatives (1:1 ratio with test positives)
+        n_pos = len(test_positives)
+        if len(test_negatives) > n_pos:
+            test_negatives = test_negatives.sample(n=n_pos, random_state=42)
+        test_negatives['label'] = 0
+        
+        test_df = pd.concat([test_positives, test_negatives], ignore_index=True)
+        # Ensure IDs are strings
+        test_df.dropna(subset=['source_id', 'target_id'], inplace=True)
+        test_df['source_id'] = test_df['source_id'].astype(str)
+        test_df['target_id'] = test_df['target_id'].astype(str)
+        
+        # Now run prediction on test_df
+        # We need to construct features similarly to run_model_variant
+        # We can implement a helper or just adapt
+        
+        def prepare_features(df, variant, df_nodes):
+            str_cols = ['lev_dist_last_name', 'lev_dist_patronymic', 'is_common_surname']
+            df[str_cols] = df[str_cols].fillna(0.0)
+            
+            feats = []
+            if variant != "baseline_fastrp":
+                feats.append(df[str_cols].values)
+            
+            if "fastrp" in variant:
+                emb = compute_embedding_features(df, df_nodes, "fastrp_embedding")
+                # Fill missing with 0 for eval (shouldn't happen for valid nodes)
+                # For robust stack, let's just use what we have, but shape must match.
+                # compute_embedding_features returns list of lists.
+                emb_mat = np.array([e if e is not None else [0]*128 for e in emb])
+                feats.append(emb_mat)
+                
+            if "wcc" in variant:
+                wcc = compute_community_features(df, df_nodes, "wcc")
+                feats.append(wcc.values)
+                
+            if "louvain" in variant:
+                lv = compute_community_features(df, df_nodes, "community_louvain")
+                feats.append(lv.values)
+            
+            return np.hstack(feats)
+
+        X_test = prepare_features(test_df, best_variant, df_nodes)
+        X_test_scaled = best_scaler.transform(X_test)
+        y_test = test_df['label'].values
+        
+        y_prob_test = best_model.predict_proba(X_test_scaled)[:, 1]
+        test_auc = roc_auc_score(y_test, y_prob_test)
+        logger.info(f"Test Set Evaluation ({len(test_df)} samples): AUC={test_auc:.4f}")
+        mlflow.log_metric("test_auc", test_auc)
+
+
+        # 6. Predict on ALL Candidates (Global)
         # Build Candidates (SIM_NAME - FAMILY)
         # Using logic from link_prediction.py (but we need to replicate it here or import function? 
         # link_prediction.py has it embedded in run_link_prediction_workflow. We should extract it or copy-paste adapted)

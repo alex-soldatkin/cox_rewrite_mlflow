@@ -1,0 +1,7 @@
+Accuracy: 0.5
+Precision: 0.5
+Recall: 1.0
+F1: 0.6666666666666666
+AUC: 0.5
+AP: 0.5
+Threshold: 0.1

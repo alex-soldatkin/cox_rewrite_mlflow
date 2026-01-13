@@ -12,6 +12,11 @@ from config import RollingWindowConfig, load_neo4j_config, parse_rel_types
 from gds_client import connect_gds
 from pipeline import run_windows
 
+try:
+    import yaml
+except ImportError:
+    yaml = None
+
 
 def _parse_csv_words(values: list[str]) -> tuple[str, ...]:
     out: list[str] = []
@@ -33,6 +38,7 @@ def _parse_csv_words(values: list[str]) -> tuple[str, ...]:
 def _build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description="Run rolling-window temporal graph analytics (Neo4j GDS).")
     p.add_argument("--env-file", default=None, help="Path to a .env file (defaults to project .env discovery).")
+    p.add_argument("--config", type=Path, help="Path to a YAML configuration file.")
     p.add_argument("--arrow", action="store_true", help="Enable Arrow Flight (if configured on the server).")
     p.add_argument(
         "--show-progress",
@@ -60,7 +66,7 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     p.add_argument("--include-imputed", action="store_true", help="Include imputed FAMILY relationships.")
 
-    p.add_argument("--id-property", default="neo4jImportId", help="Stable node identifier property to export.")
+    p.add_argument("--id-property", default=defaults.id_property, help="Stable node identifier property to export.")
 
     p.add_argument("--read-concurrency", type=int, default=4, help="GDS concurrency for projection/filter/algs.")
     p.add_argument("--base-graph-name", default="base_temporal", help="Name of the base GDS graph.")
@@ -193,7 +199,24 @@ def _setup_logging(*, level: str, log_file: str | None) -> None:
 
 
 def main() -> None:
-    args = _build_parser().parse_args()
+    parser = _build_parser()
+    args = parser.parse_args()
+
+    # Apply YAML config if provided
+    if args.config:
+        if yaml is None:
+            print("Error: PyYAML is required for --config but not installed. Run 'uv add pyyaml'.", file=sys.stderr)
+            sys.exit(1)
+        if not args.config.exists():
+            print(f"Error: Config file not found: {args.config}", file=sys.stderr)
+            sys.exit(1)
+        
+        with open(args.config, "r") as f:
+            yaml_config = yaml.safe_load(f)
+            # Re-parse args with YAML values as defaults
+            parser.set_defaults(**yaml_config)
+            args = parser.parse_args()
+
     _setup_logging(level=str(args.log_level).upper(), log_file=args.log_file)
 
     neo4j_cfg = load_neo4j_config(env_file=args.env_file, arrow=bool(args.arrow), show_progress=bool(args.show_progress))
@@ -257,6 +280,7 @@ def main() -> None:
             run_windows(
                 gds,
                 cfg=cfg,
+                neo4j_cfg=neo4j_cfg,
                 base_projection_cypher=base_projection_cypher,
                 rebuild_base_graph=bool(args.rebuild_base_graph),
                 expand_embeddings=bool(args.expand_embeddings),
