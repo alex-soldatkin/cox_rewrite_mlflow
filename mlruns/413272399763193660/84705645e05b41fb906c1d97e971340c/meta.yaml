@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/413272399763193660/84705645e05b41fb906c1d97e971340c/artifacts
+end_time: 1770922582304
+entry_point_name: ''
+experiment_id: '413272399763193660'
+lifecycle_stage: active
+run_id: 84705645e05b41fb906c1d97e971340c
+run_name: EPU Interactions (Full)
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770922580808
+status: 3
+tags: []
+user_id: alexandersoldatkin

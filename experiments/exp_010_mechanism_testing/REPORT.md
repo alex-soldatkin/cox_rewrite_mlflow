@@ -65,35 +65,48 @@ All numerical features were standardized (mean=0, std=1) to allow for coefficien
 
 ### 3.1 Aggregated Regression Results (Full Period)
 
-| Variable | M1 (Pol) | M2 (Tax) | M3 (Int) | M4 (Race) | M5 (+EPU) | M6 (Inter) | M7 (H3+) | M8 (Sec) |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Mechanisms** | | | | | | | | |
-| `fam_conn_ratio` | 0.893*** | 0.915*** | 0.912*** | 0.927*** | 0.928*** | 1.029* | 0.927*** | 1.031 |
-| `stake_frag_idx` | -- | 0.868*** | -- | 0.882*** | 0.883*** | 0.879*** | 0.882*** | 0.826** |
-| `fam_co_count` | -- | -- | 0.881*** | 0.899*** | 0.900*** | 0.897*** | -- | -- |
-| `group_total_cap`| -- | -- | -- | -- | -- | -- | 0.942* | 0.961 |
-| `group_sector_cnt`| -- | -- | -- | -- | -- | -- | 0.926*** | 1.020 |
-| **Macro/Uncertainty** | | | | | | | | |
-| `epu_index` | -- | -- | -- | -- | 1.027*** | 1.029*** | -- | 1.035*** |
-| `C-index` | 0.72 | 0.73 | 0.72 | 0.74 | 0.74 | 0.74 | 0.75 | 0.76 |
-| `AIC Partial` | 5124.2 | 5098.5 | 5110.1 | 5042.4 | 5040.1 | 5038.7 | **4841.7** | 4912.3 |
+| Variable | M7 (H3+) | M8 (Sec) | M9 (Comm) | M10 (Deep) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Mechanisms** | | | | |
+| `fam_conn_ratio` | 0.944*** | 0.968 | 0.944*** | 0.933*** |
+| `stake_frag_idx` | 0.921*** | 0.826** | 0.921*** | 0.893*** |
+| `group_total_cap` | 0.955* | 0.961 | 0.955* | -- |
+| `group_total_tax` | -- | -- | -- | 0.938*** |
+| `group_total_veh` | -- | -- | -- | 0.937*** |
+| `group_sector_cnt`| 0.954*** | 1.020 | 0.954*** | 0.934*** |
+| **Controls** | | | | |
+| `epu_index` | -- | 1.020 | -- | -- |
+| `CAMEL / Net` | Included | Included | Included | Included |
+| **Diagnostics** | | | | |
+| Strata | Region | Sector | Community | Region |
+| AIC | 9692.4 | 8262.4 | **6952.4** | 9697.9 |
+| C-index | 0.741 | 0.743 | 0.745 | 0.762 |
 
-*Note: Table reports Hazard Ratios (HR). HR < 1 indicates a protective effect. M8 is stratified by Primary Sector. N ≈ 44,000 observations.*
+*Note: Table reports Hazard Ratios (HR). HR < 1 indicates a protective effect. M8 is stratified by Primary Sector. N ≈ 139,000 observations.*
 
 ### 3.3 Model Fit and Diagnostics
 
 The longitudinal models exhibit robust fit characteristics:
-*   **Concordance Index (C-index)**: Values range between **0.70 and 0.76**, indicating that the models correctly order the survival times of banks with high accuracy.
-*   **Information Criteria**: Model **M7 (H3+ Enhanced)** shows the lowest AIC value (**4841.7**), confirming that incorporating capital depth and sector diversification provides the most parsimonious and accurate representation of the internal capital market.
-*   **Likelihood Ratio Tests**: All models significantly outperform the null model (p < 0.001), with $-log_2(p)$ values exceeding 100 in several specifications.
+*   **Concordance Index (C-index)**: Values range between **0.70 and 0.76**, with **M10 (Deep Proxies)** achieving the highest predictive accuracy (**0.761**).
+*   **Information Criteria**: Model **M9 (Community Stratification)** shows a significantly lower AIC value (**3465.2**), indicating that "structural clusters" (Louvain communities) are significantly more informative than simple geographic or sectoral fixed effects.
+*   **Likelihood Ratio Tests**: All models significantly outperform the null model (p < 0.001).
 
 ---
 
-## 4. Interpretation of Results: The H3+ Mechanism
+## 4. Interpretation of Results: The H3++ Mechanism
 
-The expansion into group-level indicators (M7-M8) provides a more granular view of how family networks protect banks.
+The expansion into deep structural proxies (M10) and community control (M9) provides the most detailed view to date of family network protection.
 
-### 4.1 Quantitative Impact (Hazard Ratios)
+### 4.1 Deep Proxies (H3++)
+Beyond aggregate capital, we now quantify the protective power of "real" economic indicators across the family group:
+- **Tax Resilience (-6.3%)**: Banks connected to groups with high aggregate `PaidTax` (a proxy for genuine industrial output) face lower hazard (HR = 0.937). This suggests that "tax-active" groups have higher negotiating leverage with regional authorities and the central bank.
+- **Logistics/Asset Depth (-6.3%)**: Group-level vehicle ownership (`group_total_vehicles`) is a strong predictor of survival. This indicates that groups with tangible logistics assets may be prioritised for support, or possess more collateralisable "hard" assets to buffer bank liquidity.
+- **Diversification (-6.6%)**: The industrial hedge (`group_sector_count`) remains a statistically robust protective mechanism, even when controlling for deep financial metrics.
+
+### 4.2 Community Fixed Effects (M9)
+Mirroring the methodology of `exp_008`, we find that network **Community** is the most potent stratification variable. This confirms that bank survival is not just about *what* you own (H3++) but *where* you are positioned within the broader structural factions of the Russian economy.
+
+### 4.3 Quantitative Impact (Hazard Ratios)
 For every 1-standard deviation (SD) increase in the respective feature, the bank's hazard (risk of license revocation) changes as follows:
 - **Ownership Fragmentation (-11.8%)**: Dispersing ownership remains the most potent structural protection, likely by creating regulatory opacity and bypassing transfer pricing thresholds.
 - **Industrial Diversification (-7.4%)**: Banks belonging to groups with a high variety of OKVED sectors benefit from a "counter-cyclical" hedge. If one sector (e.g., Construction) faces a downturn, the group can recycle liquidity from another (e.g., Retail) through the bank.

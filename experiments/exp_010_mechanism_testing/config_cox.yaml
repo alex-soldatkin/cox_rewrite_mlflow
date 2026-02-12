@@ -51,6 +51,16 @@ experiment:
       strata:
         - region_id
 
+    m9_Community_Strata:
+      name: "M9: Full Mechanism + Community Stratification"
+      formula: "family_connection_ratio + stake_fragmentation_index + group_total_capital + group_sector_count + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + rw_out_degree_4q_lag + rw_page_rank_4q_lag + state_ownership_pct + foreign_ownership_total_pct"
+      strata: ["community_id"]
+
+    m10_H3_Deep_Proxies:
+      name: "M10: H3++ Deep Structural Proxies"
+      formula: "family_connection_ratio + stake_fragmentation_index + group_total_paid_tax + group_total_vehicles + group_total_receipts + group_sector_count + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + rw_out_degree_4q_lag + state_ownership_pct + foreign_ownership_total_pct"
+      strata: ["region_id"]
+
 data:
   start_year: 2004
   end_year: 2020

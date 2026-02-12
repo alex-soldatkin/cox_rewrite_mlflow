@@ -106,3 +106,39 @@ The horse race results have been aggregated into unified stargazer tables:
 
 The Internal Capital Market mechanism remains the dominant protective factor in the full horse race (M4).
 
+### 4. Experiment 010 Expansion (H3++, Community, & 2004-2020) (Completed 2026-02-12)
+*   **Timestamp**: 2026-02-12 19:05 UTC
+*   **Objective**: Scaled Experiment 010 from 2010-2020 to 2004-2020. Integrated "Deep Proxies" (H3++) and Community-based stratification (Louvain).
+
+#### Issues Encountered & Solutions:
+
+1.  **Observation Count Discrepancy**:
+    *   **Problem**: Initial runs yielded ~44,000 observations instead of the theoretical ~192,000.
+    *   **Solution**: Identified that the frequency was **quarterly** (factor of 3 reduction) and the network snapshots were restricted to 2010-2020. Expanded the analysis to 2004-2020 by decoupling the data loader and pointing it to the full production dataset.
+    ```python
+    # mlruns_utils/mechanism_data_loader.py
+    def load_mechanism_data(self, lag_quarters: int = 4, start_year: int = 2004, ...):
+        # Now yields 139,038 observations (95% network match rate)
+    ```
+
+2.  **Hardcoded Temporal Boundaries**:
+    *   **Problem**: `QuarterlyWindowDataLoader` was limited to `quarterly_2010_2020`.
+    *   **Solution**: Updated class defaults to point to the local 2004-2020 production directory and reset the default `start_year` to 2004.
+
+3.  **Community Stratification & Convergence**:
+    *   **Problem**: Louvain communities with very few banks caused model non-convergence when used as strata.
+    *   **Solution**: Implemented a collapsing threshold in `run_cox_mechanisms.py` to bucket small clusters into an 'other' group.
+    ```python
+    community_counts = df['network_community'].value_counts()
+    df['community_id'] = df['network_community'].apply(
+        lambda x: str(int(x)) if community_counts[x] >= 5 else 'other'
+    )
+    ```
+
+#### Files Modified (Full Relative Paths):
+- `mlflow_utils/mechanism_data_loader.py`: Added deep proxies (`PaidTax`, `Vehicles`) and full-period support.
+- `mlflow_utils/quarterly_window_loader.py`: Decoupled legacy 2010-2020 paths.
+- `experiments/exp_010_mechanism_testing/run_cox_mechanisms.py`: Integrated `M9` (Community) and `M10` (H3++) models.
+- `experiments/exp_010_mechanism_testing/REPORT.md`: Centralised results write-up.
+- `experiments/exp_010_mechanism_testing/compare_survival.py`: survival time unit set to months.
+

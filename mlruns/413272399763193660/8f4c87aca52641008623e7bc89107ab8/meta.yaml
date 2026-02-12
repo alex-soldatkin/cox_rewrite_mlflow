@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/413272399763193660/8f4c87aca52641008623e7bc89107ab8/artifacts
+end_time: 1770921599028
+entry_point_name: ''
+experiment_id: '413272399763193660'
+lifecycle_stage: active
+run_id: 8f4c87aca52641008623e7bc89107ab8
+run_name: 'M10: H3++ Deep Structural Proxies'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770921597644
+status: 3
+tags: []
+user_id: alexandersoldatkin

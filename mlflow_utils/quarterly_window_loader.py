@@ -28,7 +28,7 @@ class QuarterlyWindowDataLoader:
     """
     
     def __init__(self, 
-                 quarterly_dir: str = 'rolling_windows/output/quarterly_2010_2020',
+                 quarterly_dir: str = 'rolling_windows/output/quarterly_2004_2020',
                  accounting_path: Optional[str] = None):
         """
         Initialize loader with quarterly network data.
@@ -127,7 +127,7 @@ class QuarterlyWindowDataLoader:
     
     
     def _load_accounting_data(self, 
-                             start_year: int = 2010,
+                             start_year: int = 2004,
                              end_year: int = 2020) -> pd.DataFrame:
         """
         Load accounting data from parquet file.

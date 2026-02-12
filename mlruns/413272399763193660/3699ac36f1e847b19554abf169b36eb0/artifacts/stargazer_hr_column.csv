@@ -1,0 +1,13 @@
+variable,Stargazer_Output_HR
+family_connection_ratio,0.894*** (0.020)
+camel_roa,0.939*** (0.008)
+camel_npl_ratio,1.119*** (0.020)
+camel_tier1_capital_ratio,1.108*** (0.023)
+rw_out_degree_4q_lag,0.949* (0.022)
+Observations,139038
+Subjects,1092
+Events,770
+Log Likelihood,-4873.86
+AIC Partial,9757.72
+-log2(p) LLR,85.72
+C-index,0.694

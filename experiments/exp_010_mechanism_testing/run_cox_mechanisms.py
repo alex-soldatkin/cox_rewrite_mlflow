@@ -50,7 +50,8 @@ def prepare_cox_data(df):
         'rw_out_degree_4q_lag', 'rw_page_rank_4q_lag',
         'state_ownership_pct', 'foreign_ownership_total_pct',
         'stake_fragmentation_index', 'family_company_count', 'epu_index',
-        'group_total_capital', 'group_sector_count'
+        'group_total_capital', 'group_sector_count',
+        'group_total_paid_tax', 'group_total_vehicles', 'group_total_receipts'
     ]
     
     # Ensure all columns exist
@@ -58,7 +59,22 @@ def prepare_cox_data(df):
     print(f"  Scaling features: {cols_to_scale}")
     df_cox[cols_to_scale] = scaler.fit_transform(df_cox[cols_to_scale].fillna(0))
     
-    # 3. Categorical encoding for region and sector (for strata)
+    # 3. Community Processing (Collapse small communities like in exp_008)
+    if 'network_community' in df_cox.columns:
+        print("\n  Processing network communities...")
+        # Count banks per community
+        community_counts = df_cox.groupby('network_community')['regn'].nunique()
+        small_communities = community_counts[community_counts < 5].index
+        
+        df_cox['community_collapsed'] = df_cox['network_community'].copy()
+        df_cox.loc[df_cox['network_community'].isin(small_communities), 'community_collapsed'] = -1
+        
+        print(f"    Original communities: {len(community_counts)}")
+        print(f"    Small communities (<5 banks) collapsed: {len(small_communities)}")
+        
+        df_cox['community_id'] = pd.factorize(df_cox['community_collapsed'])[0]
+    
+    # 4. Categorical encoding for region and sector (for strata)
     if 'bank_region' in df_cox.columns:
         df_cox['region_id'] = pd.factorize(df_cox['bank_region'])[0]
     

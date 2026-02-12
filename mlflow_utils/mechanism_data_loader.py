@@ -84,7 +84,7 @@ class MechanismDataLoader(QuarterlyWindowDataLoader):
 
         // Aggregate Financial and Sector data
         UNWIND (CASE WHEN size(family_cos) > 0 THEN family_cos ELSE [null] END) as comp
-        WITH b, stake_fragmentation_index, total_family_stake, family_near_20, family_near_50, family_company_count,
+        WITH b, stake_fragmentation_index, total_family_stake, family_near_20, family_near_50, family_company_count, 
              comp,
              CASE WHEN comp.MainActivityType_Code IS NOT NULL AND comp.MainActivityType_Code <> '-1' 
                   THEN left(toString(comp.MainActivityType_Code), 2) 
@@ -93,17 +93,22 @@ class MechanismDataLoader(QuarterlyWindowDataLoader):
         WITH b, stake_fragmentation_index, total_family_stake, family_near_20, family_near_50, family_company_count,
              sum(CASE WHEN comp.AuthorisedCapital <> -1 THEN comp.AuthorisedCapital ELSE 0 END + 
                  CASE WHEN comp.Capital <> -1 THEN comp.Capital ELSE 0 END) as group_total_capital,
+             sum(CASE WHEN comp.PaidTax IS NOT NULL AND comp.PaidTax <> -1 THEN comp.PaidTax ELSE 0 END) as group_total_paid_tax,
+             sum(CASE WHEN comp.Vehicles IS NOT NULL AND comp.Vehicles <> -1 THEN comp.Vehicles ELSE 0 END) as group_total_vehicles,
+             sum(CASE WHEN comp.Receipts IS NOT NULL AND comp.Receipts <> -1 THEN comp.Receipts ELSE 0 END) as group_total_receipts,
              count(DISTINCT sector) as group_sector_count,
              collect(sector) as all_sectors
         
         // Final selection and primary sector logic
         UNWIND (CASE WHEN size(all_sectors) > 0 THEN all_sectors ELSE [null] END) as s
         WITH b, stake_fragmentation_index, total_family_stake, family_near_20, family_near_50, family_company_count, 
-             group_total_capital, group_sector_count, s, count(*) as sector_freq
+             group_total_capital, group_total_paid_tax, group_total_vehicles, group_total_receipts,
+             group_sector_count, s, count(*) as sector_freq
         ORDER BY sector_freq DESC
         
         WITH b, stake_fragmentation_index, total_family_stake, family_near_20, family_near_50, family_company_count, 
-             group_total_capital, group_sector_count, collect(s)[0] as group_primary_sector
+             group_total_capital, group_total_paid_tax, group_total_vehicles, group_total_receipts,
+             group_sector_count, collect(s)[0] as group_primary_sector
         
         RETURN b.regn_cbr AS regn_cbr,
                b.region AS bank_region,
@@ -113,8 +118,12 @@ class MechanismDataLoader(QuarterlyWindowDataLoader):
                family_near_50,
                family_company_count,
                group_total_capital,
+               group_total_paid_tax,
+               group_total_vehicles,
+               group_total_receipts,
                group_sector_count,
-               group_primary_sector
+               group_primary_sector,
+               b.community_louvain as network_community
         """
         
         df_mech = self.gds.run_cypher(cypher)
@@ -122,6 +131,19 @@ class MechanismDataLoader(QuarterlyWindowDataLoader):
         
         # regn conversion
         df_mech['regn'] = pd.to_numeric(df_mech['regn_cbr'], errors='coerce').astype('Int64')
+        
+        # Handle community_louvain (could be scalar or list)
+        def extract_community(val):
+            if val is None:
+                return -1
+            if isinstance(val, (list, np.ndarray)):
+                return val[0] if len(val) > 0 else -1
+            try:
+                return int(val)
+            except (ValueError, TypeError):
+                return -1
+
+        df_mech['network_community'] = df_mech['network_community'].apply(extract_community)
         
         return df_mech
 
@@ -154,7 +176,7 @@ class MechanismDataLoader(QuarterlyWindowDataLoader):
 
     def load_mechanism_data(self, 
                             lag_quarters: int = 4,
-                            start_year: int = 2014,
+                            start_year: int = 2004,
                             end_year: int = 2020) -> pd.DataFrame:
         """
         Main method to load data with baseline controls + lagged network + mechanism proxies.
@@ -184,10 +206,15 @@ class MechanismDataLoader(QuarterlyWindowDataLoader):
         # 5. Final cleaning for mechanism features
         df['stake_fragmentation_index'] = df['stake_fragmentation_index'].fillna(0).infer_objects(copy=False)
         
-        # New H3+ features
-        h3_plus_cols = ['group_total_capital', 'group_sector_count']
-        df[h3_plus_cols] = df[h3_plus_cols].fillna(0).infer_objects(copy=False)
+        # New H3++ features
+        h3_plus_plus_cols = [
+            'group_total_capital', 'group_total_paid_tax', 
+            'group_total_vehicles', 'group_total_receipts',
+            'group_sector_count'
+        ]
+        df[h3_plus_plus_cols] = df[h3_plus_plus_cols].fillna(0).infer_objects(copy=False)
         df['group_primary_sector'] = df['group_primary_sector'].fillna("Unknown")
+        df['network_community'] = df['network_community'].fillna(-1).astype(int)
         
         mech_cols = [
             'family_near_20', 'family_near_50', 'family_company_count'
@@ -200,7 +227,7 @@ class MechanismDataLoader(QuarterlyWindowDataLoader):
             print("   CRITICAL: epu_index column not found after merge!")
         
         print(f"   Final obs: {len(df):,}")
-        print(f"   Mechanism features added: ['stake_fragmentation_index', 'epu_index', 'group_total_capital', 'group_sector_count', 'group_primary_sector'] + {mech_cols}")
+        print(f"   Mechanism features added: ['stake_fragmentation_index', 'epu_index', 'network_community'] + {h3_plus_plus_cols}")
         
         return df
 

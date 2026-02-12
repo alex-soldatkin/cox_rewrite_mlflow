@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/413272399763193660/206c6cae110d4a3e9101b390b4b7138f/artifacts
+end_time: 1770922588805
+entry_point_name: ''
+experiment_id: '413272399763193660'
+lifecycle_stage: active
+run_id: 206c6cae110d4a3e9101b390b4b7138f
+run_name: 'M9: Full Mechanism + Community Stratification'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770922587819
+status: 3
+tags: []
+user_id: alexandersoldatkin

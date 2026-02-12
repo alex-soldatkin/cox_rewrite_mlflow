@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/413272399763193660/d5c80159fc2041809d140d3268de5d7b/artifacts
+end_time: 1770922580806
+entry_point_name: ''
+experiment_id: '413272399763193660'
+lifecycle_stage: active
+run_id: d5c80159fc2041809d140d3268de5d7b
+run_name: 'M4: Full Mechanism Horse Race'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770922579398
+status: 3
+tags: []
+user_id: alexandersoldatkin

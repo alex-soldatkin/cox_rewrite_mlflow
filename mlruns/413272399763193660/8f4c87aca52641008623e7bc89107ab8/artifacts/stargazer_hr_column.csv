@@ -1,0 +1,20 @@
+variable,Stargazer_Output_HR
+family_connection_ratio,0.933** (0.022)
+stake_fragmentation_index,0.893*** (0.020)
+group_total_paid_tax,0.937** (0.022)
+group_total_vehicles,0.937** (0.023)
+group_total_receipts,0.983 (0.024)
+group_sector_count,0.934** (0.022)
+camel_roa,0.940*** (0.008)
+camel_npl_ratio,1.111*** (0.020)
+camel_tier1_capital_ratio,1.106*** (0.023)
+rw_out_degree_4q_lag,0.959+ (0.023)
+state_ownership_pct,0.962+ (0.021)
+foreign_ownership_total_pct,0.993 (0.022)
+Observations,138896
+Subjects,1092
+Events,770
+Log Likelihood,-4837.16
+AIC Partial,9698.32
+-log2(p) LLR,120.80
+C-index,0.761

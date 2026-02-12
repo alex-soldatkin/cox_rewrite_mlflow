@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/413272399763193660/d06affb080e54dcc8c4f8db65dc5780f/artifacts
+end_time: 1770922584899
+entry_point_name: ''
+experiment_id: '413272399763193660'
+lifecycle_stage: active
+run_id: d06affb080e54dcc8c4f8db65dc5780f
+run_name: Sector Stratification
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770922583741
+status: 3
+tags: []
+user_id: alexandersoldatkin

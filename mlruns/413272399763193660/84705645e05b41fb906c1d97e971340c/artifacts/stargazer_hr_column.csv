@@ -1,0 +1,22 @@
+variable,Stargazer_Output_HR
+family_connection_ratio,0.926** (0.022)
+stake_fragmentation_index,0.879*** (0.020)
+family_company_count,0.896*** (0.021)
+epu_index,1.028 (0.025)
+camel_roa,0.940*** (0.008)
+camel_npl_ratio,1.112*** (0.020)
+camel_tier1_capital_ratio,1.105*** (0.023)
+rw_out_degree_4q_lag,0.952* (0.023)
+rw_page_rank_4q_lag,1.024 (0.020)
+state_ownership_pct,0.963+ (0.021)
+foreign_ownership_total_pct,0.994 (0.022)
+family_connection_ratio:epu_index,1.001 (0.020)
+stake_fragmentation_index:epu_index,1.025 (0.021)
+family_company_count:epu_index,1.008 (0.019)
+Observations,139038
+Subjects,1092
+Events,770
+Log Likelihood,-4839.12
+AIC Partial,9706.23
+-log2(p) LLR,114.04
+C-index,0.744
