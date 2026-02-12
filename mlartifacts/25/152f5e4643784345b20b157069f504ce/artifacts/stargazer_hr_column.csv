@@ -1,0 +1,9 @@
+variable,Stargazer_Output_HR
+family_connection_ratio_temporal,1.046*** (0.004)
+Observations,117633
+Subjects,35731
+Events,2289
+Log Likelihood,-23517.87
+AIC Partial,47037.74
+-log2(p) LLR,47.80
+C-index,0.550

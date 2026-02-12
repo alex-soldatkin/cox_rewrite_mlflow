@@ -1,0 +1,12 @@
+# Quarterly FCR Configuration (2002-2021)
+# Generates quarterly temporal FCR snapshots
+period_type: "quarterly"
+start_year: 2002
+end_start_year: 2021
+window_size: 1  # 1 quarter = 3 months
+step_size: 1    # Generate every quarter
+id_property: "Id"
+edge_id_property: "Id"
+export_edges: true
+link_prediction: false
+log_level: "INFO"

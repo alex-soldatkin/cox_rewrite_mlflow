@@ -1,14 +1,13 @@
-# Production Run Configuration (2003-2021)
-# Biannual (6-month) windows
+# Biannual FCR Configuration (2003-2021)
+# Generates biannual (6-month) temporal FCR snapshots
+# This matches the existing production configuration
 period_type: "biannual"
 start_year: 2003
 end_start_year: 2021
-window_size: 1  # 1 biannual period = 6 months  
+window_size: 1  # 1 biannual period = 6 months
 step_size: 1    # Generate every half-year (H1, H2)
 id_property: "Id"
 edge_id_property: "Id"
 export_edges: true
 link_prediction: false
-lp_threshold: 0.7
 log_level: "INFO"
-

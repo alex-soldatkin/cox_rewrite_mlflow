@@ -1,0 +1,11 @@
+variable,Stargazer_Output_HR
+rw_page_rank_4q_lag,0.000*** (0.000)
+rw_out_degree_4q_lag,1.047*** (0.004)
+family_connection_ratio_temporal,1.178*** (0.001)
+Observations,117633
+Subjects,35731
+Events,2289
+Log Likelihood,-995658.08
+AIC Partial,1991322.15
+-log2(p) LLR,-0.00
+C-index,0.167

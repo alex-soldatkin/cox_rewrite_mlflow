@@ -28,8 +28,15 @@ class RollingWindowConfig:
     rel_types: tuple[str, ...] = ("OWNERSHIP", "MANAGEMENT", "FAMILY")
     include_imputed01: int = 0
 
-    window_years: int = 3
-    step_years: int = 1
+    # Period configuration
+    period_type: str = "yearly"  # yearly, quarterly, biannual, monthly
+    window_size: int = 3  # Size in the chosen period
+    step_size: int = 1    # Step in the chosen period
+    
+    # Backwards compatibility (deprecated)
+    window_years: int = 0  # If set, overrides window_size and sets period_type=yearly
+    step_years: int = 0    # If set, overrides step_size and sets period_type=yearly
+    
     start_year: int = 2000
     end_start_year: int = 2010
 
@@ -121,6 +128,16 @@ def parse_rel_types(values: Sequence[str]) -> tuple[str, ...]:
             deduped.append(t)
             seen.add(t)
     return tuple(deduped)
+
+
+def validate_period_type(period_type: str) -> None:
+    """Validate that period_type is one of the supported values."""
+    from dates import PeriodType
+    try:
+        PeriodType(period_type.lower())
+    except ValueError:
+        valid_types = [p.value for p in PeriodType]
+        raise ValueError(f"Invalid period_type: {period_type}. Must be one of: {valid_types}")
 
 
 def validate_rel_types(rel_types: Iterable[str]) -> None:

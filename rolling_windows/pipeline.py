@@ -12,7 +12,7 @@ from neo4j.exceptions import ServiceUnavailable, SessionExpired, ClientError, Gq
 from tqdm.auto import tqdm
 
 from config import Neo4jConfig, RollingWindowConfig, validate_rel_types
-from dates import iter_year_windows
+from dates import iter_period_windows
 from gds_client import connect_gds
 from feature_blocks import BANK_FEATS_BLOCKS, BANK_FEATS_DIM, other_bank_feats_indices
 from hashing import stable_hash_dict
@@ -217,11 +217,12 @@ def run_windows(
     if cfg.run_link_prediction:
         setup_experiment("exp_014_link_prediction")
 
-    windows = iter_year_windows(
+    windows = iter_period_windows(
         start_year=cfg.start_year,
         end_start_year=cfg.end_start_year,
-        window_years=cfg.window_years,
-        step_years=cfg.step_years,
+        window_size=cfg.window_size,
+        step_size=cfg.step_size,
+        period_type=cfg.period_type,
     )
 
     metadata = gds_config_metadata(cfg)
@@ -232,12 +233,13 @@ def run_windows(
 
     try:
         logger.info(
-            "Processing %d windows (start_year=%d end_start_year=%d window_years=%d step_years=%d)",
+            "Processing %d windows (period_type=%s start_year=%d end_start_year=%d window_size=%d step_size=%d)",
             len(windows),
+            cfg.period_type,
             cfg.start_year,
             cfg.end_start_year,
-            cfg.window_years,
-            cfg.step_years,
+            cfg.window_size,
+            cfg.step_size,
         )
         pbar = tqdm(windows, desc="Rolling windows", unit="window", disable=not show_tqdm)
         for w in pbar:

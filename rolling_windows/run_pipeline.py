@@ -48,6 +48,18 @@ def _build_parser() -> argparse.ArgumentParser:
     )
 
     defaults = RollingWindowConfig()
+    
+    # Period configuration (new)
+    p.add_argument(
+        "--period-type",
+        choices=["yearly", "quarterly", "biannual", "monthly"],
+        default="yearly",
+        help="Temporal period type (yearly, quarterly, biannual, monthly)."
+    )
+    p.add_argument("--window-size", type=int, default=3, help="Window size in the chosen period.")
+    p.add_argument("--step-size", type=int, default=1, help="Step size in the chosen period.")
+    
+    # Backwards compatibility (deprecated but functional)
     p.add_argument("--start-year", type=int, default=defaults.start_year, help="First window start year (UTC).")
     p.add_argument(
         "--end-start-year",
@@ -55,8 +67,18 @@ def _build_parser() -> argparse.ArgumentParser:
         default=defaults.end_start_year,
         help="Last window start year (UTC).",
     )
-    p.add_argument("--window-years", type=int, default=3, help="Window size in years.")
-    p.add_argument("--step-years", type=int, default=1, help="Step size in years.")
+    p.add_argument(
+        "--window-years", 
+        type=int, 
+        default=0, 
+        help="(Deprecated) Window size in years. Use --window-size with --period-type instead."
+    )
+    p.add_argument(
+        "--step-years", 
+        type=int, 
+        default=0,
+        help="(Deprecated) Step size in years. Use --step-size with --period-type instead."
+    )
 
     p.add_argument(
         "--rel-types",
@@ -228,13 +250,30 @@ def main() -> None:
     run_name = args.run_name
     if not run_name:
         run_name = f"run_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
+    
+    # Handle backwards compatibility: window_years/step_years override new params
+    period_type = args.period_type
+    window_size = args.window_size
+    step_size = args.step_size
+    
+    if args.window_years > 0:
+        # Backwards compatibility: window_years specified
+        period_type = "yearly"
+        window_size = args.window_years
+    
+    if args.step_years > 0:
+        # Backwards compatibility: step_years specified
+        step_size = args.step_years
 
     cfg = RollingWindowConfig(
         base_graph_name=args.base_graph_name,
         rel_types=rel_types,
         include_imputed01=1 if args.include_imputed else 0,
-        window_years=args.window_years,
-        step_years=args.step_years,
+        period_type=period_type,
+        window_size=window_size,
+        step_size=step_size,
+        window_years=args.window_years if args.window_years > 0 else 0,
+        step_years=args.step_years if args.step_years > 0 else 0,
         start_year=args.start_year,
         end_start_year=args.end_start_year,
         id_property=args.id_property,
