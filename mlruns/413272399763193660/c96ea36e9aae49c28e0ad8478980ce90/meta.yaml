@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/413272399763193660/c96ea36e9aae49c28e0ad8478980ce90/artifacts
+end_time: 1770920088699
+entry_point_name: ''
+experiment_id: '413272399763193660'
+lifecycle_stage: active
+run_id: c96ea36e9aae49c28e0ad8478980ce90
+run_name: 'M6: EPU Interactions (Crisis Adaptation)'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770920088618
+status: 3
+tags: []
+user_id: alexandersoldatkin

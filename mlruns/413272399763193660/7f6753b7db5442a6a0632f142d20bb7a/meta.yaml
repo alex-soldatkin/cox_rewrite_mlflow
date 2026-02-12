@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/413272399763193660/7f6753b7db5442a6a0632f142d20bb7a/artifacts
+end_time: 1770917151544
+entry_point_name: ''
+experiment_id: '413272399763193660'
+lifecycle_stage: active
+run_id: 7f6753b7db5442a6a0632f142d20bb7a
+run_name: M2_TaxOptimization
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770917151329
+status: 3
+tags: []
+user_id: alexandersoldatkin

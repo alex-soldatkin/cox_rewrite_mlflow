@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/324588882873403758/466d8d02968e4da2b2cf60807ba9732b/artifacts
+end_time: 1770914858895
+entry_point_name: ''
+experiment_id: '324588882873403758'
+lifecycle_stage: active
+run_id: 466d8d02968e4da2b2cf60807ba9732b
+run_name: 'M5: Full + Stratified'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770914858641
+status: 3
+tags: []
+user_id: alexandersoldatkin

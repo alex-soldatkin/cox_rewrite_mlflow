@@ -1,0 +1,6 @@
+artifact_location: mlflow-artifacts:/626543083653471236
+creation_time: 1770914043252
+experiment_id: '626543083653471236'
+last_update_time: 1770914043252
+lifecycle_stage: active
+name: exp_007_lagged_network

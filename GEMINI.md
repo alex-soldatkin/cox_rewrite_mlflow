@@ -19,3 +19,5 @@ We are using the ./memory-bank folder in the cwd to store any relevant informati
 You will keep the Python code very modular with proper subdirectories and make it conform to Pydantic schema. If you find any external directory you keep doing back to, make a new .env variable for it and store it in the .env file.
 
 You will use strictly British English for all your responses: "colour" instead of "color", "organisation" instead of "organization", etc.
+
+ALSO SEE ./AGENTS.md. 

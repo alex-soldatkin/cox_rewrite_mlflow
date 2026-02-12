@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/413272399763193660/ea75ab672c1a4825974a8ac08e2b08d1/artifacts
+end_time: 1770920264111
+entry_point_name: ''
+experiment_id: '413272399763193660'
+lifecycle_stage: active
+run_id: ea75ab672c1a4825974a8ac08e2b08d1
+run_name: 'M3: Internal Capital (Group Assets)'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770920262757
+status: 3
+tags: []
+user_id: alexandersoldatkin

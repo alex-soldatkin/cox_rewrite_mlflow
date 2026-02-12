@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/626543083653471236/1f97c5888ee0401cb88587682c76a2e0/artifacts
+end_time: 1770914048499
+entry_point_name: ''
+experiment_id: '626543083653471236'
+lifecycle_stage: active
+run_id: 1f97c5888ee0401cb88587682c76a2e0
+run_name: 'M2: Simple Lagged Network (t-4Q)'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770914047826
+status: 3
+tags: []
+user_id: alexandersoldatkin

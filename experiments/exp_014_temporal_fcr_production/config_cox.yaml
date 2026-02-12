@@ -1,0 +1,32 @@
+experiment:
+  name: "exp_014_temporal_fcr_production"
+  human_readable_name: "Temporal FCR - Production Data (2000-2021)"
+  description: "Cox survival analysis using biannual temporal FCR metrics from production_run_1990_2022_v6"
+  mlflow_tags:
+    data_source: "production_run_1990_2022_v6"
+    frequency: "biannual"
+    lag_periods: 2 # 2 periods * 2 years = 4 years lag
+
+data:
+  start_year: 2000
+  end_year: 2021
+  lag_periods: 2
+  target: "event"
+  
+features: 
+  # Temporal Network Features (Biannual Lags)
+  - rw_page_rank_4q_lag
+  - rw_out_degree_4q_lag
+  - family_connection_ratio_temporal_lag # Lagged temporal FCR
+
+  # Baseline Control Features (CAMEL + Ownership)
+  - camel_roa
+  - camel_npl_ratio
+  - camel_tier1_capital_ratio
+  - family_ownership_pct_lag # Note: Ownership PCT is likely static/annual, need to verify source
+  - foreign_ownership_total_pct_lag # Need to check if available in loader
+  - state_ownership_pct_lag # Need to check if available in loader
+
+model_params:
+  penalizer: 0.01
+  l1_ratio: 0.0

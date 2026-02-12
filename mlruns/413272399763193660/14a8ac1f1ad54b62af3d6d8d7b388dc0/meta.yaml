@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/413272399763193660/14a8ac1f1ad54b62af3d6d8d7b388dc0/artifacts
+end_time: 1770917151328
+entry_point_name: ''
+experiment_id: '413272399763193660'
+lifecycle_stage: active
+run_id: 14a8ac1f1ad54b62af3d6d8d7b388dc0
+run_name: M1_Political
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770917151065
+status: 3
+tags: []
+user_id: alexandersoldatkin

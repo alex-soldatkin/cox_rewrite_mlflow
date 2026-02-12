@@ -1,0 +1,9 @@
+covariate,Stargazer_Output
+family_connection_ratio,-0.097**
+stake_fragmentation_index,-0.084**
+family_company_count,-0.127***
+epu_index,-0.014
+camel_roa,-0.120***
+camel_npl_ratio,0.063**
+camel_tier1_capital_ratio,0.118***
+rw_out_degree_4q_lag,-0.078*

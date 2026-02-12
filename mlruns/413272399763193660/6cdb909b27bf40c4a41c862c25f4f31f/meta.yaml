@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/413272399763193660/6cdb909b27bf40c4a41c862c25f4f31f/artifacts
+end_time: 1770920048196
+entry_point_name: ''
+experiment_id: '413272399763193660'
+lifecycle_stage: active
+run_id: 6cdb909b27bf40c4a41c862c25f4f31f
+run_name: 'M5: Mechanism Horse Race + EPU Control'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770920048110
+status: 3
+tags: []
+user_id: alexandersoldatkin

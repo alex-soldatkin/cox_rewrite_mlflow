@@ -1,0 +1,146 @@
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/tracking/_tracking_service/utils.py:178: FutureWarning: The filesystem tracking backend (e.g., './mlruns') will be deprecated in February 2026. Consider transitioning to a database backend (e.g., 'sqlite:///mlflow.db') to take advantage of the latest MLflow features. See https://github.com/mlflow/mlflow/issues/18534 for more details and migration guidance. For migrating existing data, https://github.com/mlflow/mlflow-export-import can be used.
+  return FileStore(store_uri, store_uri)
+WARNING:root:Malformed experiment '24'. Detailed error Yaml file '/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/24/meta.yaml' does not exist.
+Traceback (most recent call last):
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/store/tracking/file_store.py", line 379, in search_experiments
+    exp = self._get_experiment(exp_id, view_type)
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/store/tracking/file_store.py", line 477, in _get_experiment
+    meta = FileStore._read_yaml(experiment_dir, FileStore.META_DATA_FILE_NAME)
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/store/tracking/file_store.py", line 1662, in _read_yaml
+    return _read_helper(root, file_name, attempts_remaining=retries)
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/store/tracking/file_store.py", line 1655, in _read_helper
+    result = read_yaml(root, file_name)
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/utils/yaml_utils.py", line 104, in read_yaml
+    raise MissingConfigException(f"Yaml file '{file_path}' does not exist.")
+mlflow.exceptions.MissingConfigException: Yaml file '/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/24/meta.yaml' does not exist.
+WARNING:root:Malformed experiment '23'. Detailed error Yaml file '/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/23/meta.yaml' does not exist.
+Traceback (most recent call last):
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/store/tracking/file_store.py", line 379, in search_experiments
+    exp = self._get_experiment(exp_id, view_type)
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/store/tracking/file_store.py", line 477, in _get_experiment
+    meta = FileStore._read_yaml(experiment_dir, FileStore.META_DATA_FILE_NAME)
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/store/tracking/file_store.py", line 1662, in _read_yaml
+    return _read_helper(root, file_name, attempts_remaining=retries)
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/store/tracking/file_store.py", line 1655, in _read_helper
+    result = read_yaml(root, file_name)
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/utils/yaml_utils.py", line 104, in read_yaml
+    raise MissingConfigException(f"Yaml file '{file_path}' does not exist.")
+mlflow.exceptions.MissingConfigException: Yaml file '/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/23/meta.yaml' does not exist.
+WARNING:root:Malformed experiment '22'. Detailed error Yaml file '/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/22/meta.yaml' does not exist.
+Traceback (most recent call last):
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/store/tracking/file_store.py", line 379, in search_experiments
+    exp = self._get_experiment(exp_id, view_type)
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/store/tracking/file_store.py", line 477, in _get_experiment
+    meta = FileStore._read_yaml(experiment_dir, FileStore.META_DATA_FILE_NAME)
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/store/tracking/file_store.py", line 1662, in _read_yaml
+    return _read_helper(root, file_name, attempts_remaining=retries)
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/store/tracking/file_store.py", line 1655, in _read_helper
+    result = read_yaml(root, file_name)
+  File "/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/.venv/lib/python3.13/site-packages/mlflow/utils/yaml_utils.py", line 104, in read_yaml
+    raise MissingConfigException(f"Yaml file '{file_path}' does not exist.")
+mlflow.exceptions.MissingConfigException: Yaml file '/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/22/meta.yaml' does not exist.
+/Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlflow_utils/quarterly_window_loader.py:115: FutureWarning: Constructing PeriodIndex from fields is deprecated. Use PeriodIndex.from_fields instead.
+  df_all['quarter'] = pd.PeriodIndex(
+
+======================================================================
+LOADING DATA WITH 4-QUARTER LAG
+======================================================================
+
+1. Loading bank population from Neo4j...
+   Found 1904 banks from Neo4j
+
+2. Loading accounting data...
+  Loading from: /Users/alexandersoldatkin/projects/factions-networks-thesis/drafts/accounting_cbr_imputed/final_final_banking_indicators.parquet
+  Loaded 51,185 accounting observations
+  Date range: 2014-01-01 00:00:00 to 2020-12-01 00:00:00
+  Unique banks (regn): 933
+  ✅ Mapped CAMEL ratios: camel_roa, camel_npl_ratio, camel_tier1_capital_ratio
+   Accounting obs: 51,185
+   Date range: 2014-01-01 00:00:00 to 2020-12-01 00:00:00
+   Quarter range: 2014Q1 to 2020Q4
+
+3. Merging accounting with Neo4j population...
+   Merged: 44,426 observations
+   ✅ Mapped family/foreign features from Neo4j
+
+4. Loading quarterly network snapshots...
+Loading quarterly network snapshots from: /Users/alexandersoldatkin/projects/cos_rewrite_mlflow/rolling_windows/output/quarterly_2010_2020
+  Found 44 quarterly windows
+  Loaded 1,713,557 bank-quarter observations
+  Date range: 2010Q1 to 2020Q4
+  Unique banks (Id): 33,877
+  Unique banks (regn_cbr): 1,060
+
+5. Creating 4-quarter lagged network metrics...
+   Lagged network obs: 1,713,557
+   Lagged quarter range: 2011Q1 to 2021Q4
+
+6. Merging accounting_t with network_{t-lag}...
+   Merged obs: 44,688
+   Network matches: 44,594 (99.8%)
+
+7. Creating event indicators (exp_004 pattern)...
+   Dead banks: 472
+   Events (last obs only): 472 (1.1%)
+
+✅ Data loading complete!
+   Total observations: 44,688
+   Unique banks: 791
+   Date range: 2014-01-01 00:00:00 to 2020-12-01 00:00:00
+   Lag specification: 4 quarters (1.0 years)
+
+--- Fetching Mechanism Features from Neo4j ---
+   Fetched mechanism features for 951 banks
+
+Merging mechanism proxies...
+   Final obs: 44,688
+   Mechanism features added: ['stake_fragmentation_index'] + ['family_near_20', 'family_near_50', 'family_company_count', 'bank_region']
+
+Preparing Cox data for 44688 observations...
+  Scaling features: ['family_connection_ratio', 'camel_roa', 'camel_npl_ratio', 'camel_tier1_capital_ratio', 'rw_out_degree_4q_lag', 'rw_page_rank_4q_lag', 'state_ownership_pct', 'foreign_ownership_total_pct', 'stake_fragmentation_index', 'family_company_count']
+
+--- Running M1_Political ---
+                               coef             p  exp(coef)
+covariate                                                   
+family_connection_ratio   -0.148404  4.646610e-05   0.862083
+camel_roa                 -0.120216  1.227686e-16   0.886728
+camel_npl_ratio            0.069408  2.220638e-02   1.071873
+camel_tier1_capital_ratio  0.125417  1.540258e-05   1.133621
+rw_out_degree_4q_lag      -0.085096  3.504477e-02   0.918424
+❌ M1_Political failed: 'CoxTimeVaryingFitter' object has no attribute 'concordance_index_'
+
+--- Running M2_TaxOptimization ---
+                               coef             p  exp(coef)
+covariate                                                   
+family_connection_ratio   -0.119378  1.526284e-03   0.887472
+stake_fragmentation_index -0.112506  1.204812e-03   0.893592
+camel_roa                 -0.121088  5.357446e-17   0.885956
+camel_npl_ratio            0.064189  3.335122e-02   1.066294
+camel_tier1_capital_ratio  0.121414  2.524805e-05   1.129093
+rw_out_degree_4q_lag      -0.082617  4.145096e-02   0.920704
+❌ M2_TaxOptimization failed: 'CoxTimeVaryingFitter' object has no attribute 'concordance_index_'
+
+--- Running M3_InternalCapital ---
+                               coef             p  exp(coef)
+covariate                                                   
+family_connection_ratio   -0.113540  2.603106e-03   0.892668
+family_company_count      -0.147860  9.863438e-05   0.862552
+camel_roa                 -0.118841  2.363728e-16   0.887949
+camel_npl_ratio            0.066144  2.844291e-02   1.068380
+camel_tier1_capital_ratio  0.120143  3.460613e-05   1.127658
+rw_out_degree_4q_lag      -0.079239  5.229448e-02   0.923819
+❌ M3_InternalCapital failed: 'CoxTimeVaryingFitter' object has no attribute 'concordance_index_'
+
+--- Running M4_FullMechanism ---
+                                 coef             p  exp(coef)
+covariate                                                     
+family_connection_ratio     -0.097828  1.093571e-02   0.906805
+stake_fragmentation_index   -0.085465  1.709825e-02   0.918085
+family_company_count        -0.127213  1.146331e-03   0.880546
+camel_roa                   -0.120620  9.382036e-17   0.886371
+camel_npl_ratio              0.063200  3.558718e-02   1.065240
+camel_tier1_capital_ratio    0.116809  5.331139e-05   1.123904
+rw_out_degree_4q_lag        -0.077436  5.792672e-02   0.925486
+state_ownership_pct         -0.051207  1.639871e-01   0.950082
+foreign_ownership_total_pct -0.000572  9.858630e-01   0.999428
+❌ M4_FullMechanism failed: 'CoxTimeVaryingFitter' object has no attribute 'concordance_index_'

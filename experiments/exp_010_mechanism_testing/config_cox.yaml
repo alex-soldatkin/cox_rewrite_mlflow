@@ -1,0 +1,60 @@
+experiment:
+  name: "exp_010_mechanism_testing"
+  human_readable_name: "TCE Mechanism Testing (2014-2020)"
+  description: "Test Political Embeddedness, Tax Optimization, and Internal Capital Markets mechanisms"
+  
+  models:
+    M1_Political:
+      name: "M1: Political Embeddedness (Regional Strata)"
+      formula: "family_connection_ratio + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + rw_out_degree_4q_lag"
+      strata:
+        - region_id
+        
+    M2_TaxOptimization:
+      name: "M2: Tax Optimization (Stake Fragmentation)"
+      formula: "family_connection_ratio + stake_fragmentation_index + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + rw_out_degree_4q_lag"
+      strata: null
+        
+    M3_InternalCapital:
+      name: "M3: Internal Capital (Group Assets)"
+      formula: "family_connection_ratio + family_company_count + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + rw_out_degree_4q_lag"
+      strata: null
+        
+    M4_FullMechanism:
+      name: "M4: Full Mechanism Horse Race"
+      formula: "family_connection_ratio + stake_fragmentation_index + family_company_count + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + rw_out_degree_4q_lag + state_ownership_pct + foreign_ownership_total_pct"
+      strata:
+        - region_id
+
+    m6:
+      name: "EPU Interactions (Full)"
+      formula: "family_connection_ratio + stake_fragmentation_index + family_company_count + epu_index + family_connection_ratio:epu_index + stake_fragmentation_index:epu_index + family_company_count:epu_index + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + rw_out_degree_4q_lag + rw_page_rank_4q_lag + state_ownership_pct + foreign_ownership_total_pct"
+      strata: ["region_id"]
+    m7:
+      name: "H3+ Enhanced (Capital & Diversification)"
+      formula: "family_connection_ratio + stake_fragmentation_index + group_total_capital + group_sector_count + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + rw_out_degree_4q_lag + rw_page_rank_4q_lag + state_ownership_pct + foreign_ownership_total_pct"
+      strata: ["region_id"]
+    m8:
+      name: "Sector Stratification"
+      formula: "family_connection_ratio + stake_fragmentation_index + group_total_capital + group_sector_count + epu_index + camel_roa"
+      strata: ["sector_id"]
+
+    M5_EPU_Control:
+      name: "M5: Mechanism Horse Race + EPU Control"
+      formula: "family_connection_ratio + stake_fragmentation_index + family_company_count + epu_index + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + rw_out_degree_4q_lag"
+      strata:
+        - region_id
+
+    M6_EPU_Interactions:
+      name: "M6: EPU Interactions (Crisis Adaptation)"
+      formula: "family_connection_ratio * epu_index + stake_fragmentation_index * epu_index + family_company_count * epu_index + camel_roa + camel_npl_ratio + camel_tier1_capital_ratio + rw_out_degree_4q_lag"
+      strata:
+        - region_id
+
+data:
+  start_year: 2004
+  end_year: 2020
+  lag_quarters: 4
+
+model_params:
+  penalizer: 0.01

@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/413272399763193660/e83b00b3e6b04b618624ab096ce1fab1/artifacts
+end_time: 1770917658329
+entry_point_name: ''
+experiment_id: '413272399763193660'
+lifecycle_stage: active
+run_id: e83b00b3e6b04b618624ab096ce1fab1
+run_name: 'M2: Tax Optimization (Stake Fragmentation)'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770917658161
+status: 3
+tags: []
+user_id: alexandersoldatkin

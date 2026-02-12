@@ -1,0 +1,10 @@
+covariate,M2: Tax Optimization (Stake Fragmentation),M1: Political Embeddedness (Regional Strata),M3: Internal Capital (Group Assets),M4: Full Mechanism Horse Race
+family_connection_ratio,0.887***,0.862***,0.893***,0.907**
+stake_fragmentation_index,0.894***,,,0.918**
+camel_roa,0.886***,0.887***,0.888***,0.886***
+camel_npl_ratio,1.066**,1.072**,1.068**,1.065**
+camel_tier1_capital_ratio,1.129***,1.134***,1.128***,1.124***
+rw_out_degree_4q_lag,0.921**,0.918**,0.924*,0.925*
+family_company_count,,,0.863***,0.881***
+state_ownership_pct,,,,0.950
+foreign_ownership_total_pct,,,,0.999

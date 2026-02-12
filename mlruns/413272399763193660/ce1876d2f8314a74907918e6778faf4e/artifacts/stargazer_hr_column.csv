@@ -1,0 +1,10 @@
+covariate,Stargazer_Output
+family_connection_ratio,0.907**
+stake_fragmentation_index,0.918**
+family_company_count,0.881***
+camel_roa,0.886***
+camel_npl_ratio,1.065**
+camel_tier1_capital_ratio,1.124***
+rw_out_degree_4q_lag,0.925*
+state_ownership_pct,0.950
+foreign_ownership_total_pct,0.999

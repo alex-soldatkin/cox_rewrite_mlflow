@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/413272399763193660/ddef3ed80cac4ab2abf6eff0e43a8fc4/artifacts
+end_time: 1770920268408
+entry_point_name: ''
+experiment_id: '413272399763193660'
+lifecycle_stage: active
+run_id: ddef3ed80cac4ab2abf6eff0e43a8fc4
+run_name: H3+ Enhanced (Capital & Diversification)
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770920266997
+status: 3
+tags: []
+user_id: alexandersoldatkin

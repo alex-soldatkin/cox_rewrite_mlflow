@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/324588882873403758/8527606fb99345d2aefb74a869199132/artifacts
+end_time: 1770913479659
+entry_point_name: ''
+experiment_id: '324588882873403758'
+lifecycle_stage: active
+run_id: 8527606fb99345d2aefb74a869199132
+run_name: 'M1: Temporal FCR (Scaled)'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770913479573
+status: 3
+tags: []
+user_id: alexandersoldatkin

@@ -121,6 +121,20 @@ def prepare_cox_data(df, use_lagged_network=False, fully_lagged=False):
                 df_cox[col] = 100 * (df_cox[col] - min_val) / (max_val - min_val)
         
         print(f"  ✅ Scaled {len(final_feats)} features to 0-100 range using StandardScaler")
+        
+    # Drop columns with 0 variance (constant columns)
+    # This prevents the "matrix is singular" error
+    drop_cols = []
+    for col in final_feats:
+        if df_cox[col].std() == 0:
+            print(f"  ⚠️ Dropping constant column: {col}")
+            drop_cols.append(col)
+    
+    if drop_cols:
+        df_cox = df_cox.drop(columns=drop_cols)
+        for c in drop_cols:
+            if c in final_feats:
+                final_feats.remove(c)
     
     # Keep necessary columns
     keep_cols = ['regn', 'start_t', 'stop_t', 'event'] + final_feats
@@ -185,8 +199,11 @@ def run_model(model_name, df_cox, features, **kwargs):
             mlflow.log_metric("aic_partial", ctv.AIC_partial_)
             
             # C-index
+            # C-index
             try:
+                # Manual C-index calculation for Time-Varying Cox
                 predicted_hazards = ctv.predict_partial_hazard(df_cox)
+                # concordance_index(T, -risk, E)
                 c_idx = concordance_index(df_cox['stop_t'], -predicted_hazards, df_cox['event'])
                 mlflow.log_metric("c_index", c_idx)
                 print(f"C-index: {c_idx:.4f}")
@@ -195,11 +212,14 @@ def run_model(model_name, df_cox, features, **kwargs):
                 c_idx = None
             
             # Log Coefficients & p-values (following exp_004 line 144-148)
+            # Log Coefficients & p-values (following exp_004 line 144-148)
             summary_df = ctv.summary
             for var_name, row in summary_df.iterrows():
                 p_val = row.get("p") if "p" in row else row.get("p-value")
                 if p_val is not None:
-                    mlflow.log_metric(f"pval_{var_name}", p_val)
+                    # MLflow metric names must be valid
+                    safe_var_name = var_name.replace("(", "").replace(")", "").replace(" ", "_")
+                    mlflow.log_metric(f"pval_{safe_var_name}", p_val)
             
             # Generate Artifacts (following exp_004 line 150-167)
             n_subjects = df_cox['regn'].nunique()

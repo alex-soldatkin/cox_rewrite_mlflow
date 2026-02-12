@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/324588882873403758/75b940679ce5427b96be03d075567c71/artifacts
+end_time: 1770914858602
+entry_point_name: ''
+experiment_id: '324588882873403758'
+lifecycle_stage: active
+run_id: 75b940679ce5427b96be03d075567c71
+run_name: 'M4: Full Model + Ownership'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770914858423
+status: 3
+tags: []
+user_id: alexandersoldatkin

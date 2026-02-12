@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/413272399763193660/9816a56c93d143248e41ecf4635f7467/artifacts
+end_time: 1770918273766
+entry_point_name: ''
+experiment_id: '413272399763193660'
+lifecycle_stage: active
+run_id: 9816a56c93d143248e41ecf4635f7467
+run_name: 'M1: Political Embeddedness (Regional Strata)'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770918273554
+status: 3
+tags: []
+user_id: alexandersoldatkin

@@ -18,6 +18,7 @@ from typing import Optional
 
 import pandas as pd
 import numpy as np
+import os
 from graphdatascience import GraphDataScience
 
 logger = logging.getLogger(__name__)
@@ -59,6 +60,19 @@ class TemporalFCRLoader:
         self.nodes_dir = self.base_dir / 'nodes'
         self.edges_dir = self.base_dir / 'edges'
         self.gds = gds_client
+        
+        # Accounting path handling (similar to QuarterlyWindowDataLoader)
+        self.accounting_path = None
+        accounting_dir = os.getenv('ACCOUNTING_DIR') or os.getenv('ACCOUNTING_PATH')
+        if accounting_dir:
+            accounting_path = Path(accounting_dir)
+            if accounting_path.is_dir():
+                # Look for parquet files
+                parquet_files = list(accounting_path.glob('*.parquet'))
+                if parquet_files:
+                     self.accounting_path = parquet_files[0]
+            elif accounting_path.exists():
+                self.accounting_path = accounting_path
         
         if not self.nodes_dir.exists():
             raise FileNotFoundError(f"Nodes directory not found: {self.nodes_dir}")
@@ -183,6 +197,11 @@ class TemporalFCRLoader:
         # FCR column (from pipeline.py line 480)
         if 'fcr_temporal' in df.columns:
             df = df.rename(columns={'fcr_temporal': 'family_connection_ratio_temporal'})
+            
+        # Rename community_louvain to match other experiments if needed, or keep as is
+        # QuarterLoader uses rw_community_louvain
+        if 'community_louvain' in df.columns:
+            df = df.rename(columns={'community_louvain': 'rw_community_louvain'})
         
         # Get regn_cbr mapping from Neo4j if we have gds_id
         if 'gds_id' in df.columns and self.gds is not None:
@@ -253,7 +272,14 @@ class TemporalFCRLoader:
             'family_connection_ratio_temporal',
             'page_rank',
             'out_degree',
-            'in_degree'
+            'in_degree',
+            'rw_community_louvain',
+            'family_ownership_pct',
+            'foreign_ownership_total_pct',
+            'state_ownership_pct',
+            'camel_roa',
+            'camel_npl_ratio',
+            'camel_tier1_capital_ratio'
         ]
         
         # Filter to only existing features
@@ -269,6 +295,8 @@ class TemporalFCRLoader:
                 lag_col = 'rw_out_degree_4q_lag'
             elif feat == 'in_degree':
                 lag_col = 'rw_in_degree_4q_lag'
+            elif feat == 'rw_community_louvain':
+                lag_col = 'rw_community_louvain_4q_lag'
             else:
                 lag_col = f"{feat}_lag"
             
@@ -278,71 +306,126 @@ class TemporalFCRLoader:
         
         return df
     
+        return df
+
+    def _load_accounting_data(self) -> pd.DataFrame:
+        """Load accounting data from parquet."""
+        if not self.accounting_path:
+            logger.warning("No accounting path found (ACCOUNTING_DIR/ACCOUNTING_PATH)")
+            return pd.DataFrame()
+            
+        logger.info("Loading accounting data from %s", self.accounting_path)
+        df_acc = pd.read_parquet(self.accounting_path)
+        
+        # Standardize columns
+        if 'REGN' in df_acc.columns:
+            df_acc['regn'] = df_acc['REGN']
+            
+        df_acc['accounting_date'] = pd.to_datetime(df_acc['DT'])
+        
+        # Map CAMEL
+        # Note: Depending on file version, columns might differ. 
+        # Using mappings from quarterly_loader + standard naming
+        if 'ROA' in df_acc.columns: df_acc['camel_roa'] = df_acc['ROA']
+        if 'npl_ratio' in df_acc.columns: df_acc['camel_npl_ratio'] = df_acc['npl_ratio']
+        if 'NPL_ratio' in df_acc.columns: df_acc['camel_npl_ratio'] = df_acc['NPL_ratio']
+        
+        # Tier 1 Capital Ratio
+        if 'total_equity' in df_acc.columns and 'total_assets' in df_acc.columns:
+            df_acc['camel_tier1_capital_ratio'] = df_acc['total_equity'] / df_acc['total_assets']
+        elif 'Tier1_capital_ratio' in df_acc.columns:
+             df_acc['camel_tier1_capital_ratio'] = df_acc['Tier1_capital_ratio']
+             
+        return df_acc
+
     def _merge_camel_data(self, df: pd.DataFrame) -> pd.DataFrame:
         """
-        Merge CAMEL ratios from Neo4j using gds_id for robust merging.
-        
-        Uses gds_id (persistent Neo4j id(n)) as join key.
-        See temporal_fcr_addendum.md for details.
+        Merge CAMEL ratios (from Parquet) AND ownership percentages (from Neo4j) using gds_id.
         """
-        if self.gds is None:
-            logger.warning("Cannot merge CAMEL: no GDS client provided")
-            return df
+        # 1. Fetch Ownership from Neo4j (Static/Graph based)
+        neo4j_df = pd.DataFrame()
+        if self.gds is not None:
+            logger.info("Fetching Ownership data from Neo4j...")
+            own_query = """
+            MATCH (b:Bank)
+            WHERE b.regn_cbr IS NOT NULL
+            RETURN 
+                id(b) AS gds_id,
+                b.regn_cbr AS regn,
+                toFloat(coalesce(b.family_ownership_percentage, 0.0)) AS family_ownership_pct,
+                toFloat(coalesce(b.display_foreign_ownership_total_pct, b.total_foreign_ownership_percentage, 0.0)) AS foreign_ownership_total_pct,
+                toFloat(coalesce(b.state_ownership_percentage, 0.0)) AS state_ownership_pct
+            """
+            try:
+                neo4j_df = self.gds.run_cypher(own_query)
+                neo4j_df['gds_id'] = neo4j_df['gds_id'].astype('int64')
+            except Exception as e:
+                logger.error("Failed to fetch ownership from Neo4j: %s", e)
+
+        # 2. Load Accounting from Parquet (Time-Varying)
+        acc_df = self._load_accounting_data()
         
-        logger.info("Fetching CAMEL ratios from Neo4j using gds_id...")
+        # 3. Merge Strategies
         
-        # Query Neo4j for CAMEL data
-        # Note: This query should match the structure from quarterly_window_loader
-        camel_query = """
-        MATCH (b:Bank)
-        WHERE b.regn_cbr IS NOT NULL
-        OPTIONAL MATCH (b)-[:HAS_ACCOUNTING]->(a:Accounting)
-        RETURN 
-            id(b) AS gds_id,
-            b.regn_cbr AS regn,
-            coalesce(a.ROA, 0.0) AS camel_roa,
-            coalesce(a.NPL_ratio, 0.0) AS camel_npl_ratio,
-            coalesce(a.Tier1_capital_ratio, 0.0) AS camel_tier1_capital_ratio,
-            coalesce(a.date, '') AS accounting_date
-        """
-        
-        try:
-            camel_df = self.gds.run_cypher(camel_query)
-            camel_df['gds_id'] = camel_df['gds_id'].astype('int64')
-            
-            logger.info("Fetched CAMEL data for %d banks", len(camel_df))
-            
-            # Merge on gds_id (robust to nodeId renumbering)
+        # A. Merge Ownership (Static/Graph) - Left Join on gds_id or regn
+        if not neo4j_df.empty:
+            cols_own = ['gds_id', 'family_ownership_pct', 'foreign_ownership_total_pct', 'state_ownership_pct']
             if 'gds_id' in df.columns:
                 df['gds_id'] = df['gds_id'].astype('int64')
-                
-                # Merge
-                df = df.merge(
-                    camel_df[['gds_id', 'camel_roa', 'camel_npl_ratio', 'camel_tier1_capital_ratio']],
-                    on='gds_id',
-                    how='left',
-                    suffixes=('', '_camel')
-                )
-                
-                merged_count = df['camel_roa'].notna().sum()
-                logger.info("Merged CAMEL for %d/%d observations", merged_count, len(df))
+                df = df.merge(neo4j_df[cols_own], on='gds_id', how='left')
             else:
-                logger.warning("gds_id column not found - cannot merge CAMEL using robust method")
-                # Fallback: try merge on regn
-                df = df.merge(
-                    camel_df[['regn', 'camel_roa', 'camel_npl_ratio', 'camel_tier1_capital_ratio']],
-                    on='regn',
-                    how='left',
-                    suffixes=('', '_camel')
-                )
+                cols_own_regn = ['regn', 'family_ownership_pct', 'foreign_ownership_total_pct', 'state_ownership_pct']
+                df = df.merge(neo4j_df[cols_own_regn], on='regn', how='left')
         
-        except Exception as e:
-            logger.error("Failed to merge CAMEL data: %s", e)
-            # Add empty CAMEL columns
-            for col in ['camel_roa', 'camel_npl_ratio', 'camel_tier1_capital_ratio']:
-                if col not in df.columns:
-                    df[col] = 0.0
-        
+        # B. Merge Accounting (Time-Varying) - Merge Asof
+        if not acc_df.empty:
+            # Prepare for merge_asof
+            df = df.sort_values(['regn', 'DT'])
+            acc_df = acc_df.sort_values(['regn', 'accounting_date'])
+            
+            # Use regn for accounting merge (parquet usually doesn't have gds_id)
+            # Ensure types match - cast both to Int64 (nullable int)
+            df['regn'] = pd.to_numeric(df['regn'], errors='coerce').astype('Int64')
+            acc_df['regn'] = pd.to_numeric(acc_df['regn'], errors='coerce').astype('Int64')
+            
+            # Drop rows with invalid regn
+            df_merge_base = df.dropna(subset=['regn', 'DT']).copy()
+            acc_df_clean = acc_df.dropna(subset=['regn', 'accounting_date']).sort_values(['regn', 'accounting_date'])
+            
+            # Ensure consistent datetime type (ns precision)
+            df_merge_base['DT'] = df_merge_base['DT'].astype('datetime64[ns]')
+            acc_df_clean['accounting_date'] = acc_df_clean['accounting_date'].astype('datetime64[ns]')
+            
+            # merge_asof requires sorting by the 'on' key (DT/accounting_date)
+            df_merge_base = df_merge_base.sort_values('DT')
+            acc_df_clean = acc_df_clean.sort_values('accounting_date')
+            
+            # Select columns
+            acc_cols = ['regn', 'accounting_date', 'camel_roa', 'camel_npl_ratio', 'camel_tier1_capital_ratio']
+            acc_cols = [c for c in acc_cols if c in acc_df_clean.columns]
+            
+            merged_df = pd.merge_asof(
+                df_merge_base,
+                acc_df_clean[acc_cols],
+                left_on='DT',
+                right_on='accounting_date',
+                by='regn',
+                direction='backward',
+                tolerance=pd.Timedelta(days=365*2)
+            )
+            
+            # Update original DF with merged columns
+            # We need to preserve the original index or index on (regn, DT)
+            # Since merge_asof might reorder or drop, let's left join the result back to df
+            
+            # Actually, merge_asof returns only the matched rows.
+            # If df had rows dropped (NaN regn), we need to be careful.
+            # But we dropped them above for merge base.
+            
+            merged_count = merged_df['camel_roa'].notna().sum()
+            logger.info("Merged Accounting (Parquet) for %d/%d observations", merged_count, len(df))
+            return merged_df
+            
         return df
     
     def _create_event_indicators(self, df: pd.DataFrame) -> pd.DataFrame:

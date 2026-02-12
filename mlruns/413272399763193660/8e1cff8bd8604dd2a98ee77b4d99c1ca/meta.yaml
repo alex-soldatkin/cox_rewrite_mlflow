@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/alexandersoldatkin/projects/cos_rewrite_mlflow/mlruns/413272399763193660/8e1cff8bd8604dd2a98ee77b4d99c1ca/artifacts
+end_time: 1770917093590
+entry_point_name: ''
+experiment_id: '413272399763193660'
+lifecycle_stage: active
+run_id: 8e1cff8bd8604dd2a98ee77b4d99c1ca
+run_name: M3_InternalCapital
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770917093438
+status: 3
+tags: []
+user_id: alexandersoldatkin

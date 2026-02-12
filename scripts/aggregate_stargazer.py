@@ -13,16 +13,24 @@ def aggregate_artifacts(artifact_name="stargazer_column.csv", output_suffix="coe
     """
     # Setup
     mlflow.set_tracking_uri("http://127.0.0.1:5000")
+    try:
+        mlflow.search_experiments()
+    except Exception:
+        print("MLflow server not accessible. Using local tracking.")
+        mlflow.set_tracking_uri(None)
+        
     client = MlflowClient()
     
     print(f"\nScanning experiments ({experiment_id}) for '{artifact_name}'...")
     
     # Path pattern: mlartifacts/<exp_id>/<run_id>/artifacts/<artifact_name>
-    search_pattern = f"mlartifacts/{experiment_id}/*/artifacts/{artifact_name}"
-    artifact_paths = glob.glob(search_pattern)
+    search_pattern_artifacts = f"mlartifacts/{experiment_id}/*/artifacts/{artifact_name}"
+    search_pattern_runs = f"mlruns/{experiment_id}/*/artifacts/{artifact_name}"
+    
+    artifact_paths = glob.glob(search_pattern_artifacts) + glob.glob(search_pattern_runs)
     
     if not artifact_paths:
-        print(f"No artifacts found matching {search_pattern}")
+        print(f"No artifacts found for experiment {experiment_id}")
         return
 
     print(f"Found {len(artifact_paths)} artifact files.")
