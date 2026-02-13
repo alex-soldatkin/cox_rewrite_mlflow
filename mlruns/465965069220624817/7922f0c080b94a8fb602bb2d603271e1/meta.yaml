@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/465965069220624817/7922f0c080b94a8fb602bb2d603271e1/artifacts
+end_time: 1771001530589
+entry_point_name: ''
+experiment_id: '465965069220624817'
+lifecycle_stage: active
+run_id: 7922f0c080b94a8fb602bb2d603271e1
+run_name: 'M2: Forced revocation only'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771001528873
+status: 3
+tags: []
+user_id: alexandersoldatkin

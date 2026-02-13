@@ -1,0 +1,95 @@
+## Crisis interactions {#sec-results-crises}
+
+We estimate Cox models with ownership $\times$ crisis interaction terms over 2004--2021 to test whether ownership effects vary across different types of institutional shock.
+
+### Three crises, three mechanisms
+
+The study period encompasses three distinct crisis episodes, each with different origins and implications for family network protection. A critical distinction, following @reinhart_ThisTimeDifferent_2009, is between **exogenous economic shocks** and **endogenous geopolitical shocks**. The 2008 GFC was exogenous to Russia: the crisis originated in US mortgage markets and transmitted through global capital markets, and Russia was not at the epicentre. This exogeneity provides relatively clean conditions for testing the substitution hypothesis, as family network structures were not formed in anticipation of this specific shock. By contrast, the 2014 crisis was endogenous: Western sanctions were a direct response to Russian foreign policy, confounding substitution effects with political targeting.
+
+| Crisis | Period | Type | Coverage | Expected Family Effect |
+|:---|:---|:---|:---|:---|
+| 2004 | Q2--Q4 2004 | Regulatory/confidence | 1,314 obs (0.9%) | Protective (substitution for collapsed trust) |
+| 2008 | Q3 2008--Q2 2009 | Economic/external | 12,869 obs (9.3%) | Strongly protective (internal capital markets) |
+| 2014 | Q1 2014--Q4 2015 | Geopolitical/regulatory | 15,617 obs (11.2%) | Mixed (substitution + targeting risk) |
+
+: Crisis episodes covered in the interaction analysis. {#tbl-crisis-episodes}
+
+![Forest plot of hazard ratios from the full crisis interactions model (M6), showing base effects and ownership × crisis interaction terms.](figures/forest_crisis_interactions.png){#fig-forest-crisis}
+
+@fig-forest-crisis presents the full set of base effects and interaction terms from the M6 specification.
+
+### Crisis interaction results
+
+The crisis interaction models (M3--M6) reveal sharply different patterns across crisis types:
+
+**Family $\times$ Crisis (M3)**:
+
+- **Family $\times$ 2008**: The interaction term is protective, corresponding to an additional 26.6% survival boost for family-connected banks during the GFC. This is the strongest evidence for the substitution hypothesis: when external capital markets froze, family groups with internal capital markets provided liquidity backstops that standalone banks could not access.
+
+- **Family $\times$ 2004**: Complete separation in some specifications (very few family-connected bank failures during the brief 2004 crisis), limiting statistical inference but directionally consistent with strong protection.
+
+- **Family $\times$ 2014**: Non-significant or weakly positive, suggesting that family connections provided neither clear protection nor clear liability during the geopolitical crisis---consistent with the mixed substitution/interference characterisation of this period.
+
+**Foreign $\times$ Crisis (M5)**:
+
+- **Foreign $\times$ 2008**: Protective. Foreign-owned banks benefited from access to parent bank capital during the GFC, when Russian domestic markets were frozen but international capital remained accessible (pre-sanctions).
+
+- **Foreign $\times$ 2014**: Harmful (28.1% reduction in survival odds). During the geopolitical crisis, sanctions compliance burdens, capital flight concerns, and political pressure on foreign institutions reversed the previously protective effect of foreign ownership.
+
+**State $\times$ Crisis (M4)**:
+
+- Low variance warnings across specifications, reflecting the small number of state-owned banks in the sample. Insufficient statistical power for reliable inference on state ownership $\times$ crisis interactions.
+
+### Model comparison
+
+```{python}
+#| output: asis
+
+import pandas as pd
+import sys
+sys.path.insert(0, 'tables')
+from table_generator import to_quarto_table
+
+df = pd.read_csv('../experiments/exp_009_crisis_interactions/model_fit_comparison.csv')
+display_keys = [
+    'model_1_baseline', 'model_2_crisis_dummies',
+    'model_3_family_crisis', 'model_5_foreign_crisis',
+    'model_6_full_interactions',
+]
+labels = {
+    'model_1_baseline': 'M1: Baseline',
+    'model_2_crisis_dummies': 'M2: Crisis dummies',
+    'model_3_family_crisis': 'M3: Family $\\times$ crisis',
+    'model_5_foreign_crisis': 'M5: Foreign $\\times$ crisis',
+    'model_6_full_interactions': 'M6: Full interactions',
+}
+df = df[df['model_key'].isin(display_keys)].copy()
+df['model_key'] = pd.Categorical(df['model_key'], categories=display_keys, ordered=True)
+df = df.sort_values('model_key')
+baseline_c = df.loc[df['model_key'] == 'model_1_baseline', 'c_index'].values[0]
+rows = []
+for _, r in df.iterrows():
+    improvement = r['c_index'] - baseline_c
+    rows.append({
+        'Model': labels[r['model_key']],
+        'C-index': f'{r["c_index"]:.3f}',
+        'AIC': f'{r["aic_partial"]:,.0f}',
+        'Improvement over M1': '--' if improvement == 0 else f'+{improvement:.3f}',
+    })
+result = pd.DataFrame(rows)
+print(to_quarto_table(
+    result,
+    'Model fit comparison for crisis interaction specifications.',
+    'tbl-crisis-model-fit',
+))
+```
+
+The relatively modest C-index improvements (+0.002 to +0.005) suggest that whilst crisis interactions are substantively meaningful, the baseline model already captures the bulk of survival-relevant variation. AIC *increases* monotonically from M1 through M6, indicating that the additional interaction parameters are not justified by the marginal improvement in fit. The full interaction model (M6) achieves the highest C-index but also the worst AIC, consistent with overfitting.
+
+### Implications for the substitution--interference framework
+
+The crisis interaction results are consistent with the substitution--interference distinction:
+
+- **2008 (Substitution)**: Family networks act as institutional substitutes when formal markets fail. The 26.6% additional survival protection during the GFC represents the classic substitution function---family groups pooling resources through internal capital markets when external finance is unavailable.
+
+- **2014 (Mixed/Interference)**: The absence of a clear family $\times$ crisis interaction, combined with the harmful foreign $\times$ crisis effect, suggests a more complex dynamic. Family networks may still provide substitution benefits (internal liquidity) but these are offset by the risk of regulatory targeting (interference) as Nabiullina's cleanup campaign targeted complex ownership structures.

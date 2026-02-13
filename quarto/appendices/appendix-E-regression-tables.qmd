@@ -1,0 +1,296 @@
+# Full regression tables {#sec-appendix-e .appendix}
+
+This appendix provides the complete regression output tables for all model specifications reported in the main text.
+
+## Mechanism testing (exp_010)
+
+### M1--M4: Individual mechanisms
+
+```{python}
+#| output: asis
+
+import pandas as pd
+import sys
+sys.path.insert(0, 'tables')
+from table_generator import fmt_cell, TABLE_LABELS, to_quarto_table
+
+base = '../experiments/exp_010_mechanism_testing'
+models = {
+    'M1: Political': f'{base}/stargazer_M1_Political.csv',
+    'M2: Tax': f'{base}/stargazer_M2_TaxOptimization.csv',
+    'M3: Capital': f'{base}/stargazer_M3_InternalCapital.csv',
+    'M4: Full': f'{base}/stargazer_M4_FullMechanism.csv',
+}
+var_order = [
+    'family_connection_ratio', 'stake_fragmentation_index',
+    'family_company_count', 'camel_roa', 'camel_npl_ratio',
+    'camel_tier1_capital_ratio', 'rw_out_degree_4q_lag',
+    'state_ownership_pct', 'foreign_ownership_total_pct',
+]
+data = {}
+for name, path in models.items():
+    df = pd.read_csv(path)
+    data[name] = dict(zip(df['covariate'], df['Stargazer_Output']))
+rows = []
+for var in var_order:
+    row = {'Variable': TABLE_LABELS.get(var, var)}
+    for name in models:
+        row[name] = fmt_cell(data[name].get(var))
+    rows.append(row)
+result = pd.DataFrame(rows)
+print(to_quarto_table(
+    result,
+    'Full regression output for mechanism testing models M1--M4 (2004--2020). Standardised coefficients from Cox proportional hazards with regional stratification.',
+    'tbl-full-m1-m4',
+))
+```
+
+### Enhanced model with deep structural proxies
+
+```{python}
+#| output: asis
+
+import pandas as pd
+import sys
+sys.path.insert(0, 'tables')
+from table_generator import fmt_cell, fmt_stat, TABLE_LABELS, to_quarto_table
+
+base = '../experiments/exp_010_mechanism_testing'
+df = pd.read_csv(f'{base}/stargazer_column.csv')
+data = dict(zip(df['variable'], df['Stargazer_Output']))
+covariate_vars = [
+    'family_connection_ratio', 'stake_fragmentation_index',
+    'group_total_paid_tax', 'group_total_vehicles', 'group_total_receipts',
+    'group_sector_count', 'camel_roa', 'camel_npl_ratio',
+    'camel_tier1_capital_ratio', 'rw_out_degree_4q_lag',
+    'state_ownership_pct', 'foreign_ownership_total_pct',
+]
+stat_vars = ['Observations', 'Subjects', 'Events', 'Log Likelihood', 'AIC Partial', 'C-index']
+rows = []
+for var in covariate_vars:
+    rows.append({'Variable': TABLE_LABELS.get(var, var), 'Coefficient (SE)': fmt_cell(data.get(var))})
+rows.append({'Variable': '', 'Coefficient (SE)': ''})
+for var in stat_vars:
+    rows.append({'Variable': var, 'Coefficient (SE)': fmt_stat(var, data.get(var, ''))})
+result = pd.DataFrame(rows)
+print(to_quarto_table(
+    result,
+    'Full regression output for enhanced mechanism model with deep structural proxies (2004--2020). Regional stratification.',
+    'tbl-full-m7-m10',
+))
+```
+
+## Subperiod analysis (exp_011)
+
+### Baseline models by period
+
+```{python}
+#| output: asis
+
+import pandas as pd
+import sys
+sys.path.insert(0, 'tables')
+from table_generator import fmt_cell, fmt_stat, TABLE_LABELS, to_quarto_table
+
+df = pd.read_csv('../experiments/exp_011_subperiod_analysis/output/aggregated/stargazer_coef_model_1_baseline.csv')
+data = {}
+for _, row in df.iterrows():
+    data[row['variable']] = row
+periods = ['2004-2007', '2007-2013', '2013-2020']
+period_labels = ['2004--2007', '2007--2013', '2013--2020']
+covariate_vars = [
+    'family_connection_ratio', 'family_ownership_pct',
+    'state_ownership_pct', 'foreign_ownership_total_pct',
+    'rw_page_rank_4q_lag', 'rw_out_degree_4q_lag', 'camel_roa',
+    'camel_npl_ratio', 'camel_tier1_capital_ratio',
+]
+stat_vars = ['Observations', 'Subjects', 'Events', 'C-index']
+rows = []
+for var in covariate_vars:
+    row = {'Variable': TABLE_LABELS.get(var, var)}
+    for p, pl in zip(periods, period_labels):
+        val = data.get(var, {})
+        row[pl] = fmt_cell(val[p]) if var in data and pd.notna(val.get(p)) else '--'
+    rows.append(row)
+rows.append({k: '' for k in ['Variable'] + period_labels})
+for var in stat_vars:
+    row = {'Variable': var}
+    for p, pl in zip(periods, period_labels):
+        val = data.get(var, {})
+        row[pl] = fmt_stat(var, val.get(p, '')) if var in data else ''
+    rows.append(row)
+result = pd.DataFrame(rows)
+print(to_quarto_table(
+    result,
+    'Full regression output for baseline models across three subperiods (exp_011). Standardised coefficients from Cox models with community stratification. Standard errors in parentheses.',
+    'tbl-full-subperiod',
+))
+```
+
+## Granger causality (exp_015)
+
+```{python}
+#| output: asis
+
+import pandas as pd
+import sys
+sys.path.insert(0, 'tables')
+from table_generator import fmt_cell, fmt_stat, TABLE_LABELS, to_quarto_table
+
+df = pd.read_csv('../experiments/exp_015_granger_causality/stargazer_aggregated.csv')
+data = {}
+for _, row in df.iterrows():
+    data[row['variable']] = row
+
+models = ['M1', 'M2', 'M4', 'M5']
+model_labels = ['M1: Baseline', 'M2: +Contagion', 'M4: Pre-2013', 'M5: Post-2013']
+
+covariate_vars = [
+    'family_connection_ratio', 'family_ownership_pct',
+    'state_ownership_pct', 'foreign_ownership_total_pct',
+    'rw_page_rank_4q_lag', 'rw_out_degree_4q_lag',
+    'camel_roa', 'camel_npl_ratio', 'camel_tier1_capital_ratio',
+    'community_failure_lag',
+]
+stat_vars = ['Observations', 'Subjects', 'Events', 'Log Likelihood', 'AIC']
+
+rows = []
+for var in covariate_vars:
+    row = {'Variable': TABLE_LABELS.get(var, var)}
+    for m, ml in zip(models, model_labels):
+        val = data.get(var, {})
+        row[ml] = fmt_cell(val.get(m, '')) if var in data else '--'
+    rows.append(row)
+
+rows.append({k: '' for k in ['Variable'] + model_labels})
+
+for var in stat_vars:
+    row = {'Variable': var}
+    for m, ml in zip(models, model_labels):
+        val = data.get(var, {})
+        row[ml] = fmt_stat(var, val.get(m, '')) if var in data else ''
+    rows.append(row)
+
+result = pd.DataFrame(rows)
+print(to_quarto_table(
+    result,
+    'Full regression output for Granger causality test (exp\\_015). Complementary log-log discrete-time hazard models. Standard errors in parentheses.',
+    'tbl-full-granger',
+))
+```
+
+## Competing risks (exp_016)
+
+```{python}
+#| output: asis
+
+import pandas as pd
+import sys
+sys.path.insert(0, 'tables')
+from table_generator import fmt_cell, fmt_stat, TABLE_LABELS, to_quarto_table
+
+df = pd.read_csv('../experiments/exp_016_competing_risks/stargazer_aggregated.csv')
+data = {}
+for _, row in df.iterrows():
+    data[row['variable']] = row
+
+models = ['M1_all_closures', 'M2_revocation', 'M3_voluntary', 'M4_reorganisation', 'M5_revocation_crisis']
+model_labels = ['M1: All', 'M2: Revocation', 'M3: Voluntary', 'M4: Reorg.', 'M5: Revoc.+Crisis']
+
+covariate_vars = [
+    'family_connection_ratio', 'family_ownership_pct',
+    'state_ownership_pct', 'foreign_ownership_total_pct',
+    'rw_page_rank_4q_lag', 'rw_out_degree_4q_lag',
+    'camel_roa', 'camel_npl_ratio', 'camel_tier1_capital_ratio',
+    'crisis_2004', 'crisis_2008', 'crisis_2014',
+    'family_connection_ratio_x_crisis_2008',
+    'family_connection_ratio_x_crisis_2014',
+]
+stat_vars = ['Observations', 'Subjects', 'Events', 'Log Likelihood', 'AIC Partial', 'C-index']
+
+rows = []
+for var in covariate_vars:
+    row = {'Variable': TABLE_LABELS.get(var, var)}
+    for m, ml in zip(models, model_labels):
+        val = data.get(var, {})
+        row[ml] = fmt_cell(val.get(m, '')) if var in data else '--'
+    rows.append(row)
+
+rows.append({k: '' for k in ['Variable'] + model_labels})
+
+for var in stat_vars:
+    row = {'Variable': var}
+    for m, ml in zip(models, model_labels):
+        val = data.get(var, {})
+        row[ml] = fmt_stat(var, val.get(m, '')) if var in data else ''
+    rows.append(row)
+
+result = pd.DataFrame(rows)
+print(to_quarto_table(
+    result,
+    'Full regression output for competing risks analysis (exp\\_016). Cause-specific Cox models; non-target closure types censored. Standard errors in parentheses.',
+    'tbl-full-competing',
+))
+```
+
+## Placebo tests (exp_017)
+
+```{python}
+#| output: asis
+
+import pandas as pd
+import sys
+sys.path.insert(0, 'tables')
+from table_generator import fmt_cell, fmt_stat, TABLE_LABELS, to_quarto_table
+
+df = pd.read_csv('../experiments/exp_017_placebo_tests/stargazer_aggregated.csv')
+data = {}
+for _, row in df.iterrows():
+    data[row['variable']] = row
+
+models = ['M1_real', 'M4_pseudo', 'M6_real', 'M7_nonfamily', 'M8_random']
+model_labels = ['M1: Real FCR', 'M4: Pseudo-crisis', 'M6: Real crisis', 'M7: Non-family', 'M8: Random']
+
+covariate_vars = [
+    'family_connection_ratio', 'family_ownership_pct',
+    'state_ownership_pct', 'foreign_ownership_total_pct',
+    'rw_page_rank_4q_lag', 'rw_out_degree_4q_lag',
+    'camel_roa', 'camel_npl_ratio', 'camel_tier1_capital_ratio',
+    'pseudo_2008', 'pseudo_2014',
+    'family_connection_ratio_x_pseudo_2008',
+    'family_connection_ratio_x_pseudo_2014',
+    'crisis_2008', 'crisis_2014',
+    'family_connection_ratio_x_crisis_2008',
+    'family_connection_ratio_x_crisis_2014',
+    'nonfamily_ownership_hhi', 'random_ownership',
+]
+stat_vars = ['Observations', 'Subjects', 'Events', 'Log Likelihood', 'AIC Partial', 'C-index']
+
+rows = []
+for var in covariate_vars:
+    row = {'Variable': TABLE_LABELS.get(var, var)}
+    for m, ml in zip(models, model_labels):
+        val = data.get(var, {})
+        row[ml] = fmt_cell(val.get(m, '')) if var in data else '--'
+    rows.append(row)
+
+rows.append({k: '' for k in ['Variable'] + model_labels})
+
+for var in stat_vars:
+    row = {'Variable': var}
+    for m, ml in zip(models, model_labels):
+        val = data.get(var, {})
+        row[ml] = fmt_stat(var, val.get(m, '')) if var in data else ''
+    rows.append(row)
+
+result = pd.DataFrame(rows)
+print(to_quarto_table(
+    result,
+    'Full regression output for placebo and falsification tests (exp\\_017). Standard errors in parentheses.',
+    'tbl-full-placebo',
+))
+```
+
+## Aggregated results
+
+For comprehensive model comparison across all experiments, see the aggregated stargazer output files in the `stargazer/` directory, which contain results from all model specifications across experiments, enabling direct comparison of coefficient magnitudes and significance levels.

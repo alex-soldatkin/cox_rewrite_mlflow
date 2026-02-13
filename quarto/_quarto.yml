@@ -1,0 +1,24 @@
+project:
+  type: default
+  output-dir: _output
+
+bibliography: references.bib
+
+format:
+  typst:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    number-depth: 4
+    columns: 1
+    margin:
+      x: 2.5cm
+      y: 2.5cm
+    papersize: a4
+
+execute:
+  echo: false
+  warning: false
+  message: false
+
+jupyter: python3

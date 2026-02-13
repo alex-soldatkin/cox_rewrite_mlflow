@@ -1,0 +1,43 @@
+# Baseline models {#sec-appendix-d .appendix}
+
+## Cross-sectional logistic regression (exp_002)
+
+The baseline cross-sectional analysis employs logistic regression to estimate the probability of bank failure as a function of ownership structure, financial indicators, and network position measured at a single point in time. This approach provides a foundation for the more sophisticated time-varying Cox models used in the main analysis.
+
+### Specification
+
+$$\Pr(\text{failure}_i = 1) = \frac{1}{1 + \exp(-\boldsymbol{X}_i' \boldsymbol{\beta})}$$
+
+where $\boldsymbol{X}_i$ includes CAMEL indicators, ownership measures (family, state, foreign percentages), and network centrality metrics.
+
+### Key results
+
+- Family connection ratio increases survival odds by approximately 63% in the cross-sectional specification
+
+- Network centrality metrics (PageRank, betweenness) are significant predictors of survival
+
+- Foreign ownership provides strong protection (482% increase in survival odds in some specifications)
+
+- Model accuracy ranges from 75--85% depending on the variable set included
+
+### Limitations
+
+The cross-sectional approach cannot account for time-varying dynamics, survival bias, or the temporal sequence of network formation and failure. These limitations motivate the time-varying Cox models in the main analysis.
+
+## Basic Cox models (exp_003)
+
+The initial Cox proportional hazards models extend the cross-sectional analysis to a time-to-event framework, with quarterly observations and basic time-varying covariates.
+
+### Specification
+
+Standard Cox model without stratification, using the full 2004--2020 period with CAMEL indicators updated quarterly.
+
+### Key results
+
+- Family connection ratio remains significant in the Cox framework (HR $\approx$ 0.99 per unit, $p < 0.01$)
+
+- Hazard ratios for CAMEL indicators are consistent with the logistic regression findings
+
+- C-index ranges from 0.60--0.65, indicating moderate discriminatory power
+
+These baseline results establish the robustness of the family effect before the introduction of mechanism testing, stratification, and interaction models in the main analysis.

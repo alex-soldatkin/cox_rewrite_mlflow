@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/465965069220624817/bf5a3a28ed0f4f99be576715a26cde2f/artifacts
+end_time: 1771001528473
+entry_point_name: ''
+experiment_id: '465965069220624817'
+lifecycle_stage: active
+run_id: bf5a3a28ed0f4f99be576715a26cde2f
+run_name: 'M1: All closures (baseline)'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771001526245
+status: 3
+tags: []
+user_id: alexandersoldatkin

@@ -1,0 +1,45 @@
+# Hypotheses {#sec-hypotheses}
+
+The synthesis of literature on Russian banking failures, family ownership governance, and the institutional context developed in the preceding chapters generates three sets of testable hypotheses. These test (1) the unconditional protective effect of family networks, (2) the specific mechanisms through which protection operates, and (3) the context-dependence of these effects across crisis types and regulatory regimes.
+
+## H1: Direct effects and mechanisms
+
+**H1a (Family Network Density):** Banks with denser kinship networks, measured by the family connection ratio ($\rho_F$), are associated with significantly lower hazard rates of licence revocation, controlling for CAMEL financial indicators, ownership structure, and network position.
+
+In an institutional environment where formal compliance does not guarantee survival (@sec-institutional-context), family networks provide alternative governance infrastructure --- resource pooling, information sharing, and mutual support --- that enhances survival prospects. A hazard ratio below 1.0 for $\rho_F$ in Cox proportional hazards models with time-varying covariates would support this hypothesis. The CAMEL controls allow us to assess whether family connections are associated with survival *conditional on* financial health, or whether family-connected banks survive despite weaker financial indicators --- the latter interpretation would suggest that informal governance can partially override formal regulatory criteria.
+
+**H1b (Mechanism Heterogeneity):** The association between family connections and survival operates through multiple, non-mutually exclusive Transaction Cost Economics mechanisms, with tax optimisation through ownership fragmentation providing the strongest individual contribution to survival.
+
+This sub-hypothesis reflects the institutional context of Russian banking, where the practice of *droblenie biznesa* (business fragmentation) is a widespread strategy for minimising regulatory exposure. We expect the `stake_fragmentation_index` to show the largest hazard reduction amongst the three mechanism proxies, given the direct financial incentives for threshold arbitrage and regulatory opacity in the Russian tax and regulatory environment.
+
+## H2: Context-dependent effects (crisis interactions)
+
+**H2a (Family Networks and Economic Crises):** The protective effect of family kinship networks intensifies during periods of systemic economic stress, particularly during the 2008 Global Financial Crisis, when formal financial markets and interbank lending mechanisms cease to function.
+
+The substitution logic predicts that family networks become most valuable precisely when formal institutions fail most visibly. During the 2008 GFC, when external capital markets froze and interbank lending collapsed, family groups with internal capital markets should have been able to provide liquidity backstops that standalone banks could not access. We test this through family connection ratio $\times$ crisis interaction terms in Cox models.
+
+**H2b (Foreign Ownership Reversal):** Foreign ownership provides significant protection during economic crises (2008) but transforms into a significant vulnerability during geopolitical crises (2014 sanctions), reflecting the fundamentally different nature of these two types of institutional shock.
+
+During the 2008 GFC, foreign-owned banks benefited from access to parent bank capital and international risk management practices. During the 2014 sanctions shock, foreign connections became a liability: capital flight concerns, sanctions compliance requirements, and reduced foreign investor confidence reversed the protective effect. This hypothesis predicts a sign reversal on the foreign ownership $\times$ crisis interaction term between 2008 and 2014.
+
+**H2c (Network Position as Liability):** High centrality within the ownership network's local neighbourhood, whilst providing baseline protective effects through information and resource access, becomes a liability during periods of targeted regulatory intervention (2014--2017 cleanup), as prominent nodes within densely connected network neighbourhoods attract state attention and regulatory action.
+
+This hypothesis captures the transition from substitution to interference targeting. The Otkritie--Trust sanitisation showed that the CBR under Nabiullina was willing to target systemically important, highly connected institutions. Banks occupying prominent positions within their local network neighbourhood --- high PageRank, high betweenness centrality --- become visible targets for regulatory consolidation, reversing the protective value of centrality. We test this through community-level stratification using Louvain community detection [@blondel_FastUnfoldingCommunities_2008], which partitions the ownership graph into structural neighbourhoods of densely connected nodes. The hypothesis predicts that within-neighbourhood centrality effects shift sign under regulatory targeting, controlling for geography through regional strata.
+
+## H3: Temporal stability (structural breaks)
+
+**H3a (Regime-Dependent Effects):** The effects of ownership structures on bank survival vary significantly between the Ignatyev era (2004--2013) and the Nabiullina era (2013--2020), reflecting fundamental changes in regulatory philosophy, enforcement intensity, and institutional environment.
+
+Under Ignatyev's accommodative stance (roughly 50 licence revocations per year), the regulatory environment was relatively permissive, and survival was primarily determined by financial fundamentals and political connections. Under Nabiullina's aggressive cleanup (75--100 revocations per year, more than 500 total), the regulatory environment shifted dramatically, and we expect ownership effects to change accordingly.
+
+**H3b (Substitution--Interference Transition):** The dominant function of family networks shifts from substitution (pre-2013) to interference (post-2013), reflected in changes in the relative importance of specific mechanisms across the two regulatory regimes.
+
+Specifically, we predict that:
+
+- Political embeddedness effects should weaken under Nabiullina (reduced regulatory forbearance makes political connections less valuable)
+
+- Tax optimisation effects should strengthen under Nabiullina (stricter rules increase incentives for evasion through fragmentation)
+
+- Internal capital market effects should remain stable (fundamental economic function independent of regulatory regime)
+
+These predictions are tested through subperiod analysis (splitting the sample into 2004--2007, 2007--2013, and 2013--2020 windows) and governor regime interaction models (a pooled model with Nabiullina dummy and ownership $\times$ governor interaction terms).

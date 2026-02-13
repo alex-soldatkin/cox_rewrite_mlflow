@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/532750313291267942/94bcaa9afdb1441aa6b2815c752a353a/artifacts
+end_time: 1771001580528
+entry_point_name: ''
+experiment_id: '532750313291267942'
+lifecycle_stage: active
+run_id: 94bcaa9afdb1441aa6b2815c752a353a
+run_name: 'M2: + Community contagion control'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771001580146
+status: 3
+tags: []
+user_id: alexandersoldatkin

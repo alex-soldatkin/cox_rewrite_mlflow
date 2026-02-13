@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/465965069220624817/3123a9825e704666ae0e2531801c9780/artifacts
+end_time: 1771001531417
+entry_point_name: ''
+experiment_id: '465965069220624817'
+lifecycle_stage: active
+run_id: 3123a9825e704666ae0e2531801c9780
+run_name: 'M3: Voluntary liquidation only'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771001530803
+status: 3
+tags: []
+user_id: alexandersoldatkin

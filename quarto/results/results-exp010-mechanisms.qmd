@@ -1,0 +1,165 @@
+## Transaction cost mechanisms (2004--2020) {#sec-results-mechanisms}
+
+### Main mechanism tests (M1--M4)
+
+We test each TCE mechanism individually before combining them in a horse-race specification. @tbl-mechanism-main reports hazard ratios from the four core models, all estimated over 2004--2020 with regional stratification.
+
+```{python}
+#| output: asis
+
+import pandas as pd
+import sys
+sys.path.insert(0, 'tables')
+from table_generator import fmt_cell, TABLE_LABELS, to_quarto_table
+
+base = '../experiments/exp_010_mechanism_testing'
+models = {
+    'M1: Political': f'{base}/stargazer_M1_Political.csv',
+    'M2: Tax': f'{base}/stargazer_M2_TaxOptimization.csv',
+    'M3: Capital': f'{base}/stargazer_M3_InternalCapital.csv',
+    'M4: Full': f'{base}/stargazer_M4_FullMechanism.csv',
+}
+var_order = [
+    'family_connection_ratio', 'stake_fragmentation_index',
+    'family_company_count', 'camel_roa', 'camel_npl_ratio',
+    'camel_tier1_capital_ratio', 'rw_out_degree_4q_lag',
+    'state_ownership_pct', 'foreign_ownership_total_pct',
+]
+data = {}
+for name, path in models.items():
+    df = pd.read_csv(path)
+    data[name] = dict(zip(df['covariate'], df['Stargazer_Output']))
+rows = []
+for var in var_order:
+    row = {'Variable': TABLE_LABELS.get(var, var)}
+    for name in models:
+        row[name] = fmt_cell(data[name].get(var))
+    rows.append(row)
+result = pd.DataFrame(rows)
+print(to_quarto_table(
+    result,
+    'Cox proportional hazards models testing individual TCE mechanisms (M1--M4). All models stratified by region. Standardised coefficients reported.',
+    'tbl-mechanism-main',
+))
+```
+
+![Forest plot comparing hazard ratios across the four individual TCE mechanism models (M1--M4). Point estimates with 95% confidence intervals; dashed line indicates HR = 1 (no effect).](figures/forest_mechanism_comparison.png){#fig-forest-mechanisms}
+
+@fig-forest-mechanisms visualises the hazard ratios and 95% confidence intervals for all four mechanism models side by side.
+
+**Key findings from M1--M4:**
+
+- **M1 (Political Embeddedness)**: The family connection ratio is highly significant ($p < 0.001$) even after controlling for regional fixed effects, indicating that the protective effect is not solely attributable to geographic co-location with political authorities.
+
+- **M2 (Tax Optimisation)**: The stake fragmentation index shows the largest hazard reduction amongst individual mechanisms, consistent with ownership dispersion providing regulatory opacity and threshold arbitrage benefits.
+
+- **M3 (Internal Capital Markets)**: Group-level financial depth and entity count are significant --- banks belonging to larger, better-capitalised family groups enjoy survival advantages through internal resource pooling.
+
+- **M4 (Horse Race)**: When all three mechanisms are included simultaneously, each retains significance, indicating that they capture distinct channels of family network protection.
+
+### Enhanced mechanisms (M7--M10)
+
+@tbl-mechanism-enhanced extends the analysis with deeper structural proxies and alternative stratification schemes.
+
+```{python}
+#| output: asis
+
+import pandas as pd
+import sys
+sys.path.insert(0, 'tables')
+from table_generator import fmt_cell, fmt_stat, TABLE_LABELS, to_quarto_table
+
+base = '../experiments/exp_010_mechanism_testing'
+df = pd.read_csv(f'{base}/stargazer_column.csv')
+data = dict(zip(df['variable'], df['Stargazer_Output']))
+covariate_vars = [
+    'family_connection_ratio', 'stake_fragmentation_index',
+    'group_total_paid_tax', 'group_total_vehicles', 'group_total_receipts',
+    'group_sector_count', 'camel_roa', 'camel_npl_ratio',
+    'camel_tier1_capital_ratio', 'rw_out_degree_4q_lag',
+    'state_ownership_pct', 'foreign_ownership_total_pct',
+]
+stat_vars = ['Observations', 'Subjects', 'Events', 'Log Likelihood', 'AIC Partial', 'C-index']
+rows = []
+for var in covariate_vars:
+    rows.append({'Variable': TABLE_LABELS.get(var, var), 'Coefficient (SE)': fmt_cell(data.get(var))})
+rows.append({'Variable': '', 'Coefficient (SE)': ''})
+for var in stat_vars:
+    rows.append({'Variable': var, 'Coefficient (SE)': fmt_stat(var, data.get(var, ''))})
+result = pd.DataFrame(rows)
+print(to_quarto_table(
+    result,
+    'Enhanced mechanism model with deep structural proxies and regional stratification. Standardised coefficients reported.',
+    'tbl-mechanism-enhanced',
+))
+```
+
+**Aggregated results across M7--M10** (from @tbl-mechanism-summary-exp010):
+
+```{python}
+#| output: asis
+
+import pandas as pd
+import sys
+sys.path.insert(0, 'tables')
+from table_generator import fmt_hr, TABLE_LABELS, to_quarto_table
+
+base = '../experiments/exp_010_mechanism_testing'
+model_files = {
+    'M7 (H3+)': f'{base}/summary_m7.csv',
+    'M8 (Sector)': f'{base}/summary_m8.csv',
+    'M9 (Community)': f'{base}/summary_m9_Community_Strata.csv',
+    'M10 (Deep)': f'{base}/summary_m10_H3_Deep_Proxies.csv',
+}
+hr_vars = [
+    'family_connection_ratio', 'stake_fragmentation_index',
+    'group_total_capital', 'group_total_paid_tax',
+    'group_total_vehicles', 'group_sector_count',
+]
+model_data = {}
+for name, path in model_files.items():
+    df = pd.read_csv(path)
+    model_data[name] = {r['covariate']: r for _, r in df.iterrows()}
+rows = []
+for var in hr_vars:
+    row = {'Variable': TABLE_LABELS.get(var, var)}
+    for name in model_files:
+        if var in model_data[name]:
+            r = model_data[name][var]
+            row[name] = fmt_hr(r['exp(coef)'], r['p'])
+        else:
+            row[name] = '--'
+    rows.append(row)
+strata = {'M7 (H3+)': 'Region', 'M8 (Sector)': 'Sector', 'M9 (Community)': 'Community', 'M10 (Deep)': 'Region'}
+aic = {'M7 (H3+)': '9,692', 'M8 (Sector)': '8,262', 'M9 (Community)': '**6,952**', 'M10 (Deep)': '9,698'}
+cidx = {'M7 (H3+)': '0.741', 'M8 (Sector)': '0.743', 'M9 (Community)': '0.745', 'M10 (Deep)': '**0.762**'}
+rows.append({'Variable': '**Strata**', **strata})
+rows.append({'Variable': '**AIC**', **aic})
+rows.append({'Variable': '**C-index**', **cidx})
+result = pd.DataFrame(rows)
+print(to_quarto_table(
+    result,
+    'Aggregated hazard ratios for enhanced mechanism models M7--M10.',
+    'tbl-mechanism-summary-exp010',
+))
+```
+
+![Forest plot comparing hazard ratios across stratification schemes (M7--M10). M9 community strata achieves the best model fit (lowest AIC).](figures/forest_stratification_comparison.png){#fig-forest-stratification}
+
+@fig-forest-stratification compares the hazard ratios across the four stratification schemes.
+
+**Key findings from M7--M10:**
+
+- **Ownership fragmentation remains the strongest mechanism** (HR = 0.884 in regional-stratified M7; HR = 0.921 in community-stratified M9), showing that dispersed ownership provides robust regulatory opacity benefits across stratification schemes. When sector-stratified (M8), fragmentation effects are absorbed, indicating that the mechanism operates partly through industry-specific regulatory thresholds.
+
+- **Industrial diversification** (group sector count) provides a significant cross-sector diversification buffer (HR = 0.926 in M7; HR = 0.954 in M9), except when sector-stratified (M8), where the effect is absorbed by the strata.
+
+- **Community stratification (M9) achieves the best model fit** (AIC = 6,952 vs ~9,700 for regional strata). A bank's position within structural neighbourhoods of the ownership network is more informative for survival prediction than geographic or sectoral classification.
+
+- **Deep structural proxies (M10)**: Group-level tax payments (HR = 0.938) and vehicle ownership (HR = 0.937) are protective --- banks connected to groups with genuine economic activity and tangible assets enjoy significant survival advantages.
+
+### Survival comparison: banks vs group companies
+
+![Kaplan-Meier survival comparison between family-connected banks and their industrial group peers.](figures/survival_comparison.png){#fig-survival-comparison}
+
+@fig-survival-comparison reveals an important asymmetry: whilst both banks and companies within family networks show high early-stage stability, banks enter a 'fragility zone' between 15--30 months of network participation, where their survival probability drops below that of non-bank group companies. This suggests that family groups prioritise the survival of industrial assets during sectoral shocks, or that the regulatory 'death' of a bank (licence revocation) is a more frequent tail event than the liquidation of a connected company.

@@ -1,0 +1,17 @@
+variable,Stargazer_Output_HR
+nonfamily_ownership_hhi,1.002 (0.008)
+family_ownership_pct,0.996*** (0.001)
+state_ownership_pct,0.996 (0.003)
+foreign_ownership_total_pct,0.998 (0.007)
+rw_page_rank_4q_lag,1.004 (0.005)
+rw_out_degree_4q_lag,0.979* (0.009)
+camel_roa,0.916*** (0.010)
+camel_npl_ratio,1.010*** (0.002)
+camel_tier1_capital_ratio,1.016*** (0.003)
+Observations,138313
+Subjects,1092
+Events,770
+Log Likelihood,-4844.49
+AIC Partial,9706.99
+-log2(p) LLR,69.54
+C-index,0.651

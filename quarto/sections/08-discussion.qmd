@@ -1,0 +1,95 @@
+# Discussion {#sec-discussion}
+
+## Family connection ratio: central finding and TCE interpretation
+
+The family connection ratio ($\rho_F$) is consistently associated with lower hazard rates of licence revocation across all model specifications, time periods, and stratification schemes. This presents an apparent paradox: the family ownership literature documents substantial agency costs of kinship-based governance --- entrenchment, nepotism, limited managerial talent pools, and potential tunnelling [@bertrand_MixingFamilyBusiness_2008; @villalonga_HowFamilyOwnership_2006]. Why should family connections be associated with enhanced survival?
+
+The institutional context developed in @sec-institutional-context provides the answer. In an environment where formal institutions cannot credibly commit to impartial enforcement --- where 98--99% of banks meet prudential ratios yet failures persist, where regulatory outcomes vary with electoral cycles, and where regulation itself can provoke physical resistance --- the agency costs of family governance are outweighed by substitution benefits. The mechanism testing results (@sec-results-mechanisms) show that all three TCE channels contribute independently:
+
+1. **Political embeddedness** is associated with reduced hazard even after regional stratification absorbs geographic political variation, suggesting that family networks provide information channels and advance warning at a finer grain than regional politics
+
+2. **Tax optimisation** through ownership fragmentation shows the strongest individual association with survival (−11.8% hazard per SD), consistent with the prevalence of *droblenie biznesa* as a strategy for regulatory opacity and threshold arbitrage
+
+3. **Internal capital markets** are associated with lower hazard through group-level financial depth, industrial diversification, and tangible asset proxies (tax payments, vehicle ownership) --- the 'real economy' depth of the family group matters for bank survival
+
+The 'family dividend' in Russian banking operates primarily through concrete economic mechanisms that reduce transaction costs in a high-friction institutional environment, rather than through abstract social capital or trust.
+
+## Network endogeneity as a substantive finding
+
+The endogeneity of network variables in our models is not merely a methodological caveat --- it is a substantive finding. Two distinct endogeneity channels emerge, each informative about the institutional environment.
+
+### Endogeneity of pure network centrality
+
+The behaviour of pure network centrality measures across specifications is consistent with a 'network firefighter' interpretation: banks occupy central positions in the ownership graph not because centrality confers competitive advantage, but because regulatory intervention compels surviving banks to absorb failing institutions and their ownership linkages. Specifically:
+
+- **Out-degree** (4Q lag) is consistently protective across all models (HR = 0.958 in 2007--2013, HR = 0.977 in 2013--2020) --- banks with more outgoing ownership connections survive longer. This is consistent with healthy institutions voluntarily acquiring stakes, a form of active network building that reflects institutional strength.
+
+- **PageRank** (4Q lag) is associated with marginally *higher* hazard in 2007--2013 (HR = 1.010, $p < 0.01$) and is not significant in 2013--2020. This counterintuitive result --- being connected to 'important' nodes is associated with worse outcomes --- is consistent with high PageRank reflecting involuntary centrality: banks positioned as acquirers of distressed assets inherit connections to systemically important but troubled institutions.
+
+The distinction between out-degree (voluntary, protective) and PageRank (potentially involuntary, harmful or neutral) supports the interpretation that network position in Russian banking is partly endogenous to regulatory action. Banks do not simply occupy network positions; they are placed there by the cleanup process itself. This carries implications for any network-based analysis of banking systems undergoing active regulatory consolidation: centrality metrics cannot be interpreted at face value as indicators of competitive strength.
+
+### Dynamic reverse causality of the family connection ratio
+
+The reverse causality tests (exp_013, @sec-appendix-c-reverse) reveal a complementary endogeneity channel specific to family connections. The relationship between family connections and survival is **bidirectional and temporally heterogeneous**:
+
+- **Pre-2013**: No significant reverse causality (survival does not predict FCR accumulation), consistent with family networks being a stable structural feature rather than a strategic response to regulatory pressure
+
+- **2014--2018 (peak cleanup)**: Significant reverse causality emerges --- survivors accumulate family connections at a rate 24.8% higher than failing banks (2016 peak). Surviving banks strategically build family networks in response to intensified regulatory risk.
+
+- **Post-2018**: The effect attenuates as the survivor pool stabilises
+
+This temporal pattern aligns with the substitution--interference framework: when the regulatory environment tightens, the incentive to invest in informal protection increases, and survivors are those who successfully build or leverage family networks. The estimated upward bias in Cox coefficients during the cleanup era (15--20%) bounds the magnitude of this effect: the true protective association is somewhat smaller than raw estimates suggest, but remains substantively and statistically significant.
+
+Taken together, these two endogeneity channels --- involuntary centrality through regulatory absorption, and strategic family network accumulation during cleanup --- show that the Russian banking ownership network is not a static structure that exogenously determines survival, but a dynamic system in which survival and network position are mutually constitutive.
+
+## The foreign ownership reversal
+
+The sign reversal of foreign ownership effects between the 2008 GFC and the 2014 geopolitical crisis is one of the clearest findings. During the GFC --- an exogenous economic shock where Russia was not at the epicentre [@reinhart_ThisTimeDifferent_2009] --- foreign-owned banks benefited from access to parent bank capital. During the 2014 sanctions crisis --- an endogenous geopolitical shock triggered by Russian foreign policy --- sanctions compliance burdens, capital flight concerns, and political pressure reversed the previously protective effect.
+
+The **nature of the crisis** determines whether international connections are protective or harmful. Economic crises that affect all markets symmetrically leave the comparative advantage of foreign connections intact. Geopolitical crises that specifically target cross-border linkages eliminate that advantage. This extends the institutional voids literature [@khanna_EstimatingPerformanceEffects_2001] by showing that the value of international connections in emerging markets is contingent on the geopolitical environment.
+
+## Substitution vs interference across time
+
+The subperiod and governor regime analyses support @ledeneva_RussiaEconomyFavours_1998's substitution--interference distinction:
+
+**2004--2008 (Substitution dominant)**: In the wake of the Sodbiznesbank crisis and during the GFC, family networks primarily served a substitution function. Formal institutions were visibly failing, and family networks provided alternative trust, liquidity, and information channels. The strong family $\times$ 2008 crisis interaction (+26.6% survival boost) supports this interpretation.
+
+**2013--2020 (Interference emerging)**: Under Nabiullina's regulatory tightening, the dominant mechanism shifts. Ownership fragmentation is the strongest mechanism in this period, and its protective association intensifies relative to earlier periods --- consistent with family networks increasingly used to evade formal rules rather than substitute for absent institutions.
+
+**The transition**: The governor regime analysis (@sec-results-governors) captures this through the paradox that family connections become slightly *more* protective under Nabiullina, even as the absolute FCR coefficient weakens. This reflects survivorship bias combined with mechanism intensification: the weakest family banks were removed by the cleanup, and surviving family banks became more adept at deploying interference mechanisms.
+
+## Identification and limitations
+
+### Causal interpretation
+
+We do not claim strict causal identification of the family network effect. The Cox proportional hazards framework with time-varying covariates provides **Granger-precedent conditional associations**, supported by formal Granger causality tests (@sec-appendix-c-granger) showing that FCR predicts survival after controlling for community contagion (HR = 0.650, $p < 0.001$), and falsification tests (@sec-appendix-c-placebo) confirming that within-community FCR permutation, non-family ownership concentration, and pseudo-crisis interactions are all non-significant. Several identification challenges nonetheless remain:
+
+1. **Selection on unobservables**: Family-connected banks may differ from non-family banks in unobserved ways (managerial quality, risk appetite, political connections not captured by ownership data) that independently influence survival. Our stratification strategy (regional, sectoral, community) absorbs some of this variation, but residual confounding cannot be ruled out.
+
+2. **Measurement**: The family connection ratio is computed from ownership disclosures and surname matching, which may miss informal family relationships. The enhanced disclosure mandate post-2013 may also mechanically increase observed FCR for banks that were already family-connected but previously underreported.
+
+3. **Information flow**: We cannot observe information transmission through the network directly. Network centrality metrics serve as structural proxies for information access, but a direct test of information flow mechanisms remains beyond the scope of available data.
+
+### Proximity to political power
+
+Defence feedback raised the question of whether family-connected banks might simply be 'closer to the Kremlin'. Our data do not include direct measures of federal-level political connections, which is a limitation. However: (1) regional stratification absorbs region-level political variation, and the family association survives this control; (2) factional association research [@soldatkin_FactionalismCompetitionEfficiency_2020] suggests that federal political connections operate through different channels than family networks; (3) the mechanism testing results show that the family association operates primarily through tax optimisation and internal capital markets, which are economic rather than political mechanisms. We cannot fully disentangle family network associations from unobserved political proximity.
+
+### Other informal tie types
+
+Family kinship is one of several forms of informal governance relevant to Russian banking. Alumni networks, military service connections, business partnerships, and regional friendship circles may also influence survival through similar or complementary mechanisms. Our focus on kinship ties is driven by data availability and theoretical grounding in @ledeneva_RussiaEconomyFavours_1998, not by a claim that family ties are the only relevant mechanism. Future research incorporating multiple tie types would provide a more complete picture.
+
+### Closure heterogeneity
+
+The competing risks analysis (@sec-appendix-c-competing) addresses the concern that family connections may be associated differently with different closure types. Family connections are specifically associated with reduced hazard of **forced licence revocation** (HR = 0.991, $p < 0.001$), with no significant effect on voluntary liquidation (HR = 0.998, $p = 0.470$) or reorganisation (HR = 0.997, $p = 0.357$). This decomposition strengthens the interpretation that family networks protect against regulatory enforcement --- consistent with the tax optimisation and political embeddedness mechanisms --- rather than providing a generic survival advantage.
+
+## Policy implications
+
+The findings carry several implications for banking regulation in institutionally fragile environments:
+
+1. **Network-aware supervision**: Community stratification provides the best model fit, suggesting that regulators should monitor ownership network structure alongside individual bank financial indicators.
+
+2. **Fragmentation as a regulatory signal**: The strong protective association of ownership fragmentation, whilst consistent with legitimate diversification, is also consistent with regulatory evasion. Supervisors should treat high ownership fragmentation as a potential indicator of threshold arbitrage.
+
+3. **Crisis-contingent regulation**: The foreign ownership reversal shows that the risk profile of ownership structures is contingent on the macroeconomic and geopolitical environment.
+
+4. **Unintended consequences of cleanup**: Nabiullina's cleanup may have inadvertently selected for banks most adept at deploying informal governance mechanisms, strengthening rather than eliminating informal governance amongst survivors.

@@ -1,0 +1,133 @@
+# Data {#sec-data}
+
+## Data sources and construction
+
+We draw on three data sources, integrated through a Neo4j graph database.
+
+### Central Bank of Russia (CBR) ownership disclosures
+
+The foundation of our ownership data is the set of mandatory disclosure statements filed by Russian banks with the CBR. These statements detail the identity and ownership stakes of all direct shareholders, members of the board of directors, and senior management. Crucially, they include full names (including patronymics), which we exploit to identify family relationships through surname and patronymic matching. The disclosure regime was strengthened in 2013 under Nabiullina's regulatory reforms, which may introduce a measurement consideration that we address in the robustness checks (@sec-appendix-c).
+
+### CBR accounting statements (CAMEL indicators)
+
+Quarterly accounting data from the CBR provides the financial indicators used as controls in our survival models. We construct a standard set of CAMEL variables: capital adequacy (Tier 1 capital ratio), asset quality (non-performing loan ratio, loan loss provisions), management quality (cost-to-income ratio), earnings (return on assets, net interest margin), and liquidity (liquid assets ratio, loan-to-deposit ratio). These variables are described in detail in @sec-appendix-b.
+
+### Neo4j graph database
+
+We construct a property graph database in Neo4j that represents the full ownership and management structure of Russian banks as a network. Nodes represent banks, persons, companies, and government entities. Directed edges represent ownership stakes (with percentage weights), management positions, and family relationships. This graph structure enables efficient computation of network centrality metrics and traversal of multi-hop ownership chains.
+
+We identify family relationships through two complementary methods:
+
+1. **Direct CBR disclosure**: Where ownership statements explicitly identify family relationships between shareholders
+
+2. **Surname-patronymic matching**: Using normalised Levenshtein distance [@yujian_NormalizedLevenshteinDistance_2007] with thresholds of 0.88 for surnames and 0.55 for patronymics, calibrated to balance false positives and false negatives
+
+The term 'family' in this study refers specifically to **kinship ties amongst bank stakeholders as identified through these two methods**. This includes spouse relationships, parent-child connections, and sibling ties that are either disclosed to the CBR or inferred from naming conventions. We do not assume a single 'family firm' definition; rather, we measure the **density** of kinship connections relative to total ownership structure, captured by the family connection ratio ($\rho_F$).
+
+## Sample construction
+
+The analytical sample is constructed from quarterly snapshots of the Neo4j database, spanning 2004Q1 to 2020Q4. Each observation represents a bank-quarter, with time-varying covariates updated at each snapshot.
+
+### Sample characteristics
+
+| Characteristic | Value |
+|:---|:---|
+| Observation period | 2004Q1--2020Q4 |
+| Total bank-quarter observations | ~140,000 |
+| Unique banks | 2,418 |
+| Failure events (licence revocations) | 1,117 |
+| Quarterly network snapshots | 44 |
+| Network lag | 4 quarters |
+| Average observations per bank | ~58 |
+
+: Sample characteristics for the full analysis period. {#tbl-sample-characteristics}
+
+### Event definition
+
+The failure event is defined as licence revocation by the CBR. Banks exit the sample at the quarter of licence revocation (or at the end of the observation period if they survive). Voluntary liquidations and reorganisations (mergers) are treated as censored observations, following the convention in the Russian banking survival literature [@barajas_SurvivalRussianBanks_2023; @fungacova_PoliticsBankFailures_2022]. We further decompose closure types in a competing risks analysis (@sec-appendix-c-competing), which distinguishes 1,768 forced revocations (66.6%), 663 voluntary liquidations (25.0%), and 219 reorganisations (8.3%) over the 2004--2021 period.
+
+### Network lag structure
+
+To address the concern that network metrics may reflect contemporaneous rather than causal relationships, all network centrality variables (PageRank, out-degree, in-degree, betweenness centrality, clustering coefficient) are computed from the ownership graph **four quarters prior** to the observation quarter. This 4-quarter lag ensures that network position precedes the survival outcome and mitigates reverse causality concerns --- though we test this assumption explicitly in @sec-appendix-c-reverse.
+
+## Key variables
+
+### Family connection ratio ($\rho_F$)
+
+The primary explanatory variable is the family connection ratio, defined as:
+
+$$\rho_F(b) = \frac{|F_b|}{|D_b|}$$
+
+where $|F_b|$ is the total number of family connections amongst the direct owners of bank $b$, and $|D_b|$ is the total number of direct owners. This measure captures the **density** of kinship ties within the ownership structure, ranging from 0 (no family connections) to values above 1 (where some owners have multiple family connections). A higher $\rho_F$ indicates a more family-entangled ownership structure.
+
+$\rho_F$ is a **structural** measure derived from the bank's own ownership records, not a network-derived metric computed from the broader ownership graph. This distinction matters because network-derived metrics (such as community membership or PageRank) may reflect broader structural patterns beyond the bank's immediate control, whereas $\rho_F$ captures the deliberate placement of family members in ownership positions.
+
+### Mechanism proxies
+
+The three TCE mechanisms are operationalised through the following proxies:
+
+| Mechanism | Proxy Variable | Definition |
+|:---|:---|:---|
+| Political Embeddedness | `family_connection_ratio` | Density of kinship ties, controlled for regional strata |
+| Tax Optimisation | `stake_fragmentation_index` | $1 - \sum s_i^2$, where $s_i$ is the ownership share of family member $i$ |
+| Internal Capital Markets | `group_total_capital` | Aggregate financial resources of the family group |
+| Internal Capital (enhanced) | `group_sector_count` | Number of distinct OKVED sectors in the family group |
+| Internal Capital (deep) | `group_total_paid_tax` | Aggregate tax payments (proxy for genuine economic activity) |
+
+: Mechanism proxy variables and their definitions. {#tbl-mechanism-proxies}
+
+### Network centrality metrics
+
+We compute five network centrality metrics from the ownership graph, each capturing a different aspect of a bank's structural position:
+
+- **PageRank** [@brin_AnatomyLargeScaleHypertextual_1998]: Measures influence based on the quality and quantity of incoming ownership connections, analogous to the importance of a webpage in a hyperlink network
+
+- **Out-degree centrality** [@freeman_CentralitySocialNetworks_1979]: Number of entities owned by the bank, indicating the breadth of its ownership portfolio
+
+- **In-degree centrality** [@freeman_CentralitySocialNetworks_1979]: Number of direct shareholders, indicating the diversity of the bank's ownership base
+
+- **Betweenness centrality** [@freeman_SetMeasuresCentrality_1977]: Frequency with which the bank lies on shortest paths between other entities, indicating its role as a structural bridge or intermediary
+
+- **Clustering coefficient** [@watts_CollectiveDynamicsSmallWorld_1998]: Density of connections amongst the bank's immediate neighbours, indicating the degree of local network closure
+
+All network centrality metrics are computed on the **directed** ownership graph, where edges represent ownership stakes flowing from shareholder to bank. PageRank, in-degree, out-degree, and betweenness centrality respect edge direction, capturing asymmetric influence relationships. We use PageRank as the directed analogue of eigenvector centrality [@bonacich_FactoringWeightingApproaches_1972], as the standard eigenvector centrality is not well-defined for directed graphs with asymmetric adjacency matrices. By contrast, family ties are inherently **undirected** (kinship is symmetric), and the family connection ratio ($\rho_F$) is computed from the undirected family subgraph, following the precedent of @padgett_RobustActionRise_1993 who treat marriage ties as undirected in their analysis of Florentine elite networks.
+
+All network metrics are computed with a 4-quarter lag and standardised (mean = 0, standard deviation = 1) prior to model estimation.
+
+### Control variables
+
+We control for:
+
+- **CAMEL financial indicators**: ROA, NPL ratio, Tier 1 capital ratio (standardised)
+
+- **Ownership structure**: State ownership percentage, foreign ownership percentage, family ownership percentage
+
+- **Macro environment**: Economic Policy Uncertainty (EPU) index for Russia (quarterly, news-based)
+
+- **Regime indicators**: Crisis period dummies (2004, 2008, 2014), governor dummy (Nabiullina = 1 from 2013Q3)
+
+## Descriptive statistics
+
+The full mechanism model (M4) includes the covariates described above across roughly 140,000 bank-quarter observations.
+
+### Identification considerations
+
+A key challenge in identifying the effect of family networks on survival is that family-connected banks may differ from non-family banks in many observable (and unobservable) ways prior to any network effects taking hold. Our empirical strategy incorporates several identification elements:
+
+1. **Time-varying covariates**: Quarterly snapshots with time-varying CAMEL indicators and ownership measures account for the evolving financial condition of each bank, rather than relying on a single cross-sectional snapshot
+
+2. **Network lag**: The 4-quarter lag on network metrics ensures temporal precedence of network position over survival outcomes
+
+3. **Stratification**: Models are estimated with regional, sectoral, and community (Louvain) strata, absorbing time-invariant confounders at each level
+
+4. **Reverse causality tests**: @sec-appendix-c-reverse presents explicit reverse causality tests (exp_013) using biennial OLS regressions to quantify the extent to which survival predicts family connection growth
+
+5. **Community fixed effects**: Stratification by Louvain communities [@blondel_FastUnfoldingCommunities_2008] controls for the possibility that family effects are confounded with broader network neighbourhood membership
+
+6. **Multicollinearity management**: Network centrality metrics may show substantial pairwise correlation (particularly PageRank and in-degree). All covariates are standardised prior to estimation, and we monitor variance inflation factors across specifications. The L2 penaliser (0.01) applied in Cox estimation further mitigates collinearity-induced instability
+
+7. **Granger causality test**: @sec-appendix-c-granger presents a formal Granger causality test using a discrete-time panel hazard model with community contagion controls, confirming that FCR Granger-causes survival (HR = 0.650, $p < 0.001$) even after controlling for community failure contagion
+
+8. **Placebo and falsification tests**: @sec-appendix-c-placebo reports three falsification tests --- within-community FCR permutation (empirical $p = 0.000$ from 100 iterations), pseudo-crisis date assignment, and non-family ownership concentration --- all confirming that the FCR effect is specific to family connections and not an artefact
+
+These elements do not constitute a natural experiment or instrumental variable strategy, and we do not claim strict causal identification. Rather, we interpret our results as **Granger-precedent conditional associations** that are robust to a range of alternative explanations, including falsification tests, contagion controls, and cause-specific decomposition, with the direction and magnitude of remaining bias bounded by our reverse causality estimates.

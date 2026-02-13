@@ -1,0 +1,102 @@
+# Institutional context and theoretical framework {#sec-institutional-context}
+
+## Defining weak formal institutions in Russia
+
+The claim that Russia's formal institutions are 'weak' requires precise definition. We do not mean an absence of regulation --- the Central Bank of Russia (CBR) operates an extensive supervisory apparatus, and Russian banks are subject to detailed prudential requirements modelled on Basel standards. Rather, we define institutional weakness as the **inability of formal rules to credibly commit to impartial enforcement**, leading to three observable consequences: (1) actors invest in relationship-based protection rather than relying solely on regulatory compliance; (2) regulatory outcomes are shaped by political connections and informal leverage as much as by adherence to formal rules; and (3) formal compliance becomes necessary but insufficient for institutional survival.
+
+Three episodes from the study period illustrate this definition.
+
+### The Sodbiznesbank crisis (2004)
+
+The revocation of Sodbiznesbank's licence in May 2004 was a watershed. It exposed the extent to which informal violence and extra-legal protections had superseded formal governance in Russian banking. The bank's shadow owner, Alexander Slesarev, was murdered in the course of the affair, and bank managers physically barricaded themselves inside the premises to prevent CBR regulators from accessing the institution [@fridman_sodbiz_2008]. This episode illustrates what @ledeneva_RussiaEconomyFavours_1998 terms the 'suspension of law' --- formal legal procedures rendered meaningless by the willingness of actors to resort to violence and physical obstruction.
+
+The crisis coincided with the final wave of institutional reforms establishing the Deposit Insurance Agency (DIA). A leaked CBR shortlist of banks deemed eligible for DIA membership triggered a broader bank run, as depositors fled institutions absent from the list, interpreting exclusion as a signal of impending closure. Even the creation of formal protection mechanisms (deposit insurance) could destabilise the sector when implemented in a low-trust environment: the shortlist itself became an informal signal that amplified rather than mitigated panic. The rational response is precisely the kind of relationship-based protection that family networks provide: informal trust substituting for absent credible enforcement.
+
+### Selective enforcement and regulatory forbearance
+
+Formal compliance metrics bear an imperfect relationship to regulatory outcomes. @barajas_SurvivalRussianBanks_2023 document that 98--99% of Russian banks met CBR prudential ratios at any given time, yet the sector experienced sustained high failure rates throughout 2004--2020. If formal compliance were sufficient for survival, the observed failure rates would be difficult to explain. @fungacova_PoliticsBankFailures_2022 provide compelling evidence that bank failure probabilities decline by a factor of 2--3 during pre-election periods, suggesting that supervisory decisions are systematically influenced by the political calendar.
+
+This pattern of selective enforcement creates strong incentives for bank owners to invest in informal protection. When formal compliance cannot guarantee survival, and when regulatory forbearance is distributed on the basis of political considerations, the rational strategy is to cultivate relationship networks that provide advance warning of regulatory action, access to political decision-makers, and mutual support during institutional stress.
+
+### The Otkritie--Trust sanitisation (2017)
+
+The state takeover of Otkritie and Trust banking groups in 2017 represents the culmination of Nabiullina-era regulatory consolidation. These were not marginal institutions: Otkritie was one of Russia's largest private banks, and its complex ownership network connected it to numerous other financial and industrial entities. The CBR's intervention showed that even systemically important, well-connected institutions were not immune to state action --- but the targeting of these particular institutions, with their elaborate network structures, also revealed that high network centrality could become a liability during active regulatory consolidation. The sanitisation process exposed the extent to which informal ownership arrangements had obscured true control structures and facilitated related-party transactions across the group.
+
+This episode is crucial for our framework because it shows the **dual nature** of informal governance: the same network structures that provided protection during economic crises (by facilitating internal capital transfers and coordinated responses to liquidity shocks) attracted regulatory targeting during state-led sector consolidation. The Otkritie--Trust case embodies the transition from substitution to interference that @ledeneva_RussiaEconomyFavours_1998 identifies as a fundamental tension in Russia's economy of favours.
+
+## Ledeneva's substitution--interference framework
+
+Building on this institutional context, we adopt @ledeneva_RussiaEconomyFavours_1998's distinction between two functions of informal governance:
+
+- **Substitution**: Informal mechanisms **replace** absent or ineffective formal institutions. Family networks provide essential services --- trust, contract enforcement, liquidity backstops, information sharing --- that the formal institutional environment fails to supply reliably. Substitution dominates during broad economic crises, when formal market mechanisms (interbank lending, external capital markets) cease to function and actors must rely on personal relationships for survival.
+
+- **Interference**: Informal mechanisms **subvert** the intended purpose of formal institutions. Family networks are used to evade regulatory requirements, obscure true ownership structures, circumvent transfer pricing rules, and exploit regulatory thresholds. Interference becomes more prominent during active regulatory tightening, when the state attempts to impose stricter formal rules and actors deploy informal mechanisms to resist compliance.
+
+This distinction is not merely theoretical. Our empirical strategy is designed to identify the conditions under which each function predominates, by examining how the protective effects of family networks vary across crisis types, regulatory regimes, and time periods.
+
+### Empirical mapping: substitution and interference across time
+
+We map the substitution--interference distinction onto specific institutional episodes:
+
+| Period | Regime | Dominant Function | Mechanism | Empirical Expectation |
+|:---|:---|:---|:---|:---|
+| 2004--2007 | Ignatyev (early) | Substitution | Family networks provide trust and liquidity backstops when formal institutions demonstrably weak (post-Sodbiznesbank) | FCR protective; no crisis interaction effects (crisis too brief) |
+| 2008 | Global Financial Crisis | Substitution | Internal capital markets buffer external shock; foreign capital markets frozen; family groups pool resources | Family $\times$ crisis interaction strongly protective |
+| 2013--2020 | Nabiullina | Interference | Ownership fragmentation evades transfer pricing thresholds and consolidated liability rules | Fragmentation index more protective than in earlier periods |
+| 2014--2017 | Sanctions + Cleanup | Mixed/Targeting | High centrality attracts regulatory targeting (Otkritie--Trust); foreign connections become liability | Foreign $\times$ crisis harmful; centrality becomes liability |
+
+: Mapping of the substitution--interference framework to the Russian banking institutional environment, 2004--2020. {#tbl-substitution-interference}
+
+A critical distinction is the **nature of the shock**. Following the crisis typology of @reinhart_ThisTimeDifferent_2009, the 2008 GFC constitutes an exogenous economic crisis: Russia was not at the epicentre, the shock originated in US mortgage markets and transmitted through global capital markets, and the Russian government's response --- including then-PM Putin's public prioritisation of Russian banks over foreign competitors for state support --- reinforced domestic informal networks as the primary survival mechanism. By contrast, the 2014 crisis constitutes an endogenous geopolitical shock: Western sanctions were a direct response to Russian foreign policy actions, making the crisis fundamentally political rather than economic. This distinction matters because exogenous shocks provide stronger conditions for testing the substitution hypothesis (family networks substitute for frozen markets), whilst endogenous shocks confound substitution with political targeting.
+
+The Nabiullina appointment itself reflected a political calculus. As a figure trusted by Putin, Nabiullina was empowered to pursue a consolidation agenda that brought the CBR into tacit conflict with banks connected to security services (*siloviki*), many of which had enjoyed regulatory forbearance under Ignatyev. This conflict --- between the CBR's institutional consolidation programme and the informal protections enjoyed by politically connected banks --- forms the backdrop against which family network effects must be interpreted in the post-2013 period.
+
+This mapping generates testable predictions that we evaluate using crisis interaction models (@sec-results-crises), subperiod analysis (@sec-results-subperiods), and governor regime tests (@sec-results-governors).
+
+## Transaction Cost Economics mechanisms
+
+To move beyond the general claim that 'family networks matter' and identify the specific channels through which kinship ties influence survival, we turn to Transaction Cost Economics (TCE). Following @coase_nature_1937 and @williamson_markets_1975, we argue that family ownership reduces survival-relevant transaction costs through three non-mutually exclusive mechanisms.
+
+### Mechanism 1: Political embeddedness (reducing political transaction costs)
+
+@north_institutions_1990 extends transaction costs to include the costs of measuring and enforcing agreements with the state. In a stable institutional environment, these 'political transaction costs' are standardised and predictable. In the post-2004 Russian context, where regulatory enforcement became arbitrary and at times weaponised, the cost of verifying compliance or predicting enforcement became prohibitively high.
+
+Family networks reduce these costs by embedding the firm within local political structures. By placing family members in proximity to municipal or regional officials, the bank acquires a 'surface area' for information gathering --- advance warning of regulatory inspections, policy shifts, or targeted enforcement actions. This embeddedness provides the time necessary to restructure assets or prepare responses, effectively lowering the political transaction cost of survival in a capricious regulatory environment.
+
+- **Proxy**: `family_connection_ratio` controlled for regional fixed effects (strata)
+
+- **Empirical test**: If political embeddedness is the dominant mechanism, then the protective effect of FCR should be robust to regional stratification (which absorbs regional-level political variation)
+
+### Mechanism 2: Tax optimisation (strategic firm boundary manipulation)
+
+The boundaries of the firm, according to @coase_nature_1937, are defined by the marginal cost of organising an extra transaction within the firm versus the open market. In Russia, families frequently extend or fragment these boundaries strategically --- not for operational efficiency, but for tax optimisation and regulatory opacity.
+
+The practice of 'business fragmentation' (*droblenie biznesa*) is a prevalent strategy used by family-financial groups to minimise fiscal and regulatory pressure. By splitting ownership stakes amongst a wider circle of family members, groups can remain below critical regulatory thresholds:
+
+- **Threshold arbitrage**: Maintaining individual stakes below 20% or 25% allows the group to avoid 'controlled transaction' reporting requirements and maintain eligibility for preferential tax regimes in linked subsidiaries
+
+- **Regulatory opacity**: High fragmentation makes it harder for the CBR or Federal Tax Service to identify a single 'controlling person' for consolidated liability purposes
+
+- **Proxy**: `stake_fragmentation_index` (calculated as $1 - \sum s_i^2$, where $s_i$ is the share of family member $i$). A higher index represents more dispersed ownership
+
+- **Empirical test**: If tax optimisation is the dominant mechanism, then `stake_fragmentation_index` should be the strongest predictor of survival, and its effect should intensify during regulatory tightening (when evasion incentives are highest)
+
+### Mechanism 3: Internal capital markets (the 'make vs buy' decision for capital)
+
+@williamson_markets_1975 argues that internal organisation substitutes for markets when external markets fail due to high transaction costs. In Russia, external credit markets are often inefficient, opaque, or politically captured [@khanna_focused_1997]. For a standalone bank, raising capital during a crisis involves prohibitive risk premiums or total market exclusion.
+
+Family banking groups respond by creating 'internal capital markets' --- essentially choosing to 'make' rather than 'buy' capital. By channelling resources through family-owned subsidiaries, the group can provide liquidity to the bank during external market stress. This 'propping' mechanism prioritises the preservation of family wealth over standalone profitability.
+
+We test this mechanism through two layers of proxies:
+
+- **H3 (Basic)**: `family_company_count` (number of entities in the family group) and `group_total_capital` (aggregate financial resources of the group)
+
+- **H3+ (Enhanced)**: `group_sector_count` (industrial diversification across OKVED sectors), capturing the cross-sector diversification benefit of groups spread across multiple industries
+
+- **H3++ (Deep)**: `group_total_paid_tax` (proxy for genuine economic activity) and `group_total_vehicles` (tangible logistics assets), capturing the 'real economy' depth of the family group
+
+- **Empirical test**: If internal capital markets are the dominant mechanism, then group-level financial depth and diversification should be significant predictors of bank survival, beyond the direct effect of family connections
+
+### Mechanism integration
+
+These three mechanisms are not mutually exclusive. A family banking group may simultaneously benefit from political embeddedness (Mechanism 1), strategic ownership fragmentation (Mechanism 2), and internal capital market support (Mechanism 3). Our empirical strategy in @sec-results-mechanisms tests all three in a single 'horse race' model to assess their relative contributions, then enriches the capital market mechanism with deeper structural proxies.

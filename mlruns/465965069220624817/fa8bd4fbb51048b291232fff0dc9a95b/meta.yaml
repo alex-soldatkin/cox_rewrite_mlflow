@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/465965069220624817/fa8bd4fbb51048b291232fff0dc9a95b/artifacts
+end_time: 1771001532480
+entry_point_name: ''
+experiment_id: '465965069220624817'
+lifecycle_stage: active
+run_id: fa8bd4fbb51048b291232fff0dc9a95b
+run_name: 'M4: Reorganisation only'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771001531637
+status: 3
+tags: []
+user_id: alexandersoldatkin

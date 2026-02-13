@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/465965069220624817/8106355eb170428b860e27a807e0e8ff/artifacts
+end_time: 1771001534595
+entry_point_name: ''
+experiment_id: '465965069220624817'
+lifecycle_stage: active
+run_id: 8106355eb170428b860e27a807e0e8ff
+run_name: 'M5: Revocation + crisis interactions'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771001532698
+status: 3
+tags: []
+user_id: alexandersoldatkin

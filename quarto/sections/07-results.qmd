@@ -1,0 +1,24 @@
+# Results {#sec-results}
+
+This chapter presents findings from four complementary experimental designs. @sec-results-mechanisms reports mechanism testing results across 2004--2020. @sec-results-subperiods examines temporal heterogeneity through subperiod analysis. @sec-results-crises tests for crisis-specific interaction effects. @sec-results-governors investigates governor regime effects. @sec-results-summary synthesises the findings.
+
+
+## Summary of findings {#sec-results-summary}
+
+The four experimental designs converge on several robust conclusions:
+
+1. **Family connection density is consistently protective**: The family connection ratio ($\rho_F$) is associated with reduced hazard rates across all specifications, time periods, and stratification schemes. The effect ranges from 1.0% to 7.3% hazard reduction per standard deviation, depending on model specification and time period.
+
+2. **All three TCE mechanisms contribute**: Political embeddedness, tax optimisation, and internal capital markets are each independently significant, with tax optimisation (ownership fragmentation) providing the strongest individual contribution (−11.8% hazard per SD).
+
+3. **Effects are context-dependent**: Family networks provide stronger protection during economic crises (2008 GFC) but the nature of the mechanism shifts --- from substitution (resource pooling) pre-2013 to interference (regulatory evasion through fragmentation) post-2013.
+
+4. **Foreign ownership reversal**: Protective during the 2008 GFC but harmful during the 2014 geopolitical crisis, indicating that the nature of the crisis fundamentally alters the risk-benefit calculus of international connections.
+
+5. **Regulatory regime matters**: The Nabiullina era is associated with higher baseline hazard but, paradoxically, family connections become slightly more protective --- consistent with survivorship bias (weakest family banks already removed) and increased incentives for regulatory evasion amongst survivors.
+
+6. **Community structure is the most informative stratification**: Model M9 (Louvain community strata) achieves the lowest AIC, indicating that a bank's position within structural neighbourhoods of the ownership network captures survival-relevant information beyond what regional or sectoral strata provide.
+
+7. **Family protection is specific to forced revocation**: Cause-specific Cox models (@sec-appendix-c-competing) show that the FCR effect is driven entirely by forced licence revocation (HR = 0.991, $p < 0.001$), with no significant association with voluntary liquidation (HR = 0.998, $p = 0.470$) or reorganisation (HR = 0.997, $p = 0.357$). This is consistent with family networks shielding specifically against regulatory enforcement actions, supporting the interference mechanism.
+
+8. **Falsification tests confirm specificity**: Permutation tests (empirical $p = 0.000$ from 100 within-community iterations), non-family ownership concentration (non-significant), and Granger causality tests with contagion controls (@sec-appendix-c-granger, @sec-appendix-c-placebo) all confirm that the effect is specific to family connections and cannot be explained by community membership or generic ownership concentration.

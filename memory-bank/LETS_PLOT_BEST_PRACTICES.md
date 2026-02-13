@@ -50,6 +50,16 @@ Practical guidance distilled from the visualisations implemented in this repo. F
 - Color scheme via `scale_color_manual` (active=green, revoked=red, annulled=grey, sanitising/sanitised=teal).
 - Tooltips: `layer_tooltips().title("@asv_name").line("REGN: @asv_orgInfo_regn").line("Registered: @{register_date|%Y-%m-%d}") ...` to format dates; add sanitation/SSV flags.
 
+### Forest plots (forest_plots/)
+- Manual numeric y positions (not categorical axes) for pixel-perfect alignment of CIs and point estimates.
+- `geom_segment` for CI lines + `geom_point` for estimates, sharing identical `y_dodge` values.
+- `geom_rect` + `scale_fill_gradient2` for per-variable background shading (green=protective, red=harmful).
+- Broken divider lines: two `geom_segment` pieces per group boundary with a gap proportional to label text length.
+- Stars placed at `ci_upper + nudge` with `hjust=0`.
+- Never put `group` in base `aes()` — it gets inherited by `geom_vline` which causes silent 198-byte error SVGs.
+- `scale_y_discrete(limits=...)` overrides `free_y` faceting — use `pd.Categorical` ordering instead.
+- LaTeX in labels does not render — use Unicode (ρ, ×, etc.).
+
 ## Things that did **not** work
 - `geom_density_ridges` is unavailable in Lets-Plot Python; attempting it raises `NameError`.
 - `plot.save(...)` doesn’t exist; must use `ggsave`.

@@ -1,0 +1,35 @@
+# Literature review summary tables {#sec-appendix-a .appendix}
+
+## Factors influencing bank survival {#sec-appendix-lit-survival}
+
+| Factor | Specific Indicator | Effect Direction | Effect Size | Source |
+|:---|:---|:---|:---|:---|
+| **Financial Fundamentals** | | | | |
+| Bank Size | Total assets (log) | Negative on failure | −0.236 to −0.385\*\*\* | @barajas_SurvivalRussianBanks_2023 |
+| Profitability | ROA | Negative on failure | −12.0 to −82.3\*\*\* | Multiple sources |
+| Capital Adequacy | Equity-to-assets | Negative on failure | −0.025 to −1.66\*\*\* | Multiple sources |
+| Liquidity | Liquid assets ratio | Negative on failure | −1.93 to −2.39\*\*\* | @fungacova_PoliticsBankFailures_2022 |
+| Asset Quality | NPL ratio | Positive on failure | 1.49 to 1.87\*\*\* | @fungacova_PoliticsBankFailures_2022 |
+| **Ownership** | | | | |
+| Foreign Control | Foreign bank >50% | Negative on failure | −0.989 to −0.993\*\*\* | @barajas_SurvivalRussianBanks_2023 |
+| State Ownership | State dummy | Mixed | Varied | @weill_HowCorruptionAffects_2011 |
+| **Political** | | | | |
+| Electoral Cycles | Pre-election periods | Negative on failure | −0.50 to −1.21\*\* | @fungacova_PoliticsBankFailures_2022 |
+| Corruption | Regional measures | Negative on lending | −0.182 to −0.340\*\*\* | @weill_HowCorruptionAffects_2011 |
+| **Market Structure** | | | | |
+| Competition | Lerner index | Negative (more competition $\rightarrow$ failure) | −1.46 to −3.36\*\*\* | @fungacova_DoesCompetitionInfluence_2013a |
+
+: Factors influencing bank survival and performance in Russia. {#tbl-lit-survival}
+
+## Family ownership studies {#sec-appendix-lit-family}
+
+| Study | Context | Key Finding | Effect |
+|:---|:---|:---|:---|
+| @anderson_FoundingFamilyOwnershipFirm_2003 | Fortune 500 | Founder premium on firm value | +1.16 Tobin's Q\*\*\* |
+| @villalonga_HowFamilyOwnership_2006 | Fortune 500 | Founder CEO vs descendant | Founder +1.16, descendant −0.23 |
+| @khanna_EstimatingPerformanceEffects_2001 | 14 emerging mkts | Group affiliation context-dependent | Positive in 6/14 countries |
+| @bertrand_MixingFamilyBusiness_2008 | Thai groups | Each additional son reduces ROA | −0.34 per son\* |
+| @bagley_NetworksGeographySurvival_2019 | Spinoff networks | Network centrality and survival | Lower hazard rate\* |
+| @ghinoi_FamilyFirmNetwork_2024 | Italian firms | Family ownership and network formation | Positive propensity\* |
+
+: Comparative results from family ownership studies. {#tbl-lit-family}

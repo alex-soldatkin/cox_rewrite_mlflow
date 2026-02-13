@@ -441,16 +441,7 @@ The interpretation of these CAMEL indicators within the Russian banking sector r
 
 ::: {#tbl-metrics-notation tbl-cap="A key for reading formulae in @tbl-metrics-description."}
 
-| Symbol              | Description                                                                  |
-| ------------------- | ---------------------------------------------------------------------------- |
-| $b$                 | Specific bank of interest                                                    |
-| $D_b$               | Set of direct owners of bank $b$                                             |
-| $\omega_i$          | Ownership value (face value) held by owner $i$                               |
-| $\mathbf{1}_{F}(i)$ | Indicator function equals 1 if owner $i$ has family connections, 0 otherwise |
-| $\phi(v)$           | Function indicating if entity $v$ is foreign (1) or domestic (0)             |
-| $N_F(i)$            | Set of family members connected to owner $i$                                 |
-| $V$                 | Set of all nodes in the graph                                                |
-| $P_b$               | Set of ownership paths to bank $b$ (up to 5 hops)                            |
+
 
 :::
 

@@ -1,0 +1,51 @@
+## Regulatory regime effects {#sec-results-governors}
+
+The transition from Sergey Ignatyev to Elvira Nabiullina as CBR governor in June 2013 represents a fundamental shift in regulatory philosophy. Ignatyev's accommodative stance (approximately 50 licence revocations per year) gave way to Nabiullina's aggressive cleanup campaign (75--100 per year, with over 500 total). This transition was not merely administrative: Nabiullina's appointment reflected a deliberate political decision by Putin to empower the CBR, bringing it into tacit conflict with banks connected to security services (*siloviki*) that had enjoyed regulatory forbearance under the previous regime. This experiment tests whether ownership effects on survival differ between regimes, controlling for crisis timing.
+
+### Regime characteristics
+
+| Feature | Ignatyev (2004--2013) | Nabiullina (2013--2020) |
+|:---|:---|:---|
+| Observations | 89,546 (64.4%) | 49,492 (35.6%) |
+| Regulatory stance | Accommodative | Aggressive |
+| Average revocations/year | ~50 | 75--100 |
+| Key events | Sodbiznesbank 2004, GFC 2008 | Cleanup 2013--16, Sanctions 2014 |
+| Transparency | Limited disclosure requirements | Enhanced disclosure mandates |
+
+: Regime comparison. {#tbl-regime-comparison}
+
+### Governor interaction results
+
+The pooled Cox model with governor dummy and ownership $\times$ governor interaction terms reveals several notable findings:
+
+**Main effects:**
+
+- **Nabiullina era baseline**: Higher hazard (+0.2%, $p < 0.001$), consistent with the cleanup campaign increasing the overall rate of licence revocations, controlling for financial indicators and ownership structure.
+
+- **Family connection ratio**: Protective under both regimes, but with an unexpected intensification under Nabiullina.
+
+**Interaction effects:**
+
+- **Family $\times$ Nabiullina**: The interaction term is weakly protective (HR interaction = 0.994, $p < 0.10$), yielding a total family effect under Nabiullina of 0.990 $\times$ 0.994 = 0.984 (1.6% hazard reduction) versus 0.990 (1.0% hazard reduction) under Ignatyev.
+
+- **State $\times$ Nabiullina**: Borderline stronger (HR interaction = 0.996, $p = 0.11$), consistent with the hypothesis that state ownership became more protective as bailout expectations increased under Nabiullina's 'too big to fail' approach.
+
+- **Foreign $\times$ Nabiullina**: Not significant, suggesting that the foreign ownership effects documented in the crisis interaction analysis are driven by crisis-specific dynamics (sanctions) rather than the governor regime *per se*.
+
+### Reconciling with subperiod results
+
+The governor regime analysis reveals an apparent contradiction with the subperiod results:
+
+- **exp_011 (subperiods)**: Family coefficient weakens from −0.018 (2004--2007) to −0.011 (2013--2020)
+
+- **exp_012 (regime interaction)**: Family $\times$ Nabiullina interaction is protective (intensifies under Nabiullina)
+
+**Resolution**: These results are reconciled through the concept of **survivorship bias with intensification**:
+
+1. The absolute FCR coefficient weakens because Nabiullina's cleanup removed the weakest family-connected banks, shrinking the pool and reducing raw variation in family effects
+
+2. Amongst *surviving* family-connected banks, the protective effect intensifies because these are the banks that have successfully navigated the cleanup through effective use of family network mechanisms (fragmentation, internal capital markets)
+
+3. The interaction term captures this conditional effect: given that a bank has survived into the Nabiullina era, family connections provide incrementally more protection, likely through tax optimisation mechanisms that become more valuable when regulatory scrutiny increases
+
+This interpretation is consistent with the substitution--interference framework: under Nabiullina's stricter rules, the **interference** function of family networks (regulatory evasion through fragmentation) becomes relatively more important, and banks that effectively employ this mechanism enjoy enhanced survival advantages.

@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/532750313291267942/8d10de966f5a48ad8fce2bda6d95a488/artifacts
+end_time: 1771001581886
+entry_point_name: ''
+experiment_id: '532750313291267942'
+lifecycle_stage: active
+run_id: 8d10de966f5a48ad8fce2bda6d95a488
+run_name: 'M5: Post-2013'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771001581700
+status: 3
+tags: []
+user_id: alexandersoldatkin

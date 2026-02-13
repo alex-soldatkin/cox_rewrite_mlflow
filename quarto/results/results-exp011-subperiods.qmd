@@ -1,0 +1,89 @@
+## Temporal heterogeneity and structural breaks {#sec-results-subperiods}
+
+We estimate the baseline model (M1) separately within three non-overlapping subperiods to test whether ownership effects are temporally stable or show structural breaks across regulatory regimes.
+
+### Subperiod characteristics
+
+| Period | Years | Observations | Banks | Events | Event Rate | Regime |
+|:---|:---|:---|:---|:---|:---|:---|
+| Early crisis | 2004--2007 | 33,966 | 944 | 669 | 70.9% | Ignatyev (post-Sodbiznesbank) |
+| GFC and recovery | 2007--2013 | 70,243 | 1,001 | 688 | 68.7% | Ignatyev (financial crisis) |
+| Sanctions era | 2013--2020 | 53,957 | 829 | 508 | 61.3% | Nabiullina (cleanup) |
+
+: Subperiod sample characteristics. {#tbl-subperiod-characteristics}
+
+### Baseline coefficient evolution
+
+```{python}
+#| output: asis
+
+import pandas as pd
+import sys
+sys.path.insert(0, 'tables')
+from table_generator import fmt_cell, fmt_stat, TABLE_LABELS, to_quarto_table
+
+df = pd.read_csv('../experiments/exp_011_subperiod_analysis/output/aggregated/stargazer_coef_model_1_baseline.csv')
+data = {}
+for _, row in df.iterrows():
+    data[row['variable']] = row
+periods = ['2004-2007', '2007-2013', '2013-2020']
+period_labels = ['2004--2007', '2007--2013', '2013--2020']
+covariate_vars = [
+    'family_connection_ratio', 'family_ownership_pct',
+    'state_ownership_pct', 'foreign_ownership_total_pct',
+    'camel_npl_ratio', 'camel_tier1_capital_ratio',
+]
+stat_vars = ['Observations', 'Subjects', 'Events', 'C-index']
+rows = []
+for var in covariate_vars:
+    row = {'Variable': TABLE_LABELS.get(var, var)}
+    for p, pl in zip(periods, period_labels):
+        val = data.get(var, {})
+        row[pl] = fmt_cell(val[p]) if var in data and pd.notna(val.get(p)) else '--'
+    rows.append(row)
+rows.append({k: '' for k in ['Variable'] + period_labels})
+for var in stat_vars:
+    row = {'Variable': f'**{var}**'}
+    for p, pl in zip(periods, period_labels):
+        val = data.get(var, {})
+        row[pl] = fmt_stat(var, val.get(p, '')) if var in data else ''
+    rows.append(row)
+result = pd.DataFrame(rows)
+print(to_quarto_table(
+    result,
+    'Coefficient evolution across subperiods (M1 baseline). Standardised coefficients from Cox models with community stratification. Standard errors in parentheses.',
+    'tbl-subperiod-baseline',
+))
+```
+
+![Temporal evolution of baseline model (M1) hazard ratios across three subperiods. The attenuation of the family connection ratio and the foreign ownership reversal are clearly visible.](figures/forest_temporal_evolution.png){#fig-forest-temporal}
+
+@fig-forest-temporal displays the coefficient evolution visually, making the attenuation of the family effect and the foreign ownership reversal immediately apparent.
+
+### Key findings
+
+**Family connection ratio**: The protective effect is present across all three periods but exhibits a notable attenuation over time:
+
+- **2004--2007**: HR = 0.982 ($p < 0.001$), corresponding to a 1.8% hazard reduction per standard deviation. This is the strongest period-specific effect, consistent with the substitution hypothesis---in the wake of the Sodbiznesbank crisis, when formal institutions were demonstrably unreliable, family networks provided the greatest marginal benefit.
+
+- **2007--2013**: The effect remains significant but the magnitude depends on the specific crisis interactions included. The GFC period represents the classic substitution scenario: external capital markets frozen, family groups pooling internal resources.
+
+- **2013--2020**: The baseline FCR effect weakens (HR closer to 1.0), but this must be interpreted alongside two compositional changes: (1) Nabiullina's cleanup removed the weakest banks, changing the survivor population; (2) the enhanced disclosure mandate post-2013 may have mechanically increased observed FCR for survivors (see @sec-appendix-c-reverse for the disclosure confound analysis).
+
+**Foreign ownership reversal**: The most striking structural break occurs in foreign ownership:
+
+- **2007--2013**: Protective (access to parent bank capital, international risk management)
+
+- **2013--2020**: The coefficient reverses sign, becoming associated with higher hazard---consistent with sanctions-related capital flight, compliance burdens, and reduced foreign investor confidence
+
+**Model fit**: The early period (2004--2007) achieves the highest C-index (0.661), suggesting that observable predictors have stronger discriminatory power in the early banking system, where heterogeneity in financial health was more pronounced. The post-2013 period shows moderate fit (C-index ~0.639), consistent with the hypothesis that survival determinants became more complex (and less observable) under Nabiullina's more opaque regulatory regime.
+
+### Interaction term value by period
+
+The value of crisis interaction terms varies dramatically across periods:
+
+- **2004--2007**: Interactions add minimal predictive value (C-index improvement < 0.001), because the 2004 crisis was too brief to generate sufficient variation in ownership $\times$ crisis interaction effects
+
+- **2007--2013**: Foreign $\times$ crisis interactions are most informative (C-index +0.0007), capturing the differential impact of the GFC on foreign-owned banks
+
+- **2013--2020**: Adding crisis interactions actually *reduces* model fit, suggesting that the post-2013 environment involves complex, non-linear effects not well captured by simple multiplicative interaction terms

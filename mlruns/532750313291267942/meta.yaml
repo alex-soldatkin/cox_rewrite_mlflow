@@ -1,0 +1,6 @@
+artifact_location: mlflow-artifacts:/532750313291267942
+creation_time: 1771001515354
+experiment_id: '532750313291267942'
+last_update_time: 1771001515354
+lifecycle_stage: active
+name: exp_015_granger_causality

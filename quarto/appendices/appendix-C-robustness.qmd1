@@ -1,0 +1,76 @@
+# Robustness checks {.appendix}
+
+## Community fixed effects (exp_008)
+
+### Motivation
+
+A key identification concern is that family network effects may be confounded with broader structural neighbourhoods in the ownership network. Banks belonging to the same Louvain community [@blondel_FastUnfoldingCommunities_2008] share unobserved characteristics that may independently influence survival. If family-connected banks cluster in high-survival communities, the estimated family effect may partly reflect community membership rather than family connections *per se*.
+
+### Approach
+
+We apply the Louvain community detection algorithm to the ownership graph, identifying 751 communities (collapsed from 1,703 time-varying assignments using each bank's most frequent community membership). The Cox model is then estimated with community-level stratification, allowing the baseline hazard to vary across communities.
+
+### Results
+
+- **Sample**: 44,295 observations, 791 banks, 472 events (2014--2020 subsample)
+
+- **Family connection ratio**: Remains significant after community stratification (HR = 0.988, $p < 0.01$), indicating that the family effect is not solely attributable to community membership
+
+- **Model fit**: Community stratification achieves substantially lower AIC than regional or sectoral strata, indicating that network communities capture survival-relevant variation beyond geographic or industry factors
+
+- **Interpretation**: Family connections provide protection *within* structural neighbourhoods, not merely *because of* neighbourhood membership. The community-level variation is substantial, but the within-community family effect is independently significant.
+
+## Reverse Causality and Endogeneity (exp_013)
+
+### Motivation
+
+The Cox models estimate the effect of family connections on survival, but the causal direction may be reversed: surviving banks may build family connections as they grow (through M&A, cross-ownership, or strategic placement of family members). If survival drives family connection accumulation, the Cox estimates are upward-biased.
+
+### Approach
+
+We reverse the regression equation: instead of predicting survival from FCR, we predict FCR from survival status using biennial OLS cross-sections (2012, 2014, 2016, 2018, 2020), controlling for CAMEL indicators, lagged network metrics, and ownership structure.
+
+### Results
+
+| Year | Survived Coefficient | Std. Error | $p$-value | Significance | $n$ | $R^2$ |
+|:---|:---|:---|:---|:---|:---|:---|
+| 2012 | −0.143 | 0.412 | 0.727 | n.s. | 741 | 0.018 |
+| 2014 | +0.157 | 0.052 | 0.003 | \*\* | 676 | 0.029 |
+| 2016 | +0.248 | 0.055 | <0.001 | \*\*\* | 509 | 0.036 |
+| 2018 | +0.195 | 0.072 | 0.007 | \*\* | 406 | 0.038 |
+
+: Reverse causality tests: OLS regressions predicting FCR from survival status. {#tbl-reverse-causality}
+
+### Interpretation
+
+- **Reverse causality is dynamic**: Absent before 2013 (pre-Nabiullina), peaks during the cleanup (2016), and diminishes by 2020
+
+- **Peak effect**: Survivors in 2016 had 24.8% higher FCR---the height of the licence revocation campaign
+
+- **Bias estimate**: Forward Cox estimates are biased upward by approximately 15--20% during the cleanup era
+
+- **Conclusion**: Family connections have genuine protective effects (forward causality is not an artefact), but survivors also accumulate connections, particularly during regulatory stress. The net effect: main Cox estimates are largely valid but modestly overstated during the Nabiullina cleanup period.
+
+### Disclosure Mandate Confound
+
+A critical caveat: the 2013 enhanced disclosure mandate may mechanically increase observed FCR for banks that were already family-connected but previously underreported. The post-2013 increase in FCR may reflect improved measurement rather than actual tie formation. This confound cannot be fully resolved with available data but is important for interpreting the temporal dynamics of the family effect.
+
+## Lagged Network Effects (exp_007)
+
+### Motivation
+
+Network metrics computed contemporaneously with the survival outcome may reflect reverse causality (failing banks losing connections) or simultaneity (both survival and network position driven by unobserved third factors). The 4-quarter lag structure ensures temporal precedence of network position over survival outcomes.
+
+### Approach
+
+All network centrality metrics (PageRank, out-degree, in-degree, betweenness, clustering coefficient) are computed from the ownership graph four quarters prior to the observation quarter. The family connection ratio is tested both contemporaneously and with a temporal lag.
+
+### Results
+
+- **Contemporaneous FCR**: HR = 0.988, $p < 0.001$ (1.2% hazard reduction)
+
+- **4-quarter lagged FCR**: HR = 0.991, $p < 0.05$ (0.9% hazard reduction, smaller but still significant)
+
+- **Lagged network metrics**: PageRank (4Q lag) is marginally significant ($p < 0.10$); out-degree (4Q lag) is significant and protective
+
+- **Interpretation**: The protective effect of family connections survives the 4-quarter lag, though it is attenuated. This is consistent with a genuine causal effect that is modestly inflated by contemporaneous confounding. The lagged estimates provide a conservative bound on the true protective effect.

@@ -1,0 +1,59 @@
+---
+title: 'Banking on Family: Why Family Ownership Matters for the Survival of Russian Banks'
+author:
+  - name: 'Alexander Soldatkin'
+    affiliations:
+      - name: 'University of Oxford'
+        department: 'Oxford School of Global and Area Studies'
+    email: 'alexander.soldatkin@sant.ox.ac.uk'
+abstract: |
+  This study investigates how family kinship networks influence bank survival in Russia's institutional environment from 2004 to 2020. Employing a novel graph database methodology to map ownership structures and kinship relationships amongst bank stakeholders, we analyse the survival determinants of Russian banks through Cox proportional hazards models with time-varying covariates, controlling for traditional CAMEL financial indicators. We test three Transaction Cost Economics mechanisms underlying family network protection: political embeddedness, tax optimisation through ownership fragmentation, and internal capital markets. Our empirical analysis, spanning approximately 140,000 bank-quarter observations across 2,418 unique banks, demonstrates that all three mechanisms significantly reduce hazard rates, with ownership fragmentation providing the strongest protection (11.8% hazard reduction per standard deviation). Competing risks analysis reveals that family protection operates specifically against forced licence revocation by the Central Bank (HR = 0.991, p < 0.001), with no significant effect on voluntary liquidation or reorganisation. Critically, these protective effects exhibit temporal heterogeneity: family networks serve a substitution function during economic crises (2008), providing 26.6% additional survival protection, but shift towards an interference function during periods of regulatory consolidation (2013--2020), where ownership fragmentation facilitates evasion of transfer pricing thresholds. We further document a foreign ownership reversal---protective during the 2008 Global Financial Crisis but harmful during the 2014 geopolitical crisis---and demonstrate that regulatory regime changes (Ignatyev to Nabiullina) fundamentally alter the survival landscape. Granger causality tests and placebo falsification confirm the specificity of the family connection effect. These findings are interpreted through Ledeneva's substitution--interference framework, providing the first systematic empirical evidence on the dual nature of informal governance in Russian banking.
+keywords:
+  - 'Russian banking'
+  - 'family ownership'
+  - 'kinship networks'
+  - 'bank survival'
+  - 'graph database'
+  - 'social network analysis'
+  - 'Cox proportional hazards model'
+  - 'Transaction Cost Economics'
+  - 'institutional voids'
+date: 2026-02-12
+date-format: 'long'
+---
+
+{{< include sections/01-introduction.qmd >}}
+
+{{< include sections/02-literature-review.qmd >}}
+
+{{< include sections/03-institutional-context.qmd >}}
+
+{{< include sections/04-hypotheses.qmd >}}
+
+{{< include sections/05-data.qmd >}}
+
+{{< include sections/06-methods.qmd >}}
+
+{{< include sections/07-results.qmd >}}
+
+{{< include results/results-exp010-mechanisms.qmd >}}
+
+{{< include results/results-exp011-subperiods.qmd >}}
+
+{{< include results/results-exp009-crises.qmd >}}
+
+{{< include results/results-exp012-governors.qmd >}}
+
+{{< include sections/08-discussion.qmd >}}
+
+{{< include sections/09-conclusion.qmd >}}
+
+{{< include appendices/appendix-A-literature-tables.qmd >}}
+
+{{< include appendices/appendix-B-metrics.qmd >}}
+
+{{< include appendices/appendix-C-robustness.qmd >}}
+
+{{< include appendices/appendix-D-baseline-models.qmd >}}
+
+{{< include appendices/appendix-E-regression-tables.qmd >}}

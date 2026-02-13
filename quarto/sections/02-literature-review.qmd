@@ -1,0 +1,63 @@
+# Literature review {#sec-literature-review}
+
+Three research domains underpin our analysis: the determinants of Russian bank failures, the role of ownership structures and informal networks, and the broader literature on family ownership and business groups.
+
+## Determinants of Russian bank failures
+
+### Financial fundamentals
+
+Empirical investigations spanning the post-2000 period consistently identify bank size, profitability, and capital adequacy as primary predictors of institutional viability. The evidence reveals a robust negative relationship between bank size and failure probability, with coefficients ranging from −0.236 to −0.385 across studies [@barajas_SurvivalRussianBanks_2023; @fungacova_PoliticsBankFailures_2022; @fungacova_DoesCompetitionInfluence_2013a]. This supports the 'too-big-to-fail' hypothesis within the Russian context.
+
+Profitability metrics, particularly return on assets (ROA), show substantial explanatory power, with negative coefficients on failure probability ranging from −12.0 to −82.3. Capital adequacy ratios consistently show negative relationships with failure probability, though magnitudes vary across studies, potentially reflecting evolving regulatory frameworks. Liquidity management emerges as another fundamental determinant, with liquid asset ratios showing strong negative correlations with failure probability (−1.93 to −2.39). Asset quality, measured through non-performing loan ratios, shows the expected positive relationship with failure probability.
+
+### Ownership structures and control
+
+The literature reveals considerable complexity regarding ownership effects. Foreign ownership shows consistently protective effects, with foreign control reducing failure probability significantly [@barajas_SurvivalRussianBanks_2023]. This aligns with theoretical expectations regarding superior risk management practices and access to international capital markets. State ownership presents more nuanced patterns, with studies documenting both protective effects for large state-controlled institutions and potential inefficiencies from political interference.
+
+Strategic orientation introduces additional complexity. Whilst corporate deposit concentration reduces failure probability, corporate lending orientation increases bankruptcy risk [@barajas_SurvivalRussianBanks_2023] --- a paradox suggesting that corporate relationships provide funding stability whilst simultaneously exposing institutions to concentrated credit risks.
+
+### Political economy and institutional environment
+
+Electoral cycle research provides compelling evidence that bank failures cluster temporally, with survival prospects enhanced during pre-election periods by a factor of 2--3 [@fungacova_PoliticsBankFailures_2022]. Regional corruption consistently hampers bank lending capacity, with coefficients on lending volume ranging from −0.182 to −0.340 [@weill_HowCorruptionAffects_2011]. Competition research yields counterintuitive findings: the Lerner index investigations show that increased competition paradoxically enhances failure probability (−1.460 to −3.364), supporting the 'competition-fragility' hypothesis [@fungacova_DoesCompetitionInfluence_2013a].
+
+### Factional networks and informal power
+
+Recent studies have unveiled sophisticated informal influence mechanisms within Russian banking. @soldatkin_FactionalismCompetitionEfficiency_2020 provides evidence of dual-layered factional influence: media-based factional associations show positive effects on performance (roughly 1.2 billion roubles additional profits) and substantially reduced licence revocation probabilities, suggesting that public visibility of political connections serves as an implicit guarantee. Ownership-based factional influence presents markedly different patterns, with siloviki ownership providing protective effects whilst government/presidential faction ownership paradoxically increases risks of failure.
+
+These dynamics establish the conceptual foundation for examining how family relationships --- another form of informal governance --- influence institutional survival. Prior work on factionalism shows that informal relationships matter for Russian bank survival, but has not examined kinship networks. This gap is not due to a lack of theoretical interest but to **data constraints**: family relationships are not recorded in standard regulatory data and require the kind of graph database methodology that this study introduces.
+
+## Family ownership and business groups
+
+### Theoretical foundations
+
+Family firms constitute a dominant organisational form globally, challenging the universality of agency theory frameworks developed from observations of dispersed ownership in Anglo-American contexts. Empirical studies document families present in one-third of S&P 500 firms [@anderson_FoundingFamilyOwnershipFirm_2003], with Western European markets showing even more pronounced family control [@faccio_UltimateOwnershipWestern_2002]. These observations suggest that family influence represents a persistent governance mechanism under specific institutional conditions --- conditions that parallel those observed in Russian banking.
+
+### Socioemotional wealth
+
+The concept of socioemotional wealth (SEW) explains non-financial motivations of family owners: emotional attachment, legacy preservation, maintenance of control, and reputational concerns [@gomez-mejia_SocioemotionalWealth_2007; @gomez-mejia_BindThatTies_2011]. This 'survivability capital' [@sirmon_ManagingResources_2003] becomes most potent during crises, when families can uniquely pool personal resources --- including free labour and emergency capital --- to save the firm. In emerging markets, this effect is amplified: @khanna_focused_1997 suggest that in environments characterised by institutional voids, family groups create internal labour and capital markets to substitute for missing external institutions.
+
+### Institutional context and performance
+
+The relationship between family ownership and firm performance is context-dependent. Positive effects appear mainly in environments characterised by institutional underdevelopment [@anderson_FoundingFamilyOwnershipFirm_2003; @khanna_EstimatingPerformanceEffects_2001]. Business group research offers particularly relevant insights: group affiliation shows positive effects in emerging markets (India, Indonesia, Taiwan) but negative or neutral effects in developed institutional environments [@khanna_EstimatingPerformanceEffects_2001]. These differential effects relate directly to institutional development levels, with group affiliation providing valuable intermediation where capital markets and regulatory frameworks are underdeveloped [@frye_GoverningBankingSector_2006] --- conditions that closely characterise Russian banking.
+
+### Generational dynamics
+
+Founder-controlled corporations consistently outperform descendant-managed enterprises [@villalonga_HowFamilyOwnership_2006; @bertrand_MixingFamilyBusiness_2008]. Thai business group evidence shows that family size significantly influences performance, with each additional son reducing ROA by 0.34 points [@bertrand_MixingFamilyBusiness_2008]. These generational dynamics are relevant for Russian banking, where many institutions established during the 1990s transition may now experience first-generation succession.
+
+### Network effects and survival
+
+Family ownership enhances network formation propensity and creates superior crisis recovery mechanisms [@ghinoi_FamilyFirmNetwork_2024; @lin_SocialNetworksListed_2022]. Network centrality research reveals that higher centrality positions correlate with lower hazard rates [@bagley_NetworksGeographySurvival_2019; @lin_SocialNetworksListed_2022], suggesting that family networks provide institutional substitutes for formal governance --- particularly valuable in environments characterised by regulatory uncertainty.
+
+A parallel literature on network contagion highlights the risks of interconnectedness. @acemoglu_SystemicRiskNetwork_2015 show that whilst network connections can facilitate risk-sharing during small shocks, they become channels for systemic contagion during large shocks, potentially amplifying cascading failures. This dual nature of network ties --- protective through resource pooling but dangerous through contagion transmission --- maps directly onto our substitution--interference framework: the same ownership linkages that channel internal capital during economic stress may transmit regulatory shocks during periods of targeted enforcement.
+
+## Summary and research gaps
+
+Three gaps emerge from this literature:
+
+1. The Russian banking literature documents political and ownership effects on survival but has not examined how **kinship networks** create alternative governance mechanisms --- a gap driven by data constraints that our graph database methodology overcomes.
+
+2. The family ownership literature provides robust theoretical frameworks but has not been applied to **financial institutions** in emerging economies with weak formal institutions and high political interference.
+
+3. The factional network research shows the empirical importance of informal relationships but does not explore how family connections **intersect with, complement, or substitute** political associations.
+
+Following @ledeneva_RussiaEconomyFavours_1998, we distinguish between substitution (where informal networks provide services that formal institutions fail to supply) and interference (where networks subvert functioning regulations). @sec-institutional-context develops this distinction with empirical examples, and @sec-hypotheses formalises the testable predictions.

@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/532750313291267942/90fa00ce74314a34b797aeb4e9a1ae5c/artifacts
+end_time: 1771001580082
+entry_point_name: ''
+experiment_id: '532750313291267942'
+lifecycle_stage: active
+run_id: 90fa00ce74314a34b797aeb4e9a1ae5c
+run_name: 'M1: Baseline (no contagion)'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771001579641
+status: 3
+tags: []
+user_id: alexandersoldatkin

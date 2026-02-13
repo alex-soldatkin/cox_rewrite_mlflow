@@ -1,0 +1,131 @@
+# Methods {#sec-methods}
+
+## Econometric framework
+
+We use Cox proportional hazards models with time-varying covariates as our primary analytical tool. The Cox model is well suited to this setting because: (1) it accommodates right-censored observations (banks surviving to end of sample); (2) it permits time-varying covariates, allowing us to update financial indicators and ownership structures quarterly; and (3) it makes no distributional assumptions about the baseline hazard, relying instead on the proportional hazards assumption.
+
+### Cox proportional hazards specification
+
+The hazard function for bank $i$ at time $t$ is specified as:
+
+$$h_i(t) = h_0(t) \cdot \exp\left(\boldsymbol{X}_i(t)' \boldsymbol{\beta}\right)$$
+
+where $h_0(t)$ is the unspecified baseline hazard, $\boldsymbol{X}_i(t)$ is the vector of time-varying covariates for bank $i$ at quarter $t$, and $\boldsymbol{\beta}$ is the vector of coefficients to be estimated. The exponentiated coefficients $\exp(\beta_j)$ are interpreted as hazard ratios: values below 1 indicate a protective effect (lower hazard of licence revocation), values above 1 indicate increased risk.
+
+All numerical covariates are standardised (mean = 0, standard deviation = 1) prior to estimation, enabling direct comparison of coefficient magnitudes across variables with different scales. We estimate models using the `lifelines` library in Python with an L2 penaliser of 0.01 to ensure convergence in specifications with large numbers of covariates.
+
+### Stratified Cox models
+
+To absorb time-invariant confounders at different levels, we estimate stratified Cox models where the baseline hazard varies across strata:
+
+$$h_i(t) = h_{0,s(i)}(t) \cdot \exp\left(\boldsymbol{X}_i(t)' \boldsymbol{\beta}\right)$$
+
+where $s(i)$ denotes the stratum to which bank $i$ belongs. We use three stratification schemes:
+
+- **Regional strata**: Federal subjects of Russia, absorbing regional-level political and economic variation
+
+- **Sectoral strata**: Primary OKVED sector of the family group, absorbing industry-specific risk profiles
+
+- **Community strata**: Louvain communities detected from the ownership graph [@blondel_FastUnfoldingCommunities_2008], absorbing network-structural confounders
+
+The community stratification is particularly important because it addresses the concern that family network effects may be confounded with broader structural neighbourhoods in the ownership network --- banks in the same community share unobserved characteristics that may independently influence survival.
+
+## Model specifications
+
+Our analysis proceeds through four complementary experimental designs, each addressing a distinct aspect of the research questions.
+
+### Experiment 1: Transaction cost mechanisms (exp_010)
+
+**Objective**: Identify which TCE mechanisms underlie the protective effect of family connections.
+
+**Period**: 2004--2020 (full sample)
+
+**Models**:
+
+| Model | Specification | Stratification | Purpose |
+|:---|:---|:---|:---|
+| M1 | FCR + CAMEL + ownership + network lag | Region | Political embeddedness test |
+| M2 | + Stake fragmentation index | Region | Tax optimisation test |
+| M3 | + Group capital + company count | Region | Internal capital markets test |
+| M4 | All mechanisms combined | Region | Horse race (relative contributions) |
+| M7 | + Group sector count + diversification | Region | H3+ enhanced capital markets |
+| M8 | All mechanisms | Sector | Sector-specific heterogeneity |
+| M9 | All mechanisms | Community | Network-structural confounding |
+| M10 | + Tax payments + vehicles | Region | H3++ deep structural proxies |
+
+: Model specifications for the mechanism testing experiment. {#tbl-model-specs-exp010}
+
+### Experiment 2: Subperiod analysis (exp_011)
+
+**Objective**: Test for structural breaks in ownership effects across regulatory regimes.
+
+**Periods**: Three non-overlapping subsamples:
+
+- 2004--2007 (early crisis era, Ignatyev, 33,966 obs, 944 banks, 669 events)
+
+- 2007--2013 (GFC and recovery, Ignatyev, 70,243 obs, 1,001 banks, 688 events)
+
+- 2013--2020 (sanctions and cleanup, Nabiullina, 53,957 obs, 829 banks, 508 events)
+
+**Models**: Six specifications (M1--M6) estimated separately within each period, allowing period-specific coefficients.
+
+### Experiment 3: Crisis interactions (exp_009)
+
+**Objective**: Test whether ownership effects vary across crisis types.
+
+**Period**: 2004--2021 (17 years, 68 quarterly snapshots)
+
+**Models**:
+
+| Model | Interaction Terms | Purpose |
+|:---|:---|:---|
+| M1 | None (baseline) | Reference model |
+| M2 | Crisis dummies only | Crisis main effects |
+| M3 | Family $\times$ crisis | H2a: family protection during crises |
+| M4 | State $\times$ crisis | State ownership during crises |
+| M5 | Foreign $\times$ crisis | H2b: foreign ownership reversal |
+| M6 | All ownership $\times$ crisis | Full interaction model |
+
+: Model specifications for the crisis interaction experiment. {#tbl-model-specs-exp009}
+
+### Experiment 4: Governor regimes (exp_012)
+
+**Objective**: Test whether ownership effects differ between CBR governor regimes.
+
+**Period**: 2004--2020 (pooled)
+
+**Approach**: Single pooled model with `governor_nabiullina` dummy (= 1 from July 2013) and ownership $\times$ governor interaction terms, controlling for crisis period dummies. This design tests whether the Ignatyev-to-Nabiullina transition altered the survival landscape for family-connected banks, beyond the effects of crisis timing.
+
+**Models**: M1 (baseline), M2 (governor main effect), M3--M5 (individual ownership $\times$ governor interactions), M6 (full model). All models use community stratification to control for network-structural confounders.
+
+## Robustness and identification checks
+
+Six additional experiments provide robustness checks and address specific identification concerns:
+
+- **Community fixed effects (exp_008)**: Tests whether family network effects survive stratification by Louvain community, addressing the concern that family effects are confounded with network community membership
+
+- **Reverse causality (exp_013)**: Uses biennial OLS regressions to test whether survival predicts family connection ratio growth, quantifying the extent of reverse causality bias in the main Cox estimates
+
+- **Lagged network effects (exp_007)**: Establishes the 4-quarter lag structure and tests whether temporal FCR remains protective after accounting for network endogeneity
+
+- **Granger causality test (exp_015)**: Discrete-time panel hazard model (complementary log-log) testing whether FCR Granger-causes survival after controlling for community failure contagion indicators
+
+- **Competing risks (exp_016)**: Cause-specific Cox models distinguishing forced revocation, voluntary liquidation, and reorganisation, testing whether family protection is specific to regulatory enforcement
+
+- **Placebo tests (exp_017)**: Within-community FCR permutation, pseudo-crisis date assignment, and non-family ownership concentration as falsification tests
+
+These robustness checks are reported in @sec-appendix-c.
+
+### Alternative network modelling approaches
+
+An alternative approach to modelling network-dependent outcomes is the Exponential Random Graph Model (ERGM), which jointly models network formation and node-level outcomes. ERGMs are theoretically appealing because they can account for endogenous network formation processes (e.g., preferential attachment, triadic closure) that may confound the relationship between network position and survival. However, ERGMs are computationally prohibitive at the scale of our analysis: the ownership network contains thousands of nodes per quarterly snapshot across 44 time periods, and the time-varying nature of both the network and covariates introduces additional complexity that current ERGM implementations do not handle efficiently. We therefore adopt the Cox framework with lagged network metrics and community stratification as our primary approach, noting that ERGM-based analysis represents a promising direction for future work with smaller network cross-sections.
+
+## Model diagnostics
+
+We assess model fit using three complementary criteria:
+
+- **Concordance index (C-index)**: Measures the proportion of concordant pairs (where the bank with higher predicted hazard fails first), ranging from 0.5 (random) to 1.0 (perfect discrimination)
+
+- **Akaike Information Criterion (AIC)**: Penalised likelihood measure for model comparison, with lower values indicating better fit. Particularly useful for comparing stratified models with different numbers of strata
+
+- **Log-likelihood ratio tests**: Assess whether additional covariates or interaction terms significantly improve model fit over nested baseline specifications

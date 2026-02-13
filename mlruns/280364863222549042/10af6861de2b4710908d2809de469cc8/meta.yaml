@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/280364863222549042/10af6861de2b4710908d2809de469cc8/artifacts
+end_time: 1771001528615
+entry_point_name: ''
+experiment_id: '280364863222549042'
+lifecycle_stage: active
+run_id: 10af6861de2b4710908d2809de469cc8
+run_name: M1_real_FCR
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771001528275
+status: 3
+tags: []
+user_id: alexandersoldatkin

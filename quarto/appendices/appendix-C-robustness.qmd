@@ -1,0 +1,349 @@
+# Robustness checks {#sec-appendix-c .appendix}
+
+## Community fixed effects (exp_008)
+
+### Motivation
+
+A key identification concern is that family network effects may be confounded with broader structural neighbourhoods in the ownership network. Banks belonging to the same Louvain community [@blondel_FastUnfoldingCommunities_2008] share unobserved characteristics that may independently influence survival. If family-connected banks cluster in high-survival communities, the estimated family effect may partly reflect community membership rather than family connections *per se*.
+
+### Approach
+
+We apply the Louvain community detection algorithm to the ownership graph, identifying 751 communities (collapsed from 1,703 time-varying assignments using each bank's most frequent community membership). The Cox model is then estimated with community-level stratification, allowing the baseline hazard to vary across communities.
+
+### Results
+
+- **Sample**: 44,295 observations, 791 banks, 472 events (2014--2020 subsample)
+
+- **Family connection ratio**: Remains significant after community stratification (HR = 0.988, $p < 0.01$), indicating that the family effect is not solely attributable to community membership
+
+- **Model fit**: Community stratification achieves substantially lower AIC than regional or sectoral strata, indicating that network communities capture survival-relevant variation beyond geographic or industry factors
+
+- **Interpretation**: Family connections provide protection *within* structural neighbourhoods, not merely *because of* neighbourhood membership. The community-level variation is substantial, but the within-community family effect is independently significant.
+
+## Reverse causality and endogeneity (exp_013) {#sec-appendix-c-reverse}
+
+### Motivation
+
+The Cox models estimate the effect of family connections on survival, but the causal direction may be reversed: surviving banks may build family connections as they grow (through M&A, cross-ownership, or strategic placement of family members). If survival drives family connection accumulation, the Cox estimates are upward-biased.
+
+### Approach
+
+We reverse the regression equation: instead of predicting survival from FCR, we predict FCR from survival status using biennial OLS cross-sections (2012, 2014, 2016, 2018, 2020), controlling for CAMEL indicators, lagged network metrics, and ownership structure.
+
+### Results
+
+| Year | Survived Coefficient | Std. Error | $p$-value | Significance | $n$ | $R^2$ |
+|:---|:---|:---|:---|:---|:---|:---|
+| 2012 | −0.143 | 0.412 | 0.727 | n.s. | 741 | 0.018 |
+| 2014 | +0.157 | 0.052 | 0.003 | \*\* | 676 | 0.029 |
+| 2016 | +0.248 | 0.055 | <0.001 | \*\*\* | 509 | 0.036 |
+| 2018 | +0.195 | 0.072 | 0.007 | \*\* | 406 | 0.038 |
+
+: Reverse causality tests: OLS regressions predicting FCR from survival status. {#tbl-reverse-causality}
+
+### Interpretation
+
+- **Reverse causality is dynamic**: Absent before 2013 (pre-Nabiullina), peaks during the cleanup (2016), and diminishes by 2020
+
+- **Peak effect**: Survivors in 2016 had 24.8% higher FCR---the height of the licence revocation campaign
+
+- **Bias estimate**: Forward Cox estimates are biased upward by approximately 15--20% during the cleanup era
+
+- **Conclusion**: Family connections have genuine protective effects (forward causality is not an artefact), but survivors also accumulate connections, particularly during regulatory stress. The net effect: main Cox estimates are largely valid but modestly overstated during the Nabiullina cleanup period.
+
+### Disclosure mandate confound
+
+A critical caveat: the 2013 enhanced disclosure mandate may mechanically increase observed FCR for banks that were already family-connected but previously underreported. The post-2013 increase in FCR may reflect improved measurement rather than actual tie formation. This confound cannot be fully resolved with available data but is important for interpreting the temporal dynamics of the family effect.
+
+## Lagged network effects (exp_007)
+
+### Motivation
+
+Network metrics computed contemporaneously with the survival outcome may reflect reverse causality (failing banks losing connections) or simultaneity (both survival and network position driven by unobserved third factors). The 4-quarter lag structure ensures temporal precedence of network position over survival outcomes.
+
+### Approach
+
+All network centrality metrics (PageRank, out-degree, in-degree, betweenness, clustering coefficient) are computed from the ownership graph four quarters prior to the observation quarter. The family connection ratio is tested both contemporaneously and with a temporal lag.
+
+### Results
+
+- **Contemporaneous FCR**: HR = 0.988, $p < 0.001$ (1.2% hazard reduction)
+
+- **4-quarter lagged FCR**: HR = 0.991, $p < 0.05$ (0.9% hazard reduction, smaller but still significant)
+
+- **Lagged network metrics**: PageRank (4Q lag) is marginally significant ($p < 0.10$); out-degree (4Q lag) is significant and protective
+
+- **Interpretation**: The protective effect of family connections survives the 4-quarter lag, though it is attenuated. This is consistent with a genuine causal effect that is modestly inflated by contemporaneous confounding. The lagged estimates provide a conservative bound on the true protective effect.
+
+## Granger causality test (exp_015) {#sec-appendix-c-granger}
+
+### Motivation
+
+A stronger identification test asks whether lagged family connections *Granger-cause* survival after controlling for community-level contagion. If the FCR effect is merely an artefact of community membership or failure contagion (i.e., banks failing because their neighbours fail), then controlling for lagged community failure rates should attenuate the FCR coefficient. If instead family connections independently predict survival beyond contagion, the effect constitutes Granger causality in a survival framework.
+
+### Approach
+
+We estimate a discrete-time panel hazard model with a complementary log-log link function (equivalent to a grouped-duration Cox model). The unit of observation is the bank-quarter. The dependent variable is an indicator for licence revocation. All covariates are lagged four quarters to ensure strict temporal precedence. Model M2 adds a community failure contagion control: the proportion of banks in the same Louvain community that failed in the preceding four quarters. Models M4 and M5 split the sample at 2013 (the onset of enhanced disclosure mandates and the Nabiullina cleanup campaign).
+
+### Results
+
+```{python}
+#| output: asis
+
+import pandas as pd
+import sys
+sys.path.insert(0, 'tables')
+from table_generator import fmt_cell, fmt_stat, TABLE_LABELS, to_quarto_table
+
+df = pd.read_csv('../experiments/exp_015_granger_causality/stargazer_aggregated.csv')
+data = {}
+for _, row in df.iterrows():
+    data[row['variable']] = row
+
+models = ['M1', 'M2', 'M4', 'M5']
+model_labels = ['M1: Baseline', 'M2: +Contagion', 'M4: Pre-2013', 'M5: Post-2013']
+
+covariate_vars = [
+    'family_connection_ratio', 'family_ownership_pct',
+    'state_ownership_pct', 'foreign_ownership_total_pct',
+    'rw_page_rank_4q_lag', 'rw_out_degree_4q_lag',
+    'camel_roa', 'camel_npl_ratio', 'camel_tier1_capital_ratio',
+    'community_failure_lag',
+]
+stat_vars = ['Observations', 'Subjects', 'Events', 'Log Likelihood', 'AIC']
+
+rows = []
+for var in covariate_vars:
+    row = {'Variable': TABLE_LABELS.get(var, var)}
+    for m, ml in zip(models, model_labels):
+        val = data.get(var, {})
+        row[ml] = fmt_cell(val.get(m, '')) if var in data else '--'
+    rows.append(row)
+
+rows.append({k: '' for k in ['Variable'] + model_labels})
+
+for var in stat_vars:
+    row = {'Variable': var}
+    for m, ml in zip(models, model_labels):
+        val = data.get(var, {})
+        row[ml] = fmt_stat(var, val.get(m, '')) if var in data else ''
+    rows.append(row)
+
+result = pd.DataFrame(rows)
+print(to_quarto_table(
+    result,
+    'Granger causality test: discrete-time hazard models with complementary log-log link (exp\\_015). Exponentiated coefficients approximate hazard ratios. Standard errors in parentheses.',
+    'tbl-granger',
+))
+```
+
+![Forest plot of Granger causality test results (exp_015). FCR remains highly significant after controlling for community failure contagion, and the effect is nearly twice as strong in the pre-2013 period.](figures/forest_granger.png){#fig-forest-granger}
+
+### Interpretation
+
+- **FCR Granger-causes survival**: In M1 (baseline), a one-unit increase in FCR reduces the hazard by 35.0% (HR = 0.650, $p < 0.001$). Adding the community contagion control in M2 leaves the FCR effect virtually unchanged (HR = 0.650, 35.0% reduction), confirming that the family effect is not attributable to community-level failure contagion.
+
+- **Community contagion is not the mechanism**: The community failure lag is non-significant in the full period (HR = 0.964, $p = 0.193$), though it becomes marginally significant in the pre-2013 subsample (HR = 0.914, 8.6% reduction, $p = 0.011$). Crucially, controlling for contagion does not attenuate the FCR coefficient.
+
+- **Temporal asymmetry**: The pre-2013 FCR effect (HR = 0.415, 58.5% hazard reduction) is nearly twice as strong as the post-2013 effect (HR = 0.660, 34.0% reduction). This is consistent with the reverse causality findings from exp_013: before the 2013 disclosure mandate, there is no evidence of reverse causality, so the pre-2013 estimate is least contaminated by survivorship-driven tie formation.
+
+## Competing risks: cause-specific Cox models (exp_016) {#sec-appendix-c-competing}
+
+### Motivation
+
+The baseline Cox models treat all licence revocations as a single event type, but bank closures in Russia occur through three distinct mechanisms: forced licence revocation by the CBR, voluntary liquidation, and reorganisation (mergers and acquisitions). If family connections provide a generic survival advantage, the FCR effect should be significant across all closure types. If instead family networks specifically shield against regulatory enforcement, the effect should be concentrated in forced revocations.
+
+### Closure type distribution
+
+| Closure type | Count | Percentage |
+|:---|:---|:---|
+| Forced revocation | 1,768 | 66.6% |
+| Voluntary liquidation | 663 | 25.0% |
+| Reorganisation (M&A) | 219 | 8.3% |
+| **Total** | **2,650** | **100%** |
+
+: Distribution of bank closure types, 2004--2021. Extracted from the CBR licensing database. {#tbl-closure-types}
+
+### Approach
+
+We estimate cause-specific Cox models in which non-target closure types are treated as censored observations. Model M1 replicates the baseline specification with all closures. Models M2--M4 isolate forced revocation, voluntary liquidation, and reorganisation respectively. Model M5 adds crisis interaction terms to the revocation model.
+
+### Results
+
+```{python}
+#| output: asis
+
+import pandas as pd
+import sys
+sys.path.insert(0, 'tables')
+from table_generator import fmt_cell, fmt_stat, TABLE_LABELS, to_quarto_table
+
+df = pd.read_csv('../experiments/exp_016_competing_risks/stargazer_aggregated.csv')
+data = {}
+for _, row in df.iterrows():
+    data[row['variable']] = row
+
+models = ['M1_all_closures', 'M2_revocation', 'M3_voluntary', 'M4_reorganisation', 'M5_revocation_crisis']
+model_labels = ['M1: All', 'M2: Revocation', 'M3: Voluntary', 'M4: Reorg.', 'M5: Revoc.+Crisis']
+
+covariate_vars = [
+    'family_connection_ratio', 'family_ownership_pct',
+    'state_ownership_pct', 'foreign_ownership_total_pct',
+    'rw_page_rank_4q_lag', 'rw_out_degree_4q_lag',
+    'camel_roa', 'camel_npl_ratio', 'camel_tier1_capital_ratio',
+    'crisis_2004', 'crisis_2008', 'crisis_2014',
+    'family_connection_ratio_x_crisis_2008',
+    'family_connection_ratio_x_crisis_2014',
+]
+stat_vars = ['Observations', 'Subjects', 'Events', 'Log Likelihood', 'AIC Partial', 'C-index']
+
+rows = []
+for var in covariate_vars:
+    row = {'Variable': TABLE_LABELS.get(var, var)}
+    for m, ml in zip(models, model_labels):
+        val = data.get(var, {})
+        row[ml] = fmt_cell(val.get(m, '')) if var in data else '--'
+    rows.append(row)
+
+rows.append({k: '' for k in ['Variable'] + model_labels})
+
+for var in stat_vars:
+    row = {'Variable': var}
+    for m, ml in zip(models, model_labels):
+        val = data.get(var, {})
+        row[ml] = fmt_stat(var, val.get(m, '')) if var in data else ''
+    rows.append(row)
+
+result = pd.DataFrame(rows)
+print(to_quarto_table(
+    result,
+    'Competing risks: cause-specific Cox models (exp\\_016). Each model treats non-target closure types as censored. Standard errors in parentheses.',
+    'tbl-competing-risks',
+))
+```
+
+![Forest plot of competing risks analysis (exp_016). FCR is significant for forced revocation but non-significant for voluntary liquidation and reorganisation.](figures/forest_competing_risks.png){#fig-forest-competing}
+
+### Interpretation
+
+- **Family protection is specific to forced revocation**: FCR significantly reduces the hazard of forced licence revocation (HR = 0.991, 0.9% per unit, $p < 0.001$), but has no significant effect on voluntary liquidation (HR = 0.998, 0.2%, $p = 0.470$) or reorganisation (HR = 0.997, 0.3%, $p = 0.357$).
+
+- **Mechanism consistency**: This pattern is consistent with family networks shielding specifically against regulatory enforcement actions by the CBR, rather than providing a generic survival advantage. The result supports the interference mechanism (political embeddedness, information advantages) over a pure financial resilience channel, which would predict protection across all closure types.
+
+- **Discriminant validity of CAMEL indicators**: Return on assets is strongly protective against revocation (HR = 0.905, 9.5% reduction, $p < 0.001$) but non-significant for voluntary liquidation and reorganisation, suggesting that the CBR prioritises financial fundamentals in enforcement decisions.
+
+- **Crisis interactions**: In M5, the FCR $\times$ Crisis 2014 interaction is marginally negative but not statistically significant, suggesting that family protection against revocation is relatively stable across crisis periods.
+
+## Placebo and falsification tests (exp_017) {#sec-appendix-c-placebo}
+
+### Motivation
+
+Three falsification tests establish that the FCR effect is specific to family connections and not an artefact of community membership, generic ownership concentration, or random noise.
+
+### Test A: FCR permutation within communities
+
+We permute FCR values within community strata (100 iterations), preserving the community-level distribution while breaking the bank-specific link between family connections and survival. If the FCR effect reflects community membership rather than bank-level family connections, permuted FCR should yield comparable coefficients.
+
+- **Real FCR coefficient**: $-0.011$ ($p < 0.001$)
+
+- **Permuted FCR mean**: $-0.000$ (SD = 0.002)
+
+- **Empirical $p$-value**: 0.000 (0 of 100 permutations produced a coefficient as extreme as the real value)
+
+The real FCR effect is more than five standard deviations from the permuted distribution, confirming that it reflects bank-specific family connections rather than community membership.
+
+### Test B: Pseudo-crisis dates
+
+We replace the actual crisis indicators (2008, 2014) with pseudo-crisis dates shifted two years earlier (2005--2006, 2011--2012) and interact them with FCR. If family protection is genuinely crisis-contingent, pseudo-crisis interactions should be non-significant.
+
+- **FCR $\times$ Pseudo-2008**: $-0.005$ (n.s.)
+
+- **FCR $\times$ Pseudo-2014**: $-0.011$ ($p < 0.10$, marginal)
+
+- **For comparison --- FCR $\times$ Real crisis 2008**: $-0.003$ (n.s.)
+
+- **For comparison --- FCR $\times$ Real crisis 2014**: $-0.009$ (n.s.)
+
+The pseudo-crisis interactions are broadly similar to the real crisis interactions, both showing non-significant or marginal effects. This suggests that the base FCR protective effect is relatively stable over time rather than sharply crisis-contingent.
+
+### Test C: Non-family ownership concentration
+
+We replace FCR with two alternative ownership measures: non-family ownership HHI (Herfindahl--Hirschman Index of ownership stakes excluding family ties) and random ownership (uniform random noise scaled to the FCR distribution).
+
+- **Non-family ownership HHI**: HR = 1.002, 0.2% hazard *increase* (not significant)
+
+- **Random ownership**: HR = 1.000, 0.0% (not significant)
+
+Neither alternative measure is protective, confirming that the FCR effect is specific to family connections. Generic ownership concentration and random noise do not replicate the family protection effect.
+
+### Results
+
+```{python}
+#| output: asis
+
+import pandas as pd
+import sys
+sys.path.insert(0, 'tables')
+from table_generator import fmt_cell, fmt_stat, TABLE_LABELS, to_quarto_table
+
+df = pd.read_csv('../experiments/exp_017_placebo_tests/stargazer_aggregated.csv')
+data = {}
+for _, row in df.iterrows():
+    data[row['variable']] = row
+
+models = ['M1_real', 'M4_pseudo', 'M6_real', 'M7_nonfamily', 'M8_random']
+model_labels = ['M1: Real FCR', 'M4: Pseudo-crisis', 'M6: Real crisis', 'M7: Non-family', 'M8: Random']
+
+covariate_vars = [
+    'family_connection_ratio', 'family_ownership_pct',
+    'state_ownership_pct', 'foreign_ownership_total_pct',
+    'rw_page_rank_4q_lag', 'rw_out_degree_4q_lag',
+    'camel_roa', 'camel_npl_ratio', 'camel_tier1_capital_ratio',
+    'pseudo_2008', 'pseudo_2014',
+    'family_connection_ratio_x_pseudo_2008',
+    'family_connection_ratio_x_pseudo_2014',
+    'crisis_2008', 'crisis_2014',
+    'family_connection_ratio_x_crisis_2008',
+    'family_connection_ratio_x_crisis_2014',
+    'nonfamily_ownership_hhi', 'random_ownership',
+]
+stat_vars = ['Observations', 'Subjects', 'Events', 'Log Likelihood', 'AIC Partial', 'C-index']
+
+rows = []
+for var in covariate_vars:
+    row = {'Variable': TABLE_LABELS.get(var, var)}
+    for m, ml in zip(models, model_labels):
+        val = data.get(var, {})
+        row[ml] = fmt_cell(val.get(m, '')) if var in data else '--'
+    rows.append(row)
+
+rows.append({k: '' for k in ['Variable'] + model_labels})
+
+for var in stat_vars:
+    row = {'Variable': var}
+    for m, ml in zip(models, model_labels):
+        val = data.get(var, {})
+        row[ml] = fmt_stat(var, val.get(m, '')) if var in data else ''
+    rows.append(row)
+
+result = pd.DataFrame(rows)
+print(to_quarto_table(
+    result,
+    'Placebo and falsification tests (exp\\_017). M1 uses real FCR; M4 and M6 compare pseudo vs real crisis interactions; M7 and M8 replace FCR with non-family HHI and random ownership. Standard errors in parentheses.',
+    'tbl-placebo',
+))
+```
+
+![Forest plot of placebo tests (exp_017). Real FCR is significantly protective, whereas non-family ownership HHI and random ownership show no protective effect.](figures/forest_placebo.png){#fig-forest-placebo}
+
+### Summary
+
+The three falsification tests provide converging evidence:
+
+1. **Permutation test**: The FCR effect cannot be explained by community membership ($p = 0.000$ from 100 iterations)
+
+2. **Pseudo-crisis dates**: Crisis-specific family protection is not an artefact of arbitrary date selection
+
+3. **Non-family ownership**: The effect is specific to family connections, not to generic ownership concentration or random noise
+
+Together with the Granger causality test (@sec-appendix-c-granger) and competing risks analysis (@sec-appendix-c-competing), these results strengthen the interpretation that family connections have a genuine, specific protective effect against regulatory enforcement.

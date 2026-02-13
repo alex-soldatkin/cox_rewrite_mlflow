@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/280364863222549042/3327ee5a82da4189ba6a5a66b1d2f9a1/artifacts
+end_time: 1771001726841
+entry_point_name: ''
+experiment_id: '280364863222549042'
+lifecycle_stage: active
+run_id: 3327ee5a82da4189ba6a5a66b1d2f9a1
+run_name: M4_pseudo_crisis
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771001726791
+status: 3
+tags: []
+user_id: alexandersoldatkin

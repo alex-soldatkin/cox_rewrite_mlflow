@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/532750313291267942/0a6f0379ba564178b64b322706c29f76/artifacts
+end_time: 1771001581646
+entry_point_name: ''
+experiment_id: '532750313291267942'
+lifecycle_stage: active
+run_id: 0a6f0379ba564178b64b322706c29f76
+run_name: 'M4: Pre-2013 (no reverse causality)'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771001580586
+status: 3
+tags: []
+user_id: alexandersoldatkin

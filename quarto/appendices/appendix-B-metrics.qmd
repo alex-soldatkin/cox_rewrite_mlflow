@@ -1,0 +1,66 @@
+# Variable definitions {#sec-appendix-b .appendix}
+
+## Family ownership metrics
+
+| Metric | Symbol | Formula | Description |
+|:---|:---|:---|:---|
+| Family Ownership Percentage | $FOP(b)$ | $\frac{FOV_d(b)}{TOV(b)} \times 100\%$ | Proportion of total ownership held by family-connected shareholders |
+| Family Connection Ratio | $\rho_F(b)$ | $\frac{|F_b|}{|D_b|}$ | Average number of family connections per direct owner |
+| Total Family Connections | $|F_b|$ | $\sum_{i \in D_b} |N_F(i)|$ | Count of family relationships amongst direct owners |
+| Direct Family Ownership Value | $FOV_d(b)$ | $\sum_{i \in D_b} \omega_i \cdot \mathbf{1}_F(i)$ | Total ownership value held by family-connected shareholders |
+| Family-Controlled Companies | $|C_F(b)|$ | Count of companies controlled by family members | Number of entities in the family group |
+
+: Family ownership metrics. {#tbl-metrics-family}
+
+## Mechanism proxy variables
+
+| Metric | Symbol | Formula | Description |
+|:---|:---|:---|:---|
+| Stake Fragmentation Index | $SFI$ | $1 - \sum s_i^2$ | Ownership dispersion (higher = more fragmented) |
+| Group Total Capital | $GTC$ | $\sum_{c \in G} capital_c$ | Aggregate financial resources of the family group |
+| Group Sector Count | $GSC$ | $|\{OKVED_c : c \in G\}|$ | Number of distinct industry sectors in the group |
+| Group Total Paid Tax | $GTPT$ | $\sum_{c \in G} tax_c$ | Proxy for genuine economic activity |
+| Group Total Vehicles | $GTV$ | $\sum_{c \in G} vehicles_c$ | Tangible logistics assets in the group |
+
+: Mechanism proxy variables. {#tbl-metrics-mechanisms}
+
+## Network centrality metrics
+
+| Metric | Symbol | Original Reference | Description |
+|:---|:---|:---|:---|
+| In-degree | $C_{in}(v)$ | @freeman_CentralitySocialNetworks_1979 | Number of direct owners of the bank |
+| Out-degree | $C_{out}(v)$ | @freeman_CentralitySocialNetworks_1979 | Number of entities owned by the bank |
+| Betweenness | $C_{between}(v)$ | @freeman_SetMeasuresCentrality_1977 | Frequency on shortest paths between other nodes |
+| Eigenvector | $C_{eigen}(v)$ | @bonacich_FactoringWeightingApproaches_1972 | Influence based on quality of connections |
+| PageRank | $PR(v)$ | @brin_AnatomyLargeScaleHypertextual_1998 | Importance based on incoming connections with jump probability |
+| Clustering | $CC(v)$ | @watts_CollectiveDynamicsSmallWorld_1998 | Density of connections amongst neighbours |
+
+: Network centrality metrics with original references. {#tbl-metrics-network}
+
+## CAMEL financial indicators
+
+| Component | Metric | Symbol | Description |
+|:---|:---|:---|:---|
+| **C**apital | Tier 1 capital ratio | $Tier1/Assets$ | Highest-quality capital relative to total assets |
+| **A**sset quality | NPL ratio | $NPL/Loans$ | Non-performing loans relative to total loans |
+| | Leverage ratio | $LR(b)$ | Financial leverage measure |
+| **M**anagement | Cost-to-income ratio | $Cost/Income$ | Operational efficiency |
+| **E**arnings | ROA | $ROA(b)$ | Return on assets |
+| | Net interest margin | $NIM(b)$ | Interest earned minus interest paid |
+| **L**iquidity | Liquid assets ratio | $LA/TA$ | Easily convertible assets relative to total |
+
+: CAMEL financial indicators. {#tbl-metrics-camel}
+
+## Notation key
+
+| Symbol | Description |
+|:---|:---|
+| $b$ | Specific bank of interest |
+| $D_b$ | Set of direct owners of bank $b$ |
+| $\omega_i$ | Ownership stake held by owner $i$ |
+| $\mathbf{1}_F(i)$ | Indicator: 1 if owner $i$ has family connections |
+| $N_F(i)$ | Set of family members connected to owner $i$ |
+| $V$ | Set of all nodes in the ownership graph |
+| $G$ | Family group (set of entities linked through family ownership) |
+
+: Notation key. {#tbl-notation}
